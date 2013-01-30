@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.sommeri:less4j:0.0.9">
+    <CLASSES>
+      <root url="jar://$M2_REPO$/com/github/sommeri/less4j/0.0.9/less4j-0.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$M2_REPO$/com/github/sommeri/less4j/0.0.9/less4j-0.0.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$M2_REPO$/com/github/sommeri/less4j/0.0.9/less4j-0.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
