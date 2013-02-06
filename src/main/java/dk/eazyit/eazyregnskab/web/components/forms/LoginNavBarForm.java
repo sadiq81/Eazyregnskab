@@ -4,6 +4,7 @@ import de.agilecoders.wicket.markup.html.bootstrap.button.ButtonType;
 import de.agilecoders.wicket.markup.html.bootstrap.button.TypedAjaxButton;
 import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarForm;
 import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.web.app.secure.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderPasswordField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -28,11 +29,15 @@ public class LoginNavBarForm extends NavbarForm<AppUser> {
 
     private void initComponents() {
 
+
+
         PlaceholderTextField<String> username = new PlaceholderTextField<String>("userName", new PropertyModel(getModelObject(), "username"));
+        username.setRequired(true);
         username.setPlaceholder(new ResourceModel("username").getObject());
         add(username);
 
         PlaceholderPasswordField password = new PlaceholderPasswordField("password", new PropertyModel<String>(getModelObject(), "password"));
+        password.setRequired(true);
         password.setPlaceholder(new ResourceModel("password").getObject());
         add(password);
 
@@ -40,17 +45,22 @@ public class LoginNavBarForm extends NavbarForm<AppUser> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
-                int i = 0;
+
             }
 
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 super.onError(target, form);
-                int i = 0;
+
             }
         };
         add(login);
 
 
+    }
+
+    @Override
+    public boolean isVisible() {
+        return !(getPage() instanceof LoggedInPage); //TODO depend on logged in user
     }
 }

@@ -7,6 +7,7 @@ import de.agilecoders.wicket.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarComponents;
 import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.web.app.secure.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.forms.LoginNavBarForm;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -46,12 +47,13 @@ public abstract class AppBasePage extends WebPage {
     private void initComponents() {
 
         Navbar topMenu = new Navbar("topMenu");
-        topMenu.addComponents();
+
 
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton(HomePage.class, new ResourceModel("home")).setIconType(IconType.home),
-                new NavbarButton(HomePage.class, new ResourceModel("about")),
-                new NavbarButton(HomePage.class, new ResourceModel("contact"))));
+                new NavbarButton(AboutPage.class, new ResourceModel("about")),
+                new NavbarButton(ContactPage.class, new ResourceModel("contact")),
+                new NavbarButton(LoggedInPage.class, new ResourceModel("home"))));
 
 
 
