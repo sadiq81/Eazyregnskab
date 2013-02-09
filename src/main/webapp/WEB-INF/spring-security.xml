@@ -18,15 +18,17 @@
 
         <logout logout-success-url="/app/HomePage"/>
 
+        <remember-me key="eazyRegnskab"/>
         <session-management>
             <concurrency-control max-sessions="1"/>
         </session-management>
     </http>
 
 
-
     <authentication-manager alias="authenticationManager">
         <authentication-provider>
+            <!--<password-encoder hash="sha"/>-->
+
             <jdbc-user-service data-source-ref="dataSource"
 
                                users-by-username-query="
@@ -40,5 +42,8 @@
                     />
         </authentication-provider>
     </authentication-manager>
+
+
+
 
 </beans:beans>
