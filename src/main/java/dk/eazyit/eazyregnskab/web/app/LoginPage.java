@@ -3,18 +3,18 @@ package dk.eazyit.eazyregnskab.web.app;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-public class ContactPage extends AppBasePage {
+public class LoginPage extends AppBasePage {
     private static final long serialVersionUID = 1L;
 
-    public ContactPage() {
+    public LoginPage() {
         super();
     }
 
-    public ContactPage(IModel<?> model) {
+    public LoginPage(IModel<?> model) {
         super(model);
     }
 
-    public ContactPage(final PageParameters parameters) {
+    public LoginPage(final PageParameters parameters) {
         super(parameters);
 
     }

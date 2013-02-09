@@ -8,6 +8,7 @@
           <element id="module-output" name="eazyregnskab" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.20" />
           <element id="library" level="project" name="Maven: org.apache.wicket:wicket-core:6.5.0" />
           <element id="library" level="project" name="Maven: org.apache.wicket:wicket-util:6.5.0" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.4" />
