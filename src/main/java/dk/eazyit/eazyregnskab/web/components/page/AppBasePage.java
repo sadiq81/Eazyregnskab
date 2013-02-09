@@ -1,10 +1,14 @@
-package dk.eazyit.eazyregnskab.web.app;
+package dk.eazyit.eazyregnskab.web.components.page;
 
 import de.agilecoders.wicket.Bootstrap;
 import de.agilecoders.wicket.markup.html.bootstrap.image.IconType;
 import de.agilecoders.wicket.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarComponents;
+import dk.eazyit.eazyregnskab.web.app.front.AboutPage;
+import dk.eazyit.eazyregnskab.web.app.front.ContactPage;
+import dk.eazyit.eazyregnskab.web.app.front.HomePage;
+import dk.eazyit.eazyregnskab.web.app.front.LoginPage;
 import dk.eazyit.eazyregnskab.web.components.login.LoginNavbarButton;
 import dk.eazyit.eazyregnskab.web.components.login.LogoutNavbarButton;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -20,17 +24,17 @@ public abstract class AppBasePage extends WebPage {
 
 
     public AppBasePage() {
-        initComponents();
+        initMenu();
     }
 
     public AppBasePage(IModel<?> model) {
         super(model);
-        initComponents();
+        initMenu();
     }
 
     public AppBasePage(PageParameters parameters) {
         super(parameters);
-        initComponents();
+        initMenu();
     }
 
     @Override
@@ -41,7 +45,7 @@ public abstract class AppBasePage extends WebPage {
     }
 
 
-    private void initComponents() {
+    private void initMenu() {
 
         Navbar topMenu = new Navbar("topMenu");
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
@@ -52,7 +56,8 @@ public abstract class AppBasePage extends WebPage {
                 new LogoutNavbarButton(WebPage.class, new ResourceModel("logout"))
         ));
         add(topMenu);
-
-
+        addToPage();
     }
+
+    protected abstract void addToPage();
 }

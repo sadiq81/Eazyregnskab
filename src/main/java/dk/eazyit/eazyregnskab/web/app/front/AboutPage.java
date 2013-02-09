@@ -1,5 +1,6 @@
-package dk.eazyit.eazyregnskab.web.app;
+package dk.eazyit.eazyregnskab.web.app.front;
 
+import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
@@ -17,5 +18,10 @@ public class AboutPage extends AppBasePage {
     public AboutPage(final PageParameters parameters) {
         super(parameters);
 
+    }
+
+    @Override
+    protected void addToPage() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -1,6 +1,5 @@
-package dk.eazyit.eazyregnskab.web.app.secure;
+package dk.eazyit.eazyregnskab.web.components.page;
 
-import dk.eazyit.eazyregnskab.web.app.AppBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
@@ -18,5 +17,10 @@ public class LoggedInPage extends AppBasePage {
 
     public LoggedInPage(PageParameters parameters) {
         super(parameters);
+    }
+
+    @Override
+    protected void addToPage() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -2,7 +2,8 @@ package dk.eazyit.eazyregnskab.web.app;
 
 import de.agilecoders.wicket.Bootstrap;
 import de.agilecoders.wicket.settings.BootstrapSettings;
-import dk.eazyit.eazyregnskab.web.app.secure.LoggedInPage;
+import dk.eazyit.eazyregnskab.web.app.front.HomePage;
+import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.Application;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
