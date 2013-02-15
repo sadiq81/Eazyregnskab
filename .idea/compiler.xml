@@ -24,11 +24,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="eazyregnskab" />
+        <module name="awsupload" />
+        <module name="mainwar" />
+        <module name="server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="awsupload" target="1.6" />
       <module name="eazyregnskab" target="1.6" />
+      <module name="mainwar" target="1.6" />
+      <module name="server" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/awsupload/awsupload.iml" filepath="$PROJECT_DIR$/awsupload/awsupload.iml" />
       <module fileurl="file://$PROJECT_DIR$/eazyregnskab.iml" filepath="$PROJECT_DIR$/eazyregnskab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mainwar/mainwar.iml" filepath="$PROJECT_DIR$/mainwar/mainwar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
     </modules>
   </component>
 </project>
