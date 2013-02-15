@@ -24,6 +24,7 @@ public abstract class AppBasePage extends WebPage {
 
 
     public AppBasePage() {
+        super();
         initMenu();
     }
 
@@ -40,7 +41,6 @@ public abstract class AppBasePage extends WebPage {
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
-
         Bootstrap.renderHead(response);
     }
 
