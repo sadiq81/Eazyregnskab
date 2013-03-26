@@ -16,12 +16,15 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Eazy IT
  */
 public abstract class AppBasePage extends WebPage {
 
+    final Logger logger = LoggerFactory.getLogger(AppBasePage.class);
 
     public AppBasePage() {
         super();
@@ -47,6 +50,7 @@ public abstract class AppBasePage extends WebPage {
 
     private void initMenu() {
 
+
         Navbar topMenu = new Navbar("topMenu");
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton(HomePage.class, new ResourceModel("home")).setIconType(IconType.home),
@@ -57,6 +61,8 @@ public abstract class AppBasePage extends WebPage {
         ));
         add(topMenu);
         addToPage();
+        logger.debug("navbar created");
+
     }
 
     protected abstract void addToPage();
