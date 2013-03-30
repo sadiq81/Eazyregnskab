@@ -61,7 +61,8 @@ public abstract class AppBasePage extends WebPage {
         ));
         add(topMenu);
         addToPage();
-        logger.debug("navbar created");
+
+        logger.debug("AppBasePage created");
 
     }
 

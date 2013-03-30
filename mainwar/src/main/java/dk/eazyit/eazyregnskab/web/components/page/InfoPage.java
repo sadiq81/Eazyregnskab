@@ -10,20 +10,16 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
  */
 public abstract class InfoPage extends AppBasePage {
 
-
     public InfoPage() {
         super();
-
     }
 
     public InfoPage(IModel<?> model) {
         super(model);
-
     }
 
     public InfoPage(PageParameters parameters) {
         super(parameters);
-
     }
 
     protected void addToPage() {
@@ -35,5 +31,6 @@ public abstract class InfoPage extends AppBasePage {
             }
         };
         add(image);
+
     }
 }
