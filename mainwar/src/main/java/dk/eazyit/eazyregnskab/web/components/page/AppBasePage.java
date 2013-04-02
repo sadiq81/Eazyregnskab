@@ -24,21 +24,27 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AppBasePage extends WebPage {
 
-    final Logger logger = LoggerFactory.getLogger(AppBasePage.class);
+    final Logger logger;
 
     public AppBasePage() {
         super();
+        logger = LoggerFactory.getLogger(this.getClass());
         initMenu();
+        logger.debug(this.getClass().getSimpleName().toString() + " was created");
     }
 
     public AppBasePage(IModel<?> model) {
         super(model);
+        logger = LoggerFactory.getLogger(this.getClass());
         initMenu();
+        logger.debug(this.getClass().getSimpleName().toString() + " was created with model "+model.getObject().toString());
     }
 
     public AppBasePage(PageParameters parameters) {
         super(parameters);
+        logger = LoggerFactory.getLogger(this.getClass());
         initMenu();
+        logger.debug(this.getClass().getSimpleName().toString() + " was created with parameters " + parameters.toString());
     }
 
     @Override
@@ -60,9 +66,6 @@ public abstract class AppBasePage extends WebPage {
         ));
         add(topMenu);
         addToPage();
-
-        logger.debug("AppBasePage created");
-
     }
 
     protected abstract void addToPage();

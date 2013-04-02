@@ -32,5 +32,6 @@ public abstract class InfoPage extends AppBasePage {
         };
         add(image);
 
+
     }
 }
