@@ -8,6 +8,15 @@
           <element id="module-output" name="mainwar" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:4.1.10.Final" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.1.0.GA" />
+          <element id="library" level="project" name="Maven: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.0.Final" />
+          <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.15.0-GA" />
+          <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:4.0.1.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-entitymanager:4.1.10.Final" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.20" />
           <element id="library" level="project" name="Maven: org.apache.wicket:wicket-core:6.5.0" />
           <element id="library" level="project" name="Maven: org.apache.wicket:wicket-util:6.5.0" />
@@ -27,7 +36,6 @@
           <element id="library" level="project" name="Maven: org.antlr:antlr:3.4" />
           <element id="library" level="project" name="Maven: org.antlr:antlr-runtime:3.4" />
           <element id="library" level="project" name="Maven: org.antlr:stringtemplate:3.2.1" />
-          <element id="library" level="project" name="Maven: antlr:antlr:2.7.7" />
           <element id="library" level="project" name="Maven: org.antlr:ST4:4.0.4" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.3" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.6.6" />

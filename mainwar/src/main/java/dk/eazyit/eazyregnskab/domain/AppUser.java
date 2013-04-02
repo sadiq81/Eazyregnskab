@@ -1,22 +1,42 @@
 package dk.eazyit.eazyregnskab.domain;
 
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author Trifork
  */
-public class AppUser implements Serializable {
+@Entity
+@NamedQueries({
+        @NamedQuery(name = AppUser.QUERY_FIND_BY_USER_NAME, query = "select a from AppUser a where a.username = ?1")
+})
+@Table(name = "users")
+public class AppUser extends BaseEntity {
+
+    public static final String QUERY_FIND_BY_USER_NAME = "AppUser::findByUserName";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(unique = true, nullable = false, length = 25)
+    private String username;
+    @Column(unique = false, nullable = false, length = 256)
+    private String password;
+    @Column(unique = false, nullable = false)
+    private boolean enabled;
+    @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER)
+    private Set<AppUserRole> appUserRoles;
 
     public AppUser() {
     }
 
-    private long id;
-    private String username;
-    private String password;
-    private String subscriptionId;
+    public AppUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
-
-    public long getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
@@ -28,8 +48,8 @@ public class AppUser implements Serializable {
         return username;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -40,11 +60,32 @@ public class AppUser implements Serializable {
         this.password = password;
     }
 
-    public String getSubscriptionId() {
-        return subscriptionId;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setSubscriptionId(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<AppUserRole> getAppUserRoles() {
+        return appUserRoles;
+    }
+
+    public void setAppUserRoles(Set<AppUserRole> appUserRoles) {
+        this.appUserRoles = appUserRoles;
+    }
+
+    public boolean isActive() {
+        return enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

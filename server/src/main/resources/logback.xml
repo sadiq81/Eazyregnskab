@@ -9,19 +9,23 @@
     </appender>
 
     <logger name="dk.eazyit.eazyregnskab" level="DEBUG">
-            <appender-ref ref="STDOUT"></appender-ref>
-        </logger>
+        <appender-ref ref="STDOUT"></appender-ref>
+    </logger>
 
-        <logger name="org.apache.wicket" level="INFO">
-            <appender-ref ref="STDOUT"></appender-ref>
-        </logger>
+    <logger name="org.apache.wicket" level="INFO">
+        <appender-ref ref="STDOUT"></appender-ref>
+    </logger>
 
-        <logger name="org.springframework.security" level="INFO">
-            <appender-ref ref="STDOUT"></appender-ref>
-        </logger>
+    <logger name="org.springframework.security" level="INFO">
+        <appender-ref ref="STDOUT"></appender-ref>
+    </logger>
 
-        <logger name="org.springframework.spring" level="INFO">
-            <appender-ref ref="STDOUT"></appender-ref>
-        </logger>
+    <logger name="org.springframework.spring" level="INFO">
+        <appender-ref ref="STDOUT"></appender-ref>
+    </logger>
+
+    <!--<root level="INFO">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</root>-->
 
 </configuration>

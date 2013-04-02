@@ -50,7 +50,6 @@ public abstract class AppBasePage extends WebPage {
 
     private void initMenu() {
 
-
         Navbar topMenu = new Navbar("topMenu");
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton(HomePage.class, new ResourceModel("home")).setIconType(IconType.home),

@@ -1,0 +1,43 @@
+package dk.eazyit.eazyregnskab.services;
+
+import dk.eazyit.eazyregnskab.dao.interfaces.AppUserDAO;
+import dk.eazyit.eazyregnskab.dao.interfaces.AppUserRoleDAO;
+import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.domain.AppUserRole;
+import dk.eazyit.eazyregnskab.domain.Authority;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * @author Trifork
+ */
+@Service
+public class LoginService {
+
+    private Logger log = LoggerFactory.getLogger(LoginService.class);
+
+    @Autowired
+    ShaPasswordEncoder shaPasswordEncoder;
+
+    @Autowired
+    private AppUserDAO appUserDAO;
+    @Autowired
+    private AppUserRoleDAO appUserRoleDAO;
+
+    @Transactional
+    public void saveUser(String username, String password) {
+        AppUser appUser = new AppUser();
+        appUser.setUsername(username);
+        appUser.setPassword(shaPasswordEncoder.encodePassword(password, username));
+        appUser.setEnabled(true);
+        appUserDAO.create(appUser);
+        AppUserRole appUserRole = new AppUserRole(appUser, Authority.ROLE_USER);
+        appUserRoleDAO.create(appUserRole);
+        int i = 0;
+    }
+
+}

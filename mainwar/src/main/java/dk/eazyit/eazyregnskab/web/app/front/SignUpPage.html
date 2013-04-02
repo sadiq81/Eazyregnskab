@@ -6,7 +6,46 @@
 
 <wicket:extend>
 
-    signup page
+    <form wicket:id="create_account" class="form-horizontal">
+
+        <div class="control-group">
+            <label class="control-label" for="username">
+                <wicket:message key="username"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input id="username" wicket:id="username" type='text' value=''>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="password">
+                <wicket:message key="password"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input id="password" wicket:id="password" type='password' value=''>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="repeat_password">
+                <wicket:message key="repeat.password"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input id="repeat_password" wicket:id="repeat_password" type='password' value=''>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">
+                    <wicket:message key="create.account"></wicket:message>
+                </button>
+            </div>
+        </div>
+    </form>
 
 </wicket:extend>
 
