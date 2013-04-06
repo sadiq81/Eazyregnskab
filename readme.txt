@@ -31,9 +31,7 @@ sudo nano server.xml
 sudo usermod -a -G tomcat7 ubuntu
 
 #change context for webapp
-sudo nano /var/lib/tomcat7/conf/server.xml
-#add between <Host>...</Host>
-<Context docBase="eazyregnskab.war" path="/"/>
+
 
 sudo rm -rf /var/lib/tomcat7/webapps/ROOT/
 

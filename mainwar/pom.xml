@@ -320,7 +320,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <inherited>true</inherited>
                 <configuration>
-                   <warName>eazyregnskab</warName>
+                   <warName>ROOT</warName>
                 </configuration>
             </plugin>
         </plugins>

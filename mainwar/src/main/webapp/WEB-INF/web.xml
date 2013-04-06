@@ -5,8 +5,6 @@
 
     <display-name>eazyregnskab</display-name>
 
-    <
-
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener

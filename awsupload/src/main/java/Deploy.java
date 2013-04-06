@@ -21,11 +21,11 @@ public class Deploy {
             session.connect();
 
             System.out.println("Stopping server");
-            stopServer(session);
+//            stopServer(session);
             System.out.println("Uploading war file");
              upLoadWarFile(session);
             System.out.println("Starting server");
-            startServer(session);
+//            startServer(session);
 
 
         } catch (Exception e) {
@@ -112,7 +112,7 @@ public class Deploy {
     public static void upLoadWarFile(Session session) {
         try {
             String SFTPWORKINGDIR = "/var/lib/tomcat7/webapps";
-            String FILETOTRANSFER = "mainwar/target/eazyregnskab.war";
+            String FILETOTRANSFER = "mainwar/target/ROOT.war";
 
             ChannelSftp channelSftp = (ChannelSftp) session.openChannel("sftp");
             channelSftp.setOutputStream(System.out);
