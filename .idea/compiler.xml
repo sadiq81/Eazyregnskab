@@ -26,7 +26,6 @@
         <processorPath useClasspath="true" />
         <module name="awsupload" />
         <module name="mainwar" />
-        <module name="server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -23,7 +23,7 @@ public class SignUpPage extends AppBasePage {
 
     final Logger logger = LoggerFactory.getLogger(SignUpPage.class);
 
-    @SpringBean
+    @SpringBean(name = "loginService")
     private LoginService loginService;
 
     public SignUpPage() {
