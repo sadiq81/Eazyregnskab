@@ -9,10 +9,10 @@
           http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="/app/secure/*" access="ROLE_USER"/>
+        <intercept-url pattern="/app/secure/**" access="ROLE_USER"/>
         <form-login
                 login-page="/app/LoginPage"
-                default-target-url="/app/secure/LoggedInPage"
+                default-target-url="/app/secure/bookkeeping/BookkeepingPage"
                 authentication-failure-url="/app/HomePage"
                 />
 

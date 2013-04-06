@@ -1,7 +1,7 @@
 package dk.eazyit.eazyregnskab.services;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
@@ -19,7 +19,7 @@ public class LoggerListener implements ApplicationListener<AbstractAuthenticatio
 
         if (event instanceof AuthenticationSuccessEvent) {
 
-            final Logger logger = LoggerFactory.getLogger(this.getClass());
+            final Log logger = LogFactory.getLog(this.getClass());
             User user = (User) event.getAuthentication().getPrincipal();
             WebAuthenticationDetails details = (WebAuthenticationDetails) event.getAuthentication().getDetails();
             logger.info("Successful login event of user:" + user.getUsername() + " from: " + details.getRemoteAddress());

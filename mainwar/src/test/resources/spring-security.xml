@@ -44,5 +44,4 @@
     <beans:bean id="loggerListener"
                 class="dk.eazyit.eazyregnskab.services.LoggerListener"/>
 
-
 </beans:beans>

@@ -1,14 +1,18 @@
 package dk.eazyit.eazyregnskab.web.components.page;
 
+import dk.eazyit.eazyregnskab.web.components.navigation.LabeledLinkList;
+import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
+import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
- * @author Trifork
+ * @author EazyIT
  */
 public class LoggedInPage extends AppBasePage {
 
     public LoggedInPage() {
+        super();
     }
 
     public LoggedInPage(IModel<?> model) {
@@ -21,6 +25,11 @@ public class LoggedInPage extends AppBasePage {
 
     @Override
     protected void addToPage() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
+        add(new LabeledLinkList("list", MenuSetup.createSideMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
+
     }
+
+
+
 }

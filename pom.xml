@@ -25,7 +25,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>server</module>
         <module>mainwar</module>
         <module>awsupload</module>
     </modules>
@@ -42,6 +41,7 @@
         <spring.version>3.1.3.RELEASE</spring.version>
         <jetty.version>8.1.0.RC2</jetty.version>
         <slf4j.version>1.7.2</slf4j.version>
+        <wicket.bootstrap.version>0.8.1</wicket.bootstrap.version>
 
         <source.encoding>UTF-8</source.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

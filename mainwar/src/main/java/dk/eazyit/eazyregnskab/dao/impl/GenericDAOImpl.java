@@ -1,6 +1,8 @@
 package dk.eazyit.eazyregnskab.dao.impl;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.GenericDAO;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -34,6 +36,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
     // ~ Instance fields
     // --------------------------------------------------------
 
+    final Log logger = LogFactory.getLog(this.getClass());
     private final Class<T> persistentClass;
     private EntityManager entityManager;
 
@@ -59,6 +62,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public long countAll() {
+        logger.debug("Counting " + persistentClass.getName() + " all");
         return countByCriteria();
     }
 
@@ -67,6 +71,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public int countByExample(Example example) {
+        logger.debug("Counting " + persistentClass.getName() + " from database by example" + example.toString());
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = session.createCriteria(getEntityClass());
         crit.setProjection(Projections.rowCount());
@@ -79,6 +84,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public int countByExample(final T exampleInstance) {
+        logger.debug("Finding " + persistentClass.getName() + " from database by example" + exampleInstance.toString());
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = session.createCriteria(getEntityClass());
         crit.setProjection(Projections.rowCount());
@@ -94,6 +100,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public int countByDetachedCriteria(DetachedCriteria detachedCriteria) {
+        logger.debug("Counting all of " + persistentClass.getName() + " by  detached criteria " + detachedCriteria.toString());
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = detachedCriteria.getExecutableCriteria(session);
         crit.setProjection(Projections.rowCount());
@@ -105,6 +112,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public List<T> findAll() {
+        logger.debug("Finding all of " + persistentClass.getName() + " from database");
         return findByCriteria();
     }
 
@@ -114,6 +122,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findByExample(final T exampleInstance) {
+        logger.debug("Finding all " + persistentClass.getName() + " from database by example" + exampleInstance.toString());
         Session session = (Session) getEntityManager().getDelegate();
         final Example example = Example.create(exampleInstance).excludeZeroes();
         Criteria crit = session.createCriteria(getEntityClass()).add(example);
@@ -125,15 +134,18 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public T findById(final ID id) {
+        logger.debug("Finding " + persistentClass.getName() + " from database by id" + id);
         return getEntityManager().find(persistentClass, id);
     }
 
     @Override
     public T findById(final ID id, boolean writeLock) {
+        logger.debug("Finding " + persistentClass.getName() + " from database by id" + id);
         return findById(id, LockModeType.PESSIMISTIC_WRITE);
     }
 
     private T findById(final ID id, LockModeType lockModeType) {
+        logger.debug("Finding " + persistentClass.getName() + " from database by id" + id);
         return getEntityManager().find(persistentClass, id, lockModeType);
     }
 
@@ -152,6 +164,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findByNamedQuery(final String name, Integer maxResults, Object... params) {
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name);
         Query query = getEntityManager().createNamedQuery(name);
 
         if (maxResults != null) {
@@ -171,6 +184,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
     @SuppressWarnings("unchecked")
     @Override
     public <X> List<X> findByNamedQuery(final String name, Class<X> returnValueClass, Object... params) {
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query " + name);
         javax.persistence.Query query = getEntityManager().createNamedQuery(name);
 
         for (int i = 0; i < params.length; i++) {
@@ -204,6 +218,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findByNamedQueryAndNamedParams(final String name, final Map<String, ? extends Object> params) {
+        logger.debug("Finding list" + persistentClass.getName() + " from database");
         javax.persistence.Query query = getEntityManager().createNamedQuery(name);
 
         for (final Map.Entry<String, ? extends Object> param : params
@@ -319,6 +334,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public void delete(T entity) {
+        logger.debug("Deleting " + entity.toString() + " from database");
         getEntityManager().remove(entity);
     }
 
@@ -327,11 +343,13 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public T save(T entity) {
+        logger.debug("Saving " + entity.toString() + " to database");
         return getEntityManager().merge(entity);
     }
 
     @Override
     public void create(T entity) {
+        logger.debug("Creating " + entity.toString() + " to database");
         getEntityManager().persist(entity);
     }
 }
