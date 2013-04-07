@@ -5,7 +5,7 @@ import dk.eazyit.eazyregnskab.domain.AppUser;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Trifork
+ * @author EazyIT
  */
 @Repository
 public class AppUserDAOImpl extends GenericDAOImpl<AppUser, Long> implements AppUserDAO {

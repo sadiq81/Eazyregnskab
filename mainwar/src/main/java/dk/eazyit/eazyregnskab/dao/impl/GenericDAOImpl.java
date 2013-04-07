@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * @param <T>  The persistent type
  * @param <ID> The primary key type
- * @author Trifork
+ * @author Eazy IT
  */
 public abstract class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
