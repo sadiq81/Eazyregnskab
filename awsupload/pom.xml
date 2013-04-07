@@ -12,12 +12,20 @@
     <artifactId>awsupload</artifactId>
 
     <dependencies>
+
+        <!--SSH tools to communicate to server-->
         <dependency>
-            <groupId>com.jcraft</groupId>
-            <artifactId>jsch</artifactId>
-            <version>0.1.49</version>
+            <groupId>sshtools</groupId>
+            <artifactId>j2ssh-core</artifactId>
+            <version>0.2.9</version>
         </dependency>
 
+        <!--Logging-->
+        <dependency>
+        	<groupId>commons-logging</groupId>
+        	<artifactId>commons-logging</artifactId>
+        	<version>1.1.1</version>
+        </dependency>
     </dependencies>
 
 </project>

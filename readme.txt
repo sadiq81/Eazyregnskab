@@ -16,30 +16,27 @@ sudo nano /etc/environment
 JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
 #install tomcat
-sudo apt-get install tomcat7
+sudo apt-get install tomcat7 && sudo /etc/init.d/tomcat7 stop
 
 #change port to 80
-sudo /etc/init.d/tomcat7 stop
 sudo nano /etc/default/tomcat7
 #change end of file to
 AUTHBIND=yes
 
-sudo nano server.xml
+sudo nano /var/lib/tomcat7/conf/server.xml
 #set port to 80
 
 #allow ubuntu user to upload to tomcat owned folders
 sudo usermod -a -G tomcat7 ubuntu
 
 #change context for webapp
-
-
-sudo rm -rf /var/lib/tomcat7/webapps/ROOT/
-
+<Host name="localhost"  appBase="webapps"
+    unpackWARs="true" autoDeploy="false"
+    deployOnStartup="false">
+    <Context docBase="eazyregnskab" path="" />
+    .....
+</Host>
 #Upload webapp wia Deploy class
-
-#start tomcat
-sudo /etc/init.d/tomcat7 start
-
 
 #install mariaDB (Not necessary)
 #sudo apt-get install python-software-properties

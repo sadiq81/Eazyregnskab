@@ -246,7 +246,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <inherited>true</inherited>
                 <configuration>
-                    <warName>ROOT</warName>
+                    <warName>eazyregnskab</warName>
                 </configuration>
             </plugin>
         </plugins>
