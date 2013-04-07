@@ -1,5 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.login;
 
+import de.agilecoders.wicket.markup.html.bootstrap.button.BootstrapBookmarkablePageLink;
+import de.agilecoders.wicket.markup.html.bootstrap.button.Buttons;
 import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarButton;
 import org.apache.wicket.Page;
 import org.apache.wicket.model.IModel;
@@ -20,5 +22,10 @@ public class LoggedInButton<T> extends NavbarButton<T> {
     protected void onConfigure() {
         super.onConfigure();
         setVisibilityAllowed(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"));
+    }
+
+    @Override
+    public BootstrapBookmarkablePageLink<T> setType(Buttons.Type type) {
+        return super.setType(type);
     }
 }

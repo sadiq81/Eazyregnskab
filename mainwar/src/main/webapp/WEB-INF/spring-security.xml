@@ -10,6 +10,7 @@
 
     <http auto-config="true">
         <intercept-url pattern="/app/secure/**" access="ROLE_USER"/>
+        <intercept-url pattern="/app/SignUpPage" access="ROLE_ANONYMOUS"/>
         <form-login
                 login-page="/app/LoginPage"
                 default-target-url="/app/secure/bookkeeping/BookkeepingPage"

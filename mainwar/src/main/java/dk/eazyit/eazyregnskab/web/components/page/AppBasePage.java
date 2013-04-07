@@ -61,6 +61,7 @@ public abstract class AppBasePage extends WebPage {
     private void initMenu() {
 
         topMenu = new Navbar("topMenu");
+        topMenu.brandName(new ResourceModel("eazy.regnskab.brand"));
 
         //Front menu button
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
@@ -82,6 +83,7 @@ public abstract class AppBasePage extends WebPage {
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
                 new LogoutNavbarButton(WebPage.class, new ResourceModel("logout"))
         ));
+
         add(topMenu);
         addToPage();
     }
@@ -95,4 +97,10 @@ public abstract class AppBasePage extends WebPage {
     public void setTopMenu(Navbar topMenu) {
         this.topMenu = topMenu;
     }
+
+//    protected void addToolTipToLabel(Label label, String tooltip) {
+//        label.add(AttributeModifier.append("rel", "tooltip"));
+//        label.add(AttributeModifier.append("data-placement", "top"));
+//        label.add(AttributeModifier.append("data-original-title", new ResourceModel(tooltip)));
+//    }
 }

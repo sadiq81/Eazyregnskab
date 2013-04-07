@@ -6,46 +6,65 @@
 
 <wicket:extend>
 
-    <form wicket:id="create_account" class="form-horizontal">
+    <div class="container">
 
-        <div class="control-group">
-            <label class="control-label" for="username">
-                <wicket:message key="username"></wicket:message>
-            </label>
+        <div class="row">
 
-            <div class="controls">
-                <input id="username" wicket:id="username" type='text' value=''>
+            <div class="span5 offset3">
+
+                <br><br><br><br><br><br>
+
+
+                <form wicket:id="create_account" class="form-horizontal">
+                    <div class="controls">
+                        <h1>
+                            <wicket:message key="create.account"></wicket:message>
+                        </h1>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="username">
+                            <wicket:message key="username"></wicket:message>
+                        </label>
+
+                        <div class="controls">
+                            <input id="username" wicket:id="username" class="input-block-level" type='text' value=''>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="password">
+                            <wicket:message key="password"></wicket:message>
+                        </label>
+
+                        <div class="controls">
+                            <input id="password" wicket:id="password" class="input-block-level" type='password'
+                                   value=''>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="repeat_password">
+                            <wicket:message key="repeat.password"></wicket:message>
+                        </label>
+
+                        <div class="controls">
+                            <input id="repeat_password" wicket:id="repeat_password" class="input-block-level"
+                                   type='password' value=''>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn">
+                                <wicket:message key="create.account"></wicket:message>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <div class="control-group">
-            <label class="control-label" for="password">
-                <wicket:message key="password"></wicket:message>
-            </label>
-
-            <div class="controls">
-                <input id="password" wicket:id="password" type='password' value=''>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="repeat_password">
-                <wicket:message key="repeat.password"></wicket:message>
-            </label>
-
-            <div class="controls">
-                <input id="repeat_password" wicket:id="repeat_password" type='password' value=''>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" class="btn">
-                    <wicket:message key="create.account"></wicket:message>
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
 
 </wicket:extend>
 
