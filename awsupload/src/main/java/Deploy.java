@@ -32,7 +32,7 @@ public class Deploy {
         session.close();
 
         session = ssh.openSessionChannel();
-        if (session.executeCommand("sudo rm -rf /var/lib/tomcat7/webapps/eazyregnskab/")) {
+        if (session.executeCommand("sudo rm -rf /var/lib/tomcat7/webapps/ROOT/")) {
             System.out.println("Old version of eazyregnskab has been deleted");
         } else {
             throw new NullPointerException("Old version of eazyregnskab has NOT been deleted");
