@@ -1,7 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 /**
@@ -21,10 +20,10 @@ public class LegalEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true, nullable = false, length = 50)
+    @Column(unique = false, nullable = false, length = 50)
     private String name;
 
-    @Column(unique = true, nullable = true, length = 25)
+    @Column(unique = false, nullable = true, length = 25)
     private String legalIdentification;
 
     @Column(unique = false, nullable = true, length = 200)

@@ -9,8 +9,6 @@ import org.apache.wicket.model.IModel;
  */
 public class PlaceholderTextField<T> extends TextField<T> {
 
-    String placeholder;
-
     public PlaceholderTextField(String id) {
         super(id);
     }
@@ -30,14 +28,7 @@ public class PlaceholderTextField<T> extends TextField<T> {
     @Override
     protected void onComponentTag(ComponentTag tag) {
         super.onComponentTag(tag);
-        tag.put("placeholder",placeholder);
-    }
-
-    public String getPlaceholder() {
-        return placeholder;
-    }
-
-    public void setPlaceholder(String placeholder) {
-        this.placeholder = placeholder;
+        String placeholder = getLocalizer().getString(this.getId(), this.getPage());
+        tag.put("placeholder", placeholder);
     }
 }

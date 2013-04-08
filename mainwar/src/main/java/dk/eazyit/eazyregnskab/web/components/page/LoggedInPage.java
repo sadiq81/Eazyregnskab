@@ -7,7 +7,7 @@ import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import dk.eazyit.eazyregnskab.session.CurrentUser;
 import dk.eazyit.eazyregnskab.web.components.models.AppUserModel;
 import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
-import dk.eazyit.eazyregnskab.web.components.navigation.LabeledLinkList;
+import dk.eazyit.eazyregnskab.web.components.navigation.LinkList;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
 import org.apache.commons.logging.Log;
@@ -17,6 +17,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -40,6 +41,7 @@ public class LoggedInPage extends AppBasePage {
     LegalEntityModel legalEntityModel;
 
     private Log logger;
+    protected FeedbackPanel feedbackPanel;
 
     public LoggedInPage() {
         super();
@@ -57,9 +59,11 @@ public class LoggedInPage extends AppBasePage {
     protected void addToPage(PageParameters parameters) {
         logger = LogFactory.getLog(this.getClass());
         setOutputMarkupPlaceholderTag(true);
+        add(feedbackPanel = new FeedbackPanel("feedback"));
         ensureUserInfo(parameters);
 
-        add(new LabeledLinkList("list", MenuSetup.createSideMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
+        add(new LinkList("linkList", MenuSetup.createSideMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
+
         add(legalEntityDropDownChoice = new DropDownChoice<LegalEntity>("legalEntityList",
                 legalEntityModel = getSelectedLegalEntity().getLegalEntityModel(),
                 legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()),
@@ -68,7 +72,7 @@ public class LoggedInPage extends AppBasePage {
         legalEntityDropDownChoice.add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-            //Add page to refresh
+            target.add(getPage());
             }
         }));
 

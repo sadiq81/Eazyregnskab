@@ -14,47 +14,49 @@
                 <br><br><br><br><br><br>
 
 
-
                 <form class="form-horizontal" action="j_spring_security_check" method="post">
-
-                    <div class="controls">
-                        <h1>
-                            <wicket:message key="login"></wicket:message>
-                        </h1>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="j_username">
-                            <wicket:message key="username"></wicket:message>
-                        </label>
+                    <fieldset>
 
                         <div class="controls">
-                            <input id="j_username"  class="input-block-level" type='text' name='j_username' value=''>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="j_password">
-                            <wicket:message key="password"></wicket:message>
-                        </label>
-
-                        <div class="controls">
-                            <input id="j_password"   class="input-block-level" type='password' name='j_password' value=''>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="controls">
-                            <label class="checkbox">
-                                <input id="_spring_security_remember_me" name="_spring_security_
-                       remember_me" type="checkbox" value="true">
-                                <wicket:message key="remember.me"></wicket:message>
-                            </label>
-                            <button type="submit" class="btn">
+                            <h1>
                                 <wicket:message key="login"></wicket:message>
-                            </button>
+                            </h1>
                         </div>
-                    </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="j_username">
+                                <wicket:message key="username"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="j_username" class="input-block-level" type='text' name='j_username' value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="j_password">
+                                <wicket:message key="password"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="j_password" class="input-block-level" type='password' name='j_password'
+                                       value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input id="_spring_security_remember_me" name="_spring_security_
+                       remember_me" type="checkbox" value="true">
+                                    <wicket:message key="remember.me"></wicket:message>
+                                </label>
+                                <button type="submit" class="btn">
+                                    <wicket:message key="login"></wicket:message>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
