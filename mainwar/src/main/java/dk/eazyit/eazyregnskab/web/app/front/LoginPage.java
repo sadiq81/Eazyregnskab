@@ -21,7 +21,7 @@ public class LoginPage extends AppBasePage {
     }
 
     @Override
-    protected void addToPage() {
+    protected void addToPage(PageParameters parameters) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }

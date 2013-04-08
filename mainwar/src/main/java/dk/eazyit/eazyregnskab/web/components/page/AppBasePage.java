@@ -33,21 +33,21 @@ public abstract class AppBasePage extends WebPage {
     public AppBasePage() {
         super();
         logger = LogFactory.getLog(this.getClass());
-        initMenu();
+        initMenu(null);
         logger.debug(this.getClass().getSimpleName().toString() + " was created");
     }
 
     public AppBasePage(IModel<?> model) {
         super(model);
         logger = LogFactory.getLog(this.getClass());
-        initMenu();
+        initMenu(null);
         logger.debug(this.getClass().getSimpleName().toString() + " was created with model " + model.getObject().toString());
     }
 
     public AppBasePage(PageParameters parameters) {
         super(parameters);
         logger = LogFactory.getLog(this.getClass());
-        initMenu();
+        initMenu(parameters);
         logger.debug(this.getClass().getSimpleName().toString() + " was created with parameters " + parameters.toString());
     }
 
@@ -58,7 +58,7 @@ public abstract class AppBasePage extends WebPage {
     }
 
 
-    private void initMenu() {
+    private void initMenu(PageParameters parameters) {
 
         topMenu = new Navbar("topMenu");
         topMenu.brandName(new ResourceModel("eazy.regnskab.brand"));
@@ -85,18 +85,11 @@ public abstract class AppBasePage extends WebPage {
         ));
 
         add(topMenu);
-        addToPage();
+        addToPage(parameters);
     }
 
-    protected abstract void addToPage();
+    protected abstract void addToPage(PageParameters pageParameters);
 
-    public Navbar getTopMenu() {
-        return topMenu;
-    }
-
-    public void setTopMenu(Navbar topMenu) {
-        this.topMenu = topMenu;
-    }
 
 //    protected void addToolTipToLabel(Label label, String tooltip) {
 //        label.add(AttributeModifier.append("rel", "tooltip"));

@@ -23,7 +23,7 @@ public class PricingPage extends InfoPage {
     }
 
     @Override
-    protected void addToPage() {
+    protected void addToPage(PageParameters parameters) {
         ContextImage image = new ContextImage("right_side", "/css/pictures/pricing_right_side.jpg"){
             @Override
             protected void onComponentTag(ComponentTag tag) {

@@ -48,4 +48,5 @@ public class WicketApplication extends WebApplication {
         // Initialize Spring Dependency Injection
         getComponentInstantiationListeners().add(new SpringComponentInjector(this));
     }
+
 }

@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "legalentityaccess")
 public class LegalEntityAccess extends BaseEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

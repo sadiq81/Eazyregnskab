@@ -23,7 +23,7 @@ public class BookkeepingPage extends LoggedInPage {
     }
 
     @Override
-    protected void addToPage() {
-        super.addToPage();
+    protected void addToPage(PageParameters parameters) {
+        super.addToPage( parameters);
     }
 }

@@ -22,7 +22,7 @@ public abstract class InfoPage extends AppBasePage {
         super(parameters);
     }
 
-    protected void addToPage() {
+    protected void addToPage(PageParameters parameters) {
         ContextImage image = new ContextImage("right_side", "/css/pictures/default_right_side.jpg") {
             @Override
             protected void onComponentTag(ComponentTag tag) {

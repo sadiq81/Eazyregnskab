@@ -39,7 +39,7 @@ public class SignUpPage extends AppBasePage {
     }
 
     @Override
-    protected void addToPage() {
+    protected void addToPage(PageParameters parameters) {
 
         SignInForm form = new SignInForm("create_account", new CompoundPropertyModel<CreateInfo>(createInfo = new CreateInfo()));
         add(form);
@@ -65,7 +65,7 @@ public class SignUpPage extends AppBasePage {
             } else if (createInfo.arePasswordsNotEquals()) {
                 error("Passwords don't match");
             } else {
-                loginService.saveUser(createInfo.username, createInfo.password);
+                loginService.createUser(createInfo.username, createInfo.password);
                 logger.info("Created account " + createInfo.username);
             }
         }

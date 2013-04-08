@@ -8,8 +8,14 @@ import java.util.Set;
  * @author EazyIT
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = LegalEntity.QUERY_FIND_LEGAL_ENTITY_BY_USER, query = "select le from LegalEntity le, LegalEntityAccess lea, AppUser u " +
+                "WHERE le = lea.legalEntity AND lea.appUser = ?1")
+})
 @Table(name = "legalentity")
 public class LegalEntity extends BaseEntity {
+
+    public static final String QUERY_FIND_LEGAL_ENTITY_BY_USER = "LegalEntity::findLegalEntityByUser";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,9 +40,6 @@ public class LegalEntity extends BaseEntity {
     @Column(unique = false, nullable = false, length = 30)
     @Enumerated(EnumType.STRING)
     private MoneyCurrency moneyCurrency;
-
-    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.EAGER)
-    private Set<LegalEntityAccess> legalEntityAccess;
 
     public LegalEntity() {
     }
@@ -92,13 +95,5 @@ public class LegalEntity extends BaseEntity {
 
     public void setMoneyCurrency(MoneyCurrency moneyCurrency) {
         this.moneyCurrency = moneyCurrency;
-    }
-
-    public Set<LegalEntityAccess> getLegalEntityAccess() {
-        return legalEntityAccess;
-    }
-
-    public void setLegalEntityAccess(Set<LegalEntityAccess> legalEntityAccess) {
-        this.legalEntityAccess = legalEntityAccess;
     }
 }

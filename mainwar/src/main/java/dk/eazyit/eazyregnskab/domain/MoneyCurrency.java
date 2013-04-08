@@ -5,5 +5,5 @@ package dk.eazyit.eazyregnskab.domain;
  */
 public enum MoneyCurrency {
 
-    DK
+    DKK
 }

@@ -3,7 +3,7 @@ package dk.eazyit.eazyregnskab.domain;
 /**
  * @author Trifork
  */
-public abstract class BaseEntity implements EntityWithLongId {
+public abstract class BaseEntity  implements EntityWithLongId {
 
     @Override
     public boolean equals(Object obj) {

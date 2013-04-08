@@ -29,7 +29,7 @@ public class LoginService {
     private AppUserRoleDAO appUserRoleDAO;
 
     @Transactional
-    public void saveUser(String username, String password) {
+    public void createUser(String username, String password) {
         AppUser appUser = new AppUser();
         appUser.setUsername(username);
         appUser.setPassword(shaPasswordEncoder.encodePassword(password, username));
@@ -37,7 +37,13 @@ public class LoginService {
         appUserDAO.create(appUser);
         AppUserRole appUserRole = new AppUserRole(appUser, Authority.ROLE_USER);
         appUserRoleDAO.create(appUserRole);
-        int i = 0;
+    }
+
+    @Transactional(readOnly = true)
+    public AppUser findAppUserByUsername(String username) {
+        AppUser appUser = appUserDAO.findByNamedQueryUnique(AppUser.QUERY_FIND_BY_USER_NAME, username);
+
+        return appUser;
     }
 
 }

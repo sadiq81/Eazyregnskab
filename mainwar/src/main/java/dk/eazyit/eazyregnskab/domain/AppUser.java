@@ -26,8 +26,6 @@ public class AppUser extends BaseEntity {
     private boolean enabled;
     @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER)
     private Set<AppUserRole> appUserRoles;
-    @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER)
-    private Set<LegalEntityAccess> legalEntityAccess;
 
     public AppUser() {
     }
@@ -80,14 +78,6 @@ public class AppUser extends BaseEntity {
 
     public boolean isActive() {
         return enabled;
-    }
-
-    public Set<LegalEntityAccess> getLegalEntityAccess() {
-        return legalEntityAccess;
-    }
-
-    public void setLegalEntityAccess(Set<LegalEntityAccess> legalEntityAccess) {
-        this.legalEntityAccess = legalEntityAccess;
     }
 
     @Override

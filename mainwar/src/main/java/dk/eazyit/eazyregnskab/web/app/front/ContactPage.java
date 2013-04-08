@@ -23,7 +23,7 @@ public class ContactPage extends InfoPage {
     }
 
     @Override
-    protected void addToPage() {
+    protected void addToPage(PageParameters parameters) {
         ContextImage image = new ContextImage("right_side", "/css/pictures/contact_right_side.jpg") {
             @Override
             protected void onComponentTag(ComponentTag tag) {

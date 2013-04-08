@@ -22,7 +22,7 @@ public class HomePage extends AppBasePage {
 
 
     @Override
-    protected void addToPage() {
+    protected void addToPage(PageParameters parameters) {
 
         add(new Link<Void>("signUp") {
             @Override

@@ -5,7 +5,7 @@ package dk.eazyit.eazyregnskab.domain;
  */
 public enum Country {
 
-    DK(MoneyCurrency.DK);
+    DK(MoneyCurrency.DKK);
 
     MoneyCurrency moneyCurrency;
 

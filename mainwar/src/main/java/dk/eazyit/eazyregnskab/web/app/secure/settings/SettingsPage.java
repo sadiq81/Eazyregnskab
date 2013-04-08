@@ -24,7 +24,7 @@ public class SettingsPage extends LoggedInPage {
     }
 
     @Override
-    protected void addToPage() {
-        super.addToPage();
+    protected void addToPage(PageParameters parameters) {
+        super.addToPage( parameters);
     }
 }

@@ -9,10 +9,12 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.ResourceModel;
 
+import java.io.Serializable;
+
 /**
  * @author literadix.de
  */
-public class LabeledLink {
+public class LabeledLink implements Serializable {
 
         /** Constant */
         private final static String linkObjectName = "link";
