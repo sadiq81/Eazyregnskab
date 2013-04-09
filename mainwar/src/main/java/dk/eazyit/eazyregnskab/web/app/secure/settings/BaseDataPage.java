@@ -14,20 +14,20 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 /**
  * @author EazyIT
  */
-@MenuPosition(name = "settings", parentPage = SettingsPage.class, subLevel = 0)
-public class SettingsPage extends LoggedInPage {
+@MenuPosition(name = "settings.base.data", parentPage = BaseDataPage.class, subLevel = 0)
+public class BaseDataPage extends LoggedInPage {
 
     LegalEntityForm form;
 
-    public SettingsPage() {
+    public BaseDataPage() {
         super();
     }
 
-    public SettingsPage(IModel<?> model) {
+    public BaseDataPage(IModel<?> model) {
         super(model);
     }
 
-    public SettingsPage(PageParameters parameters) {
+    public BaseDataPage(PageParameters parameters) {
         super(parameters);
     }
 

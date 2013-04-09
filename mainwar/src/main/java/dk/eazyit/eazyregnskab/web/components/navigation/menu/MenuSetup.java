@@ -18,8 +18,8 @@ public class MenuSetup {
             @Override
             public int compare(Class<? extends LoggedInPage> aClass, Class<? extends LoggedInPage> aClass2) {
                 Integer integer = ((MenuPosition) aClass.getAnnotation(MenuPosition.class)).subLevel();
-                Integer integer2 = ((MenuPosition) aClass.getAnnotation(MenuPosition.class)).subLevel();
-                return integer2.compareTo(integer);
+                Integer integer2 = ((MenuPosition) aClass2.getAnnotation(MenuPosition.class)).subLevel();
+                return integer.compareTo(integer2);
             }
         });
 

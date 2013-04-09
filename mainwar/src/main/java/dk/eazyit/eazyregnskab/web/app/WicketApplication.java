@@ -4,7 +4,8 @@ import de.agilecoders.wicket.Bootstrap;
 import de.agilecoders.wicket.settings.BootstrapSettings;
 import dk.eazyit.eazyregnskab.web.app.front.HomePage;
 import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
-import dk.eazyit.eazyregnskab.web.app.secure.settings.SettingsPage;
+import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
+import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import org.apache.wicket.Application;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -36,7 +37,8 @@ public class WicketApplication extends WebApplication {
         Bootstrap.install(Application.get(), new BootstrapSettings());
         mountPackage("/app", HomePage.class);
         mountPackage("app/secure/bookkeeping", BookkeepingPage.class);
-        mountPackage("app/secure/settings", SettingsPage.class);
+        mountPackage("app/secure/settings", BaseDataPage.class);
+        mountPackage("app/secure/reports", BalancePage.class);
 
         initSpring();
 

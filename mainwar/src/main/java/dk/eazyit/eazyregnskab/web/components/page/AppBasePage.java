@@ -9,7 +9,8 @@ import dk.eazyit.eazyregnskab.web.app.front.ContactPage;
 import dk.eazyit.eazyregnskab.web.app.front.HomePage;
 import dk.eazyit.eazyregnskab.web.app.front.LoginPage;
 import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
-import dk.eazyit.eazyregnskab.web.app.secure.settings.SettingsPage;
+import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
+import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import dk.eazyit.eazyregnskab.web.components.login.LoggedInButton;
 import dk.eazyit.eazyregnskab.web.components.login.LoggedOutNavButton;
 import dk.eazyit.eazyregnskab.web.components.login.LogoutNavbarButton;
@@ -75,8 +76,9 @@ public abstract class AppBasePage extends WebPage {
         //Logged in menu buttons
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
 
-                new LoggedInButton(SettingsPage.class, new ResourceModel("settings")),
-                new LoggedInButton(BookkeepingPage.class, new ResourceModel("bookkeeping"))
+                new LoggedInButton(BaseDataPage.class, new ResourceModel("settings")),
+                new LoggedInButton(BookkeepingPage.class, new ResourceModel("bookkeeping")),
+                new LoggedInButton(BalancePage.class, new ResourceModel("reports"))
         ));
 
         //Logged in menu buttons

@@ -8,7 +8,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 /**
  * @author EazyIT
  */
-@MenuPosition(name = "chart.of.accounts", parentPage = SettingsPage.class, subLevel = 1)
+@MenuPosition(name = "settings.chart.of.accounts", parentPage = BaseDataPage.class, subLevel = 1)
 public class ChartOfAccountsPage extends LoggedInPage {
 
     public ChartOfAccountsPage() {

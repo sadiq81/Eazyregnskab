@@ -5,7 +5,7 @@ import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-@MenuPosition(name = "bookkeeping", parentPage = BookkeepingPage.class, subLevel = 0)
+@MenuPosition(name = "bookkeeping.daybook", parentPage = BookkeepingPage.class, subLevel = 0)
 public class BookkeepingPage extends LoggedInPage {
     private static final long serialVersionUID = 1L;
 
