@@ -9,9 +9,13 @@ import javax.persistence.*;
  * @author
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = LegalEntityAccess.QUERY_FIND_LEGAL_ENTITY_ACCESS_BY_LEGAL_ENTITY, query = "select a from LegalEntityAccess a where a.legalEntity = ?1")
+})
 @Table(name = "legalentityaccess")
 public class LegalEntityAccess extends BaseEntity {
 
+    public static final String QUERY_FIND_LEGAL_ENTITY_ACCESS_BY_LEGAL_ENTITY = "legalEntityAccess::FindLegalEntityAccessByLegalEntity";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +32,11 @@ public class LegalEntityAccess extends BaseEntity {
     private LegalEntity legalEntity;
 
     public LegalEntityAccess() {
+    }
+
+    public LegalEntityAccess(AppUser appUser, LegalEntity legalEntity) {
+        this.appUser = appUser;
+        this.legalEntity = legalEntity;
     }
 
     public Long getId() {

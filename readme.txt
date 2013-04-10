@@ -38,10 +38,7 @@ sudo usermod -a -G tomcat7 ubuntu
 </Host>
 #Upload webapp wia Deploy class
 
-#install mariaDB (Not necessary)
-#sudo apt-get install python-software-properties
-#sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-#sudo add-apt-repository 'deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/ubuntu precise main'
-#sudo apt-get update
-#sudo apt-get install mariadb-server
-
+#install SSL certificate
+http://www.captaindebug.com/2012/12/securing-your-tomcat-app-with-ssl-and.html#.UWScpKuAua4
+#Buy SLL certificate
+http://www.digicert.com/tomcat-ssl.htm

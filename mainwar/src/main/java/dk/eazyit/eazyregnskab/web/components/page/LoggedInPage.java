@@ -72,9 +72,10 @@ public class LoggedInPage extends AppBasePage {
         legalEntityDropDownChoice.add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-            target.add(getPage());
+                target.add(getPage());
             }
         }));
+        legalEntityDropDownChoice.setOutputMarkupPlaceholderTag(true);
 
     }
 
@@ -121,5 +122,23 @@ public class LoggedInPage extends AppBasePage {
 
     protected CurrentLegalEntity getSelectedLegalEntity() {
         return (CurrentLegalEntity) getSession().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    }
+
+    protected void updateSelections() {
+        DropDownChoice<LegalEntity> temp = new DropDownChoice<LegalEntity>("legalEntityList",
+                legalEntityModel = getSelectedLegalEntity().getLegalEntityModel(),
+                legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()),
+                new ChoiceRenderer<LegalEntity>("name", "id"));
+        temp.add((new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                target.add(getPage());
+            }
+        }));
+        temp.setOutputMarkupPlaceholderTag(true);
+        addOrReplace(legalEntityDropDownChoice, temp);
+        temp.setParent(this);
+        legalEntityDropDownChoice.setParent(this);
+        legalEntityDropDownChoice = temp;
     }
 }

@@ -4,6 +4,7 @@ import dk.eazyit.eazyregnskab.domain.BaseEntity;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;
@@ -31,36 +32,55 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 super.onError(target, form);
+                target.add(form);
+                FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
+                if (fp != null) {
+                    target.add(fp);
+                }
             }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 saveForm();
+                target.add(form.getPage());
             }
         });
         add(new AjaxButton("new") {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 super.onError(target, form);
+                target.add(form);
+                FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
+                if (fp != null) {
+                    target.add(fp);
+                }
             }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 newEntity();
+                target.add(form);
+
             }
         });
         add(new AjaxButton("delete") {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 super.onError(target, form);
+                target.add(form);
+                FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
+                if (fp != null) {
+                    target.add(fp);
+                }
             }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 deleteEntity();
+                target.add(form.getPage());
             }
         });
 

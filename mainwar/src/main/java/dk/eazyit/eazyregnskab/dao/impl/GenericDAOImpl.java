@@ -335,6 +335,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
     @Override
     public void delete(T entity) {
         logger.debug("Deleting " + entity.toString() + " from database");
+        entity = getEntityManager().merge(entity);
         getEntityManager().remove(entity);
     }
 

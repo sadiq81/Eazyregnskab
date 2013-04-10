@@ -43,6 +43,15 @@ public class LegalEntity extends BaseEntity {
     public LegalEntity() {
     }
 
+    public LegalEntity(String name, String legalIdentification, String address, String postalCode, Country country, MoneyCurrency moneyCurrency) {
+        this.name = name;
+        this.legalIdentification = legalIdentification;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.moneyCurrency = moneyCurrency;
+    }
+
     @Override
     public Long getId() {
         return id;
