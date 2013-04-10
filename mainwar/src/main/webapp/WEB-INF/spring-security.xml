@@ -9,9 +9,9 @@
           http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern='/**' requires-channel='https'/>
-        <intercept-url pattern="/app/secure/**" access="ROLE_USER"/>
-        <intercept-url pattern="/app/SignUpPage" access="ROLE_ANONYMOUS"/>
+        <intercept-url pattern="/app/secure/**" requires-channel='https' access="ROLE_USER"/>
+        <intercept-url pattern="/app/LoginPage" requires-channel='https' access="ROLE_ANONYMOUS"/>
+        <intercept-url pattern="/app/SignUpPage" requires-channel='https' access="ROLE_ANONYMOUS"/>
         <form-login
                 login-page="/app/LoginPage"
                 default-target-url="/app/secure/bookkeeping/BookkeepingPage"

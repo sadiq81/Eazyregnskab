@@ -55,13 +55,15 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
                 if (fp != null) {
                     target.add(fp);
                 }
+                target.add(form.getPage());
             }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 newEntity();
-                target.add(form);
+                target.add(form.getPage());
+
 
             }
         });
@@ -83,8 +85,6 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
                 target.add(form.getPage());
             }
         });
-
-
     }
 
     public abstract void deleteEntity();

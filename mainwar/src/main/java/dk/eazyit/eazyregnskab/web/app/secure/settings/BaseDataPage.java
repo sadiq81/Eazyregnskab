@@ -51,6 +51,12 @@ public class BaseDataPage extends LoggedInPage {
         }
 
         @Override
+        protected void onBeforeRender() {
+            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            super.onBeforeRender();
+        }
+
+        @Override
         public void addToForm() {
             super.addToForm();
             add(new PlaceholderTextField<String>("name"));
@@ -64,13 +70,13 @@ public class BaseDataPage extends LoggedInPage {
         @Override
         public void deleteEntity() {
             if (legalEntityService.isDeletingAllowed(getCurrentUser().getAppUserModel().getObject(), getModelObject())) {
+
                 legalEntityService.deleteLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
                 getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()).get(0)));
-                setModelObject(getSelectedLegalEntity().getLegalEntityModel().getObject());
                 updateSelections();
-                info(getString("legal.entity.was.deleted"));
+                getSession().info(getString("legal.entity.was.deleted"));
             } else {
-                error(getString("must.be.one.legal.entity"));
+                getSession().error(getString("must.be.one.legal.entity"));
             }
         }
 
@@ -79,18 +85,29 @@ public class BaseDataPage extends LoggedInPage {
             LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject(),
                     new LegalEntity(getString("new.legal.entity"), null, null, null, Country.DK, MoneyCurrency.DKK));
             getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
-            setModelObject(getSelectedLegalEntity().getLegalEntityModel().getObject());
             updateSelections();
-            info(getString("created.and.saved.new.entity"));
+            getSession().info(getString("created.and.saved.new.entity"));
         }
 
         @Override
         public void saveForm() {
             legalEntityService.saveLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
             updateSelections();
-            info(getString("changes.has.been.saved"));
+            getSession().info(getString("changes.has.been.saved"));
 
         }
     }
 
+    @Override
+    protected void updateSelections() {
+        super.updateSelections();
+
+        LegalEntityForm temp = new LegalEntityForm("legalEntityEdit", getSelectedLegalEntity().getLegalEntityModel());
+        temp.setOutputMarkupPlaceholderTag(true);
+        addOrReplace(form, temp);
+        temp.setParent(this);
+        form.setParent(this);
+        form = temp;
+
+    }
 }
