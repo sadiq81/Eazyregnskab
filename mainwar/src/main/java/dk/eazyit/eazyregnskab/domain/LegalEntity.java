@@ -8,7 +8,7 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = LegalEntity.QUERY_FIND_LEGAL_ENTITY_BY_USER, query = "select le from LegalEntity le, LegalEntityAccess lea, AppUser u " +
+        @NamedQuery(name = LegalEntity.QUERY_FIND_LEGAL_ENTITY_BY_USER, query = "select distinct le from LegalEntity le, LegalEntityAccess lea, AppUser u " +
                 "WHERE le = lea.legalEntity AND lea.appUser = ?1")
 })
 @Table(name = "legalentity")
