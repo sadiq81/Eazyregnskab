@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.app.secure.settings;
 
+import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.Country;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.MoneyCurrency;
@@ -11,8 +12,10 @@ import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.util.time.Duration;
 
 /**
  * @author EazyIT
@@ -22,6 +25,8 @@ public class BaseDataPage extends LoggedInPage {
 
     @SpringBean
     LegalEntityService legalEntityService;
+
+    private final static int DURATION = 5;
 
     LegalEntityForm form;
 
@@ -74,9 +79,9 @@ public class BaseDataPage extends LoggedInPage {
                 legalEntityService.deleteLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
                 getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()).get(0)));
                 updateSelections();
-                getSession().info(getString("legal.entity.was.deleted"));
+                getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
             } else {
-                getSession().error(getString("must.be.one.legal.entity"));
+                getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
             }
         }
 
@@ -86,14 +91,15 @@ public class BaseDataPage extends LoggedInPage {
                     new LegalEntity(getString("new.legal.entity"), null, null, null, Country.DK, MoneyCurrency.DKK));
             getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
             updateSelections();
-            getSession().info(getString("created.and.saved.new.entity"));
+            getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
+
         }
 
         @Override
         public void saveForm() {
             legalEntityService.saveLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
             updateSelections();
-            getSession().info(getString("changes.has.been.saved"));
+            getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
 
         }
     }

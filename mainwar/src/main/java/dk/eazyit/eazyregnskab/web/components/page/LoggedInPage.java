@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.page;
 
+import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
@@ -17,7 +18,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -41,7 +41,7 @@ public class LoggedInPage extends AppBasePage {
     LegalEntityModel legalEntityModel;
 
     private Log logger;
-    protected FeedbackPanel feedbackPanel;
+    protected NotificationPanel feedbackPanel;
 
     public LoggedInPage() {
         super();
@@ -59,7 +59,7 @@ public class LoggedInPage extends AppBasePage {
     protected void addToPage(PageParameters parameters) {
         logger = LogFactory.getLog(this.getClass());
         setOutputMarkupPlaceholderTag(true);
-        add(feedbackPanel = new FeedbackPanel("feedback"));
+        add(feedbackPanel = new NotificationPanel("feedback"));
         ensureUserInfo(parameters);
 
         add(new LinkList("linkList", MenuSetup.createSideMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
