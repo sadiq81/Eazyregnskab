@@ -11,11 +11,10 @@
     <http auto-config="true">
         <intercept-url pattern="/app/secure/**" requires-channel='https' access="ROLE_USER"/>
         <intercept-url pattern="/app/LoginPage" requires-channel='https' access="ROLE_ANONYMOUS"/>
-        <intercept-url pattern="/app/SignUpPage" requires-channel='https' access="ROLE_ANONYMOUS"/>
         <form-login
+                authentication-failure-url="/app/LoginPage?error=true"
                 login-page="/app/LoginPage"
                 default-target-url="/app/secure/bookkeeping/BookkeepingPage"
-                authentication-failure-url="/app/HomePage"
                 />
 
         <logout logout-success-url="/app/HomePage"/>

@@ -2,9 +2,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.AppUserDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.AppUserRoleDAO;
-import dk.eazyit.eazyregnskab.domain.AppUser;
-import dk.eazyit.eazyregnskab.domain.AppUserRole;
-import dk.eazyit.eazyregnskab.domain.Authority;
+import dk.eazyit.eazyregnskab.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,9 @@ public class LoginService {
     private AppUserDAO appUserDAO;
     @Autowired
     private AppUserRoleDAO appUserRoleDAO;
+    @Autowired
+    private LegalEntityService legalEntityService;
+
 
     @Transactional
     public void createUser(String username, String password) {
@@ -37,6 +38,10 @@ public class LoginService {
         appUserDAO.create(appUser);
         AppUserRole appUserRole = new AppUserRole(appUser, Authority.ROLE_USER);
         appUserRoleDAO.create(appUserRole);
+
+        legalEntityService.createLegalEntity(appUser, new LegalEntity("Start",null,null,null, Country.DK, MoneyCurrency.DKK));
+
+
     }
 
     @Transactional(readOnly = true)
