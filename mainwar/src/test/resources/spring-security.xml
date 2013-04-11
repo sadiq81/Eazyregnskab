@@ -17,29 +17,16 @@
                 />
 
         <logout logout-success-url="/app/HomePage"/>
-
-        <remember-me key="eazyRegnskab"/>
-        <session-management>
-            <concurrency-control max-sessions="1"/>
-        </session-management>
     </http>
 
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userDetailsService">
-            <password-encoder hash="sha-256">
-                <salt-source user-property="username"></salt-source>
-            </password-encoder>
-            <!--<jdbc-user-service data-source-ref="dataSource"-->
-            <!--users-by-username-query="-->
-            <!--SELECT username,password, enabled-->
-            <!--FROM users WHERE username=?"-->
-
-            <!--authorities-by-username-query="-->
-            <!--SELECT u.username, ur.authority FROM users u, user_roles ur-->
-            <!--WHERE u.user_id = ur.user_id AND u.username =?  "-->
-            <!--/>-->
+        <authentication-provider user-service-ref="userDetailsServiceTest">
         </authentication-provider>
     </authentication-manager>
+
+    <user-service id="userDetailsServiceTest">
+        <user name="test" password="test" authorities="ROLE_USER"/>
+    </user-service>
 
     <beans:bean id="loggerListener"
                 class="dk.eazyit.eazyregnskab.services.LoggerListener"/>

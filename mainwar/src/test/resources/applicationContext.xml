@@ -33,6 +33,13 @@
                 <property name="showSql" value="false"/>
             </bean>
         </property>
+        <property name="persistenceUnitPostProcessors">
+            <list>
+                <bean class="services.ReflectionsPersistenceUnitPostProcessor">
+                    <property name="reflectionsRoot" value="dk.eazyit.eazyregnskab"/>
+                </bean>
+            </list>
+        </property>
     </bean>
 
 
