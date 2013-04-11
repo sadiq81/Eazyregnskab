@@ -1,4 +1,4 @@
-package services;
+package dk.eazyit.eazyregnskab.testsetup;
 
 import org.reflections.Reflections;
 import org.reflections.scanners.TypeAnnotationsScanner;

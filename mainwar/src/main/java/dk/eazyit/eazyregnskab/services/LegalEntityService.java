@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Trifork
  */
-@Service
+@Service("legalEntityService")
 public class LegalEntityService {
 
     private Logger log = LoggerFactory.getLogger(LegalEntityService.class);

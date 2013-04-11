@@ -37,7 +37,7 @@
 
         <property name="persistenceUnitPostProcessors">
             <list>
-                <bean class="services.ReflectionsPersistenceUnitPostProcessor">
+                <bean class="dk.eazyit.eazyregnskab.testsetup.ReflectionsPersistenceUnitPostProcessor">
                     <property name="reflectionsRoot" value="dk.eazyit.eazyregnskab"/>
                 </bean>
             </list>

@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.wicket;
 
+import de.agilecoders.wicket.markup.html.bootstrap.navbar.Navbar;
 import dk.eazyit.eazyregnskab.web.app.front.*;
 import junit.framework.TestCase;
 import org.apache.wicket.spring.test.ApplicationContextMock;
@@ -12,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,8 @@ import java.util.List;
         "classpath:/spring-security.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TestUnSecurePages extends TestCase {
+@Transactional
+public class TestBaseWicketCase extends TestCase {
 
     protected WicketTester tester;
 
@@ -43,34 +46,15 @@ public class TestUnSecurePages extends TestCase {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
         simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
         SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("-656894668", "anonymousUser", simpleGrantedAuthorities));
+
     }
 
     @Test
-    public void testRenderingOfPages() {
+    public void testRenderingOfBasePage() {
 
         tester.startPage(HomePage.class);
         tester.assertRenderedPage(HomePage.class);
-        tester.clickLink("signUp");
-        tester.assertRenderedPage(SignUpPage.class);
-
-        tester.startPage(HomePage.class);
-        tester.assertRenderedPage(HomePage.class);
-        tester.clickLink("whatYouGet");
-        tester.assertRenderedPage(WhatYouGetPage.class);
-
-        tester.startPage(HomePage.class);
-        tester.assertRenderedPage(HomePage.class);
-        tester.clickLink("forAdministrators");
-        tester.assertRenderedPage(ForAdministratorsPage.class);
-
-        tester.startPage(HomePage.class);
-        tester.assertRenderedPage(HomePage.class);
-        tester.clickLink("pricing");
-        tester.assertRenderedPage(PricingPage.class);
-
-        tester.startPage(HomePage.class);
-        tester.assertRenderedPage(HomePage.class);
-
+        tester.assertComponent("topMenu", Navbar.class);
 
     }
 
