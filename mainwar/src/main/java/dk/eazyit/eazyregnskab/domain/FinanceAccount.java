@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author
@@ -30,6 +31,9 @@ public class FinanceAccount extends BaseEntity {
     @Column(unique = false, nullable = false, length = 25)
     @Enumerated(EnumType.STRING)
     private FinanceAccountType financeAccountType;
+
+    @OneToMany
+    private Set<FinancePosting> financePosting;
 
     public FinanceAccount() {
     }
@@ -69,5 +73,24 @@ public class FinanceAccount extends BaseEntity {
 
     public void setFinanceAccountType(FinanceAccountType financeAccountType) {
         this.financeAccountType = financeAccountType;
+    }
+
+    public Set<FinancePosting> getFinancePosting() {
+        return financePosting;
+    }
+
+    public void setFinancePosting(Set<FinancePosting> financePosting) {
+        this.financePosting = financePosting;
+    }
+
+    @Override
+    public String toString() {
+        return "FinanceAccount{" +
+                "financeAccountType=" + financeAccountType +
+                ", vatType=" + vatType +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

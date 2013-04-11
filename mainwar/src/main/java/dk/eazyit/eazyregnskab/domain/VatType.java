@@ -48,4 +48,13 @@ public class VatType extends BaseEntity {
     public void setPercentage(BigDecimal percentage) {
         this.percentage = percentage;
     }
+
+    @Override
+    public String toString() {
+        return "VatType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", percentage=" + percentage +
+                '}';
+    }
 }

@@ -62,4 +62,13 @@ public class LegalEntityAccess extends BaseEntity {
     public void setLegalEntity(LegalEntity legalEntity) {
         this.legalEntity = legalEntity;
     }
+
+    @Override
+    public String toString() {
+        return "LegalEntityAccess{" +
+                "id=" + id +
+                ", appUser=" + appUser +
+                ", legalEntity=" + legalEntity.getName() +
+                '}';
+    }
 }

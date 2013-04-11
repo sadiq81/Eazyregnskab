@@ -32,6 +32,10 @@ public class FinancePosting extends BaseEntity {
     private FinancePostingStatus financePostingStatus;
 
     @ManyToOne
+    @JoinColumn(name = "financeaccount_id")
+    private FinanceAccount financeAccount;
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 
@@ -45,5 +49,66 @@ public class FinancePosting extends BaseEntity {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public FinancePostingStatus getFinancePostingStatus() {
+        return financePostingStatus;
+    }
+
+    public void setFinancePostingStatus(FinancePostingStatus financePostingStatus) {
+        this.financePostingStatus = financePostingStatus;
+    }
+
+    public FinanceAccount getFinanceAccount() {
+        return financeAccount;
+    }
+
+    public void setFinanceAccount(FinanceAccount financeAccount) {
+        this.financeAccount = financeAccount;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    @Override
+    public String toString() {
+        return "FinancePosting{" +
+                "id=" + id +
+                ", date=" + date +
+                ", text='" + text + '\'' +
+                ", amount=" + amount +
+                ", financePostingStatus=" + financePostingStatus +
+                ", financeAccount=" + financeAccount.getName() +
+                ", appUser=" + appUser.getUsername() +
+                '}';
     }
 }
