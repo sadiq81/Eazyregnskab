@@ -31,11 +31,11 @@ public class FinancePosting extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private FinancePostingStatus financePostingStatus;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "financeaccount_id")
     private FinanceAccount financeAccount;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 

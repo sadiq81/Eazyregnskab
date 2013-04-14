@@ -47,11 +47,13 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$USER_HOME$/quickview/wicket-quickview/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/server/pom.xml" />
+        <option value="$USER_HOME$/quickview/wicket-quickview/pom.xml" />
       </set>
     </option>
   </component>

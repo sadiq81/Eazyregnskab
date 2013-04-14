@@ -84,13 +84,20 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public int countByExample(final T exampleInstance) {
-        logger.debug("Finding " + persistentClass.getName() + " from database by example" + exampleInstance.toString());
+        logger.debug("Counting " + persistentClass.getName() + " from database by example" + exampleInstance.toString());
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = session.createCriteria(getEntityClass());
         crit.setProjection(Projections.rowCount());
         crit.add(Example.create(exampleInstance));
 
-        return (Integer) crit.list().get(0);
+        if (crit.list().get(0) instanceof Long) {
+            return ((Long) crit.list().get(0)).intValue();
+        } else if (crit.list().get(0) instanceof Integer) {
+            return (Integer) crit.list().get(0);
+        } else {
+            logger.warn(getClass().toString() + " countByExample returned something different than int or long");
+            return 0;
+        }
     }
 
     /**
@@ -169,6 +176,30 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
 
         if (maxResults != null) {
             query.setMaxResults(maxResults);
+        }
+
+        for (int i = 0; i < params.length; i++) {
+            query.setParameter(i + 1, params[i]);
+        }
+
+        return (List<T>) query.getResultList();
+    }
+
+    /**
+     * @see GenericDao#findByNamedQuery(java.lang.String, java.lang.Object[])
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<T> findByNamedQuery(final String name, Integer firstResult, Integer maxResults, Object... params) {
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name);
+        Query query = getEntityManager().createNamedQuery(name);
+
+        if (maxResults != null) {
+            query.setMaxResults(maxResults);
+        }
+
+        if (firstResult != null) {
+            query.setFirstResult(firstResult);
         }
 
         for (int i = 0; i < params.length; i++) {
@@ -263,7 +294,8 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      * Use this inside subclasses as a convenience method.
      */
     @SuppressWarnings("unchecked")
-    protected List<T> findByCriteria(final int firstResult, final int maxResults, final Criterion... criterion) {
+    @Override
+    public List<T> findByCriteria(final int firstResult, final int maxResults, final Criterion... criterion) {
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = session.createCriteria(getEntityClass());
 
@@ -347,6 +379,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
         logger.debug("Saving " + entity.toString() + " to database");
         return getEntityManager().merge(entity);
     }
+
 
     @Override
     public void create(T entity) {

@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -40,6 +41,9 @@ public class LegalEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private MoneyCurrency moneyCurrency;
 
+    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.EAGER)
+    private Set<FinanceAccount> financeAccounts;
+
     public LegalEntity() {
     }
 
@@ -55,6 +59,10 @@ public class LegalEntity extends BaseEntity {
     @Override
     public Long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -103,5 +111,26 @@ public class LegalEntity extends BaseEntity {
 
     public void setMoneyCurrency(MoneyCurrency moneyCurrency) {
         this.moneyCurrency = moneyCurrency;
+    }
+
+    public Set<FinanceAccount> getFinanceAccounts() {
+        return financeAccounts;
+    }
+
+    public void setFinanceAccounts(Set<FinanceAccount> financeAccounts) {
+        this.financeAccounts = financeAccounts;
+    }
+
+    @Override
+    public String toString() {
+        return "LegalEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", legalIdentification='" + legalIdentification + '\'' +
+                ", address='" + address + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", country=" + country +
+                ", moneyCurrency=" + moneyCurrency +
+                '}';
     }
 }
