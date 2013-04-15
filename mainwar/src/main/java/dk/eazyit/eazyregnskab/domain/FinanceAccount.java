@@ -55,6 +55,11 @@ public class FinanceAccount extends BaseEntity {
         return id;
     }
 
+    public FinanceAccount setId(long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getName() {
         return name;
     }

@@ -25,7 +25,11 @@ public class LegalEntityModel extends AbstractEntityModel<LegalEntity> {
 
     @Override
     protected LegalEntity load(Long id) {
-        return legalEntityDAO.findById(id);
+        if (id == 0) {
+            return new LegalEntity();
+        } else {
+            return legalEntityDAO.findById(id);
+        }
     }
 
     @Override

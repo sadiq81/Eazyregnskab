@@ -50,7 +50,8 @@ public class LegalEntityService {
     @Transactional(readOnly = true)
     public List<LegalEntity> findLegalEntityByUser(AppUser appUser) {
         log.debug("Finding all Legal Entity accessible by " + appUser.getUsername());
-        return legalEntityDAO.findByNamedQuery(LegalEntity.QUERY_FIND_LEGAL_ENTITY_BY_USER, appUser);
+        List<LegalEntity> list = legalEntityDAO.findByNamedQuery(LegalEntity.QUERY_FIND_LEGAL_ENTITY_BY_USER, appUser);
+        return list;
     }
 
     @Transactional()

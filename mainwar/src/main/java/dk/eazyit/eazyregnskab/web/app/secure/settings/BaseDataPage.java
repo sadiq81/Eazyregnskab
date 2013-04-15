@@ -17,6 +17,8 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
 
+import java.util.Arrays;
+
 /**
  * @author EazyIT
  */
@@ -25,8 +27,6 @@ public class BaseDataPage extends LoggedInPage {
 
     @SpringBean
     LegalEntityService legalEntityService;
-
-    private final static int DURATION = 5;
 
     LegalEntityForm form;
 
@@ -56,20 +56,14 @@ public class BaseDataPage extends LoggedInPage {
         }
 
         @Override
-        protected void onBeforeRender() {
-            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
-            super.onBeforeRender();
-        }
-
-        @Override
         public void addToForm() {
             super.addToForm();
             add(new PlaceholderTextField<String>("name"));
             add(new PlaceholderTextField<String>("legalIdentification"));
             add(new PlaceholderTextField<String>("address"));
             add(new PlaceholderTextField<String>("postalCode"));
-            add(new EnumDropDownChoice<Country>("country"));
-            add(new EnumDropDownChoice<MoneyCurrency>("moneyCurrency"));
+            add(new EnumDropDownChoice<Country>("country", Arrays.asList(Country.values())));
+            add(new EnumDropDownChoice<MoneyCurrency>("moneyCurrency", Arrays.asList(MoneyCurrency.values())));
         }
 
         @Override

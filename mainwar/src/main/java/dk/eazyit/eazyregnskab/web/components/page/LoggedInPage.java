@@ -30,6 +30,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class LoggedInPage extends AppBasePage {
 
     public static final String PARAM_LEGAL_ENTITY = "legalEntity";
+    protected final static int DURATION = 5;
 
     @SpringBean
     LoginService loginService;
@@ -116,11 +117,11 @@ public class LoggedInPage extends AppBasePage {
         return new AppUserModel(loginService.findAppUserByUsername(name));
     }
 
-    protected CurrentUser getCurrentUser() {
+    public CurrentUser getCurrentUser() {
         return (CurrentUser) getSession().getAttribute(CurrentUser.ATTRIBUTE_NAME);
     }
 
-    protected CurrentLegalEntity getSelectedLegalEntity() {
+    public CurrentLegalEntity getSelectedLegalEntity() {
         return (CurrentLegalEntity) getSession().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
     }
 

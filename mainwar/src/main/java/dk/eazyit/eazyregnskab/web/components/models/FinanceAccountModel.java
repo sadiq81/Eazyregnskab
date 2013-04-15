@@ -25,7 +25,11 @@ public class FinanceAccountModel extends AbstractEntityModel<FinanceAccount> {
 
     @Override
     protected FinanceAccount load(Long id) {
-        return financeAccountDAO.findById(id);
+        if (id == 0) {
+            return new FinanceAccount();
+        } else {
+            return financeAccountDAO.findById(id);
+        }
     }
 
     @Override

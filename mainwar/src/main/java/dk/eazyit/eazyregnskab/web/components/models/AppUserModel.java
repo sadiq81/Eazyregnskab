@@ -25,7 +25,11 @@ public class AppUserModel extends AbstractEntityModel<AppUser> {
 
     @Override
     protected AppUser load(Long id) {
-        return appUserDAO.findById(id);
+        if (id == 0) {
+            return new AppUser();
+        } else {
+            return appUserDAO.findById(id);
+        }
     }
 
     @Override

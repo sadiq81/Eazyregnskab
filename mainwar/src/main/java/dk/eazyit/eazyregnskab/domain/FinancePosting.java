@@ -11,8 +11,14 @@ import java.util.Date;
  * @author
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from FinancePosting fp " +
+                "WHERE fp.financeAccount = ?1")
+})
 @Table(name = "financeposting")
 public class FinancePosting extends BaseEntity {
+
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT= "FinancePosting::findFinancePostingByFinanceAccount";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

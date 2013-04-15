@@ -1,5 +1,8 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -7,8 +10,14 @@ import java.math.BigDecimal;
  * @author
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, query = "select vt from VatType vt " +
+                "WHERE vt.legalEntity = ?1")
+})
 @Table(name = "vattype")
 public class VatType extends BaseEntity {
+
+    public static final String QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY = "VatType::findVatTypeByLegalEntity";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +28,11 @@ public class VatType extends BaseEntity {
 
     @Column(unique = false, nullable = false, precision = 5, scale = 2)
     private BigDecimal percentage;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "legalentity_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private LegalEntity legalEntity;
 
     public VatType() {
 

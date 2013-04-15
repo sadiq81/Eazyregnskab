@@ -24,6 +24,11 @@ public class EnumDropDownChoice<t extends Enum<t>> extends DropDownChoice<t> {
         setChoiceRenderer(new EnumChoiceRenderer<t>(this));
     }
 
+    public EnumDropDownChoice(String id, List<t> choices) {
+        super(id,choices);
+        setChoiceRenderer(new EnumChoiceRenderer<t>(this));
+    }
+
     public EnumDropDownChoice(String id, List<t> choices, EnumChoiceRenderer<t> choiceRenderer) {
         super(id, choices);
         setChoiceRenderer(choiceRenderer);
@@ -38,17 +43,6 @@ public class EnumDropDownChoice<t extends Enum<t>> extends DropDownChoice<t> {
 
     public EnumDropDownChoice(String id, IModel<t> model, List<t> choices, EnumChoiceRenderer<t> renderer) {
         super(id, model, choices, renderer);
-    }
-
-    @Override
-    public List<? extends t> getChoices() {
-        t modelObject = getModelObject();
-        if (modelObject != null) {
-            return Arrays.asList(modelObject.getDeclaringClass().getEnumConstants());
-        } else {
-
-            return new ArrayList<t>();
-        }
     }
 }
 
