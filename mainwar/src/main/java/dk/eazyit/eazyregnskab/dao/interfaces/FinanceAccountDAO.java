@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface FinanceAccountDAO extends GenericDAO<FinanceAccount, Long>{
 
+    List<FinanceAccount> findByLegalEntity(LegalEntity legalEntity, int first, int count);
+
     List<FinanceAccount> findByLegalEntityAndSortOrder(LegalEntity legalEntity, int first, int count, String orderProperty, Boolean ascending);
 }

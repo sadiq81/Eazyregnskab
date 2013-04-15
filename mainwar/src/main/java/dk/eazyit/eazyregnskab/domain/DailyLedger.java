@@ -49,8 +49,9 @@ public class DailyLedger extends BaseEntity {
         return legalEntity;
     }
 
-    public void setLegalEntity(LegalEntity legalEntity) {
+    public DailyLedger setLegalEntity(LegalEntity legalEntity) {
         this.legalEntity = legalEntity;
+        return this;
     }
 
     public Set<FinancePosting> getFinancePosting() {

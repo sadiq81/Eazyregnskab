@@ -76,7 +76,15 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
         Criteria crit = session.createCriteria(getEntityClass());
         crit.setProjection(Projections.rowCount());
         crit.add(example);
-        return (Integer) crit.list().get(0);
+
+        if (crit.list().get(0) instanceof Long) {
+            return ((Long) crit.list().get(0)).intValue();
+        } else if (crit.list().get(0) instanceof Integer) {
+            return (Integer) crit.list().get(0);
+        } else {
+            logger.warn(getClass().toString() + " countByExample returned something different than int or long");
+            return 0;
+        }
     }
 
     /**

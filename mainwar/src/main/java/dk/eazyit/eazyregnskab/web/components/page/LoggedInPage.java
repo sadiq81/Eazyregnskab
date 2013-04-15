@@ -61,6 +61,7 @@ public class LoggedInPage extends AppBasePage {
         logger = LogFactory.getLog(this.getClass());
         setOutputMarkupPlaceholderTag(true);
         add(feedbackPanel = new NotificationPanel("feedback"));
+        feedbackPanel.setOutputMarkupPlaceholderTag(true);
         ensureUserInfo(parameters);
 
         add(new LinkList("linkList", MenuSetup.createSideMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));

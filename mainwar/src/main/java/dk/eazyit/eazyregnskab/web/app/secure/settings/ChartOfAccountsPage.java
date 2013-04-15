@@ -125,7 +125,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
         @Override
         public void deleteEntity() {
             if (getModelObject().getId() != 0) {
-                if (financeAccountService.isDeletingAllowed(getModelObject())) {
+                if (financeAccountService.isDeletingFinanceAccountAllowed(getModelObject())) {
                     financeAccountService.deleteFinanceAccount(getModelObject());
                     getSession().success(new NotificationMessage(new ResourceModel("finance.account.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 } else {

@@ -115,7 +115,6 @@ public class FinanceAccount extends BaseEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
-                ", vatType=" + vatType.getName() +
                 ", financeAccountType=" + financeAccountType +
                 ", legalEntity=" + legalEntity.getName() +
                 '}';
