@@ -69,6 +69,7 @@ public class VatType extends BaseEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", percentage=" + percentage +
+                ", legalEntity=" + legalEntity.getName() +
                 '}';
     }
 }

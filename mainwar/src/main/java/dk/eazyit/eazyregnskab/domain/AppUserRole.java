@@ -61,8 +61,8 @@ public class AppUserRole implements Serializable {
     public String toString() {
         return "AppUserRole{" +
                 "id=" + id +
-                ", appUser=" + appUser +
-                ", authority=" + authority +
+                ", appUser=" + appUser.getUsername() +
+                ", authority=" + authority.getAuthority() +
                 '}';
     }
 }

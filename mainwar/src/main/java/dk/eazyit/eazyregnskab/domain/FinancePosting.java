@@ -13,12 +13,15 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from FinancePosting fp " +
-                "WHERE fp.financeAccount = ?1")
+                "WHERE fp.financeAccount = ?1"),
+        @NamedQuery(name = FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, query = "select fp from FinancePosting fp " +
+                "WHERE fp.dailyLedger = ?1")
 })
 @Table(name = "financeposting")
 public class FinancePosting extends BaseEntity {
 
-    public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT= "FinancePosting::findFinancePostingByFinanceAccount";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "FinancePosting::findFinancePostingByFinanceAccount";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER = "FinancePosting::findFinancePostingByDailyLedger";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +47,10 @@ public class FinancePosting extends BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private AppUser appUser;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "dailyledger_id")
+    private DailyLedger dailyLedger;
 
     public FinancePosting() {
     }
@@ -105,6 +112,14 @@ public class FinancePosting extends BaseEntity {
         this.appUser = appUser;
     }
 
+    public DailyLedger getDailyLedger() {
+        return dailyLedger;
+    }
+
+    public void setDailyLedger(DailyLedger dailyLedger) {
+        this.dailyLedger = dailyLedger;
+    }
+
     @Override
     public String toString() {
         return "FinancePosting{" +
@@ -115,6 +130,7 @@ public class FinancePosting extends BaseEntity {
                 ", financePostingStatus=" + financePostingStatus +
                 ", financeAccount=" + financeAccount.getName() +
                 ", appUser=" + appUser.getUsername() +
+                ", dailyLedger=" + dailyLedger.getName() +
                 '}';
     }
 }

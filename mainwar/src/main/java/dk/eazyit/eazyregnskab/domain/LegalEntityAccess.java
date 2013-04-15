@@ -67,7 +67,7 @@ public class LegalEntityAccess extends BaseEntity {
     public String toString() {
         return "LegalEntityAccess{" +
                 "id=" + id +
-                ", appUser=" + appUser +
+                ", appUser=" + appUser.getUsername() +
                 ", legalEntity=" + legalEntity.getName() +
                 '}';
     }

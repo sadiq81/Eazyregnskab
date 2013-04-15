@@ -112,11 +112,12 @@ public class FinanceAccount extends BaseEntity {
     @Override
     public String toString() {
         return "FinanceAccount{" +
-                "financeAccountType=" + financeAccountType +
-                ", vatType=" + vatType +
-                ", accountNumber='" + accountNumber + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", id=" + id +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", vatType=" + vatType.getName() +
+                ", financeAccountType=" + financeAccountType +
+                ", legalEntity=" + legalEntity.getName() +
                 '}';
     }
 }

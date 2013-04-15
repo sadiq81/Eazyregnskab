@@ -86,6 +86,7 @@ public class AppUser extends BaseEntity {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", enabled=" + enabled +
                 '}';
     }
 }

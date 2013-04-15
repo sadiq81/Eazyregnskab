@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.services;
 
+import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.FinanceAccountDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.FinancePostingDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.VatTypeDAO;
@@ -29,6 +30,8 @@ public class FinanceAccountService {
     private FinancePostingDAO financePostingDAO;
     @Autowired
     private VatTypeDAO vatTypeDAO;
+    @Autowired
+    private DailyLedgerDAO dailyLedgerDAO;
 
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntity(LegalEntity legalEntity) {
