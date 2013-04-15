@@ -58,12 +58,12 @@ public class BaseDataPage extends LoggedInPage {
         @Override
         public void addToForm() {
             super.addToForm();
-            add(new PlaceholderTextField<String>("name"));
+            add(new PlaceholderTextField<String>("name").setRequired(true));
             add(new PlaceholderTextField<String>("legalIdentification"));
             add(new PlaceholderTextField<String>("address"));
             add(new PlaceholderTextField<String>("postalCode"));
-            add(new EnumDropDownChoice<Country>("country", Arrays.asList(Country.values())));
-            add(new EnumDropDownChoice<MoneyCurrency>("moneyCurrency", Arrays.asList(MoneyCurrency.values())));
+            add(new EnumDropDownChoice<Country>("country", Arrays.asList(Country.values())).setRequired(true));
+            add(new EnumDropDownChoice<MoneyCurrency>("moneyCurrency", Arrays.asList(MoneyCurrency.values())).setRequired(true));
         }
 
         @Override
