@@ -1,29 +1,27 @@
 package dk.eazyit.eazyregnskab.web.components.dataprovider;
 
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
-import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author
  */
-public class DailyLedgerDataProvider extends SortableDataProvider<DailyLedger, String> {
+public class DailyLedgerDataProvider extends EazyregnskabSortableDataProvider<DailyLedger> {
 
     @SpringBean
     FinanceAccountService financeAccountService;
 
-    LoggedInPage parent;
-
-    public DailyLedgerDataProvider(LoggedInPage parent) {
-        this.parent = parent;
+    public DailyLedgerDataProvider() {
         Injector.get().inject(this);
     }
 
@@ -33,17 +31,11 @@ public class DailyLedgerDataProvider extends SortableDataProvider<DailyLedger, S
 
         SortParam sortParam = getSort();
         if (sortParam != null) {
-            Iterator<DailyLedger> iterator = financeAccountService.findDailyLedgerByLegalEntitySubListOrderBy(
-                    parent.getSelectedLegalEntity().getLegalEntityModel().getObject(),
-                    (int) first,
-                    (int) count,
-                    (String) sortParam.getProperty(),
-                    sortParam.isAscending())
-                    .iterator();
-
-            return iterator;
+            return Collections.EMPTY_LIST.iterator();
         } else {
-            Iterator<DailyLedger> iterator = financeAccountService.findDailyLedgerByLegalEntitySubList(parent.getSelectedLegalEntity().getLegalEntityModel().getObject(), (int) first, (int) count).iterator();
+            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            List<DailyLedger> list = financeAccountService.findDailyLedgerByLegalEntitySubList(legalEntity, (int) first, (int) count);
+            Iterator<DailyLedger> iterator = list.iterator();
             return iterator;
         }
 
@@ -51,7 +43,8 @@ public class DailyLedgerDataProvider extends SortableDataProvider<DailyLedger, S
 
     @Override
     public long size() {
-        int size = financeAccountService.countDailyLedgerOfLegalEntity(parent.getSelectedLegalEntity().getLegalEntityModel().getObject());
+        LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+        int size = financeAccountService.countDailyLedgerOfLegalEntity(legalEntity);
         return size;
     }
 

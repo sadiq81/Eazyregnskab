@@ -5,6 +5,7 @@ import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
+import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
 import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import dk.eazyit.eazyregnskab.session.CurrentUser;
 import dk.eazyit.eazyregnskab.web.components.models.AppUserModel;
@@ -80,6 +81,7 @@ public class LoggedInPage extends AppBasePage {
         legalEntityDropDownChoice.add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
+                changedLegalEntity(target);
                 target.add(getPage());
             }
         }));
@@ -115,8 +117,18 @@ public class LoggedInPage extends AppBasePage {
             currentLegalEntity.setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(currentUser.getAppUserModel().getObject()).get(0)));
             logger.debug("Selected legalEntity as first in user access");
         }
-
-
+        CurrentDailyLedger currentDailyLedger = getCurrentDailyLedger();
+        if (currentDailyLedger == null) {
+            logger.debug("Creating CurrentDailyLedger");
+            currentDailyLedger = new CurrentDailyLedger();
+            session.setAttribute(CurrentDailyLedger.ATTRIBUTE_NAME, currentDailyLedger);
+        }
+        if (currentDailyLedger.getDailyLedgerModel() == null) {
+            //TODO will fail if no daily ledger
+            logger.debug("No dailyLedger selected");
+            currentDailyLedger.setDailyLedgerModel(new DailyLedgerModel(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0)));
+            logger.debug("Selected daily ledger as first in legal entity");
+        }
     }
 
     private AppUserModel getAppUserModel() {
@@ -133,7 +145,11 @@ public class LoggedInPage extends AppBasePage {
         return (CurrentLegalEntity) getSession().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
     }
 
-    protected void updateSelections() {
+    public CurrentDailyLedger getCurrentDailyLedger() {
+        return (CurrentDailyLedger) getSession().getAttribute(CurrentDailyLedger.ATTRIBUTE_NAME);
+    }
+
+    protected void updateLegalEntitySelections() {
         DropDownChoice<LegalEntity> temp = new DropDownChoice<LegalEntity>("legalEntityList",
                 legalEntityModel = getSelectedLegalEntity().getLegalEntityModel(),
                 legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()),
@@ -141,6 +157,7 @@ public class LoggedInPage extends AppBasePage {
         temp.add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
+                changedLegalEntity(target);
                 target.add(getPage());
             }
         }));
@@ -149,6 +166,10 @@ public class LoggedInPage extends AppBasePage {
         temp.setParent(this);
         legalEntityDropDownChoice.setParent(this);
         legalEntityDropDownChoice = temp;
+    }
+
+    protected void changedLegalEntity(AjaxRequestTarget target) {
+        getCurrentDailyLedger().getDailyLedgerModel().setObject(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0));
     }
 
 }

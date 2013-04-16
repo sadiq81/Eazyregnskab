@@ -75,7 +75,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
                 cellItem.add(new FinanceAccountActionPanel(componentId, rowModel));
             }
         });
-        add(dataTable = new AjaxFallbackDefaultDataTable("chartOfAccounts", columns, new FinanceAccountDataProvider(this), 20));
+        add(dataTable = new AjaxFallbackDefaultDataTable("chartOfAccounts", columns, new FinanceAccountDataProvider(), 20));
     }
 
     private class FinanceAccountActionPanel extends ActionPanel<FinanceAccount> {

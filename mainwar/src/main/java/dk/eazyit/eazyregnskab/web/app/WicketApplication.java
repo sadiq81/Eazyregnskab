@@ -39,6 +39,8 @@ public class WicketApplication extends WebApplication {
     public void init() {
         super.init();
 
+        getDebugSettings().setAjaxDebugModeEnabled(true);
+
         getApplicationSettings().setAccessDeniedPage(HomePage.class);
 
         Bootstrap.install(Application.get(), new BootstrapSettings());

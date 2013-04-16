@@ -72,7 +72,7 @@ public class BaseDataPage extends LoggedInPage {
 
                 legalEntityService.deleteLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
                 getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()).get(0)));
-                updateSelections();
+                updateLegalEntitySelections();
                 getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
@@ -84,7 +84,7 @@ public class BaseDataPage extends LoggedInPage {
             LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject(),
                     new LegalEntity(getString("new.legal.entity"), null, null, null, Country.DK, MoneyCurrency.DKK));
             getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
-            updateSelections();
+            updateLegalEntitySelections();
             getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
 
         }
@@ -92,15 +92,15 @@ public class BaseDataPage extends LoggedInPage {
         @Override
         public void saveForm() {
             legalEntityService.saveLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
-            updateSelections();
+            updateLegalEntitySelections();
             getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
 
         }
     }
 
     @Override
-    protected void updateSelections() {
-        super.updateSelections();
+    protected void updateLegalEntitySelections() {
+        super.updateLegalEntitySelections();
 
         LegalEntityForm temp = new LegalEntityForm("legalEntityEdit", getSelectedLegalEntity().getLegalEntityModel());
         temp.setOutputMarkupPlaceholderTag(true);

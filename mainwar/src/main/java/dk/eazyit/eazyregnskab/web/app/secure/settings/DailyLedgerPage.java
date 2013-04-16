@@ -6,11 +6,11 @@ import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.web.components.dataprovider.DailyLedgerDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
-import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.panels.ActionPanel;
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
@@ -54,7 +54,7 @@ public class DailyLedgerPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new DailyLedgerForm("dailyLedgerEdit", new DailyLedgerModel(new DailyLedger())));
+        add(form = new DailyLedgerForm("dailyLedgerEdit", getCurrentDailyLedger().getDailyLedgerModel()));
 
         List<IColumn<DailyLedger, String>> columns = new ArrayList<IColumn<DailyLedger, String>>();
         columns.add(new PropertyColumn<DailyLedger, String>(new ResourceModel("name"), "name", "name"));
@@ -64,7 +64,7 @@ public class DailyLedgerPage extends LoggedInPage {
                 cellItem.add(new DailyLedgerActionPanel(componentId, rowModel));
             }
         });
-        add(dataTable = new AjaxFallbackDefaultDataTable("chartOfDailyLedgers", columns, new DailyLedgerDataProvider(this), 20));
+        add(dataTable = new AjaxFallbackDefaultDataTable("chartOfDailyLedgers", columns, new DailyLedgerDataProvider(), 20));
     }
 
     private class DailyLedgerActionPanel extends ActionPanel<DailyLedger> {
@@ -110,7 +110,7 @@ public class DailyLedgerPage extends LoggedInPage {
         @Override
         public void deleteEntity() {
             if (getModelObject().getId() != 0) {
-                if (financeAccountService.isDeletingDailyLedgerAllowed(getModelObject(),getSelectedLegalEntity().getLegalEntityModel().getObject())) {
+                if (financeAccountService.isDeletingDailyLedgerAllowed(getModelObject(), getSelectedLegalEntity().getLegalEntityModel().getObject())) {
                     financeAccountService.deleteDailyLedger(getModelObject());
                     getSession().success(new NotificationMessage(new ResourceModel("daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 } else {
@@ -137,5 +137,12 @@ public class DailyLedgerPage extends LoggedInPage {
             getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
             newEntity();
         }
+    }
+
+    @Override
+    protected void changedLegalEntity(AjaxRequestTarget target) {
+        super.changedLegalEntity(target);
+        target.add(dataTable);
+
     }
 }

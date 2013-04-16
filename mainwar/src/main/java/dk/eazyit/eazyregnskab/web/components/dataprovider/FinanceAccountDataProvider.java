@@ -3,30 +3,25 @@ package dk.eazyit.eazyregnskab.web.components.dataprovider;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.web.components.models.FinanceAccountModel;
-import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
  * @author
  */
-public class FinanceAccountDataProvider extends SortableDataProvider<FinanceAccount, String> {
+public class FinanceAccountDataProvider extends EazyregnskabSortableDataProvider<FinanceAccount> {
 
     @SpringBean
     FinanceAccountService financeAccountService;
 
-    LoggedInPage parent;
-
-    public FinanceAccountDataProvider(LoggedInPage parent) {
-        this.parent = parent;
+    public FinanceAccountDataProvider() {
         Injector.get().inject(this);
     }
-
 
 
     @Override
@@ -34,21 +29,12 @@ public class FinanceAccountDataProvider extends SortableDataProvider<FinanceAcco
 
         SortParam sortParam = getSort();
         if (sortParam != null) {
-            Iterator<FinanceAccount> iterator = financeAccountService.findFinanceAccountByLegalEntitySubListOrderBy(
-                    parent.getSelectedLegalEntity().getLegalEntityModel().getObject(),
-                    (int) first,
-                    (int) count,
-                    (String) sortParam.getProperty(),
-                    sortParam.isAscending())
-                    .iterator();
-
-            return iterator;
+            return Collections.EMPTY_LIST.iterator();
         } else {
             Iterator<FinanceAccount> iterator = financeAccountService.findFinanceAccountByLegalEntitySubList(
-                    parent.getSelectedLegalEntity().getLegalEntityModel().getObject(),
+                    getSelectedLegalEntity().getLegalEntityModel().getObject(),
                     (int) first,
                     (int) count).iterator();
-
             return iterator;
         }
 
@@ -56,7 +42,7 @@ public class FinanceAccountDataProvider extends SortableDataProvider<FinanceAcco
 
     @Override
     public long size() {
-        int size = financeAccountService.countFinanceAccountOfLegalEntity(parent.getSelectedLegalEntity().getLegalEntityModel().getObject());
+        int size = financeAccountService.countFinanceAccountOfLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject());
         return size;
     }
 
