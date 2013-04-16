@@ -66,7 +66,7 @@ public class BookkeepingPage extends LoggedInPage {
     protected void changedLegalEntity(AjaxRequestTarget target) {
         super.changedLegalEntity(target);
 
-        DropDownChoice<DailyLedger> temp = new DropDownChoice<DailyLedger>("legalEntityList",
+        DropDownChoice<DailyLedger> temp = new DropDownChoice<DailyLedger>("dailyLedgerList",
                 dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
                 financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()),
                 new ChoiceRenderer<DailyLedger>("name", "id"));

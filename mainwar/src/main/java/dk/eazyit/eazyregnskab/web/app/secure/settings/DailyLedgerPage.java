@@ -6,6 +6,7 @@ import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.web.components.dataprovider.DailyLedgerDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
+import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.panels.ActionPanel;
@@ -54,7 +55,7 @@ public class DailyLedgerPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new DailyLedgerForm("dailyLedgerEdit", getCurrentDailyLedger().getDailyLedgerModel()));
+        add(form = new DailyLedgerForm("dailyLedgerEdit", new DailyLedgerModel(new DailyLedger())));
 
         List<IColumn<DailyLedger, String>> columns = new ArrayList<IColumn<DailyLedger, String>>();
         columns.add(new PropertyColumn<DailyLedger, String>(new ResourceModel("name"), "name", "name"));
