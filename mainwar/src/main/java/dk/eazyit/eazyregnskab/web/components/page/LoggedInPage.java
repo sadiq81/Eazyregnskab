@@ -2,11 +2,13 @@ package dk.eazyit.eazyregnskab.web.components.page;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
 import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import dk.eazyit.eazyregnskab.session.CurrentUser;
 import dk.eazyit.eazyregnskab.web.components.models.AppUserModel;
+import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.LinkList;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
@@ -38,10 +40,14 @@ public class LoggedInPage extends AppBasePage {
     @SpringBean
     LegalEntityService legalEntityService;
 
+    @SpringBean
+    FinanceAccountService financeAccountService;
+
     DropDownChoice<LegalEntity> legalEntityDropDownChoice;
     LegalEntityModel legalEntityModel;
+    DailyLedgerModel dailyLedgerModel;
 
-    private Log logger;
+    protected Log logger;
     protected NotificationPanel feedbackPanel;
 
     public LoggedInPage() {
@@ -81,7 +87,7 @@ public class LoggedInPage extends AppBasePage {
 
     }
 
-    private void ensureUserInfo(PageParameters parameters) {
+    protected void ensureUserInfo(PageParameters parameters) {
 
         Session session = getSession();
 
@@ -109,6 +115,7 @@ public class LoggedInPage extends AppBasePage {
             currentLegalEntity.setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(currentUser.getAppUserModel().getObject()).get(0)));
             logger.debug("Selected legalEntity as first in user access");
         }
+
 
     }
 
@@ -143,4 +150,5 @@ public class LoggedInPage extends AppBasePage {
         legalEntityDropDownChoice.setParent(this);
         legalEntityDropDownChoice = temp;
     }
+
 }

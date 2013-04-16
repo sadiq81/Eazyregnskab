@@ -110,7 +110,7 @@ public class DailyLedgerPage extends LoggedInPage {
         @Override
         public void deleteEntity() {
             if (getModelObject().getId() != 0) {
-                if (financeAccountService.isDeletingDailyLedgerAllowed(getModelObject())) {
+                if (financeAccountService.isDeletingDailyLedgerAllowed(getModelObject(),getSelectedLegalEntity().getLegalEntityModel().getObject())) {
                     financeAccountService.deleteDailyLedger(getModelObject());
                     getSession().success(new NotificationMessage(new ResourceModel("daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 } else {

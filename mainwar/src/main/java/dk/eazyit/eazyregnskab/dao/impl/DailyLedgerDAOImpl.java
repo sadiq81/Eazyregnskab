@@ -18,11 +18,10 @@ import java.util.List;
 public class DailyLedgerDAOImpl extends GenericDAOImpl<DailyLedger, Long> implements DailyLedgerDAO {
 
     @Override
-    public List<DailyLedger> findByLegalEntity(LegalEntity legalEntity, int first, int count, String orderProperty, Boolean ascending) {
+    public List<DailyLedger> findByLegalEntity(LegalEntity legalEntity, int first, int count) {
         Session session = (Session) getEntityManager().getDelegate();
         final Example example = Example.create(new DailyLedger().setLegalEntity(legalEntity)).excludeZeroes();
         Criteria c = session.createCriteria(getEntityClass()).add(example);
-        c = ascending == true ? c.addOrder(Order.asc(orderProperty)) : c.addOrder(Order.desc(orderProperty));
         c.setFirstResult(first);
         c.setMaxResults(count);
         return c.list();

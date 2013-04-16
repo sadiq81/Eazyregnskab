@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface DailyLedgerDAO extends GenericDAO<DailyLedger, Long>{
 
-    List<DailyLedger> findByLegalEntity(LegalEntity legalEntity, int first, int count, String orderProperty, Boolean ascending);
+    List<DailyLedger> findByLegalEntity(LegalEntity legalEntity, int first, int count);
 
     List<DailyLedger> findByLegalEntityAndSortOrder(LegalEntity legalEntity, int first, int count, String orderProperty, Boolean ascending);
 

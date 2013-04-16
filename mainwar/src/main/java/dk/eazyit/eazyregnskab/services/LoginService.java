@@ -27,6 +27,8 @@ public class LoginService {
     private AppUserRoleDAO appUserRoleDAO;
     @Autowired
     private LegalEntityService legalEntityService;
+    @Autowired
+    private FinanceAccountService financeAccountService;
 
 
     @Transactional
@@ -39,7 +41,11 @@ public class LoginService {
         AppUserRole appUserRole = new AppUserRole(appUser, Authority.ROLE_USER);
         appUserRoleDAO.create(appUserRole);
 
-        legalEntityService.createLegalEntity(appUser, new LegalEntity("Start",null,null,null, Country.DK, MoneyCurrency.DKK));
+        LegalEntity legalEntity = new LegalEntity("Start", null, null, null, Country.DK, MoneyCurrency.DKK);
+        legalEntityService.createLegalEntity(appUser, legalEntity);
+
+        DailyLedger dailyLedger = new DailyLedger("Start", legalEntity);
+        financeAccountService.saveDailyLedger(dailyLedger, legalEntity);
 
 
     }

@@ -28,6 +28,14 @@ public class DailyLedger extends BaseEntity {
     @OneToMany(mappedBy = "dailyLedger", fetch = FetchType.EAGER)
     private Set<FinancePosting> financePosting;
 
+    public DailyLedger() {
+    }
+
+    public DailyLedger(String name, LegalEntity legalEntity) {
+        this.name = name;
+        this.legalEntity = legalEntity;
+    }
+
     @Override
     public Long getId() {
         return id;

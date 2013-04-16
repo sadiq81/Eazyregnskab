@@ -52,6 +52,11 @@ public class FinancePosting extends BaseEntity {
     @JoinColumn(name = "dailyledger_id")
     private DailyLedger dailyLedger;
 
+    @ManyToOne(optional = true)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JoinColumn(name = "vatType_id")
+    private VatType vatType;
+
     public FinancePosting() {
     }
 
@@ -116,8 +121,17 @@ public class FinancePosting extends BaseEntity {
         return dailyLedger;
     }
 
-    public void setDailyLedger(DailyLedger dailyLedger) {
+    public FinancePosting setDailyLedger(DailyLedger dailyLedger) {
         this.dailyLedger = dailyLedger;
+        return this;
+    }
+
+    public VatType getVatType() {
+        return vatType;
+    }
+
+    public void setVatType(VatType vatType) {
+        this.vatType = vatType;
     }
 
     @Override

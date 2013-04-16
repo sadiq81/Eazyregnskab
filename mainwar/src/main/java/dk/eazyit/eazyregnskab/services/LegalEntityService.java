@@ -1,8 +1,10 @@
 package dk.eazyit.eazyregnskab.services;
 
+import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.LegalEntityAccessDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.LegalEntityDAO;
 import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.LegalEntityAccess;
 import org.slf4j.Logger;
@@ -25,12 +27,15 @@ public class LegalEntityService {
     private LegalEntityDAO legalEntityDAO;
     @Autowired
     private LegalEntityAccessDAO legalEntityAccessDAO;
+    @Autowired
+    private DailyLedgerDAO dailyLedgerDAO;
 
     @Transactional
     public LegalEntity createLegalEntity(AppUser appUser, LegalEntity legalEntity) {
         log.debug("Creating new Legal Entity " + legalEntity);
         legalEntityDAO.create(legalEntity);
         legalEntityAccessDAO.create(new LegalEntityAccess(appUser, legalEntity));
+        dailyLedgerDAO.create(new DailyLedger("Start",legalEntity));
         return legalEntity;
     }
 
@@ -60,6 +65,7 @@ public class LegalEntityService {
         return legalEntityAccessDAO.findByNamedQuery(LegalEntityAccess.QUERY_FIND_LEGAL_ENTITY_ACCESS_BY_LEGAL_ENTITY, legalEntity);
     }
 
+    //TODO delete daily ledgers
     @Transactional
     public void deleteLegalEntity(AppUser appUser, LegalEntity legalEntity) {
         if (isDeletingAllowed(appUser, legalEntity)) {
@@ -73,6 +79,7 @@ public class LegalEntityService {
         }
     }
 
+    //TODO check for finance postings
     @Transactional(readOnly = true)
     public boolean isDeletingAllowed(AppUser appUser, LegalEntity legalEntity) {
         if (findLegalEntityByUser(appUser).size() <= 1) {
