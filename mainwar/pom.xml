@@ -89,6 +89,18 @@
             <version>${wicket.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.vaynberg.wicket.select2</groupId>
+            <artifactId>wicket-select2</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <dependency>
+        	<groupId>com.vaynberg.wicket.select2</groupId>
+        	<artifactId>wicket-select2-examples</artifactId>
+        	<version>1.0</version>
+        </dependency>
+
         <!--Basic Spring-->
         <dependency>
             <groupId>javax.inject</groupId>

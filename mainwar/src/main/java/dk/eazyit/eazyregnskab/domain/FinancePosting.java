@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from FinancePosting fp " +
-                "WHERE fp.financeAccount = ?1"),
+                "WHERE fp.financeAccount = ?1 or fp.reverseFinanceAccount = ?1"),
         @NamedQuery(name = FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, query = "select fp from FinancePosting fp " +
                 "WHERE fp.dailyLedger = ?1")
 })
@@ -43,6 +43,10 @@ public class FinancePosting extends BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "financeaccount_id")
     private FinanceAccount financeAccount;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "reversefinanceaccount_id")
+    private FinanceAccount reverseFinanceAccount;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
@@ -107,6 +111,14 @@ public class FinancePosting extends BaseEntity {
 
     public void setFinanceAccount(FinanceAccount financeAccount) {
         this.financeAccount = financeAccount;
+    }
+
+    public FinanceAccount getReverseFinanceAccount() {
+        return reverseFinanceAccount;
+    }
+
+    public void setReverseFinanceAccount(FinanceAccount reverseFinanceAccount) {
+        this.reverseFinanceAccount = reverseFinanceAccount;
     }
 
     public AppUser getAppUser() {

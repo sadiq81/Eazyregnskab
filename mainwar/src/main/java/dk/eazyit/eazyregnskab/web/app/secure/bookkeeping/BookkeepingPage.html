@@ -5,10 +5,65 @@
 
 <wicket:extend>
 
-    <select wicket:id="dailyLedgerList"></select>
+    <div class="row">
+        <div class="span12">
+            <select wicket:id="dailyLedgerList"></select>
+        </div>
+    </div>
 
 
+    <div class="row">
+        <div class="span12">
+            <form wicket:id="financePostingEdit" class="form-inline">
 
+                <table class="table">
+                    <tr>
+                        <th>
+                            <wicket:message key="date"></wicket:message>
+                        </th>
+                        <th>
+                            <wicket:message key="financeAccount"></wicket:message>
+                        </th>
+                        <th>
+                            <wicket:message key="finance.account.reverse"></wicket:message>
+                        </th>
+                        <th>
+                            <wicket:message key="amount"></wicket:message>
+                        </th>
+                        <th>
+                            <wicket:message key="vatType"></wicket:message>
+                        </th>
+                        <th>
+                            <wicket:message key="text"></wicket:message>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td><input wicket:id="date" id="date" type="text"/></td>
+                        <td><input class="span2" wicket:id="financeAccount" id="financeAccount" type="hidden"/></td>
+                        <td><input class="span2" wicket:id="reverseFinanceAccount" id="reverseFinanceAccount"
+                                   type="hidden"/></td>
+                        <td><input wicket:id="amount" id="amount" type="text"/></td>
+                        <td><select wicket:id="vatType" id="vatType"/></td>
+                        <td><input wicket:id="text" id="text" type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
+                            <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
+                            <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="span12">
+            <table class="table" cellspacing="0" wicket:id="chartOfFinancePostings">[table]</table>
+        </div>
+    </div>
 
 </wicket:extend>
 

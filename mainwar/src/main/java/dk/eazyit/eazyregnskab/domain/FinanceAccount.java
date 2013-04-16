@@ -38,9 +38,6 @@ public class FinanceAccount extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private FinanceAccountType financeAccountType;
 
-    @OneToMany(mappedBy = "financeAccount", fetch = FetchType.LAZY)
-    private Set<FinancePosting> financePosting;
-
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "legalentity_id")
@@ -90,14 +87,6 @@ public class FinanceAccount extends BaseEntity {
 
     public void setFinanceAccountType(FinanceAccountType financeAccountType) {
         this.financeAccountType = financeAccountType;
-    }
-
-    public Set<FinancePosting> getFinancePosting() {
-        return financePosting;
-    }
-
-    public void setFinancePosting(Set<FinancePosting> financePosting) {
-        this.financePosting = financePosting;
     }
 
     public LegalEntity getLegalEntity() {

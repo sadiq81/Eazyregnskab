@@ -47,19 +47,19 @@ public class FinanceAccountService {
 
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
-        List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count),legalEntity);
+        List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
         return list;
     }
 
     @Transactional
     public List<DailyLedger> findDailyLedgerByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
-        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count),legalEntity);
+        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
         return list;
     }
 
     @Transactional
     public List<FinancePosting> findFinancePostingByDailyLedgerSubList(DailyLedger dailyLedger, int first, int count) {
-        List<FinancePosting> list = financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count),dailyLedger);
+        List<FinancePosting> list = financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), dailyLedger);
         return list;
     }
 
@@ -153,6 +153,12 @@ public class FinanceAccountService {
         } else {
             dailyLedgerDAO.save(dailyLedger);
         }
+    }
+
+//    ------------------------------------------------------------------------------------------------------------------------------
+
+    public FinanceAccount findFinanceAccountById(long l) {
+        return financeAccountDAO.findById(l);
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
