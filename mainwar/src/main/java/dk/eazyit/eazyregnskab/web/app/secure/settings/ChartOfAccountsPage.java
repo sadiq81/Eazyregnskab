@@ -68,6 +68,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
         columns.add(new PropertyColumn<FinanceAccount, String>(new ResourceModel("name"), "name", "name"));
         columns.add(new PropertyColumn<FinanceAccount, String>(new ResourceModel("accountNumber"), "accountNumber", "accountNumber"));
         columns.add(new PropertyColumn<FinanceAccount, String>(new ResourceModel("vatType"), "vatType.percentage", "vatType.name"));
+        columns.add(new PropertyColumn<FinanceAccount, String>(new ResourceModel("standard.reverse.finance.account"), "standardReverseFinanceAccount.name", "standardReverseFinanceAccount.name"));
         columns.add(new EnumPropertyColumn<FinanceAccount>(new ResourceModel("financeAccountType"), "financeAccountType", "financeAccountType"));
         columns.add(new AbstractColumn<FinanceAccount, String>(new ResourceModel("action")) {
             @Override
@@ -119,6 +120,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
             add(new PlaceholderTextField<String>("name").setRequired(true));
             add(new PlaceholderTextField<String>("accountNumber").setRequired(true));
             add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
+            add(new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")));
             add(new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));
         }
 

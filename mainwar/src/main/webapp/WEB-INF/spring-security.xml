@@ -14,7 +14,7 @@
         <form-login
                 authentication-failure-url="/app/LoginPage?error=true"
                 login-page="/app/LoginPage"
-                default-target-url="/app/secure/settings/ChartOfAccountsPage"
+                default-target-url="/app/secure/bookkeeping/BookkeepingPage"
                 />
 
         <logout logout-success-url="/app/HomePage"/>

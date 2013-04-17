@@ -21,15 +21,19 @@
                 <th>
                     <wicket:message key="financeAccountType"></wicket:message>
                 </th>
+                <th>
+                    <wicket:message key="standard.reverse.finance.account"></wicket:message>
+                </th>
             </tr>
             <tr>
-                <td><input wicket:id="name" id="name" type="text"/></td>
-                <td><input wicket:id="accountNumber" id="accountNumber" type="text"/></td>
-                <td><select wicket:id="vatType" id="vatType" type="text"/></td>
-                <td><select wicket:id="financeAccountType" id="financeAccountType" type="text"/></td>
+                <td><input class="span1" wicket:id="name" id="name" type="text"/></td>
+                <td><input class="span1" wicket:id="accountNumber" id="accountNumber" type="text"/></td>
+                <td><select class="span2" wicket:id="vatType" id="vatType"/></td>
+                <td><select class="span2" wicket:id="financeAccountType" id="financeAccountType" /></td>
+                <td><select class="span2" wicket:id="standardReverseFinanceAccount" id="standardReverseFinanceAccount"/></td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="5">
                     <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
                     <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
                     <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>

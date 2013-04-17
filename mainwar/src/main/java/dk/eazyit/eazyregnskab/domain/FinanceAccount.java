@@ -38,6 +38,9 @@ public class FinanceAccount extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private FinanceAccountType financeAccountType;
 
+    @OneToOne(optional = true)
+    private FinanceAccount standardReverseFinanceAccount;
+
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "legalentity_id")
@@ -87,6 +90,14 @@ public class FinanceAccount extends BaseEntity {
 
     public void setFinanceAccountType(FinanceAccountType financeAccountType) {
         this.financeAccountType = financeAccountType;
+    }
+
+    public FinanceAccount getStandardReverseFinanceAccount() {
+        return standardReverseFinanceAccount;
+    }
+
+    public void setStandardReverseFinanceAccount(FinanceAccount standardReverseFinanceAccount) {
+        this.standardReverseFinanceAccount = standardReverseFinanceAccount;
     }
 
     public LegalEntity getLegalEntity() {
