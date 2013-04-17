@@ -146,6 +146,7 @@ public class BookkeepingPage extends LoggedInPage {
                 }
             }));
             add(reverseFinanceAccount = new Select2Choice<FinanceAccount>("reverseFinanceAccount", new PropertyModel(getModelObject(), "financeAccount"), new FinanceAccountProvider()));
+            reverseFinanceAccount.getSettings().setAllowClear(true);
             add(new PlaceholderTextField<BigDecimal>("amount"));
             add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
             add(new PlaceholderTextField<String>("text"));
