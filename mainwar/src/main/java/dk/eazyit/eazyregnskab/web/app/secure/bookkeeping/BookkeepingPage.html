@@ -5,49 +5,66 @@
 
 <wicket:extend>
 
+    <style>
+        .select2-container.span2{
+            margin-left: 0;
+        }
+
+    </style>
+
     <div class="row">
-        <div class="span12">
-            <select wicket:id="dailyLedgerList"></select>
+        <div class="span9">
+            <wicket:message key="daily.ledger"></wicket:message> <select wicket:id="dailyLedgerList"></select>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="span12">
+        <div class="span9">
             <form wicket:id="financePostingEdit" class="form-inline">
 
-                <table class="table">
+                <table class="table table-condensed">
                     <tr>
-                        <th>
+                        <td>
                             <wicket:message key="date"></wicket:message>
-                        </th>
-                        <th>
+                        </td>
+                        <td>
                             <wicket:message key="financeAccount"></wicket:message>
-                        </th>
-                        <th>
-                            <wicket:message key="finance.account.reverse"></wicket:message>
-                        </th>
-                        <th>
-                            <wicket:message key="amount"></wicket:message>
-                        </th>
-                        <th>
+                        </td>
+                        <td>
                             <wicket:message key="vatType"></wicket:message>
-                        </th>
-                        <th>
-                            <wicket:message key="text"></wicket:message>
-                        </th>
+                        </td>
+                        <td>
+                            <wicket:message key="amount"></wicket:message>
+                        </td>
                     </tr>
                     <tr>
-                        <td><input wicket:id="date" id="date" type="text"/></td>
+                        <td><input class="span2" wicket:id="date" id="date" type="text"/></td>
                         <td><input class="span2" wicket:id="financeAccount" id="financeAccount" type="hidden"/></td>
+                        <td><select class="span2" wicket:id="vatType" id="vatType"/></td>
+                        <td><input class="span2" wicket:id="amount" id="amount" type="text"/></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <wicket:message key="finance.account.reverse"></wicket:message>
+                        </td>
+                        <td></td>
+                        <td>
+                            <wicket:message key="text"></wicket:message>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
                         <td><input class="span2" wicket:id="reverseFinanceAccount" id="reverseFinanceAccount"
                                    type="hidden"/></td>
-                        <td><input wicket:id="amount" id="amount" type="text"/></td>
-                        <td><select wicket:id="vatType" id="vatType"/></td>
-                        <td><input wicket:id="text" id="text" type="text"/></td>
+                        <td></td>
+                        <td><input class="span2" wicket:id="text" id="text" type="text"/></td>
                     </tr>
+
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
                             <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
                             <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>
@@ -60,7 +77,7 @@
 
 
     <div class="row">
-        <div class="span12">
+        <div class="span9">
             <table class="table" cellspacing="0" wicket:id="chartOfFinancePostings">[table]</table>
         </div>
     </div>

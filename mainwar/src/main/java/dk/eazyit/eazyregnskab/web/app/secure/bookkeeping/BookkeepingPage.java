@@ -47,6 +47,7 @@ public class BookkeepingPage extends LoggedInPage {
 
     private DropDownChoice<DailyLedger> dailyLedgerDropDownChoice;
     private DailyLedgerModel dailyLedgerModel;
+    private Select2Choice reverseFinanceAccount;
 
     FinancePostingForm form;
     AjaxFallbackDefaultDataTable dataTable;
@@ -133,8 +134,18 @@ public class BookkeepingPage extends LoggedInPage {
                     .withFormat("dd-MM-yyyy")
                     .allowKeyboardNavigation(true)
             ));
-            add(new Select2Choice<FinanceAccount>("financeAccount", new PropertyModel(getModelObject(), "financeAccount"), new FinanceAccountProvider()));
-            add(new Select2Choice<FinanceAccount>("reverseFinanceAccount", new PropertyModel(getModelObject(), "financeAccount"), new FinanceAccountProvider()));
+            add(new Select2Choice<FinanceAccount>("financeAccount", new PropertyModel(getModelObject(), "financeAccount"), new FinanceAccountProvider()).add(new AjaxFormComponentUpdatingBehavior("onchange") {
+                @Override
+                protected void onUpdate(AjaxRequestTarget target) {
+                    FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
+                    FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
+                    if (reverse != null) {
+                        reverseFinanceAccount.setModelObject(reverse);
+                        target.add(reverseFinanceAccount);
+                    }
+                }
+            }));
+            add(reverseFinanceAccount = new Select2Choice<FinanceAccount>("reverseFinanceAccount", new PropertyModel(getModelObject(), "financeAccount"), new FinanceAccountProvider()));
             add(new PlaceholderTextField<BigDecimal>("amount"));
             add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
             add(new PlaceholderTextField<String>("text"));
@@ -197,6 +208,6 @@ public class BookkeepingPage extends LoggedInPage {
     }
 
     protected void updateDailyLedger(AjaxRequestTarget target) {
-
+        target.add(dataTable);
     }
 }
