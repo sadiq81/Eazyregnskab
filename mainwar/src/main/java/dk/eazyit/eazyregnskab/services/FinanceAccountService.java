@@ -131,6 +131,10 @@ public class FinanceAccountService {
         dailyLedgerDAO.delete(dailyLedger);
     }
 
+    @Transactional
+    public void deleteFinancePosting(FinancePosting financePosting) {
+     financePostingDAO.delete(financePosting);
+    }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 
@@ -155,11 +159,21 @@ public class FinanceAccountService {
         }
     }
 
+    @Transactional
+    public void saveDraftFinancePosting(FinancePosting financePosting) {
+            financePostingDAO.save(financePosting);
+
+        }
+
 //    ------------------------------------------------------------------------------------------------------------------------------
 
+    @Transactional
     public FinanceAccount findFinanceAccountById(long l) {
         return financeAccountDAO.findById(l);
     }
+
+
+
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 

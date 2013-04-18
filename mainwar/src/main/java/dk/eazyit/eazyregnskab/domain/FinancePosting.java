@@ -28,6 +28,9 @@ public class FinancePosting extends BaseEntity {
     private long id;
 
     @Column(unique = false, nullable = false, length = 50)
+    private int bookingNumber;
+
+    @Column(unique = false, nullable = false, length = 50)
     private Date date;
 
     @Column(unique = false, nullable = false, length = 50)
@@ -61,6 +64,9 @@ public class FinancePosting extends BaseEntity {
     @JoinColumn(name = "vatType_id")
     private VatType vatType;
 
+    @Transient
+    private boolean chosen;
+
     public FinancePosting() {
     }
 
@@ -71,6 +77,14 @@ public class FinancePosting extends BaseEntity {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getBookingNumber() {
+        return bookingNumber;
+    }
+
+    public void setBookingNumber(int bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 
     public Date getDate() {
@@ -144,6 +158,14 @@ public class FinancePosting extends BaseEntity {
 
     public void setVatType(VatType vatType) {
         this.vatType = vatType;
+    }
+
+    public boolean isChosen() {
+        return chosen;
+    }
+
+    public void setChosen(boolean chosen) {
+        this.chosen = chosen;
     }
 
     @Override

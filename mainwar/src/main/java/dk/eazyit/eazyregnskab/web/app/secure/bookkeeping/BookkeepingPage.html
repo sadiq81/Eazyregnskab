@@ -42,11 +42,11 @@
                         <td><input class="span2" wicket:id="date" id="date" type="text"/></td>
                         <td><input class="span2" wicket:id="financeAccount" id="financeAccount" type="hidden"/></td>
                         <td><select class="span2" wicket:id="vatType" id="vatType"/></td>
-                        <td><input class="span2" wicket:id="amount" id="amount" type="text"/></td>
+                        <td><input class="span2" wicket:id="amount" id="amount" type="number"/></td>
                     </tr>
 
                     <tr>
-                        <td></td>
+                        <td><wicket:message key="bookingNumber"></wicket:message></td>
                         <td>
                             <wicket:message key="finance.account.reverse"></wicket:message>
                         </td>
@@ -56,7 +56,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><input class="span2" wicket:id="bookingNumber" id="bookingNumber" type="number"/></td>
                         <td><input class="span2" wicket:id="reverseFinanceAccount" id="reverseFinanceAccount"
                                    type="hidden"/></td>
                         <td></td>

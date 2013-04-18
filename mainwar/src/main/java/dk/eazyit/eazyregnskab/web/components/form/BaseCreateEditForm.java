@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
     }
 
     public void addToForm() {
-        add(new AjaxButton("save") {
+        add(new AjaxButton("save", new ResourceModel("button.save")) {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 super.onError(target, form);
@@ -46,7 +47,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
                 target.add(form.getPage());
             }
         });
-        add(new AjaxButton("new") {
+        add(new AjaxButton("new", new ResourceModel("button.new")) {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 super.onError(target, form);
@@ -67,7 +68,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
             }
         });
-        add(new AjaxButton("delete") {
+        add(new AjaxButton("delete", new ResourceModel("button.delete")) {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
                 super.onError(target, form);

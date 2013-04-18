@@ -113,6 +113,7 @@ public class DailyLedgerPage extends LoggedInPage {
             if (getModelObject().getId() != 0) {
                 if (financeAccountService.isDeletingDailyLedgerAllowed(getModelObject(), getSelectedLegalEntity().getLegalEntityModel().getObject())) {
                     financeAccountService.deleteDailyLedger(getModelObject());
+                    getCurrentDailyLedger().setDailyLedgerModel(new DailyLedgerModel(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0)));
                     getSession().success(new NotificationMessage(new ResourceModel("daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 } else {
                     getSession().error(new NotificationMessage(new ResourceModel("daily.ledger.is.in.use")).hideAfter(Duration.seconds(DURATION)));

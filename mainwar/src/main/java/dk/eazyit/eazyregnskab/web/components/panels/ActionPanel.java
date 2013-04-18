@@ -29,15 +29,14 @@ public abstract class ActionPanel<T> extends GenericPanel<T> {
             }
         });
 
-        AjaxLink removeLink = new AjaxLink("delete") {
+        add(new AjaxLink("delete") {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 for (Component c : deleteItem()) {
                     target.add(c);
                 }
             }
-        };
-        add(removeLink);
+        });
     }
 
     protected abstract List<Component> selectItem();

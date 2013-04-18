@@ -50,6 +50,11 @@ public class FinanceAccount extends BaseEntity {
     public FinanceAccount() {
     }
 
+    public FinanceAccount(String name, String accountNumber) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+    }
+
     @Override
     public Long getId() {
         return id;
@@ -112,11 +117,11 @@ public class FinanceAccount extends BaseEntity {
     @Override
     public String toString() {
         return "FinanceAccount{" +
-                "id=" + id +
+//                "id=" + id +
                 ", name='" + name + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
-                ", financeAccountType=" + financeAccountType +
-                ", legalEntity=" + legalEntity.getName() +
+//                ", financeAccountType=" + financeAccountType +
+//                ", legalEntity=" + legalEntity.getName() +
                 '}';
     }
 }
