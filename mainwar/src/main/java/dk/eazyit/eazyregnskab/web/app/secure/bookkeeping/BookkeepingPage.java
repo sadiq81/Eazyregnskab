@@ -3,10 +3,7 @@ package dk.eazyit.eazyregnskab.web.app.secure.bookkeeping;
 import com.vaynberg.wicket.select2.Select2Choice;
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextFieldConfig;
-import dk.eazyit.eazyregnskab.domain.DailyLedger;
-import dk.eazyit.eazyregnskab.domain.FinanceAccount;
-import dk.eazyit.eazyregnskab.domain.FinancePosting;
-import dk.eazyit.eazyregnskab.domain.VatType;
+import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.util.BigDecimalRangeValidator;
 import dk.eazyit.eazyregnskab.web.components.dataprovider.FinanceAccountProvider;
@@ -77,7 +74,12 @@ public class BookkeepingPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new FinancePostingForm("financePostingEdit", new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject())))));
+        add(form = new FinancePostingForm("financePostingEdit",
+                new CompoundPropertyModel<FinancePosting>(
+                        new FinancePostingModel(
+                                new FinancePosting()
+                                        .setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject())
+                                        .setFinancePostingStatus(FinancePostingStatus.DRAFT)))));
 
         add(dailyLedgerDropDownChoice = new DropDownChoice<DailyLedger>("dailyLedgerList",
                 dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
@@ -151,10 +153,11 @@ public class BookkeepingPage extends LoggedInPage {
                     .withFormat("dd-MM-yyyy")
                     .allowKeyboardNavigation(true)
                     .showTodayButton(true)
-            ));
+            ).setRequired(true));
             add(financeAccount = new Select2Choice<FinanceAccount>("financeAccount"));
             financeAccount.setProvider(new FinanceAccountProvider());
             financeAccount.getSettings().setAllowClear(true);
+            financeAccount.setRequired(true);
             financeAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
                 @Override
                 protected void onUpdate(AjaxRequestTarget target) {
@@ -169,10 +172,10 @@ public class BookkeepingPage extends LoggedInPage {
             add(reverseFinanceAccount = new Select2Choice<FinanceAccount>("reverseFinanceAccount"));
             reverseFinanceAccount.setProvider(new FinanceAccountProvider());
             reverseFinanceAccount.getSettings().setAllowClear(true);
-            add(new PlaceholderBigdecimalTextField("amount").add(new BigDecimalRangeValidator()));
+            add(new PlaceholderBigdecimalTextField("amount").add(new BigDecimalRangeValidator()).setRequired(true));
             add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
             add(new PlaceholderTextField<String>("text"));
-            add(new PlaceholderNumberTextField<Integer>("bookingNumber"));
+            add(new PlaceholderNumberTextField<Integer>("bookingNumber").setRequired(true));
         }
 
         @Override
@@ -186,7 +189,7 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()))));
+            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()).setFinancePostingStatus(FinancePostingStatus.DRAFT))));
         }
 
         @Override

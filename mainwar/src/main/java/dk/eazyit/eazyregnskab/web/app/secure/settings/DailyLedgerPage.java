@@ -88,7 +88,8 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         protected List<Component> deleteItem() {
-            financeAccountService.deleteDailyLedger(getModelObject());
+            form.setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(getModelObject())));
+            form.deleteEntity();
             List<Component> list = new ArrayList<Component>();
             list.add(dataTable);
             return list;

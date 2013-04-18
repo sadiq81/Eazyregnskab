@@ -1,12 +1,7 @@
 package dk.eazyit.eazyregnskab.services;
 
-import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.LegalEntityAccessDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.LegalEntityDAO;
-import dk.eazyit.eazyregnskab.domain.AppUser;
-import dk.eazyit.eazyregnskab.domain.DailyLedger;
-import dk.eazyit.eazyregnskab.domain.LegalEntity;
-import dk.eazyit.eazyregnskab.domain.LegalEntityAccess;
+import dk.eazyit.eazyregnskab.dao.interfaces.*;
+import dk.eazyit.eazyregnskab.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +24,17 @@ public class LegalEntityService {
     private LegalEntityAccessDAO legalEntityAccessDAO;
     @Autowired
     private DailyLedgerDAO dailyLedgerDAO;
+    @Autowired
+    private FinancePostingDAO financePostingDAO;
+    @Autowired
+    private FinanceAccountDAO financeAccountDAO;
 
     @Transactional
     public LegalEntity createLegalEntity(AppUser appUser, LegalEntity legalEntity) {
         log.debug("Creating new Legal Entity " + legalEntity);
         legalEntityDAO.create(legalEntity);
         legalEntityAccessDAO.create(new LegalEntityAccess(appUser, legalEntity));
-        dailyLedgerDAO.create(new DailyLedger("Start",legalEntity));
+        dailyLedgerDAO.create(new DailyLedger("Start", legalEntity));
         return legalEntity;
     }
 
@@ -65,13 +64,26 @@ public class LegalEntityService {
         return legalEntityAccessDAO.findByNamedQuery(LegalEntityAccess.QUERY_FIND_LEGAL_ENTITY_ACCESS_BY_LEGAL_ENTITY, legalEntity);
     }
 
-    //TODO delete daily ledgers
+    //TODO check for financepostings and ask for confirm dialog
     @Transactional
     public void deleteLegalEntity(AppUser appUser, LegalEntity legalEntity) {
         if (isDeletingAllowed(appUser, legalEntity)) {
             log.debug("Deleting legal entity " + legalEntity.toString());
             for (LegalEntityAccess legalEntityAccess : findLegalEntityAccessByLegalEntity(legalEntity)) {
                 legalEntityAccessDAO.delete(legalEntityAccess);
+            }
+            for (DailyLedger dailyLedger : dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity)) {
+                for (FinancePosting financePosting : financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger)) {
+                    financePostingDAO.delete(financePosting);
+                }
+                dailyLedgerDAO.delete(dailyLedger);
+
+            }
+            for (FinanceAccount financeAccount : financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity)) {
+                for (FinancePosting financePosting : financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount)) {
+                    financePostingDAO.delete(financePosting);
+                }
+                financeAccountDAO.delete(financeAccount);
             }
             legalEntityDAO.delete(legalEntity);
         } else {

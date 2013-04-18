@@ -92,7 +92,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
 
         @Override
         protected List<Component> selectItem() {
-            form.setModelObject(getModelObject());
+            form.setDefaultModel(new CompoundPropertyModel<FinanceAccount>(new FinanceAccountModel(getModelObject())));
             List<Component> list = new ArrayList<Component>();
             list.add(form);
             return list;
@@ -100,7 +100,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
 
         @Override
         protected List<Component> deleteItem() {
-            form.setDefaultModelObject(getModelObject());
+            form.setDefaultModelObject(new CompoundPropertyModel<FinanceAccount>(new FinanceAccountModel(getModelObject())));
             form.deleteEntity();
             List<Component> list = new ArrayList<Component>();
             list.add(dataTable);
@@ -142,9 +142,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            clearInput();
-            FinanceAccount financeAccount = new FinanceAccount();
-            setDefaultModel(new CompoundPropertyModel<FinanceAccount>(financeAccount));
+            setDefaultModel(new CompoundPropertyModel<FinanceAccount>(new FinanceAccount()));
             form.modelChanged();
         }
 

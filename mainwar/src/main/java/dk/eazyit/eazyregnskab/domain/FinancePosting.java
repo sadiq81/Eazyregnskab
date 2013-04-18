@@ -115,8 +115,9 @@ public class FinancePosting extends BaseEntity {
         return financePostingStatus;
     }
 
-    public void setFinancePostingStatus(FinancePostingStatus financePostingStatus) {
+    public FinancePosting setFinancePostingStatus(FinancePostingStatus financePostingStatus) {
         this.financePostingStatus = financePostingStatus;
+        return this;
     }
 
     public FinanceAccount getFinanceAccount() {

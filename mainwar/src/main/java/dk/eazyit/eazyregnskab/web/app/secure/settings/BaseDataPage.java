@@ -11,6 +11,8 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -46,7 +48,7 @@ public class BaseDataPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new LegalEntityForm("legalEntityEdit", getSelectedLegalEntity().getLegalEntityModel()));
+        add(form = new LegalEntityForm("legalEntityEdit", new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject()))));
     }
 
     class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
@@ -72,6 +74,7 @@ public class BaseDataPage extends LoggedInPage {
 
                 legalEntityService.deleteLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
                 getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()).get(0)));
+                setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
                 updateLegalEntitySelections();
                 getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
             } else {
@@ -84,6 +87,7 @@ public class BaseDataPage extends LoggedInPage {
             LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject(),
                     new LegalEntity(getString("new.legal.entity"), null, null, null, Country.DK, MoneyCurrency.DKK));
             getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
+            setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
             updateLegalEntitySelections();
             getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
 
@@ -99,10 +103,9 @@ public class BaseDataPage extends LoggedInPage {
     }
 
     @Override
-    protected void updateLegalEntitySelections() {
-        super.updateLegalEntitySelections();
-
-        LegalEntityForm temp = new LegalEntityForm("legalEntityEdit", getSelectedLegalEntity().getLegalEntityModel());
+    protected void changedLegalEntity(AjaxRequestTarget target) {
+        super.changedLegalEntity(target);
+        LegalEntityForm temp = new LegalEntityForm("legalEntityEdit", new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
         temp.setOutputMarkupPlaceholderTag(true);
         addOrReplace(form, temp);
         temp.setParent(this);
