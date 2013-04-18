@@ -77,7 +77,7 @@ public class BookkeepingPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new FinancePostingForm("financePostingEdit", new FinancePostingModel(new FinancePosting())));
+        add(form = new FinancePostingForm("financePostingEdit", new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject())))));
 
         add(dailyLedgerDropDownChoice = new DropDownChoice<DailyLedger>("dailyLedgerList",
                 dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
@@ -121,7 +121,7 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         protected List<Component> selectItem() {
-            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(getModel()));
+            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(getModelObject())));
             List<Component> list = new ArrayList<Component>();
             list.add(form);
             return list;
@@ -186,7 +186,7 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            form.setModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()))));
+            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()))));
         }
 
         @Override
