@@ -55,7 +55,7 @@ public class DailyLedgerPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new DailyLedgerForm("dailyLedgerEdit", new DailyLedgerModel(new DailyLedger())));
+        add(form = new DailyLedgerForm("dailyLedgerEdit", new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(new DailyLedger()))));
 
         List<IColumn<DailyLedger, String>> columns = new ArrayList<IColumn<DailyLedger, String>>();
         columns.add(new PropertyColumn<DailyLedger, String>(new ResourceModel("name"), "name", "name"));
@@ -80,7 +80,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         protected List<Component> selectItem() {
-            form.setModelObject(getModelObject());
+            form.setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(getModelObject())));
             List<Component> list = new ArrayList<Component>();
             list.add(form);
             return list;
@@ -88,8 +88,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         protected List<Component> deleteItem() {
-            form.setDefaultModelObject(getModelObject());
-            form.deleteEntity();
+            financeAccountService.deleteDailyLedger(getModelObject());
             List<Component> list = new ArrayList<Component>();
             list.add(dataTable);
             return list;
@@ -127,10 +126,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            clearInput();
-            DailyLedger dailyLedger = new DailyLedger();
-            setDefaultModel(new CompoundPropertyModel<DailyLedger>(dailyLedger));
-            form.modelChanged();
+            setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedger()));
         }
 
         @Override
