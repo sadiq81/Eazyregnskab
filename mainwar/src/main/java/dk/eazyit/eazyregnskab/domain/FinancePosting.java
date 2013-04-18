@@ -51,11 +51,11 @@ public class FinancePosting extends BaseEntity {
     @JoinColumn(name = "reversefinanceaccount_id")
     private FinanceAccount reverseFinanceAccount;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "dailyledger_id")
     private DailyLedger dailyLedger;
 
@@ -177,8 +177,6 @@ public class FinancePosting extends BaseEntity {
                 ", amount=" + amount +
                 ", financePostingStatus=" + financePostingStatus +
                 ", financeAccount=" + financeAccount.getName() +
-                ", appUser=" + appUser.getUsername() +
-                ", dailyLedger=" + dailyLedger.getName() +
                 '}';
     }
 }

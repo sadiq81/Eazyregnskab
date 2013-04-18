@@ -186,7 +186,7 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            form.setModel(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject())));
+            form.setModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()))));
         }
 
         @Override
@@ -216,7 +216,6 @@ public class BookkeepingPage extends LoggedInPage {
         temp.setParent(this);
         dailyLedgerDropDownChoice.setParent(this);
         dailyLedgerDropDownChoice = temp;
-
 
     }
 
