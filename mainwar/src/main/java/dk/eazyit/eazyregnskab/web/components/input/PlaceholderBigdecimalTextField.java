@@ -1,6 +1,5 @@
 package dk.eazyit.eazyregnskab.web.components.input;
 
-import dk.eazyit.eazyregnskab.util.BigDecimalRangeValidator;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.model.IModel;
@@ -40,6 +39,6 @@ public class PlaceholderBigdecimalTextField extends NumberTextField<BigDecimal> 
 
     @Override
     public void onConfigure() {
-        add(new BigDecimalRangeValidator());
+//        add(new BigDecimalRangeValidator());
     }
 }

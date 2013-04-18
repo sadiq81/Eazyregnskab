@@ -39,6 +39,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,12 +75,7 @@ public class BookkeepingPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new FinancePostingForm("financePostingEdit",
-                new CompoundPropertyModel<FinancePosting>(
-                        new FinancePostingModel(
-                                new FinancePosting()
-                                        .setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject())
-                                        .setFinancePostingStatus(FinancePostingStatus.DRAFT)))));
+        add(form = new FinancePostingForm("financePostingEdit",new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting()))));
 
         add(dailyLedgerDropDownChoice = new DropDownChoice<DailyLedger>("dailyLedgerList",
                 dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
@@ -164,6 +160,7 @@ public class BookkeepingPage extends LoggedInPage {
                     FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
                     FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
                     if (reverse != null) {
+                        //TODO also set vatType
                         reverseFinanceAccount.setModelObject(reverse);
                         target.add(reverseFinanceAccount);
                     }
@@ -172,7 +169,7 @@ public class BookkeepingPage extends LoggedInPage {
             add(reverseFinanceAccount = new Select2Choice<FinanceAccount>("reverseFinanceAccount"));
             reverseFinanceAccount.setProvider(new FinanceAccountProvider());
             reverseFinanceAccount.getSettings().setAllowClear(true);
-            add(new PlaceholderBigdecimalTextField("amount").add(new BigDecimalRangeValidator()).setRequired(true));
+            add(new PlaceholderBigdecimalTextField("amount").add(new BigDecimalRangeValidator(new BigDecimal(0), null)).setRequired(true));
             add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
             add(new PlaceholderTextField<String>("text"));
             add(new PlaceholderNumberTextField<Integer>("bookingNumber").setRequired(true));
@@ -189,12 +186,14 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting().setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()).setFinancePostingStatus(FinancePostingStatus.DRAFT))));
+            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting())));
         }
 
         @Override
         public void saveForm() {
-            financeAccountService.saveDraftFinancePosting(getModelObject());
+            financeAccountService.saveDraftFinancePosting(getModelObject()
+                    .setFinancePostingStatus(FinancePostingStatus.DRAFT)
+                    .setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()));
             newEntity();
         }
     }

@@ -11,6 +11,13 @@ import java.math.BigDecimal;
  */
 public class BigDecimalRangeValidator extends RangeValidator<BigDecimal> {
 
+    public BigDecimalRangeValidator() {
+    }
+
+    public BigDecimalRangeValidator(BigDecimal minimum, BigDecimal maximum) {
+        super(minimum, maximum);
+    }
+
     @Override
     public void validate(IValidatable<BigDecimal> validatable) {
 
