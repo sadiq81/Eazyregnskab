@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.app.front;
 
+import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.services.LoginService;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
 import org.apache.wicket.markup.html.form.Form;
@@ -41,6 +42,8 @@ public class SignUpPage extends AppBasePage {
     @Override
     protected void addToPage(PageParameters parameters) {
 
+        add(new NotificationPanel("feedback"));
+
         SignInForm form = new SignInForm("create_account", new CompoundPropertyModel<CreateInfo>(createInfo = new CreateInfo()));
         add(form);
     }
@@ -58,15 +61,19 @@ public class SignUpPage extends AppBasePage {
         @Override
         public final void onSubmit() {
 
+
+            //TODO add check to see if username exist
+
             if (createInfo.isUserNameBadFormat()) {
-                error("Username not accepted");
+                getSession().error("username.not.accepted");
             } else if (createInfo.isPasswordBadFormat()) {
-                error("Password not accepted");
+                getSession().error("password.not.accepted");
             } else if (createInfo.arePasswordsNotEquals()) {
-                error("Passwords don't match");
+                getSession().error("passwords.dont.match");
             } else {
                 loginService.createUser(createInfo.username, createInfo.password);
                 logger.info("Created account " + createInfo.username);
+                getSession().info(getString("account.created.for.user") + " " + createInfo.username);
             }
         }
     }

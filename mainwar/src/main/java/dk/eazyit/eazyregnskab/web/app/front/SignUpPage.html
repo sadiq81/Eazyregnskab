@@ -14,55 +14,57 @@
 
                 <br><br><br><br><br><br>
 
+                <div wicket:id="feedback"></div>
 
                 <form wicket:id="create_account" class="form-horizontal">
                     <fieldset>
-                    <div class="controls">
-                        <h1>
-                            <wicket:message key="create.account"></wicket:message>
-                        </h1>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="username">
-                            <wicket:message key="username"></wicket:message>
-                        </label>
-
                         <div class="controls">
-                            <input id="username" wicket:id="username" class="input-block-level" type='text' value=''>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="password">
-                            <wicket:message key="password"></wicket:message>
-                        </label>
-
-                        <div class="controls">
-                            <input id="password" wicket:id="password" class="input-block-level" type='password'
-                                   value=''>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="repeat_password">
-                            <wicket:message key="repeat.password"></wicket:message>
-                        </label>
-
-                        <div class="controls">
-                            <input id="repeat_password" wicket:id="repeat_password" class="input-block-level"
-                                   type='password' value=''>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" class="btn">
+                            <h1>
                                 <wicket:message key="create.account"></wicket:message>
-                            </button>
+                            </h1>
                         </div>
-                    </div>
-                        </fieldset>
+
+                        <div class="control-group">
+                            <label class="control-label" for="username">
+                                <wicket:message key="username"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="username" wicket:id="username" class="input-block-level" type='text'
+                                       value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="password">
+                                <wicket:message key="password"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="password" wicket:id="password" class="input-block-level" type='password'
+                                       value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="repeat_password">
+                                <wicket:message key="repeat.password"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="repeat_password" wicket:id="repeat_password" class="input-block-level"
+                                       type='password' value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn">
+                                    <wicket:message key="create.account"></wicket:message>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
