@@ -65,11 +65,11 @@ public class SignUpPage extends AppBasePage {
             //TODO add check to see if username exist
 
             if (createInfo.isUserNameBadFormat()) {
-                getSession().error("username.not.accepted");
+                getSession().error(getString("username.not.accepted"));
             } else if (createInfo.isPasswordBadFormat()) {
-                getSession().error("password.not.accepted");
+                getSession().error(getString("password.not.accepted"));
             } else if (createInfo.arePasswordsNotEquals()) {
-                getSession().error("passwords.dont.match");
+                getSession().error(getString("passwords.dont.match"));
             } else {
                 loginService.createUser(createInfo.username, createInfo.password);
                 logger.info("Created account " + createInfo.username);
