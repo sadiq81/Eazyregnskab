@@ -14,7 +14,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
-import dk.eazyit.eazyregnskab.web.components.models.FinancePostingModel;
+import dk.eazyit.eazyregnskab.web.components.models.DraftFinancePostingModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.panels.ActionPanel;
@@ -75,7 +75,7 @@ public class BookkeepingPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new FinancePostingForm("financePostingEdit",new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting()))));
+        add(form = new FinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));
 
         add(dailyLedgerDropDownChoice = new DropDownChoice<DailyLedger>("dailyLedgerList",
                 dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
@@ -91,35 +91,35 @@ public class BookkeepingPage extends LoggedInPage {
         }));
         dailyLedgerDropDownChoice.setOutputMarkupPlaceholderTag(true);
 
-        List<IColumn<FinancePosting, String>> columns = new ArrayList<IColumn<FinancePosting, String>>();
+        List<IColumn<DraftFinancePosting, String>> columns = new ArrayList<IColumn<DraftFinancePosting, String>>();
 
-        columns.add(new DatePropertyColumn<FinancePosting>(new ResourceModel("date"), "date", "date"));
-        columns.add(new PropertyColumn<FinancePosting, String>(new ResourceModel("bookingNumber"), "bookingNumber", "bookingNumber"));
-        columns.add(new PropertyColumn<FinancePosting, String>(new ResourceModel("text"), "text", "text"));
-        columns.add(new BigDecimalPropertyColumn<FinancePosting>(new ResourceModel("amount"), "amount", "amount"));
-        columns.add(new PropertyColumn<FinancePosting, String>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber"));
-        columns.add(new PropertyColumn<FinancePosting, String>(new ResourceModel("vatType"), "vatType", "vatType"));
-        columns.add(new PropertyColumn<FinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));
-        columns.add(new CheckboxPropertyColumn<FinancePosting>(new ResourceModel("chose"), "chosen"));
+        columns.add(new DatePropertyColumn<DraftFinancePosting>(new ResourceModel("date"), "date", "date"));
+        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("bookingNumber"), "bookingNumber", "bookingNumber"));
+        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("text"), "text", "text"));
+        columns.add(new BigDecimalPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount"));
+        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber"));
+        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType", "vatType"));
+        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));
+        columns.add(new CheckboxPropertyColumn<DraftFinancePosting>(new ResourceModel("chose"), "chosen"));
 
-        columns.add(new AbstractColumn<FinancePosting, String>(new ResourceModel("action")) {
+        columns.add(new AbstractColumn<DraftFinancePosting, String>(new ResourceModel("action")) {
             @Override
-            public void populateItem(Item<ICellPopulator<FinancePosting>> cellItem, String componentId, IModel<FinancePosting> rowModel) {
+            public void populateItem(Item<ICellPopulator<DraftFinancePosting>> cellItem, String componentId, IModel<DraftFinancePosting> rowModel) {
                 cellItem.add(new BookkeepingActionPanel(componentId, rowModel));
             }
         });
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfFinancePostings", columns, new FinancePostingDataProvider(), 20));
     }
 
-    private class BookkeepingActionPanel extends ActionPanel<FinancePosting> {
+    private class BookkeepingActionPanel extends ActionPanel<DraftFinancePosting> {
 
-        public BookkeepingActionPanel(String id, IModel<FinancePosting> model) {
+        public BookkeepingActionPanel(String id, IModel<DraftFinancePosting> model) {
             super(id, model);
         }
 
         @Override
         protected List<Component> selectItem() {
-            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(getModelObject())));
+            form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(getModelObject())));
             List<Component> list = new ArrayList<Component>();
             list.add(form);
             return list;
@@ -134,9 +134,9 @@ public class BookkeepingPage extends LoggedInPage {
         }
     }
 
-    class FinancePostingForm extends BaseCreateEditForm<FinancePosting> {
+    class FinancePostingForm extends BaseCreateEditForm<DraftFinancePosting> {
 
-        FinancePostingForm(String id, IModel<FinancePosting> model) {
+        FinancePostingForm(String id, IModel<DraftFinancePosting> model) {
             super(id, model);
         }
 
@@ -186,13 +186,12 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            form.setDefaultModel(new CompoundPropertyModel<FinancePosting>(new FinancePostingModel(new FinancePosting())));
+            form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting())));
         }
 
         @Override
         public void saveForm() {
             financeAccountService.saveDraftFinancePosting(getModelObject()
-                    .setFinancePostingStatus(FinancePostingStatus.DRAFT)
                     .setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()));
             newEntity();
         }

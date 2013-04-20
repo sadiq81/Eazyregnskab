@@ -12,18 +12,24 @@ import java.util.Set;
 @Entity
 @NamedQueries({
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, query = "select fa from FinanceAccount fa " +
-                "WHERE fa.legalEntity = ?1")
+                "WHERE fa.legalEntity = ?1"),
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME, query = "select fa from FinanceAccount fa " +
+                "WHERE fa.legalEntity = ?1 and fa.name = ?2"),
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, query = "select fa from FinanceAccount fa " +
+                "WHERE fa.legalEntity = ?1 and fa.accountNumber = ?2"),
 })
 @Table(name = "financeaccount")
 public class FinanceAccount extends BaseEntity {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "FinanceAccount::findByLegalEntity";
+    public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME = "FinanceAccount::findByLegalEntityAndName";
+    public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER = "FinanceAccount::findByLegalEntityAndAccountNumber";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = false, nullable = false, length = 50)
+    @Column(unique = false, nullable = false, length = 100)
     private String name;
 
     @Column(unique = true, nullable = false, length = 50)
@@ -53,6 +59,13 @@ public class FinanceAccount extends BaseEntity {
     public FinanceAccount(String name, String accountNumber) {
         this.name = name;
         this.accountNumber = accountNumber;
+    }
+
+    public FinanceAccount(String name, String accountNumber, FinanceAccountType financeAccountType, LegalEntity legalEntity) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.financeAccountType = financeAccountType;
+        this.legalEntity = legalEntity;
     }
 
     @Override

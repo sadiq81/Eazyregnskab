@@ -84,8 +84,7 @@ public class BaseDataPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject(),
-                    new LegalEntity(getString("new.legal.entity"), null, null, null, Country.DK, MoneyCurrency.DKK));
+            LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject());
             getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
             setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
             updateLegalEntitySelections();

@@ -30,9 +30,10 @@ public class AppUser extends BaseEntity {
     public AppUser() {
     }
 
-    public AppUser(String username, String password) {
+    public AppUser(String username, String password, Boolean enabled) {
         this.username = username;
         this.password = password;
+        this.enabled = enabled;
     }
 
     @Override

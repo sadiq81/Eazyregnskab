@@ -26,7 +26,7 @@ public class DailyLedger extends BaseEntity {
     private LegalEntity legalEntity;
 
     @OneToMany(mappedBy = "dailyLedger", fetch = FetchType.EAGER)
-    private Set<FinancePosting> financePosting;
+    private Set<DraftFinancePosting> draftFinancePosting;
 
     public DailyLedger() {
     }
@@ -62,12 +62,12 @@ public class DailyLedger extends BaseEntity {
         return this;
     }
 
-    public Set<FinancePosting> getFinancePosting() {
-        return financePosting;
+    public Set<DraftFinancePosting> getDraftFinancePosting() {
+        return draftFinancePosting;
     }
 
-    public void setFinancePosting(Set<FinancePosting> financePosting) {
-        this.financePosting = financePosting;
+    public void setDraftFinancePosting(Set<DraftFinancePosting> draftFinancePosting) {
+        this.draftFinancePosting = draftFinancePosting;
     }
 
     @Override

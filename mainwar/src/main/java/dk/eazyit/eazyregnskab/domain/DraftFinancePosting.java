@@ -12,16 +12,16 @@ import java.util.Date;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from FinancePosting fp " +
+        @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from DraftFinancePosting fp " +
                 "WHERE fp.financeAccount = ?1 or fp.reverseFinanceAccount = ?1"),
-        @NamedQuery(name = FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, query = "select fp from FinancePosting fp " +
+        @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, query = "select fp from DraftFinancePosting fp " +
                 "WHERE fp.dailyLedger = ?1")
 })
-@Table(name = "financeposting")
-public class FinancePosting extends BaseEntity {
+@Table(name = "draftfinanceposting")
+public class DraftFinancePosting extends BaseEntity {
 
-    public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "FinancePosting::findFinancePostingByFinanceAccount";
-    public static final String QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER = "FinancePosting::findFinancePostingByDailyLedger";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "DraftFinancePosting::findDraftFinancePostingByFinanceAccount";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER = "DraftFinancePosting::findDraftFinancePostingByDailyLedger";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +39,6 @@ public class FinancePosting extends BaseEntity {
     @Column(unique = false, nullable = false, precision = 15, scale = 2)
     private BigDecimal amount;
 
-    @Column(unique = false, nullable = false, length = 25)
-    @Enumerated(EnumType.STRING)
-    private FinancePostingStatus financePostingStatus;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "financeaccount_id")
     private FinanceAccount financeAccount;
@@ -50,10 +46,6 @@ public class FinancePosting extends BaseEntity {
     @ManyToOne(optional = true)
     @JoinColumn(name = "reversefinanceaccount_id")
     private FinanceAccount reverseFinanceAccount;
-
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "user_id")
-    private AppUser appUser;
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "dailyledger_id")
@@ -64,10 +56,11 @@ public class FinancePosting extends BaseEntity {
     @JoinColumn(name = "vatType_id")
     private VatType vatType;
 
+
     @Transient
     private boolean chosen;
 
-    public FinancePosting() {
+    public DraftFinancePosting() {
     }
 
     @Override
@@ -111,15 +104,6 @@ public class FinancePosting extends BaseEntity {
         this.amount = amount;
     }
 
-    public FinancePostingStatus getFinancePostingStatus() {
-        return financePostingStatus;
-    }
-
-    public FinancePosting setFinancePostingStatus(FinancePostingStatus financePostingStatus) {
-        this.financePostingStatus = financePostingStatus;
-        return this;
-    }
-
     public FinanceAccount getFinanceAccount() {
         return financeAccount;
     }
@@ -136,29 +120,13 @@ public class FinancePosting extends BaseEntity {
         this.reverseFinanceAccount = reverseFinanceAccount;
     }
 
-    public AppUser getAppUser() {
-        return appUser;
-    }
-
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
-    }
-
     public DailyLedger getDailyLedger() {
         return dailyLedger;
     }
 
-    public FinancePosting setDailyLedger(DailyLedger dailyLedger) {
+    public DraftFinancePosting setDailyLedger(DailyLedger dailyLedger) {
         this.dailyLedger = dailyLedger;
         return this;
-    }
-
-    public VatType getVatType() {
-        return vatType;
-    }
-
-    public void setVatType(VatType vatType) {
-        this.vatType = vatType;
     }
 
     public boolean isChosen() {
@@ -169,14 +137,21 @@ public class FinancePosting extends BaseEntity {
         this.chosen = chosen;
     }
 
+    public VatType getVatType() {
+        return vatType;
+    }
+
+    public void setVatType(VatType vatType) {
+        this.vatType = vatType;
+    }
+
     @Override
     public String toString() {
-        return "FinancePosting{" +
+        return "DraftFinancePosting{" +
                 "id=" + id +
                 ", date=" + date +
                 ", text='" + text + '\'' +
                 ", amount=" + amount +
-                ", financePostingStatus=" + financePostingStatus +
                 ", financeAccount=" + financeAccount.getName() +
                 '}';
     }

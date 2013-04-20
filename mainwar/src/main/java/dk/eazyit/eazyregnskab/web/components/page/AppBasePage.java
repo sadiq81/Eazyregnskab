@@ -92,7 +92,6 @@ public abstract class AppBasePage extends WebPage {
 
     protected abstract void addToPage(PageParameters pageParameters);
 
-
 //    protected void addToolTipToLabel(Label label, String tooltip) {
 //        label.add(AttributeModifier.append("rel", "tooltip"));
 //        label.add(AttributeModifier.append("data-placement", "top"));

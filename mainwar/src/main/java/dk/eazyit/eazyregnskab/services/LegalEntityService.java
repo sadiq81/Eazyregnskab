@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * @author Trifork
@@ -25,16 +26,81 @@ public class LegalEntityService {
     @Autowired
     private DailyLedgerDAO dailyLedgerDAO;
     @Autowired
-    private FinancePostingDAO financePostingDAO;
+    private DraftFinancePostingDAO draftFinancePostingDAO;
     @Autowired
     private FinanceAccountDAO financeAccountDAO;
+    @Autowired
+    private VatTypeDAO vatTypeDAO;
+
 
     @Transactional
-    public LegalEntity createLegalEntity(AppUser appUser, LegalEntity legalEntity) {
-        log.debug("Creating new Legal Entity " + legalEntity);
-        legalEntityDAO.create(legalEntity);
+    public LegalEntity createLegalEntity(AppUser appUser) {
+        log.debug("Creating new Legal Entity for user " + appUser.getUsername());
+        LegalEntity legalEntity = createBaseDataForNewLegalEntity(new LegalEntity());
         legalEntityAccessDAO.create(new LegalEntityAccess(appUser, legalEntity));
-        dailyLedgerDAO.create(new DailyLedger("Start", legalEntity));
+        return legalEntity;
+    }
+
+    @Transactional
+    private LegalEntity createBaseDataForNewLegalEntity(LegalEntity legalEntity) {
+        ResourceBundle bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntity");
+        legalEntity.setName(bundle.getString("new.entity.name"));
+        legalEntity.setLegalIdentification(bundle.getString("new.entity.legalIdentification"));
+        legalEntity.setAddress(bundle.getString("new.entity.address"));
+        legalEntity.setPostalCode(bundle.getString("new.entity.postalCode"));
+        legalEntity.setMoneyCurrency(MoneyCurrency.DKK);
+        legalEntity.setCountry(Country.DK);
+        legalEntityDAO.create(legalEntity);
+
+        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityVatTypes");
+
+        VatType incoming = new VatType(bundle.getString("new.entity.vat.types.incoming"), new BigDecimal(bundle.getString("new.entity.vat.types.incoming.percentage")), legalEntity);
+        VatType outgoing = new VatType(bundle.getString("new.entity.vat.types.outgoing"), new BigDecimal(bundle.getString("new.entity.vat.types.outgoing.percentage")), legalEntity);
+        VatType representation = new VatType(bundle.getString("new.entity.vat.types.representation"), new BigDecimal(bundle.getString("new.entity.vat.types.representation.percentage")), legalEntity);
+        vatTypeDAO.create(incoming);
+        vatTypeDAO.create(outgoing);
+        vatTypeDAO.create(representation);
+
+        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityFinanceAccounts");
+        Map<String, String> map = convertResourceBundleToMap(bundle);
+        map = convertResourceBundleToMap(bundle);
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            FinanceAccount financeAccount = null;
+            if (entry.getKey().contains("PROFIT") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.PROFIT, legalEntity);
+            } else if (entry.getKey().contains("EXPENSE") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.EXPENSE, legalEntity);
+            } else if (entry.getKey().contains("ASSET") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.ASSET, legalEntity);
+            } else if (entry.getKey().contains("LIABILITY") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.LIABILITY, legalEntity);
+            }
+
+            if (financeAccount != null && map.get(entry.getKey() + ".vat.type") != null) {
+                String vatType = map.get(entry.getKey() + ".vat.type");
+                if (vatType.contains("I25")) {
+                    financeAccount.setVatType(incoming);
+                } else if (vatType.contains("U25")) {
+                    financeAccount.setVatType(outgoing);
+                } else if (vatType.contains("REPR")) {
+                    financeAccount.setVatType(representation);
+                }
+            }
+            if (financeAccount != null) {
+                financeAccountDAO.create(financeAccount);
+            }
+        }
+        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityDailyLedger");
+        dailyLedgerDAO.create(new DailyLedger(bundle.getString("start.ledger.name"), legalEntity));
+
         return legalEntity;
     }
 
@@ -73,16 +139,14 @@ public class LegalEntityService {
                 legalEntityAccessDAO.delete(legalEntityAccess);
             }
             for (DailyLedger dailyLedger : dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity)) {
-                for (FinancePosting financePosting : financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger)) {
-                    financePostingDAO.delete(financePosting);
+                for (DraftFinancePosting draftFinancePosting : draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger)) {
+                    draftFinancePostingDAO.delete(draftFinancePosting);
                 }
                 dailyLedgerDAO.delete(dailyLedger);
 
             }
             for (FinanceAccount financeAccount : financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity)) {
-                for (FinancePosting financePosting : financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount)) {
-                    financePostingDAO.delete(financePosting);
-                }
+                //TODO delete booked finance postings
                 financeAccountDAO.delete(financeAccount);
             }
             legalEntityDAO.delete(legalEntity);
@@ -101,5 +165,20 @@ public class LegalEntityService {
         }
     }
 
-
+    /**
+     * Convert ResourceBundle into a Map object.
+     *
+     * @param resource a resource bundle to convert.
+     * @return Map a map version of the resource bundle.
+     *         Found http://www.kodejava.org/examples/340.html
+     */
+    private static Map<String, String> convertResourceBundleToMap(ResourceBundle resource) {
+        Map<String, String> map = new HashMap<String, String>();
+        Enumeration<String> keys = resource.getKeys();
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+            map.put(key, resource.getString(key));
+        }
+        return map;
+    }
 }

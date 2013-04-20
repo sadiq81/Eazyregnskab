@@ -33,20 +33,10 @@ public class LoginService {
 
     @Transactional
     public void createUser(String username, String password) {
-        AppUser appUser = new AppUser();
-        appUser.setUsername(username);
-        appUser.setPassword(shaPasswordEncoder.encodePassword(password, username));
-        appUser.setEnabled(true);
-        appUserDAO.create(appUser);
-        AppUserRole appUserRole = new AppUserRole(appUser, Authority.ROLE_USER);
-        appUserRoleDAO.create(appUserRole);
-
-        LegalEntity legalEntity = new LegalEntity("Start", null, null, null, Country.DK, MoneyCurrency.DKK);
-        legalEntityService.createLegalEntity(appUser, legalEntity);
-
-        DailyLedger dailyLedger = new DailyLedger("Start", legalEntity);
-        financeAccountService.saveDailyLedger(dailyLedger, legalEntity);
-
+        AppUser appUser;
+        appUserDAO.create(appUser = new AppUser(username, shaPasswordEncoder.encodePassword(password, username), true));
+        appUserRoleDAO.create(new AppUserRole(appUser, Authority.ROLE_USER));
+        legalEntityService.createLegalEntity(appUser);
 
     }
 

@@ -6,7 +6,7 @@ package dk.eazyit.eazyregnskab.domain;
 public enum FinanceAccountType {
 
     PROFIT,
-    LOSS,
+    EXPENSE,
     ASSET,
     LIABILITY,
 

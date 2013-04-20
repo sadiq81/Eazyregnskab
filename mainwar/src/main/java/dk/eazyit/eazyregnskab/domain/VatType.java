@@ -35,7 +35,12 @@ public class VatType extends BaseEntity {
     private LegalEntity legalEntity;
 
     public VatType() {
+    }
 
+    public VatType(String name, BigDecimal percentage, LegalEntity legalEntity) {
+        this.name = name;
+        this.percentage = percentage;
+        this.legalEntity = legalEntity;
     }
 
     @Override
@@ -61,6 +66,14 @@ public class VatType extends BaseEntity {
 
     public void setPercentage(BigDecimal percentage) {
         this.percentage = percentage;
+    }
+
+    public LegalEntity getLegalEntity() {
+        return legalEntity;
+    }
+
+    public void setLegalEntity(LegalEntity legalEntity) {
+        this.legalEntity = legalEntity;
     }
 
     @Override

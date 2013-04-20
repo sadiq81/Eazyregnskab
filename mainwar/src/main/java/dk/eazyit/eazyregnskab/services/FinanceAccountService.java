@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.FinanceAccountDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.FinancePostingDAO;
+import dk.eazyit.eazyregnskab.dao.interfaces.DraftFinancePostingDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.VatTypeDAO;
 import dk.eazyit.eazyregnskab.domain.*;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class FinanceAccountService {
     @Autowired
     private FinanceAccountDAO financeAccountDAO;
     @Autowired
-    private FinancePostingDAO financePostingDAO;
+    private DraftFinancePostingDAO draftFinancePostingDAO;
     @Autowired
     private VatTypeDAO vatTypeDAO;
     @Autowired
@@ -58,8 +58,8 @@ public class FinanceAccountService {
     }
 
     @Transactional
-    public List<FinancePosting> findFinancePostingByDailyLedgerSubList(DailyLedger dailyLedger, int first, int count) {
-        List<FinancePosting> list = financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), dailyLedger);
+    public List<DraftFinancePosting> findFinancePostingByDailyLedgerSubList(DailyLedger dailyLedger, int first, int count) {
+        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), dailyLedger);
         return list;
     }
 
@@ -82,7 +82,7 @@ public class FinanceAccountService {
 
     @Transactional
     public int countFinancePostingOfDailyLedger(DailyLedger dailyLedger) {
-        return financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size();
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size();
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
@@ -95,13 +95,13 @@ public class FinanceAccountService {
 //    ------------------------------------------------------------------------------------------------------------------------------
 
     @Transactional(readOnly = true)
-    public List<FinancePosting> findPostingsFromAccount(FinanceAccount financeAccount) {
-        return financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount);
+    public List<DraftFinancePosting> findPostingsFromAccount(FinanceAccount financeAccount) {
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount);
     }
 
     @Transactional(readOnly = true)
-    public List<FinancePosting> findPostingsFromDailyLedger(DailyLedger dailyLedger) {
-        return financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger);
+    public List<DraftFinancePosting> findPostingsFromDailyLedger(DailyLedger dailyLedger) {
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger);
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ public class FinanceAccountService {
     public boolean isDeletingDailyLedgerAllowed(DailyLedger dailyLedger, LegalEntity legalEntity) {
         return findPostingsFromDailyLedger(dailyLedger).size() == 0 &&
                 dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size() > 1 &&
-                financePostingDAO.findByNamedQuery(FinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size() == 0;
+                draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size() == 0;
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
@@ -132,8 +132,8 @@ public class FinanceAccountService {
     }
 
     @Transactional
-    public void deleteFinancePosting(FinancePosting financePosting) {
-     financePostingDAO.delete(financePosting);
+    public void deleteFinancePosting(DraftFinancePosting draftFinancePosting) {
+     draftFinancePostingDAO.delete(draftFinancePosting);
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
@@ -160,9 +160,8 @@ public class FinanceAccountService {
     }
 
     @Transactional
-    public void saveDraftFinancePosting(FinancePosting financePosting) {
-            financePostingDAO.save(financePosting);
-
+    public void saveDraftFinancePosting(DraftFinancePosting draftFinancePosting) {
+            draftFinancePostingDAO.save(draftFinancePosting);
         }
 
 //    ------------------------------------------------------------------------------------------------------------------------------

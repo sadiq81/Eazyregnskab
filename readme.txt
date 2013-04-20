@@ -38,7 +38,5 @@ sudo usermod -a -G tomcat7 ubuntu
 </Host>
 #Upload webapp wia Deploy class
 
-#install SSL certificate
-http://www.captaindebug.com/2012/12/securing-your-tomcat-app-with-ssl-and.html#.UWScpKuAua4
 #Buy SLL certificate
 http://www.digicert.com/tomcat-ssl.htm
