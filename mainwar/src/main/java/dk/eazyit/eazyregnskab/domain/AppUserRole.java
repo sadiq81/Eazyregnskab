@@ -9,8 +9,14 @@ import java.io.Serializable;
 /**
  * @author Trifork
  */
-@Entity(name = "user_roles")
-public class AppUserRole implements Serializable {
+@Entity
+@NamedQueries({
+        @NamedQuery(name = AppUserRole.QUERY_FIND_BY_USER, query = "select a from AppUserRole a where a.appUser= ?1")
+})
+@Table(name = "user_roles")
+public class AppUserRole extends BaseEntity {
+
+    public static final String QUERY_FIND_BY_USER = "AppUserRole::findByUser";
 
     @Id
     @GeneratedValue

@@ -24,7 +24,7 @@ public class AppUser extends BaseEntity {
     private String password;
     @Column(unique = false, nullable = false)
     private boolean enabled;
-    @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "appUser", fetch = FetchType.LAZY)
     private Set<AppUserRole> appUserRoles;
 
     public AppUser() {

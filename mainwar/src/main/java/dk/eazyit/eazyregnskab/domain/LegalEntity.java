@@ -41,7 +41,7 @@ public class LegalEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private MoneyCurrency moneyCurrency;
 
-    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
     private Set<FinanceAccount> financeAccounts;
 
     @OneToMany(mappedBy = "legalEntity")

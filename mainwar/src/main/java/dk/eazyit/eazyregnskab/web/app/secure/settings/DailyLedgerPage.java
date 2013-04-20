@@ -127,7 +127,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedger()));
+            setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedger(getString("new.ledger"),getSelectedLegalEntity().getLegalEntityModel().getObject())));
         }
 
         @Override

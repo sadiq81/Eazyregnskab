@@ -25,9 +25,9 @@ public class HomePage extends AppBasePage {
     protected void addToPage(PageParameters parameters) {
 
         add(new BookmarkablePageLink("signUp",SignUpPage.class));
-        add(new BookmarkablePageLink("whatYouGet",SignUpPage.class));
-        add(new BookmarkablePageLink("forAdministrators",SignUpPage.class));
-        add(new BookmarkablePageLink("pricing",SignUpPage.class));
+        add(new BookmarkablePageLink("whatYouGet",WhatYouGetPage.class));
+        add(new BookmarkablePageLink("forAdministrators",ForAdministratorsPage.class));
+        add(new BookmarkablePageLink("pricing",PricingPage.class));
 
     }
 }

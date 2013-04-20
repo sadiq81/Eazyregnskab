@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.*;
 import dk.eazyit.eazyregnskab.domain.*;
+import org.apache.wicket.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,8 @@ public class LegalEntityService {
 
     @Transactional
     private LegalEntity createBaseDataForNewLegalEntity(LegalEntity legalEntity) {
-        ResourceBundle bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntity");
+
+        ResourceBundle bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntity", Session.get().getLocale());
         legalEntity.setName(bundle.getString("new.entity.name"));
         legalEntity.setLegalIdentification(bundle.getString("new.entity.legalIdentification"));
         legalEntity.setAddress(bundle.getString("new.entity.address"));
@@ -52,7 +54,7 @@ public class LegalEntityService {
         legalEntity.setCountry(Country.DK);
         legalEntityDAO.create(legalEntity);
 
-        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityVatTypes");
+        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityVatTypes", Session.get().getLocale());
 
         VatType incoming = new VatType(bundle.getString("new.entity.vat.types.incoming"), new BigDecimal(bundle.getString("new.entity.vat.types.incoming.percentage")), legalEntity);
         VatType outgoing = new VatType(bundle.getString("new.entity.vat.types.outgoing"), new BigDecimal(bundle.getString("new.entity.vat.types.outgoing.percentage")), legalEntity);
@@ -61,7 +63,7 @@ public class LegalEntityService {
         vatTypeDAO.create(outgoing);
         vatTypeDAO.create(representation);
 
-        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityFinanceAccounts");
+        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityFinanceAccounts", Session.get().getLocale());
         Map<String, String> map = convertResourceBundleToMap(bundle);
         map = convertResourceBundleToMap(bundle);
         for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -98,7 +100,7 @@ public class LegalEntityService {
                 financeAccountDAO.create(financeAccount);
             }
         }
-        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityDailyLedger");
+        bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityDailyLedger", Session.get().getLocale());
         dailyLedgerDAO.create(new DailyLedger(bundle.getString("start.ledger.name"), legalEntity));
 
         return legalEntity;
@@ -149,6 +151,10 @@ public class LegalEntityService {
                 //TODO delete booked finance postings
                 financeAccountDAO.delete(financeAccount);
             }
+            for (VatType vatType : vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity)) {
+                vatTypeDAO.delete(vatType);
+            }
+
             legalEntityDAO.delete(legalEntity);
         } else {
             log.warn("Not able to delete legal entity " + legalEntity.toString() + " because it was the last");

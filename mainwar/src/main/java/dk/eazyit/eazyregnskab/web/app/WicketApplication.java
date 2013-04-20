@@ -14,6 +14,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
+
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
  *
@@ -39,6 +41,8 @@ public class WicketApplication extends WebApplication {
     public void init() {
         super.init();
 
+        Locale.setDefault(Locale.ROOT);
+
         getDebugSettings().setAjaxDebugModeEnabled(true);
 
         getApplicationSettings().setAccessDeniedPage(HomePage.class);
@@ -63,6 +67,8 @@ public class WicketApplication extends WebApplication {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.ctx = applicationContext;
     }
+
+
 
 
 }

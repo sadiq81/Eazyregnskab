@@ -1,7 +1,9 @@
 package dk.eazyit.eazyregnskab.spring.security;
 
+import dk.eazyit.eazyregnskab.dao.interfaces.AppUserRoleDAO;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.AppUserRole;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +19,9 @@ import java.util.Collection;
 @Service("assembler")
 public class Assembler {
 
+    @Autowired
+    AppUserRoleDAO appUserRoleDAO;
+
     @Transactional(readOnly = true)
     User buildUserFromUserEntity(AppUser appUser) {
 
@@ -28,7 +33,7 @@ public class Assembler {
         boolean accountNonLocked = appUser.isActive();
 
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        for (AppUserRole role : appUser.getAppUserRoles()) {
+        for (AppUserRole role : appUserRoleDAO.findByNamedQuery(AppUserRole.QUERY_FIND_BY_USER, appUser)) {
             authorities.add(new SimpleGrantedAuthority(role.getAuthority().name()));
         }
 

@@ -25,7 +25,7 @@ public class DailyLedger extends BaseEntity {
     @ManyToOne(optional = false)
     private LegalEntity legalEntity;
 
-    @OneToMany(mappedBy = "dailyLedger", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "dailyLedger", fetch = FetchType.LAZY)
     private Set<DraftFinancePosting> draftFinancePosting;
 
     public DailyLedger() {

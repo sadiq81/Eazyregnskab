@@ -16,7 +16,6 @@ public class TestLoginService  extends TestBaseCase {
     @Test
     public void testLoginService()
     {
-
         loginService.createUser("test","test");
         AppUser user = loginService.findAppUserByUsername("test");
         Assert.assertTrue(user.getUsername().equals("test"));
