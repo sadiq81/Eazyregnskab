@@ -98,7 +98,7 @@ public class BookkeepingPage extends LoggedInPage {
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("text"), "text", "text"));
         columns.add(new BigDecimalPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber"));
-        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType", "vatType"));
+        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType.name", "vatType.name"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));
         columns.add(new CheckboxPropertyColumn<DraftFinancePosting>(new ResourceModel("chose"), "chosen"));
 

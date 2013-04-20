@@ -1,0 +1,9 @@
+DELETE FROM bookedfinanceposting;
+DELETE FROM draftfinanceposting;
+DELETE FROM dailyledger;
+DELETE FROM financeaccount;
+DELETE FROM legalentityaccess;
+DELETE FROM vattype;
+DELETE FROM user_roles;
+DELETE FROM users;
+DELETE FROM legalentity;
