@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.models;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -24,7 +25,7 @@ public class FormattedBigdecimalModel extends Model<String> {
 
     @Override
     public String getObject() {
-        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance();
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Session.get().getLocale());
         formatter.setMaximumFractionDigits(2);
         formatter.setMinimumFractionDigits(2);
         return formatter.format(model.getObject());
