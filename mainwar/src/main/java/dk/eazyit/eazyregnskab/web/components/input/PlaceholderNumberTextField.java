@@ -1,12 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.input;
 
-import dk.eazyit.eazyregnskab.util.BigDecimalRangeValidator;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.convert.IConverter;
-
-import java.math.BigDecimal;
 
 /**
  * @author Trifork
@@ -30,24 +27,12 @@ public class PlaceholderNumberTextField<T extends Number & Comparable<T>> extend
         super.onComponentTag(tag);
         String placeholder = getLocalizer().getString(this.getId(), this.getPage());
         tag.put("placeholder", placeholder);
+        tag.put("step", "any");
     }
 
 
     @Override
     public <T> IConverter<T> getConverter(Class<T> type) {
         return super.getConverter(type);
-    }
-
-    @Override
-    public void onConfigure() {
-
-        Object object = getModelObject();
-        if (object instanceof BigDecimal) {
-            add(new BigDecimalRangeValidator());
-        } else {
-            super.onConfigure();
-        }
-
-
     }
 }

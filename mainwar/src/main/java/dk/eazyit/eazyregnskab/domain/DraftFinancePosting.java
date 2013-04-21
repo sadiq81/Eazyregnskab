@@ -15,13 +15,16 @@ import java.util.Date;
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from DraftFinancePosting fp " +
                 "WHERE fp.financeAccount = ?1 or fp.reverseFinanceAccount = ?1"),
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, query = "select fp from DraftFinancePosting fp " +
-                "WHERE fp.dailyLedger = ?1")
+                "WHERE fp.dailyLedger = ?1"),
+        @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select fp from DraftFinancePosting fp " +
+                "WHERE fp.vatType = ?1")
 })
 @Table(name = "draftfinanceposting")
 public class DraftFinancePosting extends BaseEntity {
 
     public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "DraftFinancePosting::findDraftFinancePostingByFinanceAccount";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER = "DraftFinancePosting::findDraftFinancePostingByDailyLedger";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE = "DraftFinancePosting::findDraftFinancePostingByVatType";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +40,7 @@ public class DraftFinancePosting extends BaseEntity {
     private String text;
 
     @Column(unique = false, nullable = false, precision = 15, scale = 2)
-    private BigDecimal amount;
+    private Double amount;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "financeaccount_id")
@@ -96,11 +99,11 @@ public class DraftFinancePosting extends BaseEntity {
         this.text = text;
     }
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

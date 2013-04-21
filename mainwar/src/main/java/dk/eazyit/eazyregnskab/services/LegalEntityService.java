@@ -56,9 +56,9 @@ public class LegalEntityService {
 
         bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityVatTypes", Session.get().getLocale());
 
-        VatType incoming = new VatType(bundle.getString("new.entity.vat.types.incoming"), new BigDecimal(bundle.getString("new.entity.vat.types.incoming.percentage")), legalEntity);
-        VatType outgoing = new VatType(bundle.getString("new.entity.vat.types.outgoing"), new BigDecimal(bundle.getString("new.entity.vat.types.outgoing.percentage")), legalEntity);
-        VatType representation = new VatType(bundle.getString("new.entity.vat.types.representation"), new BigDecimal(bundle.getString("new.entity.vat.types.representation.percentage")), legalEntity);
+        VatType incoming = new VatType(bundle.getString("new.entity.vat.types.incoming"), new Double(bundle.getString("new.entity.vat.types.incoming.percentage")), legalEntity);
+        VatType outgoing = new VatType(bundle.getString("new.entity.vat.types.outgoing"), new Double(bundle.getString("new.entity.vat.types.outgoing.percentage")), legalEntity);
+        VatType representation = new VatType(bundle.getString("new.entity.vat.types.representation"), new Double(bundle.getString("new.entity.vat.types.representation.percentage")), legalEntity);
         vatTypeDAO.create(incoming);
         vatTypeDAO.create(outgoing);
         vatTypeDAO.create(representation);

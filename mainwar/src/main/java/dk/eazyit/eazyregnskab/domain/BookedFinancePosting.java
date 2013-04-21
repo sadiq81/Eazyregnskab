@@ -13,13 +13,16 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from DraftFinancePosting fp " +
-                "WHERE fp.financeAccount = ?1")
+                "WHERE fp.financeAccount = ?1"),
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select fp from DraftFinancePosting fp " +
+                "WHERE fp.vatType = ?1")
 
 })
 @Table(name = "bookedfinanceposting")
 public class BookedFinancePosting extends BaseEntity {
 
     public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "BookedFinancePosting::findBookedFinancePostingByFinanceAccount";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE = "BookedFinancePosting::findBookedFinancePostingByVatType";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +38,7 @@ public class BookedFinancePosting extends BaseEntity {
     private String text;
 
     @Column(unique = false, nullable = false, precision = 15, scale = 2)
-    private BigDecimal amount;
+    private Double amount;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "financeaccount_id")
@@ -44,6 +47,11 @@ public class BookedFinancePosting extends BaseEntity {
     @ManyToOne(optional = true)
     @JoinColumn(name = "user_id")
     private AppUser appUser;
+
+    @ManyToOne(optional = true)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JoinColumn(name = "vatType_id")
+    private VatType vatType;
 
     public BookedFinancePosting() {
     }
@@ -81,11 +89,11 @@ public class BookedFinancePosting extends BaseEntity {
         this.text = text;
     }
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -104,6 +112,15 @@ public class BookedFinancePosting extends BaseEntity {
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
     }
+
+    public VatType getVatType() {
+        return vatType;
+    }
+
+    public void setVatType(VatType vatType) {
+        this.vatType = vatType;
+    }
+
     @Override
     public String toString() {
         return "FinancePosting{" +

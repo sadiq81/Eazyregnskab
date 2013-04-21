@@ -1,9 +1,6 @@
 package dk.eazyit.eazyregnskab.services;
 
-import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.FinanceAccountDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.DraftFinancePostingDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.VatTypeDAO;
+import dk.eazyit.eazyregnskab.dao.interfaces.*;
 import dk.eazyit.eazyregnskab.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +22,8 @@ public class FinanceAccountService {
     private FinanceAccountDAO financeAccountDAO;
     @Autowired
     private DraftFinancePostingDAO draftFinancePostingDAO;
+    @Autowired
+    private BookedFinancePostingDAO bookedFinancePostingDAO;
     @Autowired
     private VatTypeDAO vatTypeDAO;
     @Autowired
@@ -63,6 +62,12 @@ public class FinanceAccountService {
         return list;
     }
 
+    @Transactional
+    public List<VatType> findVatTypeByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
+        List<VatType> list = vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
+        return list;
+    }
+
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 
@@ -83,6 +88,11 @@ public class FinanceAccountService {
     @Transactional
     public int countFinancePostingOfDailyLedger(DailyLedger dailyLedger) {
         return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size();
+    }
+
+    @Transactional
+    public int countVatTypesOfLegalEntity(LegalEntity legalEntity) {
+        return vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity).size();
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
@@ -119,6 +129,13 @@ public class FinanceAccountService {
                 draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size() == 0;
     }
 
+    @Transactional(readOnly = true)
+    public boolean isDeletingVatTypeAllowed(VatType vatType) {
+        return (draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType).size() == 0 &&
+                bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType).size() == 0);
+
+    }
+
 //    ------------------------------------------------------------------------------------------------------------------------------
 
     @Transactional
@@ -133,7 +150,12 @@ public class FinanceAccountService {
 
     @Transactional
     public void deleteFinancePosting(DraftFinancePosting draftFinancePosting) {
-     draftFinancePostingDAO.delete(draftFinancePosting);
+        draftFinancePostingDAO.delete(draftFinancePosting);
+    }
+
+    @Transactional
+    public void deleteVatType(VatType vatType) {
+        vatTypeDAO.delete(vatType);
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
@@ -161,8 +183,17 @@ public class FinanceAccountService {
 
     @Transactional
     public void saveDraftFinancePosting(DraftFinancePosting draftFinancePosting) {
-            draftFinancePostingDAO.save(draftFinancePosting);
+        draftFinancePostingDAO.save(draftFinancePosting);
+    }
+
+    @Transactional
+    public void saveVatType(VatType vatType, LegalEntity legalEntity) {
+        if (vatType.getId() == 0) {
+            vatType.setLegalEntity(legalEntity);
+            vatTypeDAO.create(vatType);
         }
+        vatTypeDAO.save(vatType);
+    }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 
@@ -170,8 +201,6 @@ public class FinanceAccountService {
     public FinanceAccount findFinanceAccountById(long l) {
         return financeAccountDAO.findById(l);
     }
-
-
 
 
 //    ------------------------------------------------------------------------------------------------------------------------------

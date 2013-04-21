@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.dataprovider;
+package dk.eazyit.eazyregnskab.web.components.select2providers;
 
 import com.vaynberg.wicket.select2.Response;
 import com.vaynberg.wicket.select2.TextChoiceProvider;

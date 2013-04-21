@@ -27,7 +27,7 @@ public class VatType extends BaseEntity {
     private String name;
 
     @Column(unique = false, nullable = false, precision = 5, scale = 2)
-    private BigDecimal percentage;
+    private Double percentage;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "legalentity_id")
@@ -37,7 +37,7 @@ public class VatType extends BaseEntity {
     public VatType() {
     }
 
-    public VatType(String name, BigDecimal percentage, LegalEntity legalEntity) {
+    public VatType(String name, Double percentage, LegalEntity legalEntity) {
         this.name = name;
         this.percentage = percentage;
         this.legalEntity = legalEntity;
@@ -60,11 +60,11 @@ public class VatType extends BaseEntity {
         this.name = name;
     }
 
-    public BigDecimal getPercentage() {
+    public Double getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(BigDecimal percentage) {
+    public void setPercentage(Double percentage) {
         this.percentage = percentage;
     }
 

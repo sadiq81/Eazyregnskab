@@ -13,13 +13,13 @@ import java.util.Date;
  * http://stackoverflow.com/questions/3395825/how-to-print-formatted-bigdecimal-values
  * http://stackoverflow.com/questions/8658205/format-currency-without-currency-symbol
  */
-public class FormattedBigdecimalModel extends Model<String> {
+public class FormattedNumberModel extends Model<String> {
 
     private static final long serialVersionUID = 1L;
     private IModel<Date> model;
 
 
-    public FormattedBigdecimalModel(IModel<Date> model) {
+    public FormattedNumberModel(IModel<Date> model) {
         this.model = model;
     }
 
