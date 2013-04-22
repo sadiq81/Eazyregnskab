@@ -10,7 +10,7 @@ import java.util.Set;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, query = "select dl from DailyLedger dl where dl.legalEntity= ?1")
+        @NamedQuery(name = DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, query = "select dl from DailyLedger dl where dl.legalEntity= ?1 ")
 })
 @Table(name = "dailyledger")
 public class DailyLedger extends BaseEntity {

@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.dataprovider;
 
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.web.components.models.FinanceAccountModel;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
@@ -10,8 +11,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author
@@ -36,7 +37,10 @@ public class FinanceAccountDataProvider extends EazyregnskabSortableDataProvider
         SortParam sortParam = getSort();
         if (sortParam != null) {
             LOG.debug(" and sorting after " + sortParam.getProperty());
-            return Collections.EMPTY_LIST.iterator();
+            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+                        List<FinanceAccount> list = financeAccountService.findFinanceAccountByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
+                        Iterator<FinanceAccount> iterator = list.iterator();
+                        return iterator;
         } else {
             Iterator<FinanceAccount> iterator = financeAccountService.findFinanceAccountByLegalEntitySubList(
                     getSelectedLegalEntity().getLegalEntityModel().getObject(),

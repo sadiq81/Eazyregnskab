@@ -13,9 +13,9 @@ import java.util.Set;
 @Entity
 @NamedQueries({
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, query = "select fa from FinanceAccount fa " +
-                "WHERE fa.legalEntity = ?1"),
+                "WHERE fa.legalEntity = ?1 ORDER BY accountNumber ASC"),
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME, query = "select fa from FinanceAccount fa " +
-                "WHERE fa.legalEntity = ?1 and fa.name = ?2"),
+                "WHERE fa.legalEntity = ?1 and fa.name = ?2 ORDER BY accountNumber ASC"),
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 and fa.accountNumber = ?2"),
 })
@@ -34,7 +34,7 @@ public class FinanceAccount extends BaseEntity {
     private String name;
 
     @Column(unique = true, nullable = false, length = 50)
-    private String accountNumber;
+    private Integer accountNumber;
 
     @ManyToOne(optional = true)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
@@ -57,12 +57,12 @@ public class FinanceAccount extends BaseEntity {
     public FinanceAccount() {
     }
 
-    public FinanceAccount(String name, String accountNumber) {
+    public FinanceAccount(String name, Integer accountNumber) {
         this.name = name;
         this.accountNumber = accountNumber;
     }
 
-    public FinanceAccount(String name, String accountNumber, FinanceAccountType financeAccountType, LegalEntity legalEntity) {
+    public FinanceAccount(String name, Integer accountNumber, FinanceAccountType financeAccountType, LegalEntity legalEntity) {
         this.name = name;
         this.accountNumber = accountNumber;
         this.financeAccountType = financeAccountType;
@@ -87,11 +87,11 @@ public class FinanceAccount extends BaseEntity {
         this.name = name;
     }
 
-    public String getAccountNumber() {
+    public Integer getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
     }
 

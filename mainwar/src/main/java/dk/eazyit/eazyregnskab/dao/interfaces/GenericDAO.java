@@ -89,6 +89,8 @@ public interface GenericDAO<T, ID extends Serializable> {
      */
     List<T> findByNamedQuery(String queryName, Integer firstResult, Integer maxResults, Object... params);
 
+    List<T> findByNamedQuery(String queryName, Integer firstResult, Integer maxResults, String SortProperty, boolean ascending, Object... params);
+
     <X> List<X> findByNamedQuery(final String name, Class<X> returnValueClass, Object... params);
 
     /**

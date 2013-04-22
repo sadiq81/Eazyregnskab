@@ -39,6 +39,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
     final Log logger = LogFactory.getLog(this.getClass());
     private final Class<T> persistentClass;
     private EntityManager entityManager;
+    private static final String ORDER_BY_CLAUSE_START = " ORDER BY ";
 
     // ~ Constructors
     // -----------------------------------------------------------
@@ -215,6 +216,38 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
         }
 
         return (List<T>) query.getResultList();
+    }
+
+    // http://stackoverflow.com/questions/4120388/hibernate-named-query-order-by-partameter
+    @Override
+    public List<T> findByNamedQuery(String name, Integer firstResult, Integer maxResults, String SortProperty, boolean ascending, Object... params) {
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name + " sorted by " + SortProperty);
+
+
+        Query query = getEntityManager().createNamedQuery(name);
+        String queryString = getEntityManager()
+                .createNamedQuery(name)
+                .unwrap(org.hibernate.Query.class)
+                .getQueryString();
+
+        String addOn = " ORDER BY " + SortProperty + (ascending == true ? " ASC\n" : " DESC\n");
+        query = getEntityManager().createQuery(queryString + addOn);
+
+        if (maxResults != null) {
+            query.setMaxResults(maxResults);
+        }
+
+        if (firstResult != null) {
+            query.setFirstResult(firstResult);
+        }
+        for (int i = 0; i < params.length; i++) {
+            query.setParameter(i + 1, params[i]);
+        }
+
+
+        List<T> list = (List<T>) query.getResultList();
+
+        return list;
     }
 
     /**
@@ -394,4 +427,5 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
         logger.debug("Creating " + entity.toString() + " to database");
         getEntityManager().persist(entity);
     }
+
 }

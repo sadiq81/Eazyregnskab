@@ -68,7 +68,7 @@ public class VatTypesPage extends LoggedInPage {
 
         List<IColumn<VatType, String>> columns = new ArrayList<IColumn<VatType, String>>();
         columns.add(new PropertyColumn<VatType, String>(new ResourceModel("name"), "name", "name"));
-        columns.add(new NumberPropertyColumn<VatType>(new ResourceModel("percentage"), "percentage", "percentage"));
+        columns.add(new NumberPropertyColumn<VatType>(new ResourceModel("percentage"), "percentage", "percentage",2,2));
         columns.add(new AbstractColumn<VatType, String>(new ResourceModel("action")) {
             @Override
             public void populateItem(Item<ICellPopulator<VatType>> cellItem, String componentId, IModel<VatType> rowModel) {

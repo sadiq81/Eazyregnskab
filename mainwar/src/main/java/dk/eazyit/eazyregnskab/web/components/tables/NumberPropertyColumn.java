@@ -8,28 +8,39 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
-import java.math.BigDecimal;
-
 /**
  * @author
  */
 public class NumberPropertyColumn<T> extends PropertyColumn<T, String> {
 
-    public NumberPropertyColumn(IModel<String> displayModel, String propertyExpression) {
-            super(displayModel, propertyExpression);
-        }
+    Integer maximumFractionDigits;
+    Integer minimumFractionDigits;
 
-    public NumberPropertyColumn(IModel<String> displayModel, String sortProperty, String propertyExpression) {
+    public NumberPropertyColumn(IModel<String> displayModel, String propertyExpression, Integer minimumFractionDigits, Integer maximumFractionDigits) {
+        super(displayModel, propertyExpression);
+        this.minimumFractionDigits = minimumFractionDigits;
+        this.maximumFractionDigits = maximumFractionDigits;
+    }
+
+
+    public NumberPropertyColumn(IModel<String> displayModel, String sortProperty, String propertyExpression, Integer minimumFractionDigits, Integer maximumFractionDigits) {
         super(displayModel, sortProperty, propertyExpression);
+        this.minimumFractionDigits = minimumFractionDigits;
+        this.maximumFractionDigits = maximumFractionDigits;
     }
 
     @Override
     public void populateItem(Item<ICellPopulator<T>> item, String componentId, IModel<T> rowModel) {
-       item.add(new Label(componentId,new FormattedNumberModel(getDataModel(rowModel))));
+        item.add(new Label(componentId, new FormattedNumberModel(getDataModel(rowModel), minimumFractionDigits, maximumFractionDigits)));
+    }
+
+    @Override
+    public String getCssClass() {
+        return "align-right";
     }
 
     @Override
     public IModel getDataModel(IModel<T> rowModel) {
-        return new PropertyModel<BigDecimal>(rowModel.getObject(), getPropertyExpression());
+        return new PropertyModel<Number>(rowModel.getObject(), getPropertyExpression());
     }
 }

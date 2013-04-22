@@ -127,7 +127,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
         public void addToForm() {
             super.addToForm();
             add(new PlaceholderTextField<String>("name").setRequired(true));
-            add(new PlaceholderTextField<String>("accountNumber").setRequired(true));
+            add(new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
             add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
             add(new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")));
             add(new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));

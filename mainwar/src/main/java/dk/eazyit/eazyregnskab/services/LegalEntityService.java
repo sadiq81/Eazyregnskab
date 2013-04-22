@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -71,19 +70,19 @@ public class LegalEntityService {
             if (entry.getKey().contains("PROFIT") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
-                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.PROFIT, legalEntity);
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.PROFIT, legalEntity);
             } else if (entry.getKey().contains("EXPENSE") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
-                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.EXPENSE, legalEntity);
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.EXPENSE, legalEntity);
             } else if (entry.getKey().contains("ASSET") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
-                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.ASSET, legalEntity);
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.ASSET, legalEntity);
             } else if (entry.getKey().contains("LIABILITY") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
-                financeAccount = new FinanceAccount(name, accountNumber, FinanceAccountType.LIABILITY, legalEntity);
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.LIABILITY, legalEntity);
             }
 
             if (financeAccount != null && map.get(entry.getKey() + ".vat.type") != null) {

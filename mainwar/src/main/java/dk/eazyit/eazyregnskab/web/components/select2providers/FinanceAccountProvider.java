@@ -69,7 +69,7 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> {
                 break;
             }
 
-            if (financeAccount.getName().toUpperCase().contains(term) || financeAccount.getAccountNumber().toUpperCase().contains(term)) {
+            if (financeAccount.getName().toUpperCase().contains(term) || financeAccount.getAccountNumber().toString().toUpperCase().contains(term)) {
                 matched++;
                 if (matched > offset) {
                     result.add(financeAccount);

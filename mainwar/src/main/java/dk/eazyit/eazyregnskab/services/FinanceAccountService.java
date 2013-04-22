@@ -95,6 +95,33 @@ public class FinanceAccountService {
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 
+    @Transactional
+    public List<FinanceAccount> findFinanceAccountByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
+        LOG.debug("Finding all FinanceAccount from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
+        List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
+        return list;
+    }
+
+    @Transactional
+    public List<DailyLedger> findDailyLedgerByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
+        LOG.debug("Finding all DailyLedger from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
+        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
+        return list;
+    }
+
+    @Transactional
+    public List<DraftFinancePosting> findFinancePostingByDailyLedgerSubListSortBy(DailyLedger dailyLedger, int first, int count, String sortProperty, boolean Ascending) {
+        LOG.debug("Finding all DraftFinancePosting from DailyLedger starting with " + first + " to  " + count + " from " + dailyLedger.toString());
+        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), sortProperty, Ascending,dailyLedger);
+        return list;
+    }
+
+    @Transactional
+    public List<VatType> findVatTypeByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
+        LOG.debug("Finding all VatType from legalEntity starting with " + first + " to  " + count + " from " + legalEntity.toString());
+        List<VatType> list = vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
+        return list;
+    }
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 

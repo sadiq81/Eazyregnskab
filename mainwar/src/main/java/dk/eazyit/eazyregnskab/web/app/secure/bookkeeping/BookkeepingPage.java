@@ -104,7 +104,7 @@ public class BookkeepingPage extends LoggedInPage {
         columns.add(new DatePropertyColumn<DraftFinancePosting>(new ResourceModel("date"), "date", "date"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("bookingNumber"), "bookingNumber", "bookingNumber"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("text"), "text", "text"));
-        columns.add(new NumberPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount"));
+        columns.add(new NumberPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount",2,2));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType.name", "vatType.name"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));

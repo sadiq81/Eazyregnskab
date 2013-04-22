@@ -11,7 +11,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,8 +36,10 @@ public class VatTypeDataProvider extends EazyregnskabSortableDataProvider<VatTyp
         LOG.debug("Creating iterator of VatType with first " + first + " and count " + count);
         SortParam sortParam = getSort();
         if (sortParam != null) {
-            LOG.debug(" and sorting after " + sortParam.getProperty());
-            return Collections.EMPTY_LIST.iterator();
+            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            List<VatType> list = financeAccountService.findVatTypeByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
+            Iterator<VatType> iterator = list.iterator();
+            return iterator;
         } else {
             LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
             List<VatType> list = financeAccountService.findVatTypeByLegalEntitySubList(legalEntity, (int) first, (int) count);
