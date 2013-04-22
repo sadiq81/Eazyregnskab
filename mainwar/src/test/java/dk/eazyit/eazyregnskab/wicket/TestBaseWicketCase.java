@@ -22,8 +22,8 @@ import java.util.List;
  * @author Trifork
  */
 @ContextConfiguration({
-        "classpath:/applicationContext.xml",
-        "classpath:/dataSource.xml",
+        "classpath:/applicationContext-test.xml",
+        "classpath:/dataSource-test.xml",
         "classpath:/spring-security.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)

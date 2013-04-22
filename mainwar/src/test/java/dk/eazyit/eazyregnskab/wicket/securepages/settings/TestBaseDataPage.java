@@ -1,6 +1,7 @@
-package dk.eazyit.eazyregnskab.wicket.securepages;
+package dk.eazyit.eazyregnskab.wicket.securepages.settings;
 
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
+import dk.eazyit.eazyregnskab.wicket.securepages.TestLoggedInPage;
 import org.junit.Ignore;
 import org.junit.Test;
 

@@ -26,9 +26,9 @@ import java.util.List;
  * @author
  */
 @ContextConfiguration(locations = {
-        "classpath:/applicationContext.xml",
+        "classpath:/applicationContext-test.xml",
         "classpath:/spring-security.xml",
-        "classpath:/dataSource.xml"
+        "classpath:/dataSource-test.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
@@ -61,6 +61,7 @@ public class TestBaseCase {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
         simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
         SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("-656894668", "anonymousUser", simpleGrantedAuthorities));
+
 
     }
 
