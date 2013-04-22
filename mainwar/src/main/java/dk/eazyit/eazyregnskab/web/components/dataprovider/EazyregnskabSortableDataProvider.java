@@ -5,12 +5,13 @@ import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import dk.eazyit.eazyregnskab.session.CurrentUser;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
  */
 public abstract class EazyregnskabSortableDataProvider<T> extends SortableDataProvider<T, String> {
-
 
     public EazyregnskabSortableDataProvider() {
     }

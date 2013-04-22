@@ -3,6 +3,8 @@ package dk.eazyit.eazyregnskab.util;
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.ValidationError;
 import org.apache.wicket.validation.validator.RangeValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 
@@ -11,15 +13,21 @@ import java.math.BigDecimal;
  */
 public class BigDecimalRangeValidator extends RangeValidator<BigDecimal> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(BigDecimalRangeValidator.class);
+
     public BigDecimalRangeValidator() {
+        LOG.trace("creating " + this.getClass().getSimpleName());
     }
 
     public BigDecimalRangeValidator(BigDecimal minimum, BigDecimal maximum) {
         super(minimum, maximum);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with minimum " + minimum + " and maximum " + maximum);
     }
 
     @Override
     public void validate(IValidatable<BigDecimal> validatable) {
+
+        LOG.trace("validating" + validatable);
 
         BigDecimal value = getValue(validatable);
         final BigDecimal min = getMinimum();

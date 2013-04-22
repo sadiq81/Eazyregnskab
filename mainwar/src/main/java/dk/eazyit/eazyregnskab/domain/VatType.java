@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import com.google.common.base.Objects;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -78,11 +79,11 @@ public class VatType extends BaseEntity {
 
     @Override
     public String toString() {
-        return "VatType{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", percentage=" + percentage +
-                ", legalEntity=" + legalEntity.getName() +
-                '}';
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("name", name)
+                .add("percentage", percentage)
+//                .add("legalEntity", legalEntity)
+                .toString();
     }
 }

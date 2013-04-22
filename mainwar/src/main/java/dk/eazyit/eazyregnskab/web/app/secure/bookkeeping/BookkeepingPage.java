@@ -39,6 +39,8 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,8 @@ import java.util.List;
 public class BookkeepingPage extends LoggedInPage {
 
     private static final long serialVersionUID = 1L;
+
+    private static final Logger LOG = LoggerFactory.getLogger(BookkeepingPage.class);
 
     @SpringBean
     FinanceAccountService financeAccountService;
@@ -61,14 +65,17 @@ public class BookkeepingPage extends LoggedInPage {
 
     public BookkeepingPage() {
         super();
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public BookkeepingPage(IModel<?> model) {
         super(model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model.getObject().toString());
     }
 
     public BookkeepingPage(final PageParameters parameters) {
         super(parameters);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and parameters " + parameters.toString());
     }
 
     @Override
@@ -85,6 +92,7 @@ public class BookkeepingPage extends LoggedInPage {
         dailyLedgerDropDownChoice.add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
+                LOG.debug("Changed DailyLeger to " + getCurrentDailyLedger().getDailyLedgerModel().getObject());
                 updateDailyLedger(target);
                 target.add(getPage());
             }
@@ -119,6 +127,7 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         protected List<Component> selectItem() {
+            LOG.debug("Selected item " +getModelObject().toString());
             form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(getModelObject())));
             List<Component> list = new ArrayList<Component>();
             list.add(form);
@@ -127,6 +136,7 @@ public class BookkeepingPage extends LoggedInPage {
 
         @Override
         protected List<Component> deleteItem() {
+            LOG.debug("Deleting item " +getModelObject().toString());
             financeAccountService.deleteFinancePosting(getModelObject());
             List<Component> list = new ArrayList<Component>();
             list.add(dataTable);
@@ -179,20 +189,23 @@ public class BookkeepingPage extends LoggedInPage {
         public void deleteEntity() {
 
             financeAccountService.deleteFinancePosting(getModelObject());
+            LOG.info("Deleting draftFinanceposting " + getModelObject().toString());
             newEntity();
             getSession().success(new NotificationMessage(new ResourceModel("finance.posting.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-
         }
 
         @Override
         public void newEntity() {
             form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting())));
+            LOG.info("Creating draftFinanceposting " + getModelObject().toString());
         }
 
         @Override
         public void saveForm() {
+
             financeAccountService.saveDraftFinancePosting(getModelObject()
                     .setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()));
+            LOG.info("Saving draftFinanceposting " + getModelObject().toString());
             newEntity();
         }
     }
@@ -210,6 +223,7 @@ public class BookkeepingPage extends LoggedInPage {
             protected void onUpdate(AjaxRequestTarget target) {
                 updateDailyLedger(target);
                 target.add(getPage());
+                LOG.debug("Changed dailyLedger to " + getCurrentDailyLedger().getDailyLedgerModel().getObject().toString());
             }
         }));
         temp.setOutputMarkupPlaceholderTag(true);

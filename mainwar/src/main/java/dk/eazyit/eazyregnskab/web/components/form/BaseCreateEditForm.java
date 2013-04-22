@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
-    protected Logger log = LoggerFactory.getLogger(BaseCreateEditForm.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BaseCreateEditForm.class);
 
     protected BaseCreateEditForm(String id) {
         super(id);
@@ -32,7 +32,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
         add(new AjaxButton("save", new ResourceModel("button.save")) {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
-                super.onError(target, form);
+                LOG.debug("error on save in form " + form.getId() + " with object " + form.getModelObject().toString());
                 target.add(form);
                 FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
                 if (fp != null) {
@@ -42,7 +42,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                super.onSubmit(target, form);
+                LOG.debug("Saving form " + form.getId() + " with object " + form.getModelObject().toString());
                 saveForm();
                 target.add(form.getPage());
             }
@@ -50,8 +50,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
         add(new AjaxButton("new", new ResourceModel("button.new")) {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
-                super.onError(target, form);
-                target.add(form);
+                LOG.debug("error on new in form " + form.getId() + " with object " + form.getModelObject().toString());
                 FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
                 if (fp != null) {
                     target.add(fp);
@@ -61,7 +60,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                super.onSubmit(target, form);
+                LOG.debug("Creating new in form " + form.getId() + " with object " + form.getModelObject().toString());
                 newEntity();
                 target.add(form.getPage());
 
@@ -71,7 +70,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
         add(new AjaxButton("delete", new ResourceModel("button.delete")) {
             @Override
             protected void onError(AjaxRequestTarget target, Form<?> form) {
-                super.onError(target, form);
+                LOG.debug("error on delete in form " + form.getId() + " with object " + form.getModelObject().toString());
                 target.add(form);
                 FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
                 if (fp != null) {
@@ -81,7 +80,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                super.onSubmit(target, form);
+                LOG.debug("Deleting object in form " + form.getId() + " with object " + form.getModelObject().toString());
                 deleteEntity();
                 target.add(form.getPage());
             }

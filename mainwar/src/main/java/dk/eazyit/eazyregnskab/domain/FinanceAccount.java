@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import com.google.common.base.Objects;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -129,12 +130,14 @@ public class FinanceAccount extends BaseEntity {
 
     @Override
     public String toString() {
-        return "FinanceAccount{" +
-//                "id=" + id +
-                ", name='" + name + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-//                ", financeAccountType=" + financeAccountType +
-//                ", legalEntity=" + legalEntity.getName() +
-                '}';
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("name", name)
+                .add("accountNumber", accountNumber)
+//                .add("vatType", vatType)
+                .add("financeAccountType", financeAccountType)
+//                .add("standardReverseFinanceAccount", standardReverseFinanceAccount)
+//                .add("legalEntity", legalEntity)
+                .toString();
     }
 }

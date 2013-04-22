@@ -5,20 +5,27 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.image.ContextImage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AboutPage extends InfoPage {
     private static final long serialVersionUID = 1L;
 
+    private static final Logger LOG = LoggerFactory.getLogger(AboutPage.class);
+
     public AboutPage() {
         super();
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public AboutPage(IModel<?> model) {
         super(model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model.getObject().toString());
     }
 
     public AboutPage(final PageParameters parameters) {
         super(parameters);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and parameters " + parameters.toString());
 
     }
 

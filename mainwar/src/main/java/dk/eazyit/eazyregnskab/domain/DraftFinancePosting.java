@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import com.google.common.base.Objects;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -148,14 +149,20 @@ public class DraftFinancePosting extends BaseEntity {
         this.vatType = vatType;
     }
 
+
     @Override
     public String toString() {
-        return "DraftFinancePosting{" +
-                "id=" + id +
-                ", date=" + date +
-                ", text='" + text + '\'' +
-                ", amount=" + amount +
-                ", financeAccount=" + financeAccount.getName() +
-                '}';
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("bookingNumber", bookingNumber)
+                .add("date", date)
+                .add("text", text)
+                .add("amount", amount)
+//                .add("financeAccount", financeAccount)
+//                .add("reverseFinanceAccount", reverseFinanceAccount)
+//                .add("dailyLedger", dailyLedger)
+//                .add("vatType", vatType)
+                .add("chosen", chosen)
+                .toString();
     }
 }

@@ -18,6 +18,8 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
@@ -27,6 +29,8 @@ import java.util.Arrays;
 @MenuPosition(name = "settings.base.data", parentPage = BaseDataPage.class, subLevel = 0)
 public class BaseDataPage extends LoggedInPage {
 
+    private static final Logger LOG = LoggerFactory.getLogger(BaseDataPage.class);
+
     @SpringBean
     LegalEntityService legalEntityService;
 
@@ -34,14 +38,17 @@ public class BaseDataPage extends LoggedInPage {
 
     public BaseDataPage() {
         super();
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public BaseDataPage(IModel<?> model) {
         super(model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model.getObject().toString());
     }
 
     public BaseDataPage(PageParameters parameters) {
         super(parameters);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and parameters " + parameters.toString());
     }
 
     @Override
@@ -77,24 +84,29 @@ public class BaseDataPage extends LoggedInPage {
                 setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
                 updateLegalEntitySelections();
                 getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+                LOG.info("Deleting LegalEntity " + getModelObject().toString());
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
+                LOG.info("Not able to delete LegalEntity because it was the last left" + getModelObject().toString());
             }
         }
 
         @Override
         public void newEntity() {
+
             LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject());
             getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
             setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
             updateLegalEntitySelections();
             getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
+            LOG.info("Creating LegalEntity " + getModelObject().toString());
 
         }
 
         @Override
         public void saveForm() {
             legalEntityService.saveLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
+            LOG.info("Saving LegalEntity " + getModelObject().toString());
             updateLegalEntitySelections();
             getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
 
@@ -110,6 +122,6 @@ public class BaseDataPage extends LoggedInPage {
         temp.setParent(this);
         form.setParent(this);
         form = temp;
-
+        LOG.info("Changed LegalEntity to " + getSelectedLegalEntity().getLegalEntityModel().getObject().toString());
     }
 }

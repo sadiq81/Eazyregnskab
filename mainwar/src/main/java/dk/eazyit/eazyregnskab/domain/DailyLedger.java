@@ -1,5 +1,7 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -72,9 +74,12 @@ public class DailyLedger extends BaseEntity {
 
     @Override
     public String toString() {
-        return "DailyLedger{" +
-                "id=" + id +
-                ", legalEntity=" + legalEntity.getName() +
-                '}';
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("name", name)
+//                .add("legalEntity", legalEntity)
+//                .add("draftFinancePosting", draftFinancePosting)
+                .toString();
     }
+
 }

@@ -1,5 +1,7 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -83,11 +85,12 @@ public class AppUser extends BaseEntity {
 
     @Override
     public String toString() {
-        return "AppUser{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
-                '}';
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("username", username)
+                .add("password", password)
+                .add("enabled", enabled)
+//                .add("appUserRoles", appUserRoles)
+                .toString();
     }
 }

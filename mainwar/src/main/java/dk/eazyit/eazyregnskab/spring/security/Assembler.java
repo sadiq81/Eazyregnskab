@@ -3,6 +3,8 @@ package dk.eazyit.eazyregnskab.spring.security;
 import dk.eazyit.eazyregnskab.dao.interfaces.AppUserRoleDAO;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.AppUserRole;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,11 +21,16 @@ import java.util.Collection;
 @Service("assembler")
 public class Assembler {
 
+    private static final Logger LOG = LoggerFactory.getLogger(Assembler.class);
+
+
     @Autowired
     AppUserRoleDAO appUserRoleDAO;
 
     @Transactional(readOnly = true)
     User buildUserFromUserEntity(AppUser appUser) {
+
+        LOG.debug("Assembling Spring user from AppUser " + appUser.toString());
 
         String username = appUser.getUsername();
         String password = appUser.getPassword();
@@ -39,6 +46,8 @@ public class Assembler {
 
         User user = new User(username, password, enabled,
                 accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+
+        LOG.debug("Spring user assembled " + user.toString());
         return user;
     }
 }

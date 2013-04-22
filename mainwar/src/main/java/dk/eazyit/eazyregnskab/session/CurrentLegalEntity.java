@@ -11,17 +11,19 @@ import java.io.Serializable;
  */
 public class CurrentLegalEntity implements Serializable {
 
-    private Logger log = LoggerFactory.getLogger(CurrentLegalEntity.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CurrentLegalEntity.class);
 
     public static final String ATTRIBUTE_NAME = CurrentLegalEntity.class.getName();
 
     private LegalEntityModel legalEntityModel;
 
     public LegalEntityModel getLegalEntityModel() {
+        if (legalEntityModel != null) LOG.trace("geeting LegalEntityModel " + legalEntityModel.getObject().toString());
         return legalEntityModel;
     }
 
     public void setLegalEntityModel(LegalEntityModel legalEntityModel) {
+        LOG.trace("Setting LegalEntityModel " + legalEntityModel.getObject().toString());
         this.legalEntityModel = legalEntityModel;
     }
 

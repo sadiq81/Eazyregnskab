@@ -4,6 +4,8 @@ import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarButton;
 import org.apache.wicket.Page;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
@@ -12,8 +14,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 public class LoggedOutNavButton<T> extends NavbarButton<T> {
 
+    static final Logger LOG = LoggerFactory.getLogger(LoggedOutNavButton.class);
+
     public <T extends Page> LoggedOutNavButton(final Class<T> pageClass, final IModel<String> label) {
         super(pageClass, new PageParameters(), label);
+        LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     @Override

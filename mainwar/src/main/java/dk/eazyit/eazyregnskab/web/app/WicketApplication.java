@@ -10,10 +10,13 @@ import org.apache.wicket.Application;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 /**
@@ -28,6 +31,7 @@ public class WicketApplication extends WebApplication {
      */
 
     ApplicationContext ctx;
+    private static final Logger LOG = LoggerFactory.getLogger(WicketApplication.class);
 
     @Override
     public Class<? extends WebPage> getHomePage() {
@@ -41,6 +45,7 @@ public class WicketApplication extends WebApplication {
     public void init() {
         super.init();
 
+        LOG.info("Starting application on time " + Calendar.getInstance());
         Locale.setDefault(Locale.ROOT);
 
         getDebugSettings().setAjaxDebugModeEnabled(true);

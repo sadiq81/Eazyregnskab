@@ -11,17 +11,19 @@ import java.io.Serializable;
  */
 public class CurrentUser implements Serializable {
 
-    private Logger log = LoggerFactory.getLogger(CurrentUser.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CurrentUser.class);
 
     public static final String ATTRIBUTE_NAME = CurrentUser.class.getName();
 
     private AppUserModel appUserModel;
 
     public AppUserModel getAppUserModel() {
+       if (appUserModel != null) LOG.trace("geeting appUserModel " + appUserModel.getObject().toString());
         return appUserModel;
     }
 
     public void setAppUserModel(AppUserModel appUserModel) {
+        LOG.trace("Setting appUserModel " + appUserModel.getObject().toString());
         this.appUserModel = appUserModel;
     }
 }

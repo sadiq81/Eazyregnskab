@@ -22,21 +22,24 @@ public class SignUpPage extends AppBasePage {
     private static final long serialVersionUID = 1L;
     private CreateInfo createInfo;
 
-    final Logger logger = LoggerFactory.getLogger(SignUpPage.class);
+    final Logger LOG = LoggerFactory.getLogger(SignUpPage.class);
 
     @SpringBean(name = "loginService")
     private LoginService loginService;
 
     public SignUpPage() {
         super();
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public SignUpPage(IModel<?> model) {
         super(model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model.getObject().toString());
     }
 
     public SignUpPage(final PageParameters parameters) {
         super(parameters);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and parameters " + parameters.toString());
     }
 
     @Override
@@ -72,7 +75,7 @@ public class SignUpPage extends AppBasePage {
                 getSession().error(getString("passwords.dont.match"));
             } else {
                 loginService.createUser(createInfo.username, createInfo.password);
-                logger.info("Created account " + createInfo.username);
+                LOG.info("Created account for " + createInfo.username);
                 getSession().info(getString("account.created.for.user") + " " + createInfo.username);
             }
         }

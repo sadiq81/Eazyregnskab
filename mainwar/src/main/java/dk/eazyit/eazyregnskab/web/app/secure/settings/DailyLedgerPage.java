@@ -24,6 +24,8 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,18 +39,23 @@ public class DailyLedgerPage extends LoggedInPage {
     DailyLedgerForm form;
     AjaxFallbackDefaultDataTable dataTable;
 
+    private static final Logger LOG = LoggerFactory.getLogger(DailyLedgerPage.class);
+
     @SpringBean
     FinanceAccountService financeAccountService;
 
     public DailyLedgerPage() {
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public DailyLedgerPage(IModel<?> model) {
         super(model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model.getObject().toString());
     }
 
     public DailyLedgerPage(PageParameters parameters) {
         super(parameters);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and parameters " + parameters.toString());
     }
 
     @Override
@@ -80,6 +87,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         protected List<Component> selectItem() {
+            LOG.debug("Selected item " +getModelObject().toString());
             form.setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(getModelObject())));
             List<Component> list = new ArrayList<Component>();
             list.add(form);
@@ -88,6 +96,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         protected List<Component> deleteItem() {
+            LOG.debug("Deleting item " +getModelObject().toString());
             form.setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(getModelObject())));
             form.deleteEntity();
             List<Component> list = new ArrayList<Component>();
@@ -115,8 +124,10 @@ public class DailyLedgerPage extends LoggedInPage {
                     financeAccountService.deleteDailyLedger(getModelObject());
                     getCurrentDailyLedger().setDailyLedgerModel(new DailyLedgerModel(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0)));
                     getSession().success(new NotificationMessage(new ResourceModel("daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+                    LOG.info("Deleting Dailyledger " + getModelObject().toString());
                 } else {
                     getSession().error(new NotificationMessage(new ResourceModel("daily.ledger.is.in.use")).hideAfter(Duration.seconds(DURATION)));
+                    LOG.info("Not able to delete Dailyledger since its in use " + getModelObject().toString());
                 }
                 newEntity();
             } else {
@@ -128,12 +139,14 @@ public class DailyLedgerPage extends LoggedInPage {
         @Override
         public void newEntity() {
             setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedger(getString("new.ledger"),getSelectedLegalEntity().getLegalEntityModel().getObject())));
+            LOG.info("Creating dailyLedger " + getModelObject().toString());
         }
 
         @Override
         public void saveForm() {
             financeAccountService.saveDailyLedger(getModelObject(), getSelectedLegalEntity().getLegalEntityModel().getObject());
             getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+            LOG.info("Saving dailyLedger " + getModelObject().toString());
             newEntity();
         }
     }

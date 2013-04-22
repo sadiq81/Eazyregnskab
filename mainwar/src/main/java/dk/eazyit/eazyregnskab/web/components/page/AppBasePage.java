@@ -14,13 +14,13 @@ import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import dk.eazyit.eazyregnskab.web.components.login.LoggedInButton;
 import dk.eazyit.eazyregnskab.web.components.login.LoggedOutNavButton;
 import dk.eazyit.eazyregnskab.web.components.login.LogoutNavbarButton;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 
 /**
@@ -28,28 +28,22 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
  */
 public abstract class AppBasePage extends WebPage {
 
-    final Log logger;
     Navbar topMenu;
+    static final Logger LOG = LoggerFactory.getLogger(AppBasePage.class);
 
     public AppBasePage() {
         super();
-        logger = LogFactory.getLog(this.getClass());
         initMenu(null);
-        logger.debug(this.getClass().getSimpleName().toString() + " was created");
     }
 
     public AppBasePage(IModel<?> model) {
         super(model);
-        logger = LogFactory.getLog(this.getClass());
         initMenu(null);
-        logger.debug(this.getClass().getSimpleName().toString() + " was created with model " + model.getObject().toString());
     }
 
     public AppBasePage(PageParameters parameters) {
         super(parameters);
-        logger = LogFactory.getLog(this.getClass());
         initMenu(parameters);
-        logger.debug(this.getClass().getSimpleName().toString() + " was created with parameters " + parameters.toString());
     }
 
     @Override
@@ -88,6 +82,7 @@ public abstract class AppBasePage extends WebPage {
 
         add(topMenu);
         addToPage(parameters);
+        LOG.trace("Created top menu");
     }
 
     protected abstract void addToPage(PageParameters pageParameters);

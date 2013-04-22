@@ -25,6 +25,8 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +40,24 @@ public class VatTypesPage extends LoggedInPage {
     FinanceAccountForm form;
     AjaxFallbackDefaultDataTable dataTable;
 
+    private static final Logger LOG = LoggerFactory.getLogger(VatTypesPage.class);
+
     @SpringBean
     FinanceAccountService financeAccountService;
 
     public VatTypesPage() {
         super();
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public VatTypesPage(IModel<?> model) {
         super(model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model.getObject().toString());
     }
 
     public VatTypesPage(PageParameters parameters) {
         super(parameters);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and parameters " + parameters.toString());
     }
 
     @Override
@@ -61,7 +68,7 @@ public class VatTypesPage extends LoggedInPage {
 
         List<IColumn<VatType, String>> columns = new ArrayList<IColumn<VatType, String>>();
         columns.add(new PropertyColumn<VatType, String>(new ResourceModel("name"), "name", "name"));
-        columns.add(new NumberPropertyColumn<VatType>(new ResourceModel("percentage"),"percentage","percentage"));
+        columns.add(new NumberPropertyColumn<VatType>(new ResourceModel("percentage"), "percentage", "percentage"));
         columns.add(new AbstractColumn<VatType, String>(new ResourceModel("action")) {
             @Override
             public void populateItem(Item<ICellPopulator<VatType>> cellItem, String componentId, IModel<VatType> rowModel) {
@@ -84,6 +91,7 @@ public class VatTypesPage extends LoggedInPage {
 
         @Override
         protected List<Component> selectItem() {
+            LOG.debug("Selected item " +getModelObject().toString());
             form.setDefaultModel(new CompoundPropertyModel<VatType>(new VatTypeModel(getModelObject())));
             List<Component> list = new ArrayList<Component>();
             list.add(form);
@@ -92,6 +100,7 @@ public class VatTypesPage extends LoggedInPage {
 
         @Override
         protected List<Component> deleteItem() {
+            LOG.debug("Deleting item " +getModelObject().toString());
             form.setDefaultModel(new CompoundPropertyModel<VatType>(new VatTypeModel(getModelObject())));
             form.deleteEntity();
             List<Component> list = new ArrayList<Component>();
@@ -119,8 +128,10 @@ public class VatTypesPage extends LoggedInPage {
                 if (financeAccountService.isDeletingVatTypeAllowed(getModelObject())) {
                     financeAccountService.deleteVatType(getModelObject());
                     getSession().success(new NotificationMessage(new ResourceModel("vat.type.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+                    LOG.info("Deleting vatType " + getModelObject().toString());
                 } else {
                     getSession().error(new NotificationMessage(new ResourceModel("vat.type.is.in.use")).hideAfter(Duration.seconds(DURATION)));
+                    LOG.info("Not able to delete vatType since its in use" + getModelObject().toString());
                 }
                 newEntity();
             } else {
@@ -131,7 +142,8 @@ public class VatTypesPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            setDefaultModel(new CompoundPropertyModel<VatType>(new VatType()));
+            LOG.info("Creating vatType " + getModelObject().toString());
+            setDefaultModel(new CompoundPropertyModel<VatType>(new VatTypeModel(new VatType())));
             form.modelChanged();
         }
 
@@ -139,6 +151,7 @@ public class VatTypesPage extends LoggedInPage {
         public void saveForm() {
             financeAccountService.saveVatType(getModelObject(), getSelectedLegalEntity().getLegalEntityModel().getObject());
             getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+            LOG.info("Saving VatType " + getModelObject().toString());
             newEntity();
         }
     }

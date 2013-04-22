@@ -1,35 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoders are assigned the type
-     ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
     </appender>
 
-    <logger name="dk.eazyit.eazyregnskab" level="DEBUG">
-        <appender-ref ref="STDOUT"></appender-ref>
-    </logger>
+    <logger name="dk.eazyit.eazyregnskab" level="DEBUG"/>
 
-    <logger name="org.apache.wicket" level="INFO">
-        <appender-ref ref="STDOUT"></appender-ref>
-    </logger>
+    <!--<logger name="org.apache.wicket" level="WARN">-->
+        <!--<appender-ref ref="STDOUT"></appender-ref>-->
+    <!--</logger>-->
 
-    <logger name="org.springframework.security" level="INFO">
-        <appender-ref ref="STDOUT"></appender-ref>
-    </logger>
+    <!--<logger name="org.hibernate" level="WARN">-->
+        <!--<appender-ref ref="STDOUT"></appender-ref>-->
+    <!--</logger>-->
 
-    <logger name="org.hibernate" level="INFO">
-        <appender-ref ref="STDOUT"></appender-ref>
-    </logger>
+    <!--<logger name="org.springframework" level="INFO">-->
+        <!--<appender-ref ref="STDOUT"></appender-ref>-->
+    <!--</logger>-->
 
-    <logger name="org.springframework" level="INFO">
-        <appender-ref ref="STDOUT"></appender-ref>
-    </logger>
-
-    <!--<root level="INFO">-->
-    <!--<appender-ref ref="STDOUT"/>-->
-    <!--</root>-->
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+    </root>
 
 </configuration>

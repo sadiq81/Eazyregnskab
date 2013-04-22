@@ -16,7 +16,7 @@ import java.util.List;
 @Service("financeAccountService")
 public class FinanceAccountService {
 
-    private Logger log = LoggerFactory.getLogger(LegalEntityService.class);
+    private Logger LOG = LoggerFactory.getLogger(FinanceAccountService.class);
 
     @Autowired
     private FinanceAccountDAO financeAccountDAO;
@@ -31,14 +31,34 @@ public class FinanceAccountService {
 
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
         List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
         return list;
     }
 
     @Transactional
     public List<DailyLedger> findDailyLedgerByLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Finding all DailyLedger from legal entity " + legalEntity.toString());
         List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
         return list;
+    }
+
+    @Transactional(readOnly = true)
+    public List<VatType> findAllVatTypesForLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Finding all VatType from legal entity " + legalEntity.toString());
+        return vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<DraftFinancePosting> findPostingsFromAccount(FinanceAccount financeAccount) {
+        LOG.debug("Finding all DraftFinancePosting from FinanceAccount " + financeAccount.toString());
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount);
+    }
+
+    @Transactional(readOnly = true)
+    public List<DraftFinancePosting> findPostingsFromDailyLedger(DailyLedger dailyLedger) {
+        LOG.debug("Finding all DraftFinancePosting from DailyLedger " + dailyLedger.toString());
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger);
     }
 
 
@@ -46,24 +66,28 @@ public class FinanceAccountService {
 
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
+        LOG.debug("Finding all FinanceAccount from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
         List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
         return list;
     }
 
     @Transactional
     public List<DailyLedger> findDailyLedgerByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
+        LOG.debug("Finding all DailyLedger from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
         List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
         return list;
     }
 
     @Transactional
     public List<DraftFinancePosting> findFinancePostingByDailyLedgerSubList(DailyLedger dailyLedger, int first, int count) {
+        LOG.debug("Finding all DraftFinancePosting from DailyLedger starting with " + first + " to  " + count + " from " + dailyLedger.toString());
         List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), dailyLedger);
         return list;
     }
 
     @Transactional
     public List<VatType> findVatTypeByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
+        LOG.debug("Finding all VatType from legalEntity starting with " + first + " to  " + count + " from " + legalEntity.toString());
         List<VatType> list = vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
         return list;
     }
@@ -77,41 +101,26 @@ public class FinanceAccountService {
 
     @Transactional
     public int countFinanceAccountOfLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Couting all financeAccount from legalEntity " + legalEntity.toString());
         return financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size();
     }
 
     @Transactional
     public int countDailyLedgerOfLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Couting all DailyLedger from legalEntity " + legalEntity.toString());
         return dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size();
     }
 
     @Transactional
     public int countFinancePostingOfDailyLedger(DailyLedger dailyLedger) {
+        LOG.debug("Couting all DraftFinancePosting from dailyLedger " + dailyLedger.toString());
         return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size();
     }
 
     @Transactional
     public int countVatTypesOfLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Couting all VatType from legalEntity " + legalEntity.toString());
         return vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity).size();
-    }
-
-//    ------------------------------------------------------------------------------------------------------------------------------
-
-    @Transactional(readOnly = true)
-    public List<VatType> findAllVatTypesForLegalEntity(LegalEntity legalEntity) {
-        return vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity);
-    }
-
-//    ------------------------------------------------------------------------------------------------------------------------------
-
-    @Transactional(readOnly = true)
-    public List<DraftFinancePosting> findPostingsFromAccount(FinanceAccount financeAccount) {
-        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount);
-    }
-
-    @Transactional(readOnly = true)
-    public List<DraftFinancePosting> findPostingsFromDailyLedger(DailyLedger dailyLedger) {
-        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger);
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------

@@ -10,6 +10,8 @@ import javax.persistence.EntityNotFoundException;
  */
 public abstract class AbstractEntityModel<T extends EntityWithLongId> implements IModel<T> {
 
+
+
     private final Class clazz;
     protected Long id;
     protected T entity;

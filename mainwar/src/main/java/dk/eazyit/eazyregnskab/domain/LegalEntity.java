@@ -1,5 +1,7 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -134,14 +136,16 @@ public class LegalEntity extends BaseEntity {
 
     @Override
     public String toString() {
-        return "LegalEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", legalIdentification='" + legalIdentification + '\'' +
-                ", address='" + address + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", country=" + country +
-                ", moneyCurrency=" + moneyCurrency +
-                '}';
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .add("name", name)
+                .add("legalIdentification", legalIdentification)
+                .add("address", address)
+                .add("postalCode", postalCode)
+                .add("country", country)
+                .add("moneyCurrency", moneyCurrency)
+//                .add("financeAccounts", financeAccounts)
+//                .add("dailyLedgers", dailyLedgers)
+                .toString();
     }
 }

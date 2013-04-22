@@ -7,6 +7,8 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -19,16 +21,21 @@ public class FinancePostingDataProvider extends EazyregnskabSortableDataProvider
     @SpringBean
     FinanceAccountService financeAccountService;
 
+    private static final Logger LOG = LoggerFactory.getLogger(FinancePostingDataProvider.class);
+
     public FinancePostingDataProvider() {
         Injector.get().inject(this);
+        LOG.trace("creating " + this.getClass().getSimpleName());
     }
 
 
     @Override
     public Iterator<DraftFinancePosting> iterator(long first, long count) {
 
-        SortParam sortParam = getSort();
-        if (sortParam != null) {
+        LOG.debug("Creating iterator of DraftFinancePosting with first " + first + " and count " + count);
+                SortParam sortParam = getSort();
+                if (sortParam != null) {
+                    LOG.debug(" and sorting after " + sortParam.getProperty());
             return Collections.EMPTY_LIST.iterator();
         } else {
             Iterator<DraftFinancePosting> iterator = financeAccountService.findFinancePostingByDailyLedgerSubList(

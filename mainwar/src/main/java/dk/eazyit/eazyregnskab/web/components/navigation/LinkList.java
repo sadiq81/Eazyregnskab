@@ -9,6 +9,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.ResourceModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -17,12 +19,14 @@ import java.util.List;
  */
 public class LinkList extends RepeatingView {
 
+    static final Logger LOG = LoggerFactory.getLogger(LinkList.class);
     List<Class<? extends LoggedInPage>> list;
 
     public LinkList(String id, List<Class<? extends LoggedInPage>> list) {
         super(id);
         this.list = list;
         populate();
+        LOG.trace("Creating linklist");
     }
 
 

@@ -14,5 +14,6 @@ public @interface MenuPosition {
     String name();
     Class<? extends LoggedInPage> parentPage();
     int subLevel();
+  //  boolean newButtonHide();
 
 }

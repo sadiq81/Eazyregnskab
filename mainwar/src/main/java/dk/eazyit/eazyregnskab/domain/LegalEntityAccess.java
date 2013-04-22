@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
+import com.google.common.base.Objects;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -65,10 +66,10 @@ public class LegalEntityAccess extends BaseEntity {
 
     @Override
     public String toString() {
-        return "LegalEntityAccess{" +
-                "id=" + id +
-                ", appUser=" + appUser.getUsername() +
-                ", legalEntity=" + legalEntity.getName() +
-                '}';
+        return Objects.toStringHelper(this)
+                .add("id", id)
+//                .add("appUser", appUser)
+//                .add("legalEntity", legalEntity)
+                .toString();
     }
 }

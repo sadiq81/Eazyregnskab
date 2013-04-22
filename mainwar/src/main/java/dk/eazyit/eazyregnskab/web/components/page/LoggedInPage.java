@@ -14,8 +14,6 @@ import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.LinkList;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
@@ -24,6 +22,8 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -48,7 +48,7 @@ public class LoggedInPage extends AppBasePage {
     LegalEntityModel legalEntityModel;
     DailyLedgerModel dailyLedgerModel;
 
-    protected Log logger;
+    static final Logger LOG = LoggerFactory.getLogger(LoggedInPage.class);
     protected NotificationPanel feedbackPanel;
 
     public LoggedInPage() {
@@ -65,7 +65,7 @@ public class LoggedInPage extends AppBasePage {
 
     @Override
     protected void addToPage(PageParameters parameters) {
-        logger = LogFactory.getLog(this.getClass());
+
         setOutputMarkupPlaceholderTag(true);
         add(feedbackPanel = new NotificationPanel("feedback"));
         feedbackPanel.setOutputMarkupPlaceholderTag(true);
@@ -81,6 +81,7 @@ public class LoggedInPage extends AppBasePage {
         legalEntityDropDownChoice.add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
+                LOG.debug("Changed legal entity selections");
                 changedLegalEntity(target);
                 target.add(getPage());
             }
@@ -95,39 +96,39 @@ public class LoggedInPage extends AppBasePage {
 
         CurrentUser currentUser = getCurrentUser();
         if (currentUser == null) {
-            logger.debug("Creating CurrentUser");
+            LOG.debug("Creating CurrentUser");
             currentUser = new CurrentUser();
             session.setAttribute(CurrentUser.ATTRIBUTE_NAME, currentUser);
         }
         if (currentUser.getAppUserModel() == null) {
-            logger.debug("No user set");
+            LOG.debug("No user set");
             currentUser.setAppUserModel(getAppUserModel());
-            logger.debug("set user " + currentUser.getAppUserModel().getObject().getUsername());
+            LOG.debug("set user " + currentUser.getAppUserModel().getObject().getUsername());
         }
 
         CurrentLegalEntity currentLegalEntity = getSelectedLegalEntity();
         if (currentLegalEntity == null) {
-            logger.debug("Creating CurrentLegalEntity");
+            LOG.debug("Creating CurrentLegalEntity");
             currentLegalEntity = new CurrentLegalEntity();
             session.setAttribute(CurrentLegalEntity.ATTRIBUTE_NAME, currentLegalEntity);
         }
         if (currentLegalEntity.getLegalEntityModel() == null) {
-            logger.debug("No legalEntity selected");
+            LOG.debug("No legalEntity selected");
             //TODO will fail if no legal entities
             currentLegalEntity.setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(currentUser.getAppUserModel().getObject()).get(0)));
-            logger.debug("Selected legalEntity as first in user access");
+            LOG.debug("Selected legalEntity as first in user access");
         }
         CurrentDailyLedger currentDailyLedger = getCurrentDailyLedger();
         if (currentDailyLedger == null) {
-            logger.debug("Creating CurrentDailyLedger");
+            LOG.debug("Creating CurrentDailyLedger");
             currentDailyLedger = new CurrentDailyLedger();
             session.setAttribute(CurrentDailyLedger.ATTRIBUTE_NAME, currentDailyLedger);
         }
         if (currentDailyLedger.getDailyLedgerModel() == null) {
             //TODO will fail if no daily ledger
-            logger.debug("No dailyLedger selected");
+            LOG.debug("No dailyLedger selected");
             currentDailyLedger.setDailyLedgerModel(new DailyLedgerModel(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0)));
-            logger.debug("Selected daily ledger as first in legal entity");
+            LOG.debug("Selected daily ledger as first in legal entity");
         }
     }
 
@@ -150,6 +151,7 @@ public class LoggedInPage extends AppBasePage {
     }
 
     protected void updateLegalEntitySelections() {
+        LOG.debug("Updating legal entity selections");
         DropDownChoice<LegalEntity> temp = new DropDownChoice<LegalEntity>("legalEntityList",
                 legalEntityModel = getSelectedLegalEntity().getLegalEntityModel(),
                 legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()),
@@ -157,6 +159,7 @@ public class LoggedInPage extends AppBasePage {
         temp.add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
+                LOG.debug("Changed legal entity selections");
                 changedLegalEntity(target);
                 target.add(getPage());
             }
