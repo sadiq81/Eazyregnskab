@@ -101,6 +101,12 @@
             <version>1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
         <!--Basic Spring-->
         <dependency>
             <groupId>javax.inject</groupId>
@@ -242,6 +248,11 @@
             <artifactId>junit</artifactId>
             <version>4.10</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
         </dependency>
 
         <!--Scanning packages for annotaion-->

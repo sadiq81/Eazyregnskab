@@ -77,6 +77,7 @@
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-classic:0.9.26" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:0.9.26" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-access:0.9.26" />
+          <element id="library" level="project" name="Maven: org.mockito:mockito-all:1.9.5" />
           <element id="library" level="project" name="Maven: org.hsqldb:hsqldb:2.2.9" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />

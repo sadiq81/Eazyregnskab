@@ -10,7 +10,7 @@
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <import resource="dataSource.xml"/>
+    <import resource="dataSource-test.xml"/>
 
     <context:annotation-config/>
 
@@ -29,9 +29,9 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="generateDdl" value="true" />
-                <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
-                <property name="showSql" value="true" />
+                <property name="generateDdl" value="true"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect"/>
+                <property name="showSql" value="true"/>
             </bean>
         </property>
 

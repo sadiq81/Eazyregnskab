@@ -14,18 +14,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.Locale;
 
 /**
- * Application object for your web application. If you want to run this application without deploying, run the Start class.
  *
- * @see dk.eazyit.Start#main(String[])
  */
 @Component
-public class WicketApplication extends WebApplication {
+public class WicketApplication extends WebApplication implements ApplicationContextAware {
     /**
      * @see org.apache.wicket.Application#getHomePage()
      */
@@ -58,22 +57,11 @@ public class WicketApplication extends WebApplication {
         mountPackage("app/secure/settings", BaseDataPage.class);
         mountPackage("app/secure/reports", BalancePage.class);
 
-        initSpring();
+        getComponentInstantiationListeners().add(new SpringComponentInjector(this, ctx, true));
 
-
-        // add your configuration here
-    }
-
-    protected void initSpring() {
-        // Initialize Spring Dependency Injection
-        getComponentInstantiationListeners().add(new SpringComponentInjector(this));
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.ctx = applicationContext;
     }
-
-
-
-
 }

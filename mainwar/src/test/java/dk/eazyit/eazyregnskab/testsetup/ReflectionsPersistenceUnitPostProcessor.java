@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.orm.jpa.persistenceunit.MutablePersistenceUnitInfo;
 import org.springframework.orm.jpa.persistenceunit.PersistenceUnitPostProcessor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
@@ -15,7 +16,7 @@ import java.util.Set;
  * @author
  */
 /*http://stackoverflow.com/questions/2838634/programmatically-loading-entity-classes-with-jpa-2-0*/
-
+@Component
 public class ReflectionsPersistenceUnitPostProcessor implements PersistenceUnitPostProcessor {
 
     private String reflectionsRoot;

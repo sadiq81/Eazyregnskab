@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.wicket.securepages;
 
-import dk.eazyit.eazyregnskab.wicket.TestBaseWicketCase;
+import dk.eazyit.eazyregnskab.TestBaseCase;
 import org.junit.Before;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,14 +12,14 @@ import java.util.List;
 /**
  * @author
  */
-public class TestLoggedInPage extends TestBaseWicketCase {
+public abstract class TestLoggedInPage extends TestBaseCase {
 
     @Before
-    public void setupContext() {
+    public void LoggedInPageSetUp() {
 
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
         simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("test", "test",simpleGrantedAuthorities));
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("test", "test", simpleGrantedAuthorities));
 
     }
 

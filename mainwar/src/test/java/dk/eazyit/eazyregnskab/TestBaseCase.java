@@ -1,23 +1,24 @@
-package dk.eazyit.eazyregnskab.hibernate;
+package dk.eazyit.eazyregnskab;
 
-import dk.eazyit.eazyregnskab.dao.interfaces.AppUserDAO;
+import de.agilecoders.wicket.markup.html.bootstrap.navbar.Navbar;
 import dk.eazyit.eazyregnskab.dao.interfaces.LegalEntityAccessDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.LegalEntityDAO;
+import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
-import dk.eazyit.eazyregnskab.wicket.MockWicketApplication;
-import org.apache.wicket.spring.test.ApplicationContextMock;
+import dk.eazyit.eazyregnskab.web.app.WicketApplication;
+import dk.eazyit.eazyregnskab.web.app.front.HomePage;
+import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,47 +26,54 @@ import java.util.List;
 /**
  * @author
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
         "classpath:/applicationContext-test.xml",
         "classpath:/spring-security.xml",
         "classpath:/dataSource-test.xml"
 })
-@RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
-public class TestBaseCase {
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
+public class TestBaseCase extends TestCase {
+
 
 
     protected WicketTester tester;
 
-    protected ApplicationContextMock mockContext;
+    @Autowired
+    private ApplicationContext ctx;
+
+    @Autowired()
+    private WicketApplication wicketApplication;
 
     @Autowired
-    LoginService loginService;
+    protected LegalEntityAccessDAO legalEntityAccessDAO;
+
     @Autowired
-    AppUserDAO appUserDAO;
+    protected LegalEntityService legalEntityService;
+
     @Autowired
-    LegalEntityDAO legalEntityDAO;
+    protected LoginService loginService;
+
     @Autowired
-    LegalEntityAccessDAO legalEntityAccessDAO;
-    @Autowired
-    LegalEntityService legalEntityService;
+    protected FinanceAccountService financeAccountService;
 
     @Before
-    public void setUp() throws Exception {
-        MockWicketApplication webapp = new MockWicketApplication();
+    public void BaseCaseSetUp() {
 
-        tester = new WicketTester(webapp);
-
-        mockContext = ((MockWicketApplication) tester.getApplication())
-                .getMockContext();
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
         simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
         SecurityContextHolder.getContext().setAuthentication(new AnonymousAuthenticationToken("-656894668", "anonymousUser", simpleGrantedAuthorities));
 
+        tester = new WicketTester(wicketApplication);
 
     }
 
-    @Test
-    public void test() {
+
+    public void testRenderHomePage() {
+        tester.startPage(HomePage.class);
+        tester.assertRenderedPage(HomePage.class);
+        tester.assertComponent("topMenu", Navbar.class);
     }
+
+
 }

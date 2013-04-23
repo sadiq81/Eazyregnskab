@@ -7,7 +7,7 @@
     <!-- Data Source -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-        <property name="url" value="jdbc:hsqldb:file:testdb;shutdown=true" />
+        <property name="url" value="jdbc:hsqldb:mem:testdb" />
         <property name="username" value="SA" />
         <property name="password" value="" />
         <property name="initialSize" value="1" />

@@ -1,14 +1,16 @@
 package dk.eazyit.eazyregnskab.wicket.unsecurepages;
 
+import dk.eazyit.eazyregnskab.TestBaseCase;
 import dk.eazyit.eazyregnskab.web.app.front.*;
-import dk.eazyit.eazyregnskab.wicket.TestBaseWicketCase;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * @author
  */
-public class TestHomePage extends TestBaseWicketCase {
+@Ignore
+public class TestHomePage extends TestBaseCase {
 
     @Test
     public void testPageRendering() {
