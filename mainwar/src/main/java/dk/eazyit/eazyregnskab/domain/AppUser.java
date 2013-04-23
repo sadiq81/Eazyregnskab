@@ -38,6 +38,13 @@ public class AppUser extends BaseEntity {
         this.enabled = enabled;
     }
 
+    public AppUser(String username, String password, boolean enabled, Set<AppUserRole> appUserRoles) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.appUserRoles = appUserRoles;
+    }
+
     @Override
     public Long getId() {
         return id;

@@ -43,7 +43,6 @@ public class LoginService {
     @Transactional(readOnly = true)
     public AppUser findAppUserByUsername(String username) {
         AppUser appUser = appUserDAO.findByNamedQueryUnique(AppUser.QUERY_FIND_BY_USER_NAME, username);
-
         return appUser;
     }
 

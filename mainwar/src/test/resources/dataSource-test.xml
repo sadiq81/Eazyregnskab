@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-    <!-- Data Source -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-        <property name="url" value="jdbc:hsqldb:mem:testdb" />
-        <property name="username" value="SA" />
-        <property name="password" value="" />
-        <property name="initialSize" value="1" />
-        <property name="maxActive" value="5" />
-        <property name="poolPreparedStatements" value="true" />
-        <property name="maxOpenPreparedStatements" value="10" />
-    </bean>
+
+    <jdbc:embedded-database id="dataSource">
+    </jdbc:embedded-database>
 
 </beans>

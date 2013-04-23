@@ -81,6 +81,7 @@
           <element id="library" level="project" name="Maven: org.hsqldb:hsqldb:2.2.9" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
+          <element id="library" level="project" name="Maven: hsqldb:hsqldb:1.8.0.7" />
         </element>
       </element>
     </root>

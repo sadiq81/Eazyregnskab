@@ -5,6 +5,8 @@
     <persistence-unit name="punit">
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <!--<property name="hibernate.connection.autocommit" value="true"></property>-->
         </properties>
     </persistence-unit>
+
 </persistence>

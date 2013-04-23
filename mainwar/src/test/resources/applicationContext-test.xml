@@ -32,6 +32,7 @@
                 <property name="generateDdl" value="true"/>
                 <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect"/>
                 <property name="showSql" value="true"/>
+
             </bean>
         </property>
 
@@ -47,6 +48,11 @@
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="rollbackOnCommitFailure" value="true"></property>
+    </bean>
+
+    <bean id="WicketTester" class="org.apache.wicket.util.tester.WicketTester">
+        <constructor-arg name="application" ref="wicketApplication" ></constructor-arg>
     </bean>
 
 </beans>
