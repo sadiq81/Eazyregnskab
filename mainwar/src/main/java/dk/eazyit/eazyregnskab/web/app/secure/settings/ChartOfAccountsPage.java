@@ -112,7 +112,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
             form.setDefaultModelObject(new CompoundPropertyModel<FinanceAccount>(new FinanceAccountModel(getModelObject())));
             form.deleteEntity();
             List<Component> list = new ArrayList<Component>();
-            list.add(dataTable);
+            list.add(getPage());
             return list;
         }
     }

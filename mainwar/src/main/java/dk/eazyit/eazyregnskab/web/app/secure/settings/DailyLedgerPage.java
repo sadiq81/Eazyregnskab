@@ -100,7 +100,7 @@ public class DailyLedgerPage extends LoggedInPage {
             form.setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(getModelObject())));
             form.deleteEntity();
             List<Component> list = new ArrayList<Component>();
-            list.add(dataTable);
+            list.add(getPage());
             return list;
         }
     }
@@ -138,7 +138,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         @Override
         public void newEntity() {
-            setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedger(getString("new.ledger"),getSelectedLegalEntity().getLegalEntityModel().getObject())));
+            setDefaultModel(new CompoundPropertyModel<DailyLedger>(new DailyLedger("",getSelectedLegalEntity().getLegalEntityModel().getObject())));
             LOG.info("Creating dailyLedger " + getModelObject().toString());
         }
 

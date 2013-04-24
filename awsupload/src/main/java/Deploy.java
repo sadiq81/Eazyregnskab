@@ -16,7 +16,7 @@ public class Deploy {
         String remoteFile = arg[4];
 
         SshClient ssh = new SshClient();
-        ssh.connect(hostname);
+        ssh.connect(hostname,23);
 
         PublicKeyAuthenticationClient pk = new PublicKeyAuthenticationClient();
         pk.setUsername(username);

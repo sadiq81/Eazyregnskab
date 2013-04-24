@@ -139,7 +139,7 @@ public class BookkeepingPage extends LoggedInPage {
             LOG.debug("Deleting item " +getModelObject().toString());
             financeAccountService.deleteFinancePosting(getModelObject());
             List<Component> list = new ArrayList<Component>();
-            list.add(dataTable);
+            list.add(getPage());
             return list;
         }
     }

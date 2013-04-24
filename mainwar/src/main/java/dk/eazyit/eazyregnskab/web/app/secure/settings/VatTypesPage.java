@@ -104,7 +104,7 @@ public class VatTypesPage extends LoggedInPage {
             form.setDefaultModel(new CompoundPropertyModel<VatType>(new VatTypeModel(getModelObject())));
             form.deleteEntity();
             List<Component> list = new ArrayList<Component>();
-            list.add(dataTable);
+            list.add(getPage());
             return list;
         }
     }
