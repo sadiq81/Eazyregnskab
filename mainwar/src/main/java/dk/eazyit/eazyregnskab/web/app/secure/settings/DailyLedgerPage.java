@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * @author EazyIT
  */
-@MenuPosition(name = "settings.daily.ledger", parentPage = BaseDataPage.class, subLevel = 2)
+@MenuPosition(name = "settings.daily.ledger", parentPage = BaseDataPage.class, subLevel = 2, topLevelPage = false)
 public class DailyLedgerPage extends LoggedInPage {
 
     DailyLedgerForm form;

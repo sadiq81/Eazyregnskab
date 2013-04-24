@@ -12,8 +12,15 @@ import java.lang.annotation.RetentionPolicy;
 public @interface MenuPosition {
 
     String name();
+
     Class<? extends LoggedInPage> parentPage();
+
     int subLevel();
-  //  boolean newButtonHide();
+
+    boolean topLevelPage();
+
+    int topLevel() default 0;
+
+    //  boolean newButtonHide();
 
 }

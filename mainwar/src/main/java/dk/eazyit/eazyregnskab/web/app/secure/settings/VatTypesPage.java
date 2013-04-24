@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * @author EazyIT
  */
-@MenuPosition(name = "settings.vat.type", parentPage = BaseDataPage.class, subLevel = 3)
+@MenuPosition(name = "settings.vat.type", parentPage = BaseDataPage.class, subLevel = 3, topLevelPage = false)
 public class VatTypesPage extends LoggedInPage {
 
     FinanceAccountForm form;

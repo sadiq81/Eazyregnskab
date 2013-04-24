@@ -71,7 +71,7 @@ public class LoggedInPage extends AppBasePage {
         feedbackPanel.setOutputMarkupPlaceholderTag(true);
         ensureUserInfo(parameters);
 
-        add(new LinkList("linkList", MenuSetup.createSideMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
+        add(new LinkList("linkList", MenuSetup.createSubMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
 
         add(legalEntityDropDownChoice = new DropDownChoice<LegalEntity>("legalEntityList",
                 legalEntityModel = getSelectedLegalEntity().getLegalEntityModel(),

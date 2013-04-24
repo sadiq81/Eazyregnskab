@@ -8,19 +8,18 @@ import dk.eazyit.eazyregnskab.web.app.front.AboutPage;
 import dk.eazyit.eazyregnskab.web.app.front.ContactPage;
 import dk.eazyit.eazyregnskab.web.app.front.HomePage;
 import dk.eazyit.eazyregnskab.web.app.front.LoginPage;
-import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
-import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
-import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
-import dk.eazyit.eazyregnskab.web.components.login.LoggedInButton;
 import dk.eazyit.eazyregnskab.web.components.login.LoggedOutNavButton;
 import dk.eazyit.eazyregnskab.web.components.login.LogoutNavbarButton;
+import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
+import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
+import dk.eazyit.eazyregnskab.web.components.navigation.menu.TopMenuNavBarDropDownButton;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -66,14 +65,18 @@ public abstract class AppBasePage extends WebPage {
                 new LoggedOutNavButton(LoginPage.class, new ResourceModel("login"))
 
         ));
-
-        //Logged in menu buttons
-        topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
-
-                new LoggedInButton(BaseDataPage.class, new ResourceModel("settings")),
-                new LoggedInButton(BookkeepingPage.class, new ResourceModel("bookkeeping")),
-                new LoggedInButton(BalancePage.class, new ResourceModel("reports"))
-        ));
+        for (final Class<? extends LoggedInPage> clazz : MenuSetup.GetTopLevelList()) {
+            MenuPosition menuPosition = (MenuPosition) clazz.getAnnotation(MenuPosition.class);
+            topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
+                    new TopMenuNavBarDropDownButton(
+                            new ResourceModel(menuPosition.name().split("\\.")[0])
+                            , clazz) {
+                        @Override
+                        protected Class getLinkSuperClass() {
+                            return clazz;
+                        }
+                    }));
+        }
 
         //Logged in menu buttons
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,

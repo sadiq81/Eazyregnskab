@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author
  */
-@MenuPosition(name = "reports.balance", parentPage = BalancePage.class, subLevel = 0)
+@MenuPosition(name = "reports.balance", parentPage = BalancePage.class, subLevel = 0, topLevelPage = true, topLevel = 2)
 public class BalancePage extends LoggedInPage {
 
     private static final Logger LOG = LoggerFactory.getLogger(BalancePage.class);

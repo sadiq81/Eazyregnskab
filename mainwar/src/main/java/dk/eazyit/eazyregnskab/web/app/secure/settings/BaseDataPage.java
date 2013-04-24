@@ -26,7 +26,7 @@ import java.util.Arrays;
 /**
  * @author EazyIT
  */
-@MenuPosition(name = "settings.base.data", parentPage = BaseDataPage.class, subLevel = 0)
+@MenuPosition(name = "settings.base.data", parentPage = BaseDataPage.class, subLevel = 0, topLevelPage = true, topLevel = 0)
 public class BaseDataPage extends LoggedInPage {
 
     private static final Logger LOG = LoggerFactory.getLogger(BaseDataPage.class);

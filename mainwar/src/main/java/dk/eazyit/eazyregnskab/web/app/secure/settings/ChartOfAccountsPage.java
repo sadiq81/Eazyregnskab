@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * @author EazyIT
  */
-@MenuPosition(name = "settings.chart.of.accounts", parentPage = BaseDataPage.class, subLevel = 1)
+@MenuPosition(name = "settings.chart.of.accounts", parentPage = BaseDataPage.class, subLevel = 1, topLevelPage = false)
 public class ChartOfAccountsPage extends LoggedInPage {
 
     FinanceAccountForm form;
