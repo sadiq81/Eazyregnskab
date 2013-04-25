@@ -14,7 +14,7 @@ import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.panels.ActionPanel;
 import dk.eazyit.eazyregnskab.web.components.tables.EnumPropertyColumn;
-import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
@@ -98,22 +98,16 @@ public class ChartOfAccountsPage extends LoggedInPage {
         }
 
         @Override
-        protected List<Component> selectItem() {
-            LOG.debug("Selected item " +getModelObject().toString());
-            form.setDefaultModel(new CompoundPropertyModel<FinanceAccount>(new FinanceAccountModel(getModelObject())));
-            List<Component> list = new ArrayList<Component>();
-            list.add(form);
-            return list;
+        protected FinanceAccountForm selectItem(FinanceAccount financeAccount) {
+            LOG.debug("Selected item " + financeAccount.toString());
+            form.setDefaultModel(new CompoundPropertyModel<FinanceAccount>(new FinanceAccountModel(financeAccount)));
+            return form;
         }
 
+
         @Override
-        protected List<Component> deleteItem() {
-            LOG.debug("Deleting item " +getModelObject().toString());
-            form.setDefaultModelObject(new CompoundPropertyModel<FinanceAccount>(new FinanceAccountModel(getModelObject())));
-            form.deleteEntity();
-            List<Component> list = new ArrayList<Component>();
-            list.add(getPage());
-            return list;
+        protected void deleteItem(FinanceAccount financeAccount) {
+            form.deleteEntity(financeAccount);
         }
     }
 
@@ -134,36 +128,37 @@ public class ChartOfAccountsPage extends LoggedInPage {
         }
 
         @Override
-        public void deleteEntity() {
-            if (getModelObject().getId() != 0) {
-                if (financeAccountService.isDeletingFinanceAccountAllowed(getModelObject())) {
-                    financeAccountService.deleteFinanceAccount(getModelObject());
+        public void deleteEntity(FinanceAccount financeAccount) {
+            super.deleteEntity(financeAccount);
+            if (financeAccount.getId() != 0) {
+                if (financeAccountService.deleteFinanceAccount(financeAccount)) {
                     getSession().success(new NotificationMessage(new ResourceModel("finance.account.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                    LOG.info("Deleting Financeaccount " + getModelObject().toString());
+                    newEntity();
                 } else {
                     getSession().error(new NotificationMessage(new ResourceModel("finance.account.is.in.use")).hideAfter(Duration.seconds(DURATION)));
-                    LOG.info("Not able to delete Financeaccount since its in use " + getModelObject().toString());
                 }
-                newEntity();
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("finance.account.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
-                newEntity();
             }
         }
 
         @Override
-        public void newEntity() {
-            setDefaultModel(new CompoundPropertyModel<FinanceAccount>(new FinanceAccount()));
-            LOG.info("Creating draftFinanceposting " + getModelObject().toString());
-            form.modelChanged();
+        public CompoundPropertyModel<FinanceAccount> newEntity() {
+            return new CompoundPropertyModel<FinanceAccount>(new FinanceAccount());
         }
 
         @Override
-        public void saveForm() {
-            financeAccountService.saveFinanceAccount(getModelObject(), getSelectedLegalEntity().getLegalEntityModel().getObject());
+        public void saveForm(FinanceAccount financeAccount) {
+            super.saveForm(null);
+            financeAccountService.saveFinanceAccount(financeAccount, getSelectedLegalEntity().getLegalEntityModel().getObject());
             getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
-            LOG.info("Saving draftFinanceposting " + getModelObject().toString());
-            newEntity();
+
         }
+    }
+
+    @Override
+    protected void changedLegalEntity(AjaxRequestTarget target) {
+        super.changedLegalEntity(target);
+        target.add(dataTable);
     }
 }

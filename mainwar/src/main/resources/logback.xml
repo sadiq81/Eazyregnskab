@@ -18,9 +18,9 @@
         <!--<appender-ref ref="STDOUT"></appender-ref>-->
     <!--</logger>-->
 
-    <!--<logger name="org.springframework" level="INFO">-->
-        <!--<appender-ref ref="STDOUT"></appender-ref>-->
-    <!--</logger>-->
+    <logger name="org.springframework.security" level="WARN">
+        <appender-ref ref="STDOUT"></appender-ref>
+    </logger>
 
     <root level="WARN">
         <appender-ref ref="STDOUT"/>

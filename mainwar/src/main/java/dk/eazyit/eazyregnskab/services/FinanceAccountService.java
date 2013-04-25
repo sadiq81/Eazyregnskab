@@ -112,7 +112,7 @@ public class FinanceAccountService {
     @Transactional
     public List<DraftFinancePosting> findFinancePostingByDailyLedgerSubListSortBy(DailyLedger dailyLedger, int first, int count, String sortProperty, boolean Ascending) {
         LOG.debug("Finding all DraftFinancePosting from DailyLedger starting with " + first + " to  " + count + " from " + dailyLedger.toString());
-        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), sortProperty, Ascending,dailyLedger);
+        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), sortProperty, Ascending, dailyLedger);
         return list;
     }
 
@@ -175,13 +175,23 @@ public class FinanceAccountService {
 //    ------------------------------------------------------------------------------------------------------------------------------
 
     @Transactional
-    public void deleteFinanceAccount(FinanceAccount financeAccount) {
-        financeAccountDAO.delete(financeAccount);
+    public boolean deleteFinanceAccount(FinanceAccount financeAccount) {
+        if (isDeletingFinanceAccountAllowed(financeAccount)) {
+            financeAccountDAO.delete(financeAccount);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Transactional
-    public void deleteDailyLedger(DailyLedger dailyLedger) {
-        dailyLedgerDAO.delete(dailyLedger);
+    public boolean deleteDailyLedger(DailyLedger dailyLedger) {
+        if (isDeletingDailyLedgerAllowed(dailyLedger, dailyLedger.getLegalEntity())) {
+            dailyLedgerDAO.delete(dailyLedger);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Transactional
@@ -190,8 +200,13 @@ public class FinanceAccountService {
     }
 
     @Transactional
-    public void deleteVatType(VatType vatType) {
-        vatTypeDAO.delete(vatType);
+    public boolean deleteVatType(VatType vatType) {
+        if (isDeletingVatTypeAllowed(vatType)) {
+            vatTypeDAO.delete(vatType);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 //    ------------------------------------------------------------------------------------------------------------------------------

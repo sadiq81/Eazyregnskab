@@ -76,40 +76,42 @@ public class BaseDataPage extends LoggedInPage {
         }
 
         @Override
-        public void deleteEntity() {
-            if (legalEntityService.isDeletingAllowed(getCurrentUser().getAppUserModel().getObject(), getModelObject())) {
-
-                legalEntityService.deleteLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
+        public void deleteEntity(LegalEntity legalEntity) {
+            if (legalEntityService.deleteLegalEntity(getCurrentUser().getAppUserModel().getObject(), legalEntity)) {
                 getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()).get(0)));
                 setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
                 updateLegalEntitySelections();
                 getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                LOG.info("Deleting LegalEntity " + getModelObject().toString());
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
-                LOG.info("Not able to delete LegalEntity because it was the last left" + getModelObject().toString());
             }
         }
 
         @Override
-        public void newEntity() {
-
+        public CompoundPropertyModel<LegalEntity> newEntity() {
             LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject());
             getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
-            setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
             updateLegalEntitySelections();
             getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
-            LOG.info("Creating LegalEntity " + getModelObject().toString());
+            return new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject()));
+        }
+
+        @Override
+        public void saveForm(LegalEntity legalEntity) {
+            legalEntityService.saveLegalEntity(getCurrentUser().getAppUserModel().getObject(), legalEntity);
+            updateLegalEntitySelections();
+            getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
 
         }
 
         @Override
-        public void saveForm() {
-            legalEntityService.saveLegalEntity(getCurrentUser().getAppUserModel().getObject(), getModelObject());
-            LOG.info("Saving LegalEntity " + getModelObject().toString());
-            updateLegalEntitySelections();
-            getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+        protected boolean isNewButtonVisible() {
+            return true;
+        }
 
+        @Override
+        protected boolean isDeleteButtonVisible() {
+            return true;
         }
     }
 
@@ -122,6 +124,6 @@ public class BaseDataPage extends LoggedInPage {
         temp.setParent(this);
         form.setParent(this);
         form = temp;
-        LOG.info("Changed LegalEntity to " + getSelectedLegalEntity().getLegalEntityModel().getObject().toString());
+        LOG.debug("Changed LegalEntity to " + getSelectedLegalEntity().getLegalEntityModel().getObject().toString());
     }
 }

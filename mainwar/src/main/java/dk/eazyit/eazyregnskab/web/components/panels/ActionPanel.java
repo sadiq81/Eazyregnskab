@@ -1,17 +1,16 @@
 package dk.eazyit.eazyregnskab.web.components.panels;
 
-import org.apache.wicket.Component;
+import dk.eazyit.eazyregnskab.domain.BaseEntity;
+import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
-import java.util.List;
-
 /**
  * @author
  */
-public abstract class ActionPanel<T> extends GenericPanel<T> {
+public abstract class ActionPanel<T extends BaseEntity> extends GenericPanel<T> {
 
     /**
      * @param id    component id
@@ -20,26 +19,22 @@ public abstract class ActionPanel<T> extends GenericPanel<T> {
     public ActionPanel(String id, IModel<T> model) {
         super(id, model);
         add(new AjaxLink("select") {
-
             @Override
             public void onClick(AjaxRequestTarget target) {
-                for (Component c : selectItem()) {
-                    target.add(c);
-                }
+                target.add(selectItem((T) getParent().getDefaultModelObject()));
             }
         });
 
         add(new AjaxLink("delete") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                for (Component c : deleteItem()) {
-                    target.add(c);
-                }
+                deleteItem((T) getParent().getDefaultModelObject());
+                target.add(getPage());
             }
         });
     }
 
-    protected abstract List<Component> selectItem();
+    protected abstract BaseCreateEditForm<T> selectItem(T entity);
 
-    protected abstract List<Component> deleteItem();
+    protected abstract void deleteItem(T entity);
 }

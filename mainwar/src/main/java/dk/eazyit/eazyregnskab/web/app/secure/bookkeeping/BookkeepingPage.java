@@ -22,7 +22,6 @@ import dk.eazyit.eazyregnskab.web.components.select2providers.FinanceAccountProv
 import dk.eazyit.eazyregnskab.web.components.tables.CheckboxPropertyColumn;
 import dk.eazyit.eazyregnskab.web.components.tables.DatePropertyColumn;
 import dk.eazyit.eazyregnskab.web.components.tables.NumberPropertyColumn;
-import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
@@ -60,7 +59,7 @@ public class BookkeepingPage extends LoggedInPage {
     private Select2Choice financeAccount;
     private Select2Choice reverseFinanceAccount;
 
-    FinancePostingForm form;
+    DraftFinancePostingForm form;
     AjaxFallbackDefaultDataTable dataTable;
 
     public BookkeepingPage() {
@@ -82,7 +81,7 @@ public class BookkeepingPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(form = new FinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));
+        add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));
 
         add(dailyLedgerDropDownChoice = new DropDownChoice<DailyLedger>("dailyLedgerList",
                 dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
@@ -104,7 +103,7 @@ public class BookkeepingPage extends LoggedInPage {
         columns.add(new DatePropertyColumn<DraftFinancePosting>(new ResourceModel("date"), "date", "date"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("bookingNumber"), "bookingNumber", "bookingNumber"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("text"), "text", "text"));
-        columns.add(new NumberPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount",2,2));
+        columns.add(new NumberPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount", 2, 2));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType.name", "vatType.name"));
         columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));
@@ -126,40 +125,28 @@ public class BookkeepingPage extends LoggedInPage {
         }
 
         @Override
-        protected List<Component> selectItem() {
-            LOG.debug("Selected item " +getModelObject().toString());
-            form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(getModelObject())));
-            List<Component> list = new ArrayList<Component>();
-            list.add(form);
-            return list;
+        protected DraftFinancePostingForm selectItem(DraftFinancePosting draftFinancePosting) {
+            LOG.debug("Selected item " + draftFinancePosting.toString());
+            form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(draftFinancePosting)));
+            return form;
         }
 
         @Override
-        protected List<Component> deleteItem() {
-            LOG.debug("Deleting item " +getModelObject().toString());
-            financeAccountService.deleteFinancePosting(getModelObject());
-            List<Component> list = new ArrayList<Component>();
-            list.add(getPage());
-            return list;
+        protected void deleteItem(DraftFinancePosting draftFinancePosting) {
+            form.deleteEntity(draftFinancePosting);
         }
     }
 
-    class FinancePostingForm extends BaseCreateEditForm<DraftFinancePosting> {
+    class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePosting> {
 
-        FinancePostingForm(String id, IModel<DraftFinancePosting> model) {
+        DraftFinancePostingForm(String id, IModel<DraftFinancePosting> model) {
             super(id, model);
         }
 
         @Override
         public void addToForm() {
             super.addToForm();
-            add(new PlaceholderDateField("date", new DateTextFieldConfig()
-                    .autoClose(true)
-                    .withLanguage("da")
-                    .withFormat("dd-MM-yyyy")
-                    .allowKeyboardNavigation(true)
-                    .showTodayButton(true)
-            ).setRequired(true));
+            add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withLanguage("da").withFormat("dd-MM-yyyy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
             add(financeAccount = new Select2Choice<FinanceAccount>("financeAccount"));
             financeAccount.setProvider(new FinanceAccountProvider());
             financeAccount.getSettings().setAllowClear(true);
@@ -186,27 +173,21 @@ public class BookkeepingPage extends LoggedInPage {
         }
 
         @Override
-        public void deleteEntity() {
-
-            financeAccountService.deleteFinancePosting(getModelObject());
-            LOG.info("Deleting draftFinanceposting " + getModelObject().toString());
-            newEntity();
+        public void deleteEntity(DraftFinancePosting draftFinancePosting) {
+            super.deleteEntity(draftFinancePosting);
+            financeAccountService.deleteFinancePosting(draftFinancePosting);
             getSession().success(new NotificationMessage(new ResourceModel("finance.posting.was.deleted")).hideAfter(Duration.seconds(DURATION)));
         }
 
         @Override
-        public void newEntity() {
-            form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting())));
-            LOG.info("Creating draftFinanceposting " + getModelObject().toString());
+        public CompoundPropertyModel<DraftFinancePosting> newEntity() {
+            return new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()));
         }
 
         @Override
-        public void saveForm() {
-
-            financeAccountService.saveDraftFinancePosting(getModelObject()
-                    .setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()));
-            LOG.info("Saving draftFinanceposting " + getModelObject().toString());
-            newEntity();
+        public void saveForm(DraftFinancePosting draftFinancePosting) {
+            super.saveForm(null);
+            financeAccountService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()));
         }
     }
 
@@ -231,10 +212,12 @@ public class BookkeepingPage extends LoggedInPage {
         temp.setParent(this);
         dailyLedgerDropDownChoice.setParent(this);
         dailyLedgerDropDownChoice = temp;
+        target.add(dataTable);
 
     }
 
     protected void updateDailyLedger(AjaxRequestTarget target) {
         target.add(dataTable);
     }
+
 }

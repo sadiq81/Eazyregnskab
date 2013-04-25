@@ -421,7 +421,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
 
     @Override
     public void create(T entity) {
-        logger.debug("Creating " + entity.toString() + " to database");
+        logger.debug("Creating " + entity.toString() + " in database");
         getEntityManager().persist(entity);
     }
 

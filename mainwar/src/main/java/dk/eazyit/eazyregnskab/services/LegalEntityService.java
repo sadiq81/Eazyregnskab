@@ -133,7 +133,7 @@ public class LegalEntityService {
 
     //TODO check for financepostings and ask for confirm dialog
     @Transactional
-    public void deleteLegalEntity(AppUser appUser, LegalEntity legalEntity) {
+    public boolean deleteLegalEntity(AppUser appUser, LegalEntity legalEntity) {
         if (isDeletingAllowed(appUser, legalEntity)) {
             log.debug("Deleting legal entity " + legalEntity.toString());
             for (LegalEntityAccess legalEntityAccess : findLegalEntityAccessByLegalEntity(legalEntity)) {
@@ -155,8 +155,10 @@ public class LegalEntityService {
             }
 
             legalEntityDAO.delete(legalEntity);
+            return true;
         } else {
             log.warn("Not able to delete legal entity " + legalEntity.toString() + " because it was the last");
+            return false;
         }
     }
 
