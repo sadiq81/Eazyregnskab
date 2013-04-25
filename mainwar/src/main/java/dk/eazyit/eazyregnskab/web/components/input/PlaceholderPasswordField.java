@@ -16,11 +16,13 @@ public class PlaceholderPasswordField extends PasswordTextField {
 
     public PlaceholderPasswordField(String id) {
         super(id);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderPasswordField(String id, IModel<String> model) {
         super(id, model);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 

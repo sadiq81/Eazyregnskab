@@ -19,16 +19,13 @@ import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.panels.ActionPanel;
 import dk.eazyit.eazyregnskab.web.components.select2providers.FinanceAccountProvider;
-import dk.eazyit.eazyregnskab.web.components.tables.CheckboxPropertyColumn;
-import dk.eazyit.eazyregnskab.web.components.tables.DatePropertyColumn;
-import dk.eazyit.eazyregnskab.web.components.tables.NumberPropertyColumn;
+import dk.eazyit.eazyregnskab.web.components.tables.ColumnsForBookkeepingPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.repeater.Item;
@@ -41,7 +38,6 @@ import org.apache.wicket.util.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @MenuPosition(name = "bookkeeping.daybook", parentPage = BookkeepingPage.class, subLevel = 0, topLevelPage = true, topLevel = 1)
@@ -58,6 +54,7 @@ public class BookkeepingPage extends LoggedInPage {
     private DailyLedgerModel dailyLedgerModel;
     private Select2Choice financeAccount;
     private Select2Choice reverseFinanceAccount;
+    private DropDownChoice<VatType> vatTypeDropDownChoice;
 
     DraftFinancePostingForm form;
     AjaxFallbackDefaultDataTable dataTable;
@@ -98,17 +95,7 @@ public class BookkeepingPage extends LoggedInPage {
         }));
         dailyLedgerDropDownChoice.setOutputMarkupPlaceholderTag(true);
 
-        List<IColumn<DraftFinancePosting, String>> columns = new ArrayList<IColumn<DraftFinancePosting, String>>();
-
-        columns.add(new DatePropertyColumn<DraftFinancePosting>(new ResourceModel("date"), "date", "date"));
-        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("bookingNumber"), "bookingNumber", "bookingNumber"));
-        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("text"), "text", "text"));
-        columns.add(new NumberPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount", 2, 2));
-        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber"));
-        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType.name", "vatType.name"));
-        columns.add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));
-        columns.add(new CheckboxPropertyColumn<DraftFinancePosting>(new ResourceModel("chose"), "chosen"));
-
+        List<IColumn<DraftFinancePosting, String>> columns = new ColumnsForBookkeepingPage();
         columns.add(new AbstractColumn<DraftFinancePosting, String>(new ResourceModel("action")) {
             @Override
             public void populateItem(Item<ICellPopulator<DraftFinancePosting>> cellItem, String componentId, IModel<DraftFinancePosting> rowModel) {
@@ -146,7 +133,9 @@ public class BookkeepingPage extends LoggedInPage {
         @Override
         public void addToForm() {
             super.addToForm();
+
             add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withLanguage("da").withFormat("dd-MM-yyyy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
+
             add(financeAccount = new Select2Choice<FinanceAccount>("financeAccount"));
             financeAccount.setProvider(new FinanceAccountProvider());
             financeAccount.getSettings().setAllowClear(true);
@@ -156,19 +145,28 @@ public class BookkeepingPage extends LoggedInPage {
                 protected void onUpdate(AjaxRequestTarget target) {
                     FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
                     FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
+                    VatType vatType = financeAccount.getVatType();
                     if (reverse != null) {
-                        //TODO also set vatType
                         reverseFinanceAccount.setModelObject(reverse);
                         target.add(reverseFinanceAccount);
                     }
+                    if (vatType != null) {
+                        vatTypeDropDownChoice.setModelObject(vatType);
+                        target.add(vatTypeDropDownChoice);
+                    }
                 }
             });
+
             add(reverseFinanceAccount = new Select2Choice<FinanceAccount>("reverseFinanceAccount"));
             reverseFinanceAccount.setProvider(new FinanceAccountProvider());
             reverseFinanceAccount.getSettings().setAllowClear(true);
+
             add(new PlaceholderNumberTextField<Double>("amount").setMinimum(new Double(0)).setRequired(true));
-            add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
+
+            add(vatTypeDropDownChoice = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
+            vatTypeDropDownChoice.setOutputMarkupPlaceholderTag(true);
             add(new PlaceholderTextField<String>("text"));
+
             add(new PlaceholderNumberTextField<Integer>("bookingNumber").setRequired(true));
         }
 

@@ -60,6 +60,8 @@ public class DraftFinancePosting extends BaseEntity {
     @JoinColumn(name = "vatType_id")
     private VatType vatType;
 
+    @Transient
+    private double vatAmount;
 
     @Transient
     private boolean chosen;
@@ -149,6 +151,17 @@ public class DraftFinancePosting extends BaseEntity {
         this.vatType = vatType;
     }
 
+    public double getVatAmount() {
+        if (vatType != null && vatType.getPercentage() != null && amount != null) {
+            return vatType.getPercentage() * amount / 100;
+        } else {
+            return 0;
+        }
+    }
+
+    public void setVatAmount(double vatAmount) {
+        this.vatAmount = vatAmount;
+    }
 
     @Override
     public String toString() {

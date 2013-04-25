@@ -16,16 +16,19 @@ public class PlaceholderNumberTextField<T extends Number & Comparable<T>> extend
 
     public PlaceholderNumberTextField(String id) {
         super(id);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderNumberTextField(String id, IModel model) {
         super(id, model);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderNumberTextField(String id, IModel model, Class type) {
         super(id, model, type);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 

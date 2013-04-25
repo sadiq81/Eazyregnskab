@@ -15,21 +15,25 @@ public class PlaceholderTextField<T> extends TextField<T> {
 
     public PlaceholderTextField(String id) {
         super(id);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderTextField(String id, Class type) {
         super(id, type);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderTextField(String id, IModel model) {
         super(id, model);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderTextField(String id, IModel model, Class type) {
         super(id, model, type);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 

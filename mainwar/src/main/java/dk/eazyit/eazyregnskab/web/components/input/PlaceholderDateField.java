@@ -18,31 +18,37 @@ public class PlaceholderDateField extends DateTextField {
 
     public PlaceholderDateField(String id) {
         super(id);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderDateField(String markupId, String datePattern) {
         super(markupId, datePattern);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderDateField(String markupId, IModel<Date> model) {
         super(markupId, model);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderDateField(String markupId, IModel<Date> model, String dateFormat) {
         super(markupId, model, dateFormat);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderDateField(String markupId, IModel<Date> model, DateTextFieldConfig config) {
         super(markupId, model, config);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderDateField(String markupId, DateTextFieldConfig config) {
         super(markupId, config);
+        setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
