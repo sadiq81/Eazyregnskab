@@ -6,7 +6,7 @@ import dk.eazyit.eazyregnskab.services.LoginService;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderPasswordField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
-import dk.eazyit.eazyregnskab.web.components.validators.CreateAccountFormValidator;
+import dk.eazyit.eazyregnskab.web.components.validators.forms.CreateAccountFormValidator;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;

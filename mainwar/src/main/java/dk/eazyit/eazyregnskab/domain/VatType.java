@@ -13,22 +13,30 @@ import java.math.BigDecimal;
 @Entity
 @NamedQueries({
         @NamedQuery(name = VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, query = "select vt from VatType vt " +
-                "WHERE vt.legalEntity = ?1")
+                "WHERE vt.legalEntity = ?1"),
+        @NamedQuery(name = VatType.QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY, query = "select vt from VatType vt " +
+                "WHERE vt.name = ?1 AND vt.legalEntity = ?2")
 })
 @Table(name = "vattype")
 public class VatType extends BaseEntity {
 
     public static final String QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY = "VatType::findVatTypeByLegalEntity";
+    public static final String QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY = "VatType::FindVatTypeByNameAndLegalEntity";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true, nullable = false, length = 50)
+    @Column(unique = false, nullable = false, length = 50)
     private String name;
 
     @Column(unique = false, nullable = false, precision = 5, scale = 2)
     private Double percentage;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "financeAccount_id")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private FinanceAccount financeAccount;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "legalentity_id")
@@ -75,6 +83,14 @@ public class VatType extends BaseEntity {
 
     public void setLegalEntity(LegalEntity legalEntity) {
         this.legalEntity = legalEntity;
+    }
+
+    public FinanceAccount getFinanceAccount() {
+        return financeAccount;
+    }
+
+    public void setFinanceAccount(FinanceAccount financeAccount) {
+        this.financeAccount = financeAccount;
     }
 
     @Override

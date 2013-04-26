@@ -47,7 +47,7 @@ public class WicketApplication extends WebApplication implements ApplicationCont
         LOG.info("Starting application on time " + Calendar.getInstance());
         Locale.setDefault(Locale.ROOT);
 
-        getDebugSettings().setAjaxDebugModeEnabled(true);
+//        getDebugSettings().setAjaxDebugModeEnabled(true);
 
         getApplicationSettings().setAccessDeniedPage(HomePage.class);
 
