@@ -15,15 +15,19 @@
                 <th>
                     <wicket:message key="percentage"></wicket:message>
                 </th>
+                <th>
+                    <wicket:message key="finance.account"></wicket:message>
+                </th>
 
             </tr>
             <tr>
                 <td><input class="span2" wicket:id="name" id="name" type="text"/></td>
                 <td><input class="span2" wicket:id="percentage" id="percentage" type="number"/></td>
+                <td><select class="span2" wicket:id="financeAccount" id="financeAccount" type="number"/></td>
 
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="3">
                     <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
                     <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
                     <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>

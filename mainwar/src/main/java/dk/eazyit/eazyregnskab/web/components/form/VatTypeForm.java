@@ -2,9 +2,11 @@ package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.VatType;
+import dk.eazyit.eazyregnskab.web.components.choice.VatTypeDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.entities.VatTypeModel;
+import dk.eazyit.eazyregnskab.web.components.validators.forms.VatTypeFormValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -15,6 +17,8 @@ import org.apache.wicket.util.time.Duration;
  */
 public class VatTypeForm extends BaseCreateEditForm<VatType> {
 
+    PlaceholderTextField name;
+
     public VatTypeForm(String id, IModel<VatType> model) {
         super(id, model);
     }
@@ -22,8 +26,10 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(new PlaceholderTextField<String>("name").setRequired(true));
-        add(new PlaceholderNumberTextField<Double>("percentage").setMinimum(new Double(0)).setRequired(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
+        add(new PlaceholderNumberTextField<Double>("percentage").setMinimum(new Double(0)).setMaximum(new Double(100)).setRequired(true));
+        add(new VatTypeDropDownChoice("financeAccount").setRequired(true));
+        add(new VatTypeFormValidator(name));
     }
 
     @Override
