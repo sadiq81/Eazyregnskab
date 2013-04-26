@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.tables;
+package dk.eazyit.eazyregnskab.web.components.tables.columns;
 
 import dk.eazyit.eazyregnskab.web.components.models.FormattedNumberModel;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;

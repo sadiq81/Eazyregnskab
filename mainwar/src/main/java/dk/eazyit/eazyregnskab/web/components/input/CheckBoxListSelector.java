@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.tables;
+package dk.eazyit.eazyregnskab.web.components.input;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.IHeaderResponse;

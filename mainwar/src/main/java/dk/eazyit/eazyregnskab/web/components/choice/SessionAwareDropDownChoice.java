@@ -1,11 +1,14 @@
 package dk.eazyit.eazyregnskab.web.components.choice;
 
+import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
 import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import dk.eazyit.eazyregnskab.session.CurrentUser;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import java.util.List;
 
@@ -13,6 +16,12 @@ import java.util.List;
  * @author
  */
 public class SessionAwareDropDownChoice<T> extends DropDownChoice<T> {
+
+    @SpringBean
+    protected LegalEntityService legalEntityService;
+
+    @SpringBean
+    protected FinanceAccountService financeAccountService;
 
     public SessionAwareDropDownChoice(String id) {
         super(id);

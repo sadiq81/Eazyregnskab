@@ -53,7 +53,7 @@ public class BookkeepingPage extends LoggedInPage {
 
 
     @Override
-    protected void changedLegalEntity(AjaxRequestTarget target) {
+    public void changedLegalEntity(AjaxRequestTarget target) {
         super.changedLegalEntity(target);
         addOrReplace(dailyLedgerChoice, new DailyLedgerDropDownChoice("dailyLedgerList"));
         addOrReplace(form, new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));

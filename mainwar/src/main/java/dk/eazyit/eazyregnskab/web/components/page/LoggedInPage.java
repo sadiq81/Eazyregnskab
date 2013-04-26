@@ -1,13 +1,13 @@
 package dk.eazyit.eazyregnskab.web.components.page;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
-import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
 import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
 import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import dk.eazyit.eazyregnskab.session.CurrentUser;
+import dk.eazyit.eazyregnskab.web.components.choice.LegalEntityDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.models.AppUserModel;
 import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
@@ -16,9 +16,6 @@ import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
 import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
-import org.apache.wicket.markup.html.form.ChoiceRenderer;
-import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -35,17 +32,15 @@ public class LoggedInPage extends AppBasePage {
     public static final String PARAM_LEGAL_ENTITY = "legalEntity";
 
     @SpringBean
-    LoginService loginService;
+    protected LoginService loginService;
 
     @SpringBean
-    LegalEntityService legalEntityService;
+    protected LegalEntityService legalEntityService;
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    protected FinanceAccountService financeAccountService;
 
-    DropDownChoice<LegalEntity> legalEntityDropDownChoice;
-    LegalEntityModel legalEntityModel;
-    DailyLedgerModel dailyLedgerModel;
+    LegalEntityDropDownChoice legalEntityDropDownChoice;
 
     static final Logger LOG = LoggerFactory.getLogger(LoggedInPage.class);
     protected NotificationPanel feedbackPanel;
@@ -72,20 +67,8 @@ public class LoggedInPage extends AppBasePage {
 
         add(new LinkList("linkList", MenuSetup.createSubMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
 
-        add(legalEntityDropDownChoice = new DropDownChoice<LegalEntity>("legalEntityList",
-                legalEntityModel = getSelectedLegalEntity().getLegalEntityModel(),
-                legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()),
-                new ChoiceRenderer<LegalEntity>("name", "id")));
+        add(legalEntityDropDownChoice = new LegalEntityDropDownChoice("legalEntityList", this));
 
-        legalEntityDropDownChoice.add((new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-                LOG.debug("Changed legal entity selections");
-                changedLegalEntity(target);
-                target.add(getPage());
-            }
-        }));
-        legalEntityDropDownChoice.setOutputMarkupPlaceholderTag(true);
 
     }
 
@@ -149,28 +132,12 @@ public class LoggedInPage extends AppBasePage {
         return (CurrentDailyLedger) getSession().getAttribute(CurrentDailyLedger.ATTRIBUTE_NAME);
     }
 
-    protected void updateLegalEntitySelections() {
+    public void updateLegalEntitySelections() {
         LOG.debug("Updating legal entity selections");
-        DropDownChoice<LegalEntity> temp = new DropDownChoice<LegalEntity>("legalEntityList",
-                legalEntityModel = getSelectedLegalEntity().getLegalEntityModel(),
-                legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()),
-                new ChoiceRenderer<LegalEntity>("name", "id"));
-        temp.add((new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-                LOG.debug("Changed legal entity selections");
-                changedLegalEntity(target);
-                target.add(getPage());
-            }
-        }));
-        temp.setOutputMarkupPlaceholderTag(true);
-        addOrReplace(legalEntityDropDownChoice, temp);
-        temp.setParent(this);
-        legalEntityDropDownChoice.setParent(this);
-        legalEntityDropDownChoice = temp;
+        addOrReplace(legalEntityDropDownChoice, new LegalEntityDropDownChoice("legalEntityList", this));
     }
 
-    protected void changedLegalEntity(AjaxRequestTarget target) {
+    public void changedLegalEntity(AjaxRequestTarget target) {
         getCurrentDailyLedger().getDailyLedgerModel().setObject(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0));
     }
 

@@ -1,6 +1,8 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
 import dk.eazyit.eazyregnskab.domain.BaseEntity;
+import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
 import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import dk.eazyit.eazyregnskab.session.CurrentUser;
@@ -11,6 +13,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +24,12 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
     private static final Logger LOG = LoggerFactory.getLogger(BaseCreateEditForm.class);
     protected final static int DURATION = 5;
+
+    @SpringBean
+    protected LegalEntityService legalEntityService;
+    @SpringBean
+    protected FinanceAccountService financeAccountService;
+
 
     protected BaseCreateEditForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));

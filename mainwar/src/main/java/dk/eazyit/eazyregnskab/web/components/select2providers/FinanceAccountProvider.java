@@ -21,7 +21,6 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> {
     @SpringBean
     private FinanceAccountService financeAccountService;
 
-
     public FinanceAccountProvider() {
         Injector.get().inject(this);
     }

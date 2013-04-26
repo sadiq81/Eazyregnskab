@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.tables;
+package dk.eazyit.eazyregnskab.web.components.tables.columns;
 
 import dk.eazyit.eazyregnskab.web.components.panels.CheckBoxListSelectorPanel;
 import dk.eazyit.eazyregnskab.web.components.panels.CheckBoxPanel;
