@@ -25,9 +25,11 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Eazy IT
  */
-public abstract class AppBasePage extends WebPage {
+public abstract class AppBasePage extends WebPage{
 
     Navbar topMenu;
+    protected final static int DURATION = 5;
+
     static final Logger LOG = LoggerFactory.getLogger(AppBasePage.class);
 
     public AppBasePage() {

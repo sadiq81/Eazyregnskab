@@ -1,8 +1,12 @@
 package dk.eazyit.eazyregnskab.web.app.front;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
+import dk.eazyit.eazyregnskab.domain.CreateAppUserInfo;
 import dk.eazyit.eazyregnskab.services.LoginService;
+import dk.eazyit.eazyregnskab.web.components.input.PlaceholderPasswordField;
+import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
+import dk.eazyit.eazyregnskab.web.components.validators.CreateAccountFormValidator;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
@@ -13,14 +17,18 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Serializable;
-
-public class SignUpPage extends AppBasePage {
+public class SignUpPage extends AppBasePage  {
 
 
+    TextField<String> username;
+    PasswordTextField password;
+    PasswordTextField repeatPassword;
 
     private static final long serialVersionUID = 1L;
-    private CreateInfo createInfo;
+    private CreateAppUserInfo createInfo;
+
+    private static final String USERNAME_PATTERN = "^[a-z0-9_-]{8,25}$";
+    private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,})";
 
     final Logger LOG = LoggerFactory.getLogger(SignUpPage.class);
 
@@ -47,55 +55,30 @@ public class SignUpPage extends AppBasePage {
 
         add(new NotificationPanel("feedback"));
 
-        SignInForm form = new SignInForm("create_account", new CompoundPropertyModel<CreateInfo>(createInfo = new CreateInfo()));
+        SignInForm form = new SignInForm("create_account", new CompoundPropertyModel<CreateAppUserInfo>(createInfo = new CreateAppUserInfo()));
         add(form);
     }
 
-    public final class SignInForm extends Form<CreateInfo> {
+    public final class SignInForm extends Form<CreateAppUserInfo> {
 
         public SignInForm(final String id, IModel model) {
             super(id, model);
 
-            add(new TextField<String>("username"));
-            add(new PasswordTextField("password"));
-            add(new PasswordTextField("repeat_password"));
+            add(username = new PlaceholderTextField<String>("username"));
+            add(password = new PlaceholderPasswordField("password"));
+            add(repeatPassword = new PlaceholderPasswordField("repeat_password"));
+            add(new CreateAccountFormValidator(username, password, repeatPassword));
         }
 
         @Override
         public final void onSubmit() {
-
-
-            //TODO add check to see if username exist
-
-            if (createInfo.isUserNameBadFormat()) {
-                getSession().error(getString("username.not.accepted"));
-            } else if (createInfo.isPasswordBadFormat()) {
-                getSession().error(getString("password.not.accepted"));
-            } else if (createInfo.arePasswordsNotEquals()) {
-                getSession().error(getString("passwords.dont.match"));
-            } else {
-                loginService.createUser(createInfo.username, createInfo.password);
-                LOG.info("Created account for " + createInfo.username);
-                getSession().info(getString("account.created.for.user") + " " + createInfo.username);
-            }
-        }
-    }
-
-    public class CreateInfo implements Serializable {
-        public String username = null;
-        public String password = null;
-        public String repeat_password = null;
-
-        public boolean isPasswordBadFormat() {
-            return password == null || password.length() < 3; // TODO   html chars spaces within etc
+            CreateAppUserInfo userinfo = getModelObject();
+            loginService.createUser(userinfo.getUsername(), userinfo.getPassword());
+            LOG.info("Created account for " + userinfo.getUsername());
+            getSession().info(getString("account.created.for.user") + " " + userinfo.getUsername());
         }
 
-        public boolean arePasswordsNotEquals() {
-            return password == null || repeat_password == null || !password.equals(repeat_password);
-        }
 
-        public boolean isUserNameBadFormat() {
-            return username == null || username.length() < 3; // TODO
-        }
     }
 }
+

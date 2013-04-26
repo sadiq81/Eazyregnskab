@@ -33,7 +33,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class LoggedInPage extends AppBasePage {
 
     public static final String PARAM_LEGAL_ENTITY = "legalEntity";
-    protected final static int DURATION = 5;
 
     @SpringBean
     LoginService loginService;
