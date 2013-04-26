@@ -1,8 +1,14 @@
 package dk.eazyit.eazyregnskab.web.components.tables;
 
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
+import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
+import dk.eazyit.eazyregnskab.web.components.panels.action.BookkeepingActionPanel;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
 import java.util.ArrayList;
@@ -12,7 +18,7 @@ import java.util.ArrayList;
  */
 public class ColumnsForBookkeepingPage extends ArrayList<IColumn<DraftFinancePosting, String>> {
 
-    public ColumnsForBookkeepingPage() {
+    public ColumnsForBookkeepingPage(final BaseCreateEditForm<DraftFinancePosting> form) {
 
         add(new DatePropertyColumn<DraftFinancePosting>(new ResourceModel("date"), "date", "date"));
         add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("bookingNumber"), "bookingNumber", "bookingNumber"));
@@ -22,6 +28,11 @@ public class ColumnsForBookkeepingPage extends ArrayList<IColumn<DraftFinancePos
         add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType.name", "vatType.name"));
         add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));
         add(new CheckboxPropertyColumn<DraftFinancePosting>(new ResourceModel("chose"), "chosen"));
-
+        add(new AbstractColumn<DraftFinancePosting, String>(new ResourceModel("action")) {
+            @Override
+            public void populateItem(Item<ICellPopulator<DraftFinancePosting>> cellItem, String componentId, IModel<DraftFinancePosting> rowModel) {
+                cellItem.add(new BookkeepingActionPanel(componentId, rowModel, form));
+            }
+        });
     }
 }

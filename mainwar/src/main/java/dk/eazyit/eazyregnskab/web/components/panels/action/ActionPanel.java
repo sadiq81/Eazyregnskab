@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.panels;
+package dk.eazyit.eazyregnskab.web.components.panels.action;
 
 import dk.eazyit.eazyregnskab.domain.BaseEntity;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;

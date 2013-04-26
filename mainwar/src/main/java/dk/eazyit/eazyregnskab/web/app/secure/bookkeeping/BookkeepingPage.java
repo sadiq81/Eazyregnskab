@@ -1,34 +1,23 @@
 package dk.eazyit.eazyregnskab.web.app.secure.bookkeeping;
 
-import com.vaynberg.wicket.select2.Select2Choice;
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextFieldConfig;
-import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
-import dk.eazyit.eazyregnskab.domain.FinanceAccount;
-import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.web.components.choice.DailyLedgerDropDownChoice;
+import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2Choice;
+import dk.eazyit.eazyregnskab.web.components.choice.VatTypeDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.dataprovider.FinancePostingDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
-import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.models.DraftFinancePostingModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import dk.eazyit.eazyregnskab.web.components.panels.ActionPanel;
-import dk.eazyit.eazyregnskab.web.components.select2providers.FinanceAccountProvider;
 import dk.eazyit.eazyregnskab.web.components.tables.ColumnsForBookkeepingPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
-import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.markup.html.form.ChoiceRenderer;
-import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -37,8 +26,6 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 @MenuPosition(name = "bookkeeping.daybook", parentPage = BookkeepingPage.class, subLevel = 0, topLevelPage = true, topLevel = 1)
 public class BookkeepingPage extends LoggedInPage {
@@ -50,11 +37,9 @@ public class BookkeepingPage extends LoggedInPage {
     @SpringBean
     FinanceAccountService financeAccountService;
 
-    private DropDownChoice<DailyLedger> dailyLedgerDropDownChoice;
-    private DailyLedgerModel dailyLedgerModel;
-    private Select2Choice financeAccount;
-    private Select2Choice reverseFinanceAccount;
-    private DropDownChoice<VatType> vatTypeDropDownChoice;
+    private DailyLedgerDropDownChoice dailyLedgerChoice;
+    private FinanceAccountSelect2Choice reverseFinanceAccountChoice;
+    private VatTypeDropDownChoice vatTypeChoice;
 
     DraftFinancePostingForm form;
     AjaxFallbackDefaultDataTable dataTable;
@@ -78,50 +63,9 @@ public class BookkeepingPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
+        add(dailyLedgerChoice = new DailyLedgerDropDownChoice("dailyLedgerList"));
         add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));
-
-        add(dailyLedgerDropDownChoice = new DropDownChoice<DailyLedger>("dailyLedgerList",
-                dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
-                financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()),
-                new ChoiceRenderer<DailyLedger>("name", "id")));
-
-        dailyLedgerDropDownChoice.add((new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-                LOG.debug("Changed DailyLeger to " + getCurrentDailyLedger().getDailyLedgerModel().getObject());
-                updateDailyLedger(target);
-                target.add(getPage());
-            }
-        }));
-        dailyLedgerDropDownChoice.setOutputMarkupPlaceholderTag(true);
-
-        List<IColumn<DraftFinancePosting, String>> columns = new ColumnsForBookkeepingPage();
-        columns.add(new AbstractColumn<DraftFinancePosting, String>(new ResourceModel("action")) {
-            @Override
-            public void populateItem(Item<ICellPopulator<DraftFinancePosting>> cellItem, String componentId, IModel<DraftFinancePosting> rowModel) {
-                cellItem.add(new BookkeepingActionPanel(componentId, rowModel));
-            }
-        });
-        add(dataTable = new AjaxFallbackDefaultDataTable("chartOfFinancePostings", columns, new FinancePostingDataProvider(), 20));
-    }
-
-    private class BookkeepingActionPanel extends ActionPanel<DraftFinancePosting> {
-
-        public BookkeepingActionPanel(String id, IModel<DraftFinancePosting> model) {
-            super(id, model);
-        }
-
-        @Override
-        protected DraftFinancePostingForm selectItem(DraftFinancePosting draftFinancePosting) {
-            LOG.debug("Selected item " + draftFinancePosting.toString());
-            form.setDefaultModel(new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(draftFinancePosting)));
-            return form;
-        }
-
-        @Override
-        protected void deleteItem(DraftFinancePosting draftFinancePosting) {
-            form.deleteEntity(draftFinancePosting);
-        }
+        add(dataTable = new AjaxFallbackDefaultDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), new FinancePostingDataProvider(), 20));
     }
 
     class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePosting> {
@@ -135,38 +79,11 @@ public class BookkeepingPage extends LoggedInPage {
             super.addToForm();
 
             add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withLanguage("da").withFormat("dd-MM-yyyy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
-
-            add(financeAccount = new Select2Choice<FinanceAccount>("financeAccount"));
-            financeAccount.setProvider(new FinanceAccountProvider());
-            financeAccount.getSettings().setAllowClear(true);
-            financeAccount.setRequired(true);
-            financeAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-                @Override
-                protected void onUpdate(AjaxRequestTarget target) {
-                    FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
-                    FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
-                    VatType vatType = financeAccount.getVatType();
-                    if (reverse != null) {
-                        reverseFinanceAccount.setModelObject(reverse);
-                        target.add(reverseFinanceAccount);
-                    }
-                    if (vatType != null) {
-                        vatTypeDropDownChoice.setModelObject(vatType);
-                        target.add(vatTypeDropDownChoice);
-                    }
-                }
-            });
-
-            add(reverseFinanceAccount = new Select2Choice<FinanceAccount>("reverseFinanceAccount"));
-            reverseFinanceAccount.setProvider(new FinanceAccountProvider());
-            reverseFinanceAccount.getSettings().setAllowClear(true);
-
+            add(reverseFinanceAccountChoice = new FinanceAccountSelect2Choice("reverseFinanceAccount"));
+            add(vatTypeChoice = new VatTypeDropDownChoice("vatType"));
+            add(new FinanceAccountSelect2Choice("financeAccount", reverseFinanceAccountChoice, vatTypeChoice));
             add(new PlaceholderNumberTextField<Double>("amount").setMinimum(new Double(0)).setRequired(true));
-
-            add(vatTypeDropDownChoice = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
-            vatTypeDropDownChoice.setOutputMarkupPlaceholderTag(true);
             add(new PlaceholderTextField<String>("text"));
-
             add(new PlaceholderNumberTextField<Integer>("bookingNumber").setRequired(true));
         }
 
@@ -192,30 +109,8 @@ public class BookkeepingPage extends LoggedInPage {
     @Override
     protected void changedLegalEntity(AjaxRequestTarget target) {
         super.changedLegalEntity(target);
-
-        DropDownChoice<DailyLedger> temp = new DropDownChoice<DailyLedger>("dailyLedgerList",
-                dailyLedgerModel = getCurrentDailyLedger().getDailyLedgerModel(),
-                financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()),
-                new ChoiceRenderer<DailyLedger>("name", "id"));
-        temp.add((new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-                updateDailyLedger(target);
-                target.add(getPage());
-                LOG.debug("Changed dailyLedger to " + getCurrentDailyLedger().getDailyLedgerModel().getObject().toString());
-            }
-        }));
-        temp.setOutputMarkupPlaceholderTag(true);
-        addOrReplace(dailyLedgerDropDownChoice, temp);
-        temp.setParent(this);
-        dailyLedgerDropDownChoice.setParent(this);
-        dailyLedgerDropDownChoice = temp;
-        target.add(dataTable);
-
+        addOrReplace(dailyLedgerChoice, new DailyLedgerDropDownChoice("dailyLedgerList"));
+        addOrReplace(form, new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));
+        target.add(getPage());
     }
-
-    protected void updateDailyLedger(AjaxRequestTarget target) {
-        target.add(dataTable);
-    }
-
 }

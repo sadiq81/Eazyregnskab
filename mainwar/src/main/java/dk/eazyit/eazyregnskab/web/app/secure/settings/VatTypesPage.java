@@ -10,7 +10,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.VatTypeModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import dk.eazyit.eazyregnskab.web.components.panels.ActionPanel;
+import dk.eazyit.eazyregnskab.web.components.panels.action.ActionPanel;
 import dk.eazyit.eazyregnskab.web.components.tables.NumberPropertyColumn;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
