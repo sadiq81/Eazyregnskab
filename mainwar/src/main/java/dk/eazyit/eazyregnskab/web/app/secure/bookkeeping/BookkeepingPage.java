@@ -1,10 +1,7 @@
 package dk.eazyit.eazyregnskab.web.app.secure.bookkeeping;
 
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.web.components.choice.DailyLedgerDropDownChoice;
-import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2Choice;
-import dk.eazyit.eazyregnskab.web.components.choice.VatTypeDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.dataprovider.FinancePostingDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.DraftFinancePostingForm;
 import dk.eazyit.eazyregnskab.web.components.models.DraftFinancePostingModel;
@@ -16,7 +13,6 @@ import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFal
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,14 +23,8 @@ public class BookkeepingPage extends LoggedInPage {
 
     private static final Logger LOG = LoggerFactory.getLogger(BookkeepingPage.class);
 
-    @SpringBean
-    FinanceAccountService financeAccountService;
-
     private DailyLedgerDropDownChoice dailyLedgerChoice;
-    private FinanceAccountSelect2Choice reverseFinanceAccountChoice;
-    private VatTypeDropDownChoice vatTypeChoice;
-
-    DraftFinancePostingForm form;
+    private DraftFinancePostingForm form;
 
     public BookkeepingPage() {
         super();
