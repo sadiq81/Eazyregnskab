@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.tables.columns;
 
-import dk.eazyit.eazyregnskab.web.components.models.FormattedNumberModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.FormattedNumberModel;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.html.basic.Label;

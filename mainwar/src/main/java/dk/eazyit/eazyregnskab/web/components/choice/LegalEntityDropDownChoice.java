@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.choice;
 
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.web.components.models.lists.LegalEntityListModel;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
@@ -20,7 +21,7 @@ public class LegalEntityDropDownChoice extends SessionAwareDropDownChoice<LegalE
         super(id);
         this.parent = parent;
         setDefaultModel(getSelectedLegalEntity().getLegalEntityModel());
-        setChoices(legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()));
+        setChoices(new LegalEntityListModel());
         setChoiceRenderer(new ChoiceRenderer<LegalEntity>("name", "id"));
         setOutputMarkupPlaceholderTag(true);
         add((new AjaxFormComponentUpdatingBehavior("onchange") {

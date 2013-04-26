@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.panels.action;
 
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
-import dk.eazyit.eazyregnskab.web.components.models.DraftFinancePostingModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;
@@ -19,6 +19,7 @@ public class BookkeepingActionPanel extends ActionPanel<DraftFinancePosting> {
 
     public BookkeepingActionPanel(String id, IModel<DraftFinancePosting> model, BaseCreateEditForm<DraftFinancePosting> form) {
         super(id, model);
+        this.form = form;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.tables;
+package dk.eazyit.eazyregnskab.web.components.tables.column;
 
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;

@@ -7,7 +7,7 @@ import dk.eazyit.eazyregnskab.domain.MoneyCurrency;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
-import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;

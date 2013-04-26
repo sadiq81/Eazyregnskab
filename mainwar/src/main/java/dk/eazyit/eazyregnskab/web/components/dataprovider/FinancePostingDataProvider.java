@@ -3,7 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.dataprovider;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
-import dk.eazyit.eazyregnskab.web.components.models.DraftFinancePostingModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;

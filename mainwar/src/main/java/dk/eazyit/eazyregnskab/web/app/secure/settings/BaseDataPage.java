@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.app.secure.settings;
 
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.web.components.form.LegalEntityForm;
-import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;

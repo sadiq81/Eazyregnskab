@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.models;
+package dk.eazyit.eazyregnskab.web.components.models.entities;
 
 import org.apache.wicket.Session;
 import org.apache.wicket.model.IModel;

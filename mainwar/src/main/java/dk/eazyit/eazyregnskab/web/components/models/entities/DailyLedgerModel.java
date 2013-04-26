@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.models;
+package dk.eazyit.eazyregnskab.web.components.models.entities;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;

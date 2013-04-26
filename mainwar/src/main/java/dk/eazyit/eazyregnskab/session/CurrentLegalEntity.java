@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.session;
 
-import dk.eazyit.eazyregnskab.web.components.models.LegalEntityModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

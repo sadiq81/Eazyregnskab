@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.panels.action;
 
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
-import dk.eazyit.eazyregnskab.web.components.models.FinanceAccountModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;

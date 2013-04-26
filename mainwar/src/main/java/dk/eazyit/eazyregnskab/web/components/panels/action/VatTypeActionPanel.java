@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.panels.action;
 
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
-import dk.eazyit.eazyregnskab.web.components.models.VatTypeModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.VatTypeModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;

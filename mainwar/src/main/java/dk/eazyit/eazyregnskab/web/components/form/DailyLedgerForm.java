@@ -3,7 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
-import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;

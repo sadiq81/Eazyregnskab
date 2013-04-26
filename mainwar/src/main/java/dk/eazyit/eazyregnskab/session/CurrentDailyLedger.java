@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.session;
 
-import dk.eazyit.eazyregnskab.web.components.models.DailyLedgerModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.models;
+package dk.eazyit.eazyregnskab.web.components.models.entities;
 
 import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import org.apache.wicket.model.IModel;
@@ -9,8 +9,6 @@ import javax.persistence.EntityNotFoundException;
  * @author Eazy It
  */
 public abstract class AbstractEntityModel<T extends EntityWithLongId> implements IModel<T> {
-
-
 
     private final Class clazz;
     protected Long id;

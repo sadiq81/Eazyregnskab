@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.session;
 
-import dk.eazyit.eazyregnskab.web.components.models.AppUserModel;
+import dk.eazyit.eazyregnskab.web.components.models.entities.AppUserModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
