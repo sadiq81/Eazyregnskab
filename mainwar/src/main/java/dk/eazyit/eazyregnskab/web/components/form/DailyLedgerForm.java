@@ -4,6 +4,7 @@ import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
+import dk.eazyit.eazyregnskab.web.components.validators.forms.DailyLedgerFormValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -18,6 +19,8 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
 
     private static final Logger LOG = LoggerFactory.getLogger(DailyLedgerForm.class);
 
+    PlaceholderTextField name;
+
     public DailyLedgerForm(String id, IModel<DailyLedger> model) {
         super(id, model);
     }
@@ -25,7 +28,8 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(new PlaceholderTextField<String>("name").setRequired(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
+        add(new DailyLedgerFormValidator(name));
     }
 
     @Override

@@ -10,12 +10,14 @@ import java.util.Set;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, query = "select dl from DailyLedger dl where dl.legalEntity= ?1 ")
+        @NamedQuery(name = DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, query = "select dl from DailyLedger dl where dl.legalEntity= ?1 "),
+        @NamedQuery(name = DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY, query = "select dl from DailyLedger dl where dl.name =?1 AND dl.legalEntity= ?2 ")
 })
 @Table(name = "dailyledger")
 public class DailyLedger extends BaseEntity {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "DailyLedger::findByLegalEntity";
+    public static final String QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY = "DailyLedger::findByNameAndLegalEntity";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
