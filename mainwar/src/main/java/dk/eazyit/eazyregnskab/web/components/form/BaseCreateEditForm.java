@@ -1,6 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
 import dk.eazyit.eazyregnskab.domain.BaseEntity;
+import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
+import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
+import dk.eazyit.eazyregnskab.session.CurrentUser;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
@@ -17,6 +20,7 @@ import org.slf4j.LoggerFactory;
 public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
     private static final Logger LOG = LoggerFactory.getLogger(BaseCreateEditForm.class);
+    protected final static int DURATION = 5;
 
     protected BaseCreateEditForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));
@@ -111,6 +115,18 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
     protected boolean isDeleteButtonVisible() {
         return false;
+    }
+
+    protected CurrentUser getCurrentUser() {
+        return (CurrentUser) getSession().getAttribute(CurrentUser.ATTRIBUTE_NAME);
+    }
+
+    protected CurrentLegalEntity getSelectedLegalEntity() {
+        return (CurrentLegalEntity) getSession().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    }
+
+    protected CurrentDailyLedger getCurrentDailyLedger() {
+        return (CurrentDailyLedger) getSession().getAttribute(CurrentDailyLedger.ATTRIBUTE_NAME);
     }
 
 }
