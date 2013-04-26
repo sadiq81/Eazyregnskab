@@ -10,6 +10,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
+import dk.eazyit.eazyregnskab.web.components.validators.forms.DraftFinancePostingFormValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -24,6 +25,8 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     @SpringBean
     FinanceAccountService financeAccountService;
 
+    PlaceholderTextField text;
+    private FinanceAccountSelect2Choice financeAccountChoice;
     private FinanceAccountSelect2Choice reverseFinanceAccountChoice;
     private VatTypeDropDownChoice vatTypeChoice;
 
@@ -38,10 +41,11 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
         add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withLanguage("da").withFormat("dd-MM-yyyy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(reverseFinanceAccountChoice = new FinanceAccountSelect2Choice("reverseFinanceAccount"));
         add(vatTypeChoice = new VatTypeDropDownChoice("vatType"));
-        add(new FinanceAccountSelect2Choice("financeAccount", reverseFinanceAccountChoice, vatTypeChoice));
-        add(new PlaceholderNumberTextField<Double>("amount").setMinimum(new Double(0)).setRequired(true));
-        add(new PlaceholderTextField<String>("text"));
-        add(new PlaceholderNumberTextField<Integer>("bookingNumber").setRequired(true));
+        add(financeAccountChoice = new FinanceAccountSelect2Choice("financeAccount", reverseFinanceAccountChoice, vatTypeChoice));
+        add(new PlaceholderNumberTextField<Double>("amount").setMaximum(new Double(1000000)).setRequired(true));
+        add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text").setRequired(true));
+        add(new PlaceholderNumberTextField<Integer>("bookingNumber").setMaximum(Integer.MAX_VALUE).setRequired(true));
+        add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice));
     }
 
     @Override
