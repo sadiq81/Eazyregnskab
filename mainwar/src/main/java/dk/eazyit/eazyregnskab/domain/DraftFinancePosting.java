@@ -63,7 +63,7 @@ public class DraftFinancePosting extends BaseEntity {
     @Transient
     private double vatAmount;
 
-    @Transient
+    @Column
     private boolean chosen;
 
     public DraftFinancePosting() {

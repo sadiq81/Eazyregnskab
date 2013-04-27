@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.web.app.secure.bookkeeping;
 
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
+import dk.eazyit.eazyregnskab.services.BookingService;
 import dk.eazyit.eazyregnskab.web.components.choice.DailyLedgerDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.dataprovider.FinancePostingDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.DraftFinancePostingForm;
@@ -9,10 +10,14 @@ import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForBookkeepingPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +30,11 @@ public class BookkeepingPage extends LoggedInPage {
 
     private DailyLedgerDropDownChoice dailyLedgerChoice;
     private DraftFinancePostingForm form;
+    private FinancePostingDataProvider financePostingDataProvider;
+    private Form book;
+
+    @SpringBean
+    BookingService bookingService;
 
     public BookkeepingPage() {
         super();
@@ -47,7 +57,25 @@ public class BookkeepingPage extends LoggedInPage {
 
         add(dailyLedgerChoice = new DailyLedgerDropDownChoice("dailyLedgerList"));
         add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));
-        add(new AjaxFallbackDefaultDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), new FinancePostingDataProvider(), 20));
+        add(new AjaxFallbackDefaultDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), financePostingDataProvider = new FinancePostingDataProvider(), 20));
+
+        add(book = new Form("book"));
+        book.add(new AjaxButton("bookChosen", new ResourceModel("button.book.chosen")) {
+            @Override
+            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                super.onSubmit(target, form);
+                bookingService.BookChosen(getCurrentDailyLedger().getDailyLedgerModel().getObject());
+                target.add(getPage());
+            }
+        });
+        book.add(new AjaxButton("bookAll", new ResourceModel("button.book.all")) {
+            @Override
+            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                super.onSubmit(target, form);
+                bookingService.BookAll(getCurrentDailyLedger().getDailyLedgerModel().getObject());
+                target.add(getPage());
+            }
+        });
 
     }
 

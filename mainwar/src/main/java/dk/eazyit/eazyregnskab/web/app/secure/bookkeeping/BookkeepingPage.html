@@ -6,7 +6,7 @@
 <wicket:extend>
 
     <style>
-        .select2-container.span2{
+        .select2-container.span2 {
             margin-left: 0;
         }
 
@@ -14,7 +14,9 @@
 
     <div class="row">
         <div class="span10">
-            <h6><wicket:message key="daily.ledger"></wicket:message></h6>
+            <h6>
+                <wicket:message key="daily.ledger"></wicket:message>
+            </h6>
             <select wicket:id="dailyLedgerList"></select>
         </div>
     </div>
@@ -48,7 +50,9 @@
                     </tr>
 
                     <tr>
-                        <td><wicket:message key="bookingNumber"></wicket:message></td>
+                        <td>
+                            <wicket:message key="bookingNumber"></wicket:message>
+                        </td>
                         <td>
                             <wicket:message key="finance.account.reverse"></wicket:message>
                         </td>
@@ -70,6 +74,21 @@
                             <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
                             <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
                             <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span10">
+            <form wicket:id="book">
+                <table>
+                    <tr>
+                        <td>
+                            <input wicket:id="bookChosen" class="btn btn-success" type="submit" value="bookChosen"/>
+                            <input wicket:id="bookAll" class="btn btn-success" type="submit" value="bookAll"/>
                         </td>
                     </tr>
                 </table>

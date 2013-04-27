@@ -234,7 +234,11 @@ public class FinanceAccountService {
 
     @Transactional
     public void saveDraftFinancePosting(DraftFinancePosting draftFinancePosting) {
-        draftFinancePostingDAO.save(draftFinancePosting);
+        if (draftFinancePosting.getId() == 0) {
+            draftFinancePostingDAO.create(draftFinancePosting);
+        } else {
+            draftFinancePostingDAO.save(draftFinancePosting);
+        }
     }
 
     @Transactional
