@@ -45,7 +45,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
         add(new PlaceholderNumberTextField<Double>("amount").setMaximum(new Double(1000000)).setRequired(true));
         add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text").setRequired(true));
         add(new PlaceholderNumberTextField<Integer>("bookingNumber").setMaximum(Integer.MAX_VALUE).setRequired(true));
-        add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice));
+        add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice, vatTypeChoice));
     }
 
     @Override

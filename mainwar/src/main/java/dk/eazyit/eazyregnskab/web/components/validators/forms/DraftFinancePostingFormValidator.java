@@ -23,6 +23,7 @@ public class DraftFinancePostingFormValidator extends BaseFormValidator {
         final FormComponent<?> text = getDependentFormComponents()[0];
         final FormComponent<?> financeAccount = getDependentFormComponents()[1];
         final FormComponent<?> reverseFinanceAccount = getDependentFormComponents()[2];
+        final FormComponent<?> vat = getDependentFormComponents()[3];
 
 
         //TODO Check date within accounting year
@@ -34,7 +35,9 @@ public class DraftFinancePostingFormValidator extends BaseFormValidator {
         if (financeAccount.getConvertedInput() == null && reverseFinanceAccount.getConvertedInput() == null) {
             error(financeAccount, "must.chose.one.finance.account");
         }
-
+        if (financeAccount.getConvertedInput() == null && vat.getConvertedInput() != null) {
+            error(financeAccount, "must.choose.account.for.vat");
+        }
 
     }
 }

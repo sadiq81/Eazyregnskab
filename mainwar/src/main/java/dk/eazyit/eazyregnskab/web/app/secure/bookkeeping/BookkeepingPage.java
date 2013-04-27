@@ -1,5 +1,8 @@
 package dk.eazyit.eazyregnskab.web.app.secure.bookkeeping;
 
+import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
+import dk.eazyit.eazyregnskab.domain.BookingResult;
+import dk.eazyit.eazyregnskab.domain.BookingStatus;
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
 import dk.eazyit.eazyregnskab.services.BookingService;
 import dk.eazyit.eazyregnskab.web.components.choice.DailyLedgerDropDownChoice;
@@ -16,8 +19,10 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.util.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +37,7 @@ public class BookkeepingPage extends LoggedInPage {
     private DraftFinancePostingForm form;
     private FinancePostingDataProvider financePostingDataProvider;
     private Form book;
+    BookingResult bookingResult;
 
     @SpringBean
     BookingService bookingService;
@@ -64,7 +70,12 @@ public class BookkeepingPage extends LoggedInPage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
-                bookingService.BookChosen(getCurrentDailyLedger().getDailyLedgerModel().getObject());
+                bookingService.BookChosen(getCurrentDailyLedger().getDailyLedgerModel().getObject(), bookingResult = new BookingResult());
+                if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
+                    getSession().error(new NotificationMessage(
+                            new StringResourceModel("following.postings.did.not.balance", this, null, "",bookingResult.getListOfErrors()))
+                            .hideAfter(Duration.seconds(DURATION)));
+                }
                 target.add(getPage());
             }
         });
@@ -72,11 +83,15 @@ public class BookkeepingPage extends LoggedInPage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
-                bookingService.BookAll(getCurrentDailyLedger().getDailyLedgerModel().getObject());
+                bookingService.BookAll(getCurrentDailyLedger().getDailyLedgerModel().getObject(), bookingResult = new BookingResult());
+                if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
+                    getSession().error(new NotificationMessage(
+                            new StringResourceModel("following.postings.did.not.balance", this, null, "",bookingResult.getListOfErrors()))
+                            .hideAfter(Duration.seconds(DURATION)));
+                }
                 target.add(getPage());
             }
         });
-
     }
 
 

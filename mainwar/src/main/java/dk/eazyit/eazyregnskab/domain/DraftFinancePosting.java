@@ -43,7 +43,7 @@ public class DraftFinancePosting extends BaseEntity {
     @Column(unique = false, nullable = false, precision = 15, scale = 2)
     private Double amount;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "financeaccount_id")
     private FinanceAccount financeAccount;
 

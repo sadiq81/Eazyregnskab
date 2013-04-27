@@ -27,15 +27,17 @@ public class FinanceAccountSelect2Choice extends Select2Choice<FinanceAccount> {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
-                FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
-                VatType vatType = financeAccount.getVatType();
-                if (reverse != null) {
-                    reverseFinanceAccountChoice.setModelObject(reverse);
-                    target.add(reverseFinanceAccountChoice);
-                }
-                if (vatType != null) {
-                    vatTypeChoice.setModelObject(vatType);
-                    target.add(vatTypeChoice);
+                if (financeAccount != null) {
+                    FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
+                    VatType vatType = financeAccount.getVatType();
+                    if (reverse != null) {
+                        reverseFinanceAccountChoice.setModelObject(reverse);
+                        target.add(reverseFinanceAccountChoice);
+                    }
+                    if (vatType != null) {
+                        vatTypeChoice.setModelObject(vatType);
+                        target.add(vatTypeChoice);
+                    }
                 }
             }
         });

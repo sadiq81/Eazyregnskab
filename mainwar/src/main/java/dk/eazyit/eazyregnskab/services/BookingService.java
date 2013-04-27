@@ -2,18 +2,12 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.BookedFinancePostingDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.DraftFinancePostingDAO;
-import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
-import dk.eazyit.eazyregnskab.domain.DailyLedger;
-import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
-import dk.eazyit.eazyregnskab.domain.DraftFinancePostingBatch;
+import dk.eazyit.eazyregnskab.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author
@@ -30,7 +24,7 @@ public class BookingService {
     FinanceAccountService financeAccountService;
 
     @Transactional
-    public void BookChosen(DailyLedger dailyLedger) {
+    public void BookChosen(DailyLedger dailyLedger, BookingResult result) {
         List<DraftFinancePosting> draftFinancePostingList = financeAccountService.findPostingsFromDailyLedger(dailyLedger);
         List<DraftFinancePosting> markedForSave = new ArrayList<DraftFinancePosting>();
         for (DraftFinancePosting draftFinancePosting : draftFinancePostingList) {
@@ -38,78 +32,89 @@ public class BookingService {
                 markedForSave.add(draftFinancePosting);
             }
         }
-        processDraftFinancePostings(markedForSave);
+        createBookedFinancePostings(markedForSave, result);
     }
 
     @Transactional
-    public void BookAll(DailyLedger dailyLedger) {
+    public void BookAll(DailyLedger dailyLedger, BookingResult result) {
         List<DraftFinancePosting> draftFinancePostingList = financeAccountService.findPostingsFromDailyLedger(dailyLedger);
-        processDraftFinancePostings(draftFinancePostingList);
+        createBookedFinancePostings(draftFinancePostingList, result);
     }
 
-    @Transactional
-    private void processDraftFinancePostings(List<DraftFinancePosting> draftFinancePostings) {
+    private void createBookedFinancePostings(List<DraftFinancePosting> draftFinancePostings, BookingResult result) {
 
-        Map<Integer, DraftFinancePostingBatch> map = new HashMap<Integer, DraftFinancePostingBatch>();
+        Map<Integer, BookedFinancePostingBatch> map = new HashMap<Integer, BookedFinancePostingBatch>();
 
         for (DraftFinancePosting draftFinancePosting : draftFinancePostings) {
 
-            DraftFinancePostingBatch batch = map.get(draftFinancePosting.getBookingNumber());
+            List<BookedFinancePosting> list = createBookedFinancePostings(draftFinancePosting);
+            BookedFinancePostingBatch batch = map.get(draftFinancePosting.getBookingNumber());
+
             if (batch == null) {
-                batch = new DraftFinancePostingBatch(draftFinancePosting.getBookingNumber());
+                batch = new BookedFinancePostingBatch(draftFinancePosting.getBookingNumber());
             }
-            batch.getList().add(draftFinancePosting);
-            map.put(draftFinancePosting.getBookingNumber(), batch);
+            batch.getDraftFinancePostingList().add(draftFinancePosting);
+            batch.getList().addAll(list);
+            map.put(batch.getBookingNumber(), batch);
         }
-        seperateSingleFromMultiple(map);
+
+        checkBookedFinancePostingsForBalance(map, result);
     }
 
-    @Transactional
-    private void seperateSingleFromMultiple(Map<Integer, DraftFinancePostingBatch> map) {
+    private void checkBookedFinancePostingsForBalance(Map<Integer, BookedFinancePostingBatch> map, BookingResult result) {
 
-        for (Map.Entry<Integer, DraftFinancePostingBatch> entry : map.entrySet()) {
 
-            if (entry.getValue().getList().size() == 1) {
-                singleDraftFinancePosting(entry.getValue());
+        for (Map.Entry<Integer, BookedFinancePostingBatch> entry : map.entrySet()) {
+
+            Double amount = new Double(0);
+            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
+                amount += bookedFinancePosting.getAmount();
+            }
+
+            if (amount != 0) {
+
+                result.setBookingStatus(BookingStatus.ERROR);
+                result.getList().add(entry.getKey());
+
             } else {
-                multipleDraftFinancePosting(entry.getValue());
+
+                for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
+                    bookedFinancePostingDAO.save(bookedFinancePosting);
+                }
+                for (DraftFinancePosting draftFinancePosting : entry.getValue().getDraftFinancePostingList()) {
+                    draftFinancePostingDAO.delete(draftFinancePosting);
+                }
             }
         }
     }
 
-    private void singleDraftFinancePosting(DraftFinancePostingBatch draftFinancePostingBatch) {
+    private List<BookedFinancePosting> createBookedFinancePostings(DraftFinancePosting draftFinancePosting) {
 
-        DraftFinancePosting draftFinancePosting = draftFinancePostingBatch.getList().get(0);
+        List<BookedFinancePosting> list = new LinkedList<BookedFinancePosting>();
+        BookedFinancePosting posting = null;
+        BookedFinancePosting reverse = null;
+        BookedFinancePosting vat = null;
 
-        if (draftFinancePosting.getFinanceAccount() == null && draftFinancePosting.getReverseFinanceAccount() == null) {
-            //Error
-        } else {
-
-            BookedFinancePosting posting = setupBaseData(draftFinancePosting);
-            BookedFinancePosting reverse = setupBaseData(draftFinancePosting);
-            BookedFinancePosting vat = null;
-
+        if (draftFinancePosting.getFinanceAccount() != null) {
+            posting = setupBaseData(draftFinancePosting);
             posting.setAmount(draftFinancePosting.getAmount());
             posting.setFinanceAccount(draftFinancePosting.getFinanceAccount());
-
+            list.add(posting);
+        }
+        if (draftFinancePosting.getReverseFinanceAccount() != null) {
+            reverse = setupBaseData(draftFinancePosting);
             reverse.setAmount(0 - draftFinancePosting.getAmount());
             reverse.setFinanceAccount(draftFinancePosting.getReverseFinanceAccount());
-
-            if (draftFinancePosting.getVatType() != null) {
-                vat = setupBaseData(draftFinancePosting);
-                vat.setAmount(draftFinancePosting.getAmount() * (draftFinancePosting.getVatType().getPercentage() / 100));
-                vat.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccount());
-                posting.setAmount(posting.getAmount() - vat.getAmount());
-            }
-            bookedFinancePostingDAO.save(posting);
-            bookedFinancePostingDAO.save(reverse);
-            if (vat != null) bookedFinancePostingDAO.save(vat);
+            list.add(reverse);
         }
-        draftFinancePostingDAO.delete(draftFinancePosting);
-    }
-
-    private void multipleDraftFinancePosting(DraftFinancePostingBatch draftFinancePostingBatch) {
-
+        if (draftFinancePosting.getVatType() != null) {
+            vat = setupBaseData(draftFinancePosting);
+            vat.setAmount(draftFinancePosting.getAmount() * (draftFinancePosting.getVatType().getPercentage() / 100));
+            vat.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccount());
+            list.add(vat);
+            posting.setAmount(posting.getAmount() - vat.getAmount());
+        }
+        return list;
     }
 
     private BookedFinancePosting setupBaseData(DraftFinancePosting draftFinancePosting) {
