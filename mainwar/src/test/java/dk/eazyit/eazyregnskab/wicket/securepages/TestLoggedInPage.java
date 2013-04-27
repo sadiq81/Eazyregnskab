@@ -16,7 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import java.util.List;
 /**
  * @author
  */
-@TransactionConfiguration(transactionManager = "transactionManager")
+@Transactional
 public abstract class TestLoggedInPage extends TestBaseCase {
 
 

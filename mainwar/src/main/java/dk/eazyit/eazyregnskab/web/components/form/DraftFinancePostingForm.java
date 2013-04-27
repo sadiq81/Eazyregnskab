@@ -38,7 +38,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void addToForm() {
         super.addToForm();
 
-        add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withLanguage("da").withFormat("dd-MM-yyyy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
+        add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withLanguage("da").withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(reverseFinanceAccountChoice = new FinanceAccountSelect2Choice("reverseFinanceAccount"));
         add(vatTypeChoice = new VatTypeDropDownChoice("vatType"));
         add(financeAccountChoice = new FinanceAccountSelect2Choice("financeAccount", reverseFinanceAccountChoice, vatTypeChoice));
