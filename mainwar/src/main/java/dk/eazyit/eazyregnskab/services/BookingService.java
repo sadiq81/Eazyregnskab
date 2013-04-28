@@ -66,24 +66,51 @@ public class BookingService {
 
         for (Map.Entry<Integer, BookedFinancePostingBatch> entry : map.entrySet()) {
 
+            BookingStatus bookingStatus = BookingStatus.SUCCESS;
+
             Double amount = new Double(0);
+            List<Date> dateList = new ArrayList<Date>();
+
             for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
                 amount += bookedFinancePosting.getAmount();
+                dateList.add(bookedFinancePosting.getDate());
             }
 
+            //Check balance of posting
             if (amount != 0) {
+                bookingStatus = BookingStatus.ERROR;
+            }
+            //Check same date
+            Date prev = null;
+            for (Date date : dateList) {
 
+                if (prev == null) prev = date;
+
+                if (date.compareTo(prev) != 0) {
+                    bookingStatus = BookingStatus.ERROR;
+                    break;
+                }
+                prev = date;
+            }
+
+            //Remove if error
+            if (bookingStatus == BookingStatus.ERROR) {
                 result.setBookingStatus(BookingStatus.ERROR);
                 result.getList().add(entry.getKey());
+                map.remove(entry.getKey());
+            }
+        }
+        saveCheckedBookedFinancePostings(map);
+    }
 
-            } else {
+    private void saveCheckedBookedFinancePostings(Map<Integer, BookedFinancePostingBatch> map) {
 
-                for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
-                    bookedFinancePostingDAO.save(bookedFinancePosting);
-                }
-                for (DraftFinancePosting draftFinancePosting : entry.getValue().getDraftFinancePostingList()) {
-                    draftFinancePostingDAO.delete(draftFinancePosting);
-                }
+        for (Map.Entry<Integer, BookedFinancePostingBatch> entry : map.entrySet()) {
+            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
+                bookedFinancePostingDAO.save(bookedFinancePosting);
+            }
+            for (DraftFinancePosting draftFinancePosting : entry.getValue().getDraftFinancePostingList()) {
+                draftFinancePostingDAO.delete(draftFinancePosting);
             }
         }
     }
