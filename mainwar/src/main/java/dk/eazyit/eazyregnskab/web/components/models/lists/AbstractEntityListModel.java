@@ -1,6 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.models.lists;
 
 import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
+import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
+import dk.eazyit.eazyregnskab.session.CurrentUser;
+import org.apache.wicket.Session;
 import org.apache.wicket.model.IModel;
 
 import java.util.ArrayList;
@@ -11,8 +14,8 @@ import java.util.List;
  */
 public abstract class AbstractEntityListModel<T extends EntityWithLongId, E extends EntityWithLongId> implements IModel<List<T>> {
 
-    private E parent = null;
-    private List<T> list = null;
+    protected E parent = null;
+    protected List<T> list = null;
 
     protected AbstractEntityListModel() {
     }
@@ -55,5 +58,13 @@ public abstract class AbstractEntityListModel<T extends EntityWithLongId, E exte
     protected abstract E fetchParent();
 
     public abstract void setObject(List<T> object);
+
+    protected CurrentLegalEntity getSelectedLegalEntity() {
+        return (CurrentLegalEntity) Session.get().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    }
+
+    protected CurrentUser getCurrentUser() {
+        return (CurrentUser) Session.get().getAttribute(CurrentUser.ATTRIBUTE_NAME);
+    }
 
 }

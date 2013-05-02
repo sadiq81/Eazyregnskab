@@ -3,8 +3,6 @@ package dk.eazyit.eazyregnskab.web.components.models.lists;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
-import dk.eazyit.eazyregnskab.session.CurrentUser;
-import org.apache.wicket.Session;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -51,9 +49,5 @@ public class LegalEntityListModel extends AbstractEntityListModel<LegalEntity, A
         for (LegalEntity legalEntity : object) {
             legalEntityService.saveLegalEntity(fetchParent(), legalEntity);
         }
-    }
-
-    protected CurrentUser getCurrentUser() {
-        return (CurrentUser) Session.get().getAttribute(CurrentUser.ATTRIBUTE_NAME);
     }
 }

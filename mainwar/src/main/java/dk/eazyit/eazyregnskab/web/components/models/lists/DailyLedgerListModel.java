@@ -3,8 +3,6 @@ package dk.eazyit.eazyregnskab.web.components.models.lists;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
-import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
-import org.apache.wicket.Session;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -49,11 +47,9 @@ public class DailyLedgerListModel extends AbstractEntityListModel<DailyLedger, L
     @Override
     public void setObject(List<DailyLedger> object) {
         for (DailyLedger dailyLedger : object) {
-            financeAccountService.saveDailyLedger(dailyLedger, dailyLedger.getLegalEntity());
+            financeAccountService.saveDailyLedger(dailyLedger, fetchParent());
         }
     }
 
-    protected CurrentLegalEntity getSelectedLegalEntity() {
-        return (CurrentLegalEntity) Session.get().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
-    }
+
 }

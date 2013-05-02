@@ -1,7 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.models.lists;
 
+import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
-import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -13,30 +13,30 @@ import java.util.List;
 /**
  * @author EazyIT
  */
-public class VatTypeListModel extends AbstractEntityListModel<VatType, LegalEntity> {
+public class FinanceAccountListModel extends AbstractEntityListModel<FinanceAccount, LegalEntity> {
 
     @SpringBean
     FinanceAccountService financeAccountService;
 
-    static final Logger LOG = LoggerFactory.getLogger(VatTypeListModel.class);
+    static final Logger LOG = LoggerFactory.getLogger(FinanceAccountListModel.class);
 
-    public VatTypeListModel() {
+    public FinanceAccountListModel() {
         Injector.get().inject(this);
     }
 
-    public VatTypeListModel(LegalEntity parent) {
+    public FinanceAccountListModel(LegalEntity parent) {
         super(parent);
         Injector.get().inject(this);
     }
 
-    public VatTypeListModel(LegalEntity parent, List<VatType> list) {
+    public FinanceAccountListModel(LegalEntity parent, List<FinanceAccount> list) {
         super(parent, list);
         Injector.get().inject(this);
     }
 
     @Override
-    protected List<VatType> load(LegalEntity id) {
-        return financeAccountService.findAllVatTypesForLegalEntity(id);
+    protected List<FinanceAccount> load(LegalEntity id) {
+        return financeAccountService.findFinanceAccountByLegalEntity(id);
     }
 
     @Override
@@ -45,9 +45,10 @@ public class VatTypeListModel extends AbstractEntityListModel<VatType, LegalEnti
     }
 
     @Override
-    public void setObject(List<VatType> object) {
-        for (VatType vatType : object) {
-            financeAccountService.saveVatType(vatType, fetchParent());
+    public void setObject(List<FinanceAccount> object) {
+        for (FinanceAccount financeAccount : object) {
+            financeAccountService.saveFinanceAccount(financeAccount, fetchParent());
         }
     }
+
 }

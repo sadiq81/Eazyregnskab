@@ -63,6 +63,7 @@ public class BookingService {
 
     private void checkBookedFinancePostingsForBalance(Map<Integer, BookedFinancePostingBatch> map, BookingResult result) {
 
+        Map<Integer, BookedFinancePostingBatch> toBedSaved = new HashMap<Integer, BookedFinancePostingBatch>(map);
 
         for (Map.Entry<Integer, BookedFinancePostingBatch> entry : map.entrySet()) {
 
@@ -97,10 +98,10 @@ public class BookingService {
             if (bookingStatus == BookingStatus.ERROR) {
                 result.setBookingStatus(BookingStatus.ERROR);
                 result.getList().add(entry.getKey());
-                map.remove(entry.getKey());
+                toBedSaved.remove(entry.getKey());
             }
         }
-        saveCheckedBookedFinancePostings(map);
+        saveCheckedBookedFinancePostings(toBedSaved);
     }
 
     private void saveCheckedBookedFinancePostings(Map<Integer, BookedFinancePostingBatch> map) {

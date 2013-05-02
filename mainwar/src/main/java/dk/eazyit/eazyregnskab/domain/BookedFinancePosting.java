@@ -1,11 +1,12 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
+import org.apache.wicket.Session;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,16 +14,19 @@ import java.util.Date;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from DraftFinancePosting fp " +
-                "WHERE fp.financeAccount = ?1"),
-        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select fp from DraftFinancePosting fp " +
-                "WHERE fp.vatType = ?1")
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select bp from BookedFinancePosting bp " +
+                "WHERE bp.financeAccount = ?1"),
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select bp from BookedFinancePosting bp " +
+                "WHERE bp.vatType = ?1"),
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY, query = "select bp from BookedFinancePosting bp " +
+                        "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1)"),
 
 })
 @Table(name = "bookedfinanceposting")
 public class BookedFinancePosting extends BaseEntity {
 
     public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "BookedFinancePosting::findBookedFinancePostingByFinanceAccount";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY = "BookedFinancePosting::findBookedFinancePostingByLegalEntity";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE = "BookedFinancePosting::findBookedFinancePostingByVatType";
 
     @Id
@@ -54,6 +58,9 @@ public class BookedFinancePosting extends BaseEntity {
     @JoinColumn(name = "vatType_id")
     private VatType vatType;
 
+    @Transient
+    private Double sum;
+
     public BookedFinancePosting() {
     }
 
@@ -80,6 +87,12 @@ public class BookedFinancePosting extends BaseEntity {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getSimpleFormatDate()
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-YYYY");
+        return sdf.format(getDate());
     }
 
     public String getText() {
@@ -120,6 +133,14 @@ public class BookedFinancePosting extends BaseEntity {
 
     public void setVatType(VatType vatType) {
         this.vatType = vatType;
+    }
+
+    public Double getSum() {
+        return sum;
+    }
+
+    public void setSum(Double sum) {
+        this.sum = sum;
     }
 
     @Override

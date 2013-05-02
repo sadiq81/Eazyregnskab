@@ -61,6 +61,18 @@ public class FinanceAccountService {
         return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger);
     }
 
+    @Transactional(readOnly = true)
+    public List<BookedFinancePosting> findPostingsFromFinanceAccount(FinanceAccount financeAccount) {
+        LOG.debug("Finding all BookedFinancePosting from FinanceAccount " + financeAccount.toString());
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount);
+    }
+
+    @Transactional(readOnly = true)
+    public List<BookedFinancePosting> findPostingsFromLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Finding all BookedFinancePosting from LegalEntity " + legalEntity.toString());
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY, legalEntity);
+    }
+
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 

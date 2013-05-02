@@ -53,6 +53,8 @@ public class FinanceAccount extends BaseEntity {
     @JoinColumn(name = "legalentity_id")
     private LegalEntity legalEntity;
 
+    @Transient
+    private Double sum;
 
     public FinanceAccount() {
     }
@@ -126,6 +128,15 @@ public class FinanceAccount extends BaseEntity {
     public FinanceAccount setLegalEntity(LegalEntity legalEntity) {
         this.legalEntity = legalEntity;
         return this;
+    }
+
+    public Double getSum() {
+        if (sum == null) return new Double(0);
+        return sum;
+    }
+
+    public void setSum(Double sum) {
+        this.sum = sum;
     }
 
     @Override

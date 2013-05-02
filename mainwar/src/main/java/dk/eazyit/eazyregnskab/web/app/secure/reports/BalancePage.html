@@ -5,6 +5,33 @@
 
 <wicket:extend>
 
+    <table class="table table-condensed">
+        <tr>
+            <th>
+                <wicket:message key="account.number"></wicket:message>
+            </th>
+            <th>
+                <wicket:message key="account.name"></wicket:message>
+            </th>
+            <th>
+                <wicket:message key="account.sum"></wicket:message>
+            </th>
+        </tr>
+        <span wicket:id="financeAccounts">
+            <tr>
+                <td>
+                    <span wicket:id="accountNumber"></span>
+                </td>
+                <td>
+                    <span wicket:id="accountName"></span>
+                </td>
+                <td>
+                    <span wicket:id="sum"></span>
+                </td>
+            </tr>
+        </span>
+    </table>
+
 
 </wicket:extend>
 
