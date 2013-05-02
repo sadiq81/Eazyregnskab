@@ -17,7 +17,7 @@ public class TestLoginService extends TestBaseCase {
     @Test
     @Rollback(false)
     public void testCreateNewUserAndFindUser() {
-        loginService.createUser("AppUser", "AppUser");
+        loginService.createUser("AppUser", "AppUser","tommy@sadiq.dk");
         AppUser user = loginService.findAppUserByUsername("AppUser");
         Assert.assertTrue(user.getUsername().equals("AppUser"));
 

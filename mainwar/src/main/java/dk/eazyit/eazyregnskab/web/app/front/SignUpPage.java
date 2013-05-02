@@ -7,6 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderPasswordField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.CreateAccountFormValidator;
+import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
@@ -55,25 +56,25 @@ public class SignUpPage extends AppBasePage  {
 
         add(new NotificationPanel("feedback"));
 
-        SignInForm form = new SignInForm("create_account", new CompoundPropertyModel<CreateAppUserInfo>(createInfo = new CreateAppUserInfo()));
+        SignUpForm form = new SignUpForm("create_account", new CompoundPropertyModel<CreateAppUserInfo>(createInfo = new CreateAppUserInfo()));
         add(form);
     }
 
-    public final class SignInForm extends Form<CreateAppUserInfo> {
+    public final class SignUpForm extends Form<CreateAppUserInfo> {
 
-        public SignInForm(final String id, IModel model) {
+        public SignUpForm(final String id, IModel model) {
             super(id, model);
-
             add(username = new PlaceholderTextField<String>("username"));
             add(password = new PlaceholderPasswordField("password"));
             add(repeatPassword = new PlaceholderPasswordField("repeat_password"));
+            add(new EmailTextField("email"));
             add(new CreateAccountFormValidator(username, password, repeatPassword));
         }
 
         @Override
         public final void onSubmit() {
             CreateAppUserInfo userinfo = getModelObject();
-            loginService.createUser(userinfo.getUsername(), userinfo.getPassword());
+            loginService.createUser(userinfo.getUsername(), userinfo.getPassword(), userinfo.getEmail());
             LOG.info("Created account for " + userinfo.getUsername());
             getSession().info(getString("account.created.for.user") + " " + userinfo.getUsername());
         }

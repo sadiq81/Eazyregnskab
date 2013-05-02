@@ -10,14 +10,16 @@ public class CreateAppUserInfo implements Serializable {
     private String username = null;
     private String password = null;
     private String repeat_password = null;
+    private String email = null;
 
     public CreateAppUserInfo() {
     }
 
-    public CreateAppUserInfo(String username, String password, String repeat_password) {
+    public CreateAppUserInfo(String username, String password, String repeat_password, String email) {
         this.username = username;
         this.password = password;
         this.repeat_password = repeat_password;
+        this.email = email;
     }
 
     public String getUsername() {
@@ -42,5 +44,13 @@ public class CreateAppUserInfo implements Serializable {
 
     public void setRepeat_password(String repeat_password) {
         this.repeat_password = repeat_password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

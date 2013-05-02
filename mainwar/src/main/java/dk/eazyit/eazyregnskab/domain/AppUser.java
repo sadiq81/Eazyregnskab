@@ -28,14 +28,20 @@ public class AppUser extends BaseEntity {
     private boolean enabled;
     @OneToMany(mappedBy = "appUser", fetch = FetchType.LAZY)
     private Set<AppUserRole> appUserRoles;
+    @Column
+    private String email;
+    @Column
+    private String verificationUUID;
 
     public AppUser() {
     }
 
-    public AppUser(String username, String password, Boolean enabled) {
+    public AppUser(String username, String password, Boolean enabled, String email, String verificationUUID) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+        this.email =email;
+        this.verificationUUID = verificationUUID;
     }
 
     public AppUser(String username, String password, boolean enabled, Set<AppUserRole> appUserRoles) {
@@ -88,6 +94,22 @@ public class AppUser extends BaseEntity {
 
     public boolean isActive() {
         return enabled;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getVerificationUUID() {
+        return verificationUUID;
+    }
+
+    public void setVerificationUUID(String verificationUUID) {
+        this.verificationUUID = verificationUUID;
     }
 
     @Override

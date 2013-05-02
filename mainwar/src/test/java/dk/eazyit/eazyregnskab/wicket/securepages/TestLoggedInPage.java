@@ -37,7 +37,7 @@ public abstract class TestLoggedInPage extends TestBaseCase {
     @Transactional
     public void LoggedInPageSetUp()  {
 
-        AppUser appUser = new AppUser("test", "test", true);
+        AppUser appUser = new AppUser("test", "test", true, "test","test");
         appUser.setId(1L);
         appUserDAO.save(appUser);
         HashSet<AppUserRole> appUserRoles = new HashSet<AppUserRole>();
