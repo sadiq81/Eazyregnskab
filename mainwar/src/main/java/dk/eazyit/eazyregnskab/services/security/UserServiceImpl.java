@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.spring.security;
+package dk.eazyit.eazyregnskab.services.security;
 
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.services.LoginService;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author Trifork
  */
-@Service("userDetailsService")
+@Service("UserDetailsService")
 public class UserServiceImpl implements UserDetailsService {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);

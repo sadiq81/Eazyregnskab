@@ -296,6 +296,9 @@
             <resource>
                 <filtering>false</filtering>
                 <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.txt</include>
+                </includes>
             </resource>
 
 

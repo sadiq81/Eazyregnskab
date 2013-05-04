@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.spring.security;
+package dk.eazyit.eazyregnskab.services.security;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.AppUserRoleDAO;
 import dk.eazyit.eazyregnskab.domain.AppUser;

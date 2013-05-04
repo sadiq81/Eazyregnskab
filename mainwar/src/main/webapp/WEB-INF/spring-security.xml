@@ -8,6 +8,12 @@
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
+
+
+    <beans:bean id="loggerListener"
+                    class="dk.eazyit.eazyregnskab.services.LoggerListener"/>
+
+
     <http auto-config="true">
         <intercept-url pattern="/app/secure/**" requires-channel='https' access="ROLE_USER"/>
         <intercept-url pattern="/app/LoginPage" requires-channel='https' access="ROLE_ANONYMOUS"/>
@@ -25,15 +31,13 @@
     </http>
 
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userDetailsService">
+        <authentication-provider user-service-ref="UserDetailsService">
             <password-encoder hash="sha-256">
                 <salt-source user-property="username"></salt-source>
             </password-encoder>
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="loggerListener"
-                class="dk.eazyit.eazyregnskab.services.LoggerListener"/>
 
 
 </beans:beans>

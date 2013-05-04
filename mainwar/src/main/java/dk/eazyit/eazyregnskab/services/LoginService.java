@@ -8,6 +8,7 @@ import dk.eazyit.eazyregnskab.domain.Authority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,8 @@ public class LoginService {
     private LegalEntityService legalEntityService;
     @Autowired
     private FinanceAccountService financeAccountService;
+
+    @Qualifier("MailService")
     @Autowired
     MailService mailService;
 
@@ -47,6 +50,18 @@ public class LoginService {
 
     }
 
+    @Transactional
+    public boolean activeUser(String username, String password, String UUID) {
+        AppUser appUser = findAppUserByUsername(username);
+        String pass2 = shaPasswordEncoder.encodePassword(password, username);
+        if (appUser.getPassword().equals(pass2) && appUser.getVerificationUUID().equals(UUID)) {
+            appUser.setEnabled(true);
+            appUserDAO.save(appUser);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     @Transactional(readOnly = true)

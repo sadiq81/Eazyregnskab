@@ -52,7 +52,11 @@
     </bean>
 
     <bean id="WicketTester" class="org.apache.wicket.util.tester.WicketTester">
-        <constructor-arg name="application" ref="wicketApplication" ></constructor-arg>
+        <constructor-arg name="application" ref="wicketApplication"></constructor-arg>
+    </bean>
+
+    <bean id="MailService" class="dk.eazyit.eazyregnskab.services.MailService">
+        <constructor-arg type="boolean" value="true"></constructor-arg>
     </bean>
 
 </beans>
