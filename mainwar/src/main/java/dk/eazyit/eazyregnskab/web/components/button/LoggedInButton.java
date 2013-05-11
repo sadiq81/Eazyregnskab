@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.login;
+package dk.eazyit.eazyregnskab.web.components.button;
 
 import de.agilecoders.wicket.markup.html.bootstrap.button.BootstrapBookmarkablePageLink;
 import de.agilecoders.wicket.markup.html.bootstrap.button.Buttons;
