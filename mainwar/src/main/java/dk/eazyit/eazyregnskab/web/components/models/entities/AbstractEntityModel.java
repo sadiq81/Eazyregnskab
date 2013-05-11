@@ -40,7 +40,7 @@ public abstract class AbstractEntityModel<T extends EntityWithLongId> implements
 
     public void detach() {
         if (entity != null) {
-            if (entity.getId() != null) {
+            if (entity.getId() != 0 && entity.getId() != null) {
                 id = entity.getId();
                 entity = null;
             }

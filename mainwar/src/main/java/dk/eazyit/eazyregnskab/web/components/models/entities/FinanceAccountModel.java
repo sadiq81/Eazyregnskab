@@ -32,11 +32,20 @@ public class FinanceAccountModel extends AbstractEntityModel<FinanceAccount> {
     @Override
     protected FinanceAccount load(Long id) {
         if (id == 0) {
-            if (entity != null)  LOG.trace("loading empty FinanceAccount entity ");
-            return new FinanceAccount();
+            if (entity == null) {
+                LOG.trace("loading empty FinanceAccount entity ");
+                return entity = new FinanceAccount();
+            } else {
+                return entity;
+            }
         } else {
-            if (entity != null)   LOG.trace("loading FinanceAccount entity " + entity.getId());
-            return financeAccountDAO.findById(id);
+            if (entity == null) {
+                LOG.trace("loading FinanceAccount entity " + entity.getId());
+                return financeAccountDAO.findById(id);
+            }
+            else {
+                return entity;
+            }
         }
     }
 

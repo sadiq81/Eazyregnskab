@@ -6,6 +6,8 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -13,12 +15,19 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * @author
  */
 public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
+
+    private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUMFROM));
+
+    DropDownChoice<VatType> vatType;
+    EnumDropDownChoice<FinanceAccountType> financeAccountType;
+    DropDownChoice<FinanceAccount> standardReverseFinanceAccount;
 
     public FinanceAccountForm(String id, IModel<FinanceAccount> model) {
         super(id, model);
@@ -29,9 +38,37 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         super.addToForm();
         add(new PlaceholderTextField<String>("name").setRequired(true));
         add(new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
-        add(new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
-        add(new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")));
-        add(new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));
+        add(vatType = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
+        vatType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+            }
+        }).setOutputMarkupPlaceholderTag(true);
+
+        add(financeAccountType = new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())));
+        financeAccountType.setRequired(true);
+        financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                FinanceAccount f = getModelObject();
+                if (lockedTypes.contains((((EnumDropDownChoice<FinanceAccountType>) this.getFormComponent()).getConvertedInput()))) {
+                    target.add(vatType.setEnabled(false).setDefaultModelObject(null));
+                    target.add(standardReverseFinanceAccount.setEnabled(false).setDefaultModelObject(null));
+                } else {
+                    target.add(vatType.setEnabled(true));
+                    target.add(standardReverseFinanceAccount.setEnabled(true));
+                }
+            }
+        });
+
+        add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")));
+        standardReverseFinanceAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+            }
+        });
+        standardReverseFinanceAccount.setOutputMarkupPlaceholderTag(true);
+
     }
 
     @Override
