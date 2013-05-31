@@ -4,6 +4,7 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.web.components.models.lists.FinanceAccountListModelWithSum;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -44,7 +45,26 @@ public class BalancePage extends LoggedInPage {
                 FinanceAccount fa = itemOuter.getModelObject();
                 itemOuter.add(new Label("accountNumber", fa.getAccountNumber()));
                 itemOuter.add(new Label("accountName", fa.getName()));
-                itemOuter.add(new Label("sum", fa.getSum()));
+
+                switch (fa.getFinanceAccountType()) {
+                    case PROFIT:
+                    case EXPENSE:
+                    case ASSET:
+                    case LIABILITY: {
+                        itemOuter.add(new Label("sum", fa.getSum()));
+                        break;
+                    }
+                    case HEADLINE: {
+                        itemOuter.add(new AttributeAppender("class","headline"));
+                        itemOuter.add(new Label("sum", ""));
+                        break;
+                    }
+                    case SUMFROM: {
+                        //TODO calculate sum
+                        itemOuter.add(new Label("sum", ""));
+                        break;
+                    }
+                }
             }
         });
     }

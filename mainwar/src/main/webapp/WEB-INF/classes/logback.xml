@@ -8,11 +8,11 @@
         </encoder>
     </appender>
 
-    <logger name="dk.eazyit.eazyregnskab" level="debug">
+    <logger name="dk.eazyit.eazyregnskab" level="DEBUG">
         <appender-ref ref="STDOUT"></appender-ref>
     </logger>
 
-    <root level="off">
+    <root level="WARN">
         <appender-ref ref="STDOUT"/>
     </root>
 

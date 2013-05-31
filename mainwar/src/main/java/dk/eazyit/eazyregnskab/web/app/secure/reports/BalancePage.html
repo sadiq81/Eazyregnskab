@@ -5,6 +5,19 @@
 
 <wicket:extend>
 
+    <style>
+        tr.headline {
+            background-color: #dddddd;
+            font-weight:bold;
+        }
+        tr.sumfrom {
+            background-color: #b1b1b1;
+            font-weight:bold;
+        }
+
+    </style>
+
+
     <table class="table table-condensed">
         <tr>
             <th>
@@ -17,8 +30,8 @@
                 <wicket:message key="account.sum"></wicket:message>
             </th>
         </tr>
-        <span wicket:id="financeAccounts">
-            <tr>
+        <span>
+            <tr wicket:id="financeAccounts">
                 <td>
                     <span wicket:id="accountNumber"></span>
                 </td>

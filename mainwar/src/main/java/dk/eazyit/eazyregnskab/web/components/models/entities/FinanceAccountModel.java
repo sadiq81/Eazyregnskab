@@ -40,7 +40,7 @@ public class FinanceAccountModel extends AbstractEntityModel<FinanceAccount> {
             }
         } else {
             if (entity == null) {
-                LOG.trace("loading FinanceAccount entity " + entity.getId());
+                LOG.trace("loading FinanceAccount entity " + id );
                 return financeAccountDAO.findById(id);
             }
             else {
