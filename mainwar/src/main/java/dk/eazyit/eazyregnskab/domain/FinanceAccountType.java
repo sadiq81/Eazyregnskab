@@ -10,6 +10,6 @@ public enum FinanceAccountType {
     ASSET,
     LIABILITY,
     HEADLINE,
-    SUMFROM
+    SUM
 
 }

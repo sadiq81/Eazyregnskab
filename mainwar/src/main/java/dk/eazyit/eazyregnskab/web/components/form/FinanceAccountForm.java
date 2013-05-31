@@ -23,11 +23,13 @@ import java.util.Arrays;
  */
 public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
-    private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUMFROM));
+    private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUM));
 
     DropDownChoice<VatType> vatType;
     EnumDropDownChoice<FinanceAccountType> financeAccountType;
     DropDownChoice<FinanceAccount> standardReverseFinanceAccount;
+    DropDownChoice<FinanceAccount> sumFrom;
+    DropDownChoice<FinanceAccount> sumTo;
 
     public FinanceAccountForm(String id, IModel<FinanceAccount> model) {
         super(id, model);
@@ -51,17 +53,24 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 FinanceAccount f = getModelObject();
+                target.add(vatType);
+                target.add(standardReverseFinanceAccount);
+                target.add(sumFrom);
+                target.add(sumTo);
+
                 if (lockedTypes.contains((((EnumDropDownChoice<FinanceAccountType>) this.getFormComponent()).getConvertedInput()))) {
-                    target.add(vatType.setEnabled(false).setDefaultModelObject(null));
-                    target.add(standardReverseFinanceAccount.setEnabled(false).setDefaultModelObject(null));
+                    vatType.setEnabled(false).setDefaultModelObject(null);
+                    standardReverseFinanceAccount.setEnabled(false).setDefaultModelObject(null);
                 } else {
-                    target.add(vatType.setEnabled(true));
-                    target.add(standardReverseFinanceAccount.setEnabled(true));
+                    vatType.setEnabled(true);
+                    standardReverseFinanceAccount.setEnabled(true);
+                    sumFrom.setDefaultModelObject(null);
+                    sumTo.setDefaultModelObject(null);
                 }
             }
         });
 
-        add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")));
+        add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")));
         standardReverseFinanceAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
@@ -69,6 +78,22 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         });
         standardReverseFinanceAccount.setOutputMarkupPlaceholderTag(true);
 
+        add(sumFrom = new DropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+            }
+        });
+        sumFrom.setOutputMarkupPlaceholderTag(true);
+        add(sumTo = new DropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+            }
+        });
+        sumTo.setOutputMarkupPlaceholderTag(true);
     }
 
     @Override

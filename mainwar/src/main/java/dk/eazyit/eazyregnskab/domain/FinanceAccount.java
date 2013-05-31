@@ -17,7 +17,7 @@ import java.util.Set;
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 and fa.name = ?2 ORDER BY accountNumber ASC"),
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, query = "select fa from FinanceAccount fa " +
-                "WHERE fa.legalEntity = ?1 and fa.accountNumber = ?2"),
+                "WHERE fa.legalEntity = ?1 and fa.accountNumber = ?2 ORDER BY accountNumber ASC")
 })
 @Table(name = "financeaccount")
 public class FinanceAccount extends BaseEntity {
@@ -47,6 +47,12 @@ public class FinanceAccount extends BaseEntity {
 
     @OneToOne(optional = true)
     private FinanceAccount standardReverseFinanceAccount;
+
+    @OneToOne(optional = true)
+    private FinanceAccount sumFrom;
+
+    @OneToOne(optional = true)
+    private FinanceAccount sumTo;
 
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -121,6 +127,22 @@ public class FinanceAccount extends BaseEntity {
         this.standardReverseFinanceAccount = standardReverseFinanceAccount;
     }
 
+    public FinanceAccount getSumFrom() {
+        return sumFrom;
+    }
+
+    public void setSumFrom(FinanceAccount sumFrom) {
+        this.sumFrom = sumFrom;
+    }
+
+    public FinanceAccount getSumTo() {
+        return sumTo;
+    }
+
+    public void setSumTo(FinanceAccount sumTo) {
+        this.sumTo = sumTo;
+    }
+
     public LegalEntity getLegalEntity() {
         return legalEntity;
     }
@@ -153,6 +175,6 @@ public class FinanceAccount extends BaseEntity {
     }
 
     public boolean isBookable() {
-        return financeAccountType != FinanceAccountType.HEADLINE && financeAccountType != FinanceAccountType.SUMFROM;
+        return financeAccountType != FinanceAccountType.HEADLINE && financeAccountType != FinanceAccountType.SUM;
     }
 }

@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
+import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.util.BookedFinancePostingDateComparator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +30,35 @@ public class ReportService {
         List<BookedFinancePosting> financePostingList = financeAccountService.findPostingsFromLegalEntity(legalEntity);
         Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
 
-        HashMap<Long, FinanceAccount> financeAccountHashMap = new HashMap<Long, FinanceAccount>();
+        HashMap<Integer, FinanceAccount> financeAccountHashMap = new HashMap<Integer, FinanceAccount>();
+        //Arrange and set sum = 0
         for (FinanceAccount financeAccount : financeAccountsList) {
             financeAccount.setSum(new Double(0));
-            financeAccountHashMap.put(financeAccount.getId(), financeAccount);
+            financeAccountHashMap.put(financeAccount.getAccountNumber(), financeAccount);
         }
 
-        for (BookedFinancePosting bookedFinancePosting : financePostingList){
-            Long id = bookedFinancePosting.getFinanceAccount().getId();
+        //Calculate sum of individual accounts
+        for (BookedFinancePosting bookedFinancePosting : financePostingList) {
+            int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
             FinanceAccount financeAccount = financeAccountHashMap.get(id);
             financeAccount.setSum(financeAccount.getSum() + bookedFinancePosting.getAmount());
         }
 
+        //Calculate sum of sum accounts
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            if (financeAccount.getFinanceAccountType() == FinanceAccountType.SUM) {
+
+                int sumFrom = financeAccount.getSumFrom().getAccountNumber();
+                int sumTo = financeAccount.getSumTo().getAccountNumber();
+
+                for (FinanceAccount entry : financeAccountHashMap.values()) {
+                    if (entry.getAccountNumber() >= sumFrom && entry.getAccountNumber() <= sumTo) {
+                        financeAccount.setSum(financeAccount.getSum() + entry.getSum());
+                    }
+                }
+            }
+        }
+
         return financeAccountsList;
     }
-
-
 }

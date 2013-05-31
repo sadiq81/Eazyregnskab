@@ -59,9 +59,10 @@ public class BalancePage extends LoggedInPage {
                         itemOuter.add(new Label("sum", ""));
                         break;
                     }
-                    case SUMFROM: {
+                    case SUM: {
                         //TODO calculate sum
-                        itemOuter.add(new Label("sum", ""));
+                        itemOuter.add(new AttributeAppender("class","sumfrom"));
+                        itemOuter.add(new Label("sum", fa.getSum()));
                         break;
                     }
                 }
