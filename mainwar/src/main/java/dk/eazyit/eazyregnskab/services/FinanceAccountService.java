@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +34,19 @@ public class FinanceAccountService {
     public List<FinanceAccount> findFinanceAccountByLegalEntity(LegalEntity legalEntity) {
         LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
         List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
+        return list;
+    }
+
+    @Transactional
+    public List<FinanceAccount> findBookableFinanceAccountByLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
+        List<FinanceAccount> temp = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
+        List<FinanceAccount> list = new ArrayList<FinanceAccount>();
+        for (FinanceAccount financeAccount : temp) {
+            if (financeAccount.isBookable()) {
+                list.add(financeAccount);
+            }
+        }
         return list;
     }
 

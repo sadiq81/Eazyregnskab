@@ -151,4 +151,8 @@ public class FinanceAccount extends BaseEntity {
 //                .add("legalEntity", legalEntity)
                 .toString();
     }
+
+    public boolean isBookable() {
+        return financeAccountType != FinanceAccountType.HEADLINE && financeAccountType != FinanceAccountType.SUMFROM;
+    }
 }

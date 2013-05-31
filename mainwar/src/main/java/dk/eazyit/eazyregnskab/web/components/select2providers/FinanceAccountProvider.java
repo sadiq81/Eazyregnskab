@@ -56,7 +56,7 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> {
 
         List<FinanceAccount> result = new ArrayList<FinanceAccount>();
 
-        List<FinanceAccount> list = financeAccountService.findFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject());
+        List<FinanceAccount> list = financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject());
 
         term = term.toUpperCase();
 
