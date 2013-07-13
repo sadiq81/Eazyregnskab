@@ -43,6 +43,11 @@ public class BaseDataPage extends LoggedInPage {
     }
 
     @Override
+        protected void configureComponents() {
+
+        }
+
+    @Override
     protected void onBeforeRender() {
         super.onBeforeRender();
         form.setModelObject(getCurrentLegalEntity());

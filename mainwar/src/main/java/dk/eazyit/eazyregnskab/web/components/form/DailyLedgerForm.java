@@ -33,6 +33,10 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
     }
 
     @Override
+    protected void configureComponents() {
+    }
+
+    @Override
     public void deleteEntity(DailyLedger dailyLedger) {
         if (dailyLedger.getId() != 0) {
             if (financeAccountService.deleteDailyLedger(dailyLedger)) {
@@ -60,4 +64,6 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel();
     }
+
+
 }

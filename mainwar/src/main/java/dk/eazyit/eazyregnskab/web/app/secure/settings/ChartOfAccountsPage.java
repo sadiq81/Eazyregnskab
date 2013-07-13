@@ -47,4 +47,9 @@ public class ChartOfAccountsPage extends LoggedInPage {
 
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), 20));
     }
+
+    @Override
+        protected void configureComponents() {
+
+        }
 }

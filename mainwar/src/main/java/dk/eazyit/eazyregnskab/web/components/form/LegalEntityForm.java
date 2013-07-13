@@ -36,6 +36,11 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     }
 
     @Override
+    protected void configureComponents() {
+    }
+
+
+    @Override
     public void deleteEntity(LegalEntity legalEntity) {
         if (legalEntityService.deleteLegalEntity(getCurrentUser(), legalEntity)) {
             setCurrentLegalEntity(legalEntityService.findLegalEntityByUser(getCurrentUser()).get(0));

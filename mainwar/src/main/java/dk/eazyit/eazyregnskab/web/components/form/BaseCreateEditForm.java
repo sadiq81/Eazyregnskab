@@ -33,7 +33,10 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
     protected BaseCreateEditForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));
         addToForm();
+        configureComponents();
     }
+
+
 
     public void addToForm() {
         add(new AjaxButton("save", new ResourceModel("button.save")) {
@@ -77,6 +80,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
             }
         });
     }
+
+    protected abstract void configureComponents();
 
     public abstract void deleteEntity(T entity);
 

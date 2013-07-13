@@ -40,43 +40,8 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         add(new PlaceholderTextField<String>("name").setRequired(true));
         add(new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
         add(vatType = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")));
-        vatType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-            }
-        }).setOutputMarkupPlaceholderTag(true);
-
         add(financeAccountType = new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())));
-        financeAccountType.setRequired(true);
-        financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-                FinanceAccount f = getModelObject();
-                target.add(vatType);
-                target.add(standardReverseFinanceAccount);
-                target.add(sumFrom);
-                target.add(sumTo);
-
-                if (lockedTypes.contains((((EnumDropDownChoice<FinanceAccountType>) this.getFormComponent()).getConvertedInput()))) {
-                    vatType.setEnabled(false).setDefaultModelObject(null);
-                    standardReverseFinanceAccount.setEnabled(false).setDefaultModelObject(null);
-                } else {
-                    vatType.setEnabled(true);
-                    standardReverseFinanceAccount.setEnabled(true);
-                    sumFrom.setDefaultModelObject(null);
-                    sumTo.setDefaultModelObject(null);
-                }
-            }
-        });
-
         add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
-        standardReverseFinanceAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-            @Override
-            protected void onUpdate(AjaxRequestTarget target) {
-            }
-        });
-        standardReverseFinanceAccount.setOutputMarkupPlaceholderTag(true);
-
         add(sumFrom = new DropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
             @Override
             protected void onConfigure() {
@@ -84,7 +49,6 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                 setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
             }
         });
-        sumFrom.setOutputMarkupPlaceholderTag(true);
         add(sumTo = new DropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
             @Override
             protected void onConfigure() {
@@ -92,8 +56,8 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                 setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
             }
         });
-        sumTo.setOutputMarkupPlaceholderTag(true);
     }
+
 
     @Override
     public void deleteEntity(FinanceAccount financeAccount) {
@@ -121,4 +85,65 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         insertNewEntityInModel();
 
     }
+
+    @Override
+    protected void configureComponents() {
+
+        configureVatType();
+        configureFinanceAccountType();
+        configureStandardReverseFinanceAccount();
+        configureSumFrom();
+        configureSumTo();
+    }
+
+    private void configureVatType() {
+        vatType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+            }
+        });
+        vatType.setOutputMarkupPlaceholderTag(true);
+    }
+
+    private void configureFinanceAccountType() {
+        financeAccountType.setRequired(true);
+        financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                FinanceAccount f = getModelObject();
+                target.add(vatType);
+                target.add(standardReverseFinanceAccount);
+                target.add(sumFrom);
+                target.add(sumTo);
+
+                if (lockedTypes.contains((((EnumDropDownChoice<FinanceAccountType>) this.getFormComponent()).getConvertedInput()))) {
+                    vatType.setEnabled(false).setDefaultModelObject(null);
+                    standardReverseFinanceAccount.setEnabled(false).setDefaultModelObject(null);
+                } else {
+                    vatType.setEnabled(true);
+                    standardReverseFinanceAccount.setEnabled(true);
+                    sumFrom.setDefaultModelObject(null);
+                    sumTo.setDefaultModelObject(null);
+                }
+            }
+        });
+    }
+
+    private void configureStandardReverseFinanceAccount() {
+        standardReverseFinanceAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+            }
+        });
+        standardReverseFinanceAccount.setOutputMarkupPlaceholderTag(true);
+    }
+
+    private void configureSumFrom() {
+        sumFrom.setOutputMarkupPlaceholderTag(true);
+    }
+
+    private void configureSumTo() {
+        sumTo.setOutputMarkupPlaceholderTag(true);
+    }
+
 }

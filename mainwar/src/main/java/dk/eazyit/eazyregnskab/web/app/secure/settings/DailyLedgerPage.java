@@ -47,4 +47,9 @@ public class DailyLedgerPage extends LoggedInPage {
 
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfDailyLedgers", new ColumnsForDailyLedgerPage(form), new DailyLedgerDataProvider(), 20));
     }
+
+    @Override
+        protected void configureComponents() {
+
+        }
 }

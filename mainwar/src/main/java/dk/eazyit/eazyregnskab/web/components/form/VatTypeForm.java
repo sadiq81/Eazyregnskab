@@ -31,6 +31,11 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     }
 
     @Override
+    protected void configureComponents() {
+    }
+
+
+    @Override
     public void deleteEntity(VatType vatType) {
         if (vatType.getId() != 0) {
             if (financeAccountService.deleteVatType(vatType)) {

@@ -29,7 +29,6 @@ public class DailyLedgerChooser extends SessionAwareDropDownChoice<DailyLedger> 
                 LOG.debug("Changed DailyLeger to " + changed);
                 getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, changed);
                 target.add(getPage());
-
             }
         }));
 

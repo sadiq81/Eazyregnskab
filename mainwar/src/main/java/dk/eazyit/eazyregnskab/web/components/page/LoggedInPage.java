@@ -23,7 +23,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * @author EazyIT
  */
-public class LoggedInPage extends AppBasePage {
+public abstract class LoggedInPage extends AppBasePage {
 
     public static final String PARAM_LEGAL_ENTITY = "legalEntity";
 
@@ -127,4 +127,6 @@ public class LoggedInPage extends AppBasePage {
     protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
         getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
+
+    protected abstract void configureComponents();
 }

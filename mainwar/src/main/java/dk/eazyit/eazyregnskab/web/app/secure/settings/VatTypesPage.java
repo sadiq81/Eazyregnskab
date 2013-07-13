@@ -49,4 +49,9 @@ public class VatTypesPage extends LoggedInPage {
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfVatTypes", new ColumnsForVatTypesPage(form), new VatTypeDataProvider(), 20));
     }
 
+    @Override
+    protected void configureComponents() {
+
+    }
+
 }

@@ -69,4 +69,9 @@ public class BalancePage extends LoggedInPage {
             }
         });
     }
+
+    @Override
+        protected void configureComponents() {
+
+        }
 }
