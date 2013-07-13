@@ -75,7 +75,7 @@ public class SessionAwareDropDownChoice<T> extends DropDownChoice<T> implements 
 
     public DailyLedger getCurrentDailyLedger() {
         DailyLedger ledger = (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-        if (!getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
+        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
             throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
         }
         return ledger;

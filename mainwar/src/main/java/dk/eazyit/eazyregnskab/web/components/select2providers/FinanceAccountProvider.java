@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @author
  */
-public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> implements SessionAware{
+public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> implements SessionAware {
 
     @SpringBean
     private FinanceAccountService financeAccountService;
@@ -97,10 +97,10 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> i
 
     public DailyLedger getCurrentDailyLedger() {
         DailyLedger ledger = (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-                if (!getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
-                    throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
-                }
-                return ledger;
+        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
+            throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
+        }
+        return ledger;
     }
 
     public void setCurrentDailyLedger(DailyLedger dailyLedger) {

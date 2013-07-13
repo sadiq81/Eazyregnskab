@@ -124,7 +124,7 @@ public abstract class LoggedInPage extends AppBasePage implements SessionAware{
 
     public DailyLedger getCurrentDailyLedger() {
         DailyLedger ledger = (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-        if (!getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
+        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
             throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
         }
         return ledger;

@@ -38,7 +38,6 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     }
 
 
-
     public void addToForm() {
         add(new AjaxButton("save", new ResourceModel("button.save")) {
 
@@ -86,7 +85,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
     public abstract void deleteEntity(T entity);
 
-    public void insertNewEntityInModel(){
+    public void insertNewEntityInModel() {
         setModel(new CompoundPropertyModel<T>(buildNewEntity()));
     }
 
@@ -117,10 +116,10 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
     public DailyLedger getCurrentDailyLedger() {
         DailyLedger ledger = (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-                if (!getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
-                    throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
-                }
-                return ledger;
+        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
+            throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
+        }
+        return ledger;
     }
 
     public void setCurrentDailyLedger(DailyLedger dailyLedger) {

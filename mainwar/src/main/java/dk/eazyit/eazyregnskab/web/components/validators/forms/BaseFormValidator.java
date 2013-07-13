@@ -60,7 +60,7 @@ public abstract class BaseFormValidator extends AbstractFormValidator implements
 
     public DailyLedger getCurrentDailyLedger() {
         DailyLedger ledger = (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-        if (!getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
+        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
             throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
         }
         return ledger;
