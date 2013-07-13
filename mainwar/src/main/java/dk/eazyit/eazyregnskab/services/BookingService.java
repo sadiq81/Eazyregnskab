@@ -137,7 +137,7 @@ public class BookingService {
         }
         if (draftFinancePosting.getVatType() != null) {
             vat = setupBaseData(draftFinancePosting);
-            vat.setAmount(draftFinancePosting.getAmount() * (draftFinancePosting.getVatType().getPercentage() / 100));
+            vat.setAmount(draftFinancePosting.getAmount() * (draftFinancePosting.getVatType().getPercentage()/5*4));
             vat.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccount());
             list.add(vat);
             posting.setAmount(posting.getAmount() - vat.getAmount());

@@ -4,6 +4,7 @@ import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
 import org.apache.wicket.model.IModel;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * @author Eazy It
  */
-public abstract class AbstractEntityListModel<T extends EntityWithLongId, E extends EntityWithLongId> implements IModel<List<T>> {
+public abstract class AbstractEntityListModel<T extends EntityWithLongId, E extends EntityWithLongId> implements IModel<List<T>>, SessionAware {
 
     protected E parent = null;
     protected List<T> list = null;
@@ -60,24 +61,28 @@ public abstract class AbstractEntityListModel<T extends EntityWithLongId, E exte
 
     public abstract void setObject(List<T> object);
 
-    protected AppUser getCurrentUser() {
+    public AppUser getCurrentUser() {
         return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
 
-    protected LegalEntity getCurrentLegalEntity() {
+    public LegalEntity getCurrentLegalEntity() {
         return (LegalEntity) Session.get().getAttribute(LegalEntity.ATTRIBUTE_NAME);
     }
 
-    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+    public void setCurrentLegalEntity(LegalEntity legalEntity) {
         Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
         setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
     }
 
-    protected DailyLedger getCurrentDailyLedger() {
-        return (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    public DailyLedger getCurrentDailyLedger() {
+        DailyLedger ledger = (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+        if (!getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
+            throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
+        }
+        return ledger;
     }
 
-    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
         Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
 

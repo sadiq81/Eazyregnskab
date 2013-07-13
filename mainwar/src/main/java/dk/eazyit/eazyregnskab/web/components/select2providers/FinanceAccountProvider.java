@@ -7,6 +7,7 @@ import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * @author
  */
-public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> {
+public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> implements SessionAware{
 
     @SpringBean
     private FinanceAccountService financeAccountService;
@@ -81,24 +82,28 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> {
     }
 
 
-    protected AppUser getCurrentUser() {
+    public AppUser getCurrentUser() {
         return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
 
-    protected LegalEntity getCurrentLegalEntity() {
+    public LegalEntity getCurrentLegalEntity() {
         return (LegalEntity) Session.get().getAttribute(LegalEntity.ATTRIBUTE_NAME);
     }
 
-    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+    public void setCurrentLegalEntity(LegalEntity legalEntity) {
         Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
         setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
     }
 
-    protected DailyLedger getCurrentDailyLedger() {
-        return (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    public DailyLedger getCurrentDailyLedger() {
+        DailyLedger ledger = (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+                if (!getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
+                    throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
+                }
+                return ledger;
     }
 
-    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
         Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
 
