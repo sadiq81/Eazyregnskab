@@ -59,6 +59,10 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     public LegalEntity buildNewEntity() {
         LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser());
         setCurrentLegalEntity(newLegalEntity);
+
+        //TODO bad design, find another solution without using a reference.
+        ((LoggedInPage)getPage()).changeLegalEntity();
+
         getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
         return newLegalEntity;
     }

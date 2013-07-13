@@ -54,6 +54,7 @@ public abstract class BaseFormValidator extends AbstractFormValidator {
 
     protected void setCurrentLegalEntity(LegalEntity legalEntity) {
         Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
     }
 
     protected DailyLedger getCurrentDailyLedger() {

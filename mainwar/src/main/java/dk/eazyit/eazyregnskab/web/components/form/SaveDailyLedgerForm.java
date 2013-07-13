@@ -66,6 +66,7 @@ public class SaveDailyLedgerForm extends Form {
 
     protected void setCurrentLegalEntity(LegalEntity legalEntity) {
         getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
     }
 
     protected DailyLedger getCurrentDailyLedger() {

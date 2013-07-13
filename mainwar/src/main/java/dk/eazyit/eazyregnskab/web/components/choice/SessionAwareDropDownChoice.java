@@ -69,6 +69,7 @@ public class SessionAwareDropDownChoice<T> extends DropDownChoice<T> {
 
     protected void setCurrentLegalEntity(LegalEntity legalEntity) {
         getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
     }
 
     protected DailyLedger getCurrentDailyLedger() {

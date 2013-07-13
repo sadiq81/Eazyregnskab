@@ -111,6 +111,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
     protected void setCurrentLegalEntity(LegalEntity legalEntity) {
         getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
     }
 
     protected DailyLedger getCurrentDailyLedger() {

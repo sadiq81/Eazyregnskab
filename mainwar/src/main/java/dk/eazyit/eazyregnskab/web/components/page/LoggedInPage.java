@@ -118,6 +118,7 @@ public abstract class LoggedInPage extends AppBasePage {
 
     protected void setCurrentLegalEntity(LegalEntity legalEntity) {
         getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
     }
 
     protected DailyLedger getCurrentDailyLedger() {
