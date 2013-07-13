@@ -30,7 +30,6 @@ public abstract class AbstractEntityModel<T extends EntityWithLongId> implements
             if (id != null) {
                 entity = load(id);
                 if (entity == null) {
-
                     throw new EntityNotFoundException("Class :" + clazz.toString() + " id: " + id.toString());
                 }
             }

@@ -159,12 +159,12 @@ public class LegalEntityService {
                 dailyLedgerDAO.delete(dailyLedger);
 
             }
+            for (VatType vatType : vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity)) {
+                vatTypeDAO.delete(vatType);
+            }
             for (FinanceAccount financeAccount : financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity)) {
                 //TODO delete booked finance postings
                 financeAccountDAO.delete(financeAccount);
-            }
-            for (VatType vatType : vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity)) {
-                vatTypeDAO.delete(vatType);
             }
             legalEntityDAO.delete(legalEntity);
             return true;

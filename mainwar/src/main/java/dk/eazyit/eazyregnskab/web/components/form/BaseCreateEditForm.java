@@ -118,8 +118,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
 
     class BaseCreateEditFormAjaxButton extends AjaxButton {
 
-        BaseCreateEditFormAjaxButton(String id, IModel<String> model) {
-            super(id, model);
+        BaseCreateEditFormAjaxButton(String id) {
+            super(id);
         }
 
         @Override

@@ -63,7 +63,7 @@ public class LoggedInPage extends AppBasePage {
 
         add(new LinkList("linkList", MenuSetup.createSubMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
 
-        add(legalEntityChooser = new LegalEntityChooser("legalEntityList"));
+        add(legalEntityChooser = new LegalEntityChooser("legalEntityChooser"));
 
     }
 
@@ -96,6 +96,10 @@ public class LoggedInPage extends AppBasePage {
             LOG.warn("EnsureUserInfo Failed with AppUser: " + currentUser + " LegalEntity: " + currentLegalEntity + " DailyLedger: " + currentDailyLedger);
             throw new NullPointerException("EnsureUserInfo Failed");
         }
+    }
+
+    public void changeLegalEntity() {
+        addOrReplace(legalEntityChooser, legalEntityChooser = new LegalEntityChooser("legalEntityChooser"));
     }
 
     private AppUser getAppUser() {

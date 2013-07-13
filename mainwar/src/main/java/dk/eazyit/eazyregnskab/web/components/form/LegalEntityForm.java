@@ -7,6 +7,7 @@ import dk.eazyit.eazyregnskab.domain.MoneyCurrency;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
+import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -21,7 +22,6 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
     public LegalEntityForm(String id, IModel<LegalEntity> model) {
         super(id, model);
-
     }
 
     @Override
@@ -40,6 +40,10 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
         if (legalEntityService.deleteLegalEntity(getCurrentUser(), legalEntity)) {
             setCurrentLegalEntity(legalEntityService.findLegalEntityByUser(getCurrentUser()).get(0));
             setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity())));
+
+            //TODO bad design, find another solution without using a reference.
+            ((LoggedInPage)getPage()).changeLegalEntity();
+
             getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
         } else {
             getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
@@ -50,7 +54,6 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     public LegalEntity buildNewEntity() {
         LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser());
         setCurrentLegalEntity(newLegalEntity);
-        getPage().get("legalEntityChooser").setDefaultModelObject(newLegalEntity);
         getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
         return newLegalEntity;
     }
