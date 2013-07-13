@@ -41,7 +41,7 @@ public class LegalEntityListModel extends AbstractEntityListModel<LegalEntity, A
 
     @Override
     protected AppUser fetchParent() {
-        return getCurrentUser().getAppUserModel().getObject();
+        return getCurrentUser();
     }
 
     @Override

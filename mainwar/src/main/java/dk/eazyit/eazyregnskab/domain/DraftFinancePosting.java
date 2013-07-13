@@ -69,6 +69,10 @@ public class DraftFinancePosting extends BaseEntity {
     public DraftFinancePosting() {
     }
 
+    public DraftFinancePosting(int bookingNumber) {
+        this.bookingNumber = bookingNumber;
+    }
+
     @Override
     public Long getId() {
         return id;

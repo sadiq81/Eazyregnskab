@@ -1,8 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.choice;
 
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.models.lists.LegalEntityListModel;
-import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
@@ -12,23 +13,23 @@ import org.slf4j.LoggerFactory;
 /**
  * @author
  */
-public class LegalEntityDropDownChoice extends SessionAwareDropDownChoice<LegalEntity> {
+public class LegalEntityChooser extends SessionAwareDropDownChoice<LegalEntity> {
 
-    LoggedInPage parent;
-    static final Logger LOG = LoggerFactory.getLogger(LegalEntityDropDownChoice.class);
+    static final Logger LOG = LoggerFactory.getLogger(LegalEntityChooser.class);
 
-    public LegalEntityDropDownChoice(String id, final LoggedInPage parent) {
+    public LegalEntityChooser(String id) {
         super(id);
-        this.parent = parent;
-        setDefaultModel(getSelectedLegalEntity().getLegalEntityModel());
+        setDefaultModel(new LegalEntityModel(getCurrentLegalEntity()));
         setChoices(new LegalEntityListModel());
         setChoiceRenderer(new ChoiceRenderer<LegalEntity>("name", "id"));
         setOutputMarkupPlaceholderTag(true);
         add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                LOG.debug("Changed legal entity selections");
-                parent.changedLegalEntity(target);
+                LegalEntity changed = getConvertedInput();
+                LOG.debug("Changed legal entity selections to " + changed);
+                getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, changed);
+                getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, changed.getDailyLedgers().get(0));
                 target.add(getPage());
             }
         }));

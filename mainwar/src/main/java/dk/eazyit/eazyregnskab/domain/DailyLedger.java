@@ -19,6 +19,8 @@ public class DailyLedger extends BaseEntity {
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "DailyLedger::findByLegalEntity";
     public static final String QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY = "DailyLedger::findByNameAndLegalEntity";
 
+    public static final String ATTRIBUTE_NAME = DailyLedger.class.getName();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,6 +30,9 @@ public class DailyLedger extends BaseEntity {
 
     @ManyToOne(optional = false)
     private LegalEntity legalEntity;
+
+    @Column(nullable = true)
+    private int nextBookingNumber;
 
     @OneToMany(mappedBy = "dailyLedger", fetch = FetchType.LAZY)
     private Set<DraftFinancePosting> draftFinancePosting;
@@ -64,6 +69,14 @@ public class DailyLedger extends BaseEntity {
     public DailyLedger setLegalEntity(LegalEntity legalEntity) {
         this.legalEntity = legalEntity;
         return this;
+    }
+
+    public int getNextBookingNumber() {
+        return nextBookingNumber;
+    }
+
+    public void setNextBookingNumber(int nextBookingNumber) {
+        this.nextBookingNumber = nextBookingNumber;
     }
 
     public Set<DraftFinancePosting> getDraftFinancePosting() {

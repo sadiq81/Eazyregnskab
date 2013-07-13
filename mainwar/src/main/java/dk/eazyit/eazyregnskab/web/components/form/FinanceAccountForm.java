@@ -10,7 +10,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -40,7 +39,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         super.addToForm();
         add(new PlaceholderTextField<String>("name").setRequired(true));
         add(new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
-        add(vatType = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<VatType>("name", "id")));
+        add(vatType = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")));
         vatType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
@@ -70,7 +69,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
             }
         });
 
-        add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")));
+        add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
         standardReverseFinanceAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
@@ -78,7 +77,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         });
         standardReverseFinanceAccount.setOutputMarkupPlaceholderTag(true);
 
-        add(sumFrom = new DropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
+        add(sumFrom = new DropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
@@ -86,7 +85,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
             }
         });
         sumFrom.setOutputMarkupPlaceholderTag(true);
-        add(sumTo = new DropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
+        add(sumTo = new DropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
@@ -98,11 +97,10 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     @Override
     public void deleteEntity(FinanceAccount financeAccount) {
-        super.deleteEntity(financeAccount);
         if (financeAccount.getId() != 0) {
             if (financeAccountService.deleteFinanceAccount(financeAccount)) {
                 getSession().success(new NotificationMessage(new ResourceModel("finance.account.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                newEntity();
+                insertNewEntityInModel();
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("finance.account.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
@@ -112,15 +110,15 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     @Override
-    public CompoundPropertyModel<FinanceAccount> newEntity() {
-        return new CompoundPropertyModel<FinanceAccount>(new FinanceAccount());
+    public FinanceAccount buildNewEntity() {
+        return new FinanceAccount();
     }
 
     @Override
     public void saveForm(FinanceAccount financeAccount) {
-        super.saveForm(null);
-        financeAccountService.saveFinanceAccount(financeAccount, getSelectedLegalEntity().getLegalEntityModel().getObject());
+        financeAccountService.saveFinanceAccount(financeAccount, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+        insertNewEntityInModel();
 
     }
 }

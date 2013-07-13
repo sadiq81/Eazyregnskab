@@ -41,7 +41,7 @@ public class VatTypeListModel extends AbstractEntityListModel<VatType, LegalEnti
 
     @Override
     protected LegalEntity fetchParent() {
-        return getSelectedLegalEntity().getLegalEntityModel().getObject();
+        return getCurrentLegalEntity();
     }
 
     @Override

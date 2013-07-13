@@ -37,13 +37,13 @@ public class FinanceAccountDataProvider extends EazyregnskabSortableDataProvider
         SortParam sortParam = getSort();
         if (sortParam != null) {
             LOG.debug(" and sorting after " + sortParam.getProperty());
-            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            LegalEntity legalEntity = getCurrentLegalEntity();
                         List<FinanceAccount> list = financeAccountService.findFinanceAccountByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
                         Iterator<FinanceAccount> iterator = list.iterator();
                         return iterator;
         } else {
             Iterator<FinanceAccount> iterator = financeAccountService.findFinanceAccountByLegalEntitySubList(
-                    getSelectedLegalEntity().getLegalEntityModel().getObject(),
+                    getCurrentLegalEntity(),
                     (int) first,
                     (int) count).iterator();
             return iterator;
@@ -53,7 +53,7 @@ public class FinanceAccountDataProvider extends EazyregnskabSortableDataProvider
 
     @Override
     public long size() {
-        int size = financeAccountService.countFinanceAccountOfLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject());
+        int size = financeAccountService.countFinanceAccountOfLegalEntity(getCurrentLegalEntity());
         return size;
     }
 

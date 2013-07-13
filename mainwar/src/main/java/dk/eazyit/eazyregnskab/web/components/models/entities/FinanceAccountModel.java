@@ -40,10 +40,9 @@ public class FinanceAccountModel extends AbstractEntityModel<FinanceAccount> {
             }
         } else {
             if (entity == null) {
-                LOG.trace("loading FinanceAccount entity " + id );
+                LOG.trace("loading FinanceAccount entity " + id);
                 return financeAccountDAO.findById(id);
-            }
-            else {
+            } else {
                 return entity;
             }
         }
@@ -54,6 +53,7 @@ public class FinanceAccountModel extends AbstractEntityModel<FinanceAccount> {
         LOG.trace("setting FinanceAccount entity " + object.getId());
         if (object.getId() == 0) {
             financeAccountDAO.create(object);
+            entity = object;
         } else {
             entity = financeAccountDAO.save(object);
         }

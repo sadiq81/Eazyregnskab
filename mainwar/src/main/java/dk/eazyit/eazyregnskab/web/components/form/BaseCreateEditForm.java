@@ -1,11 +1,11 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
+import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.BaseEntity;
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
-import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
-import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
-import dk.eazyit.eazyregnskab.session.CurrentUser;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
@@ -30,7 +30,6 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
     @SpringBean
     protected FinanceAccountService financeAccountService;
 
-
     protected BaseCreateEditForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));
         addToForm();
@@ -40,37 +39,19 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
         add(new AjaxButton("save", new ResourceModel("button.save")) {
 
             @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                LOG.debug("error on save in form " + form.getId() + " with object " + form.getModelObject().toString());
-                target.add(form);
-                FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
-                if (fp != null) {
-                    target.add(fp);
-                }
-            }
-
-            @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 LOG.debug("Saving form " + form.getId() + " with object " + form.getModelObject().toString());
                 saveForm((T) form.getModelObject());
                 target.add(getPage());
             }
+
         });
         add(new AjaxButton("new", new ResourceModel("button.new")) {
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                LOG.debug("error on new in form " + form.getId() + " with object " + form.getModelObject().toString());
-                FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
-                if (fp != null) {
-                    target.add(fp);
-                }
-                target.add(getPage());
-            }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 LOG.debug("Creating new in form " + form.getId() + " with object " + form.getModelObject().toString());
-                form.setDefaultModel(newEntity());
+                insertNewEntityInModel();
                 target.add(getPage());
             }
 
@@ -81,15 +62,6 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
             }
         });
         add(new AjaxButton("delete", new ResourceModel("button.delete")) {
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                LOG.debug("error on delete in form " + form.getId() + " with object " + form.getModelObject().toString());
-                target.add(form);
-                FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
-                if (fp != null) {
-                    target.add(fp);
-                }
-            }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -106,17 +78,15 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
         });
     }
 
-    public void deleteEntity(T entity) {
-        if (entity.equals(getModelObject())) {
-            setDefaultModel(newEntity());
-        }
+    public abstract void deleteEntity(T entity);
+
+    public void insertNewEntityInModel(){
+        setModel(new CompoundPropertyModel<T>(buildNewEntity()));
     }
 
-    public abstract CompoundPropertyModel<T> newEntity();
+    public abstract T buildNewEntity();
 
-    public void saveForm(T entity) {
-        setDefaultModel(newEntity());
-    }
+    public abstract void saveForm(T entity);
 
     protected boolean isNewButtonVisible() {
         return false;
@@ -126,16 +96,41 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> {
         return false;
     }
 
-    protected CurrentUser getCurrentUser() {
-        return (CurrentUser) getSession().getAttribute(CurrentUser.ATTRIBUTE_NAME);
+    protected AppUser getCurrentUser() {
+        return (AppUser) getSession().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
 
-    protected CurrentLegalEntity getSelectedLegalEntity() {
-        return (CurrentLegalEntity) getSession().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    protected LegalEntity getCurrentLegalEntity() {
+        return (LegalEntity) getSession().getAttribute(LegalEntity.ATTRIBUTE_NAME);
     }
 
-    protected CurrentDailyLedger getCurrentDailyLedger() {
-        return (CurrentDailyLedger) getSession().getAttribute(CurrentDailyLedger.ATTRIBUTE_NAME);
+    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+        getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+    }
+
+    protected DailyLedger getCurrentDailyLedger() {
+        return (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
+    }
+
+    class BaseCreateEditFormAjaxButton extends AjaxButton {
+
+        BaseCreateEditFormAjaxButton(String id, IModel<String> model) {
+            super(id, model);
+        }
+
+        @Override
+        protected void onError(AjaxRequestTarget target, Form<?> form) {
+            LOG.debug("error on delete in form " + form.getId() + " with object " + form.getModelObject().toString());
+            target.add(form);
+            FeedbackPanel fp = (FeedbackPanel) form.getPage().get("feedback");
+            if (fp != null) {
+                target.add(fp);
+            }
+        }
     }
 
 }

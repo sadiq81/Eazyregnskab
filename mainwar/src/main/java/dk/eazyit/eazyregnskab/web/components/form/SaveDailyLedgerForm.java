@@ -1,10 +1,8 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
-import dk.eazyit.eazyregnskab.domain.BookingResult;
-import dk.eazyit.eazyregnskab.domain.BookingStatus;
+import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.services.BookingService;
-import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
@@ -34,7 +32,7 @@ public class SaveDailyLedgerForm extends Form {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
-                bookingService.BookChosen(getCurrentDailyLedger().getDailyLedgerModel().getObject(), bookingResult = new BookingResult());
+                bookingService.BookChosen(getCurrentDailyLedger(), bookingResult = new BookingResult());
                 if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
                     getSession().error(new NotificationMessage(
                             new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfErrors()))
@@ -47,7 +45,7 @@ public class SaveDailyLedgerForm extends Form {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
-                bookingService.BookAll(getCurrentDailyLedger().getDailyLedgerModel().getObject(), bookingResult = new BookingResult());
+                bookingService.BookAll(getCurrentDailyLedger(), bookingResult = new BookingResult());
                 if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
                     getSession().error(new NotificationMessage(
                             new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfErrors()))
@@ -58,7 +56,24 @@ public class SaveDailyLedgerForm extends Form {
         });
     }
 
-    public CurrentDailyLedger getCurrentDailyLedger() {
-        return (CurrentDailyLedger) getSession().getAttribute(CurrentDailyLedger.ATTRIBUTE_NAME);
+    protected AppUser getCurrentUser() {
+        return (AppUser) getSession().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
+
+    protected LegalEntity getCurrentLegalEntity() {
+        return (LegalEntity) getSession().getAttribute(LegalEntity.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+        getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+    }
+
+    protected DailyLedger getCurrentDailyLedger() {
+        return (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
+    }
+
 }

@@ -5,9 +5,7 @@ import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2Choice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
-import dk.eazyit.eazyregnskab.web.components.models.entities.VatTypeModel;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.VatTypeFormValidator;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -34,11 +32,10 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
 
     @Override
     public void deleteEntity(VatType vatType) {
-        super.deleteEntity(vatType);
         if (vatType.getId() != 0) {
             if (financeAccountService.deleteVatType(vatType)) {
                 getSession().success(new NotificationMessage(new ResourceModel("vat.type.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                newEntity();
+                insertNewEntityInModel();
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("vat.type.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
@@ -48,15 +45,15 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     }
 
     @Override
-    public CompoundPropertyModel<VatType> newEntity() {
-        return new CompoundPropertyModel<VatType>(new VatTypeModel(new VatType()));
+    public VatType buildNewEntity() {
+        return new VatType();
     }
 
     @Override
     public void saveForm(VatType vatType) {
-        super.saveForm(null);
-        financeAccountService.saveVatType(vatType, getSelectedLegalEntity().getLegalEntityModel().getObject());
+        financeAccountService.saveVatType(vatType, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+        insertNewEntityInModel();
 
     }
 }

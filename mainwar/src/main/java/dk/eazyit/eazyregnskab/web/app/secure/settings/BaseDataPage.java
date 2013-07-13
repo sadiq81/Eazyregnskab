@@ -5,7 +5,6 @@ import dk.eazyit.eazyregnskab.web.components.form.LegalEntityForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -40,14 +39,13 @@ public class BaseDataPage extends LoggedInPage {
     @Override
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
-
-        add(form = new LegalEntityForm("legalEntityEdit", new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())),this));
+        add(form = new LegalEntityForm("legalEntityEdit", new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity()))));
     }
 
     @Override
-    public void changedLegalEntity(AjaxRequestTarget target) {
-        super.changedLegalEntity(target);
-        addOrReplace(form, new LegalEntityForm("legalEntityEdit", new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())),this));
-        LOG.debug("Changed LegalEntity to " + getSelectedLegalEntity().getLegalEntityModel().getObject().toString());
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        form.setModelObject(getCurrentLegalEntity());
     }
+
 }

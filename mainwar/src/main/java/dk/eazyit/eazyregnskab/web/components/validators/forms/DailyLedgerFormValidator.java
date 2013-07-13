@@ -26,7 +26,7 @@ public class DailyLedgerFormValidator extends BaseFormValidator {
 
         if (dailyLedger.getId() == 0 && dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY,
                 formComponent1.getInput(),
-                getSelectedLegalEntity().getLegalEntityModel().getObject()).size() > 0) {
+                getCurrentLegalEntity()).size() > 0) {
             error(formComponent1, "name.all.ready.exists");
         }
         if (formComponent1.getInput().length() > 20) {

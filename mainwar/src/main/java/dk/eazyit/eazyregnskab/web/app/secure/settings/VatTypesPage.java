@@ -7,7 +7,6 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.VatTypeModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForVatTypesPage;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -50,9 +49,4 @@ public class VatTypesPage extends LoggedInPage {
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfVatTypes", new ColumnsForVatTypesPage(form), new VatTypeDataProvider(), 20));
     }
 
-    @Override
-    public void changedLegalEntity(AjaxRequestTarget target) {
-        super.changedLegalEntity(target);
-        target.add(dataTable);
-    }
 }

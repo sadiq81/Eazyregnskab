@@ -45,6 +45,7 @@ public class LegalEntityModel extends AbstractEntityModel<LegalEntity> {
         LOG.trace("setting LegalEntity entity " + object.getId());
         if (object.getId() == 0) {
             legalEntityDAO.create(object);
+            entity = object;
         } else {
             entity = legalEntityDAO.save(object);
         }

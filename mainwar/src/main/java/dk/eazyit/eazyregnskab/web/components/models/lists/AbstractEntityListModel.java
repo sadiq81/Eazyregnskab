@@ -1,8 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.models.lists;
 
+import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
-import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
-import dk.eazyit.eazyregnskab.session.CurrentUser;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import org.apache.wicket.Session;
 import org.apache.wicket.model.IModel;
 
@@ -59,12 +60,24 @@ public abstract class AbstractEntityListModel<T extends EntityWithLongId, E exte
 
     public abstract void setObject(List<T> object);
 
-    protected CurrentLegalEntity getSelectedLegalEntity() {
-        return (CurrentLegalEntity) Session.get().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    protected AppUser getCurrentUser() {
+        return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
 
-    protected CurrentUser getCurrentUser() {
-        return (CurrentUser) Session.get().getAttribute(CurrentUser.ATTRIBUTE_NAME);
+    protected LegalEntity getCurrentLegalEntity() {
+        return (LegalEntity) Session.get().getAttribute(LegalEntity.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+        Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+    }
+
+    protected DailyLedger getCurrentDailyLedger() {
+        return (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
 
 }

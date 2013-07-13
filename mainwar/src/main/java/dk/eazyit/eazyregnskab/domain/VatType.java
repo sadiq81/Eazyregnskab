@@ -90,8 +90,9 @@ public class VatType extends BaseEntity {
         return financeAccount;
     }
 
-    public void setFinanceAccount(FinanceAccount financeAccount) {
+    public VatType setFinanceAccount(FinanceAccount financeAccount) {
         this.financeAccount = financeAccount;
+        return this;
     }
 
     @Override

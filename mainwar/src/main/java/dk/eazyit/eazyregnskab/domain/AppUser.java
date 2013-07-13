@@ -17,6 +17,8 @@ public class AppUser extends BaseEntity {
 
     public static final String QUERY_FIND_BY_USER_NAME = "AppUser::findByUserName";
 
+    public static final String ATTRIBUTE_NAME = AppUser.class.getName();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

@@ -41,7 +41,7 @@ public class DailyLedgerListModel extends AbstractEntityListModel<DailyLedger, L
 
     @Override
     protected LegalEntity fetchParent() {
-        return getSelectedLegalEntity().getLegalEntityModel().getObject();
+        return getCurrentLegalEntity();
     }
 
     @Override

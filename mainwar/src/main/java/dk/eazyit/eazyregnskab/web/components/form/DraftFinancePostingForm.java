@@ -9,9 +9,7 @@ import dk.eazyit.eazyregnskab.web.components.choice.VatTypeDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
-import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.DraftFinancePostingFormValidator;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -50,19 +48,20 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
     @Override
     public void deleteEntity(DraftFinancePosting draftFinancePosting) {
-        super.deleteEntity(draftFinancePosting);
         financeAccountService.deleteFinancePosting(draftFinancePosting);
         getSession().success(new NotificationMessage(new ResourceModel("finance.posting.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+        insertNewEntityInModel();
     }
 
     @Override
-    public CompoundPropertyModel<DraftFinancePosting> newEntity() {
-        return new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()));
+    public DraftFinancePosting buildNewEntity() {
+        return new DraftFinancePosting();
     }
 
     @Override
     public void saveForm(DraftFinancePosting draftFinancePosting) {
-        super.saveForm(null);
-        financeAccountService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject()));
+        financeAccountService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
+        getCurrentDailyLedger().setNextBookingNumber(draftFinancePosting.getBookingNumber()+1);
+        insertNewEntityInModel();
     }
 }

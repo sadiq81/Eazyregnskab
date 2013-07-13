@@ -41,7 +41,7 @@ public class DraftFinancePostingDataProvider extends EazyregnskabSortableDataPro
         if (sortParam != null) {
             LOG.debug(" and sorting after " + sortParam.getProperty());
             if (list == null) {
-                DailyLedger dailyLedger = getCurrentDailyLedger().getDailyLedgerModel().getObject();
+                DailyLedger dailyLedger = getCurrentDailyLedger();
                 list = financeAccountService.findFinancePostingByDailyLedgerSubListSortBy(dailyLedger, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
             }
             Iterator<DraftFinancePosting> iterator = list.iterator();
@@ -49,7 +49,7 @@ public class DraftFinancePostingDataProvider extends EazyregnskabSortableDataPro
         } else {
             if (list == null) {
                 list = financeAccountService.findFinancePostingByDailyLedgerSubList(
-                        getCurrentDailyLedger().getDailyLedgerModel().getObject(),
+                        getCurrentDailyLedger(),
                         (int) first,
                         (int) count);
             }
@@ -59,7 +59,7 @@ public class DraftFinancePostingDataProvider extends EazyregnskabSortableDataPro
 
     @Override
     public long size() {
-        int size = financeAccountService.countFinancePostingOfDailyLedger(getCurrentDailyLedger().getDailyLedgerModel().getObject());
+        int size = financeAccountService.countFinancePostingOfDailyLedger(getCurrentDailyLedger());
         return size;
     }
 

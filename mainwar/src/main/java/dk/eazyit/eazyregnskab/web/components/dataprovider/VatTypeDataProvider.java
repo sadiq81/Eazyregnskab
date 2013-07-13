@@ -36,12 +36,12 @@ public class VatTypeDataProvider extends EazyregnskabSortableDataProvider<VatTyp
         LOG.debug("Creating iterator of VatType with first " + first + " and count " + count);
         SortParam sortParam = getSort();
         if (sortParam != null) {
-            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            LegalEntity legalEntity = getCurrentLegalEntity();
             List<VatType> list = financeAccountService.findVatTypeByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
             Iterator<VatType> iterator = list.iterator();
             return iterator;
         } else {
-            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            LegalEntity legalEntity = getCurrentLegalEntity();
             List<VatType> list = financeAccountService.findVatTypeByLegalEntitySubList(legalEntity, (int) first, (int) count);
             Iterator<VatType> iterator = list.iterator();
             return iterator;
@@ -51,7 +51,7 @@ public class VatTypeDataProvider extends EazyregnskabSortableDataProvider<VatTyp
 
     @Override
     public long size() {
-        LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+        LegalEntity legalEntity = getCurrentLegalEntity();
         int size = financeAccountService.countVatTypesOfLegalEntity(legalEntity);
         return size;
     }

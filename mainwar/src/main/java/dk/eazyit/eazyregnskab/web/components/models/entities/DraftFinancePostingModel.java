@@ -45,6 +45,7 @@ public class DraftFinancePostingModel extends AbstractEntityModel<DraftFinancePo
         LOG.trace("setting DraftFinancePosting entity " + object.getId());
         if (object.getId() == 0) {
             draftFinancePostingDAO.create(object);
+            entity = object;
         } else {
             entity = draftFinancePostingDAO.save(object);
         }

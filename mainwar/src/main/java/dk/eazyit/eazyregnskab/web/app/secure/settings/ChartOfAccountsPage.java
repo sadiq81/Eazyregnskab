@@ -7,7 +7,6 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForChartsOfAccountsPage;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -47,12 +46,5 @@ public class ChartOfAccountsPage extends LoggedInPage {
         add(form = new FinanceAccountForm("financeAccountEdit", new FinanceAccountModel(new FinanceAccount())));
 
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), 20));
-    }
-
-
-    @Override
-    public void changedLegalEntity(AjaxRequestTarget target) {
-        super.changedLegalEntity(target);
-        target.add(dataTable);
     }
 }

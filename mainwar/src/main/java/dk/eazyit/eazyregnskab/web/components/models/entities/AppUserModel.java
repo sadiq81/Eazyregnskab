@@ -32,19 +32,21 @@ public class AppUserModel extends AbstractEntityModel<AppUser> {
     @Override
     protected AppUser load(Long id) {
         if (id == 0) {
-            if (entity != null)  LOG.trace("loading empty appuser entity");
+            if (entity != null) LOG.trace("loading empty appuser entity");
             return new AppUser();
         } else {
-            if (entity != null)   LOG.trace("loading appuser entity" + entity.getId());
+            if (entity != null) LOG.trace("loading appuser entity" + entity.getId());
             return appUserDAO.findById(id);
         }
     }
 
     @Override
     public void setObject(AppUser object) {
+
         LOG.trace("setting appuser entity " + object.getId());
         if (object.getId() == 0) {
             appUserDAO.create(object);
+            entity = object;
         } else {
             entity = appUserDAO.save(object);
         }

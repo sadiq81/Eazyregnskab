@@ -1,10 +1,10 @@
 package dk.eazyit.eazyregnskab.web.components.choice;
 
+import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
-import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
-import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
-import dk.eazyit.eazyregnskab.session.CurrentUser;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
@@ -59,15 +59,23 @@ public class SessionAwareDropDownChoice<T> extends DropDownChoice<T> {
         super(id, model, choices, renderer);
     }
 
-    protected CurrentUser getCurrentUser() {
-        return (CurrentUser) getSession().getAttribute(CurrentUser.ATTRIBUTE_NAME);
+    protected AppUser getCurrentUser() {
+        return (AppUser) getSession().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
 
-    protected CurrentLegalEntity getSelectedLegalEntity() {
-        return (CurrentLegalEntity) getSession().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    protected LegalEntity getCurrentLegalEntity() {
+        return (LegalEntity) getSession().getAttribute(LegalEntity.ATTRIBUTE_NAME);
     }
 
-    protected CurrentDailyLedger getCurrentDailyLedger() {
-        return (CurrentDailyLedger) getSession().getAttribute(CurrentDailyLedger.ATTRIBUTE_NAME);
+    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+        getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+    }
+
+    protected DailyLedger getCurrentDailyLedger() {
+        return (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
 }

@@ -7,7 +7,6 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForDailyLedgerPage;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -47,11 +46,5 @@ public class DailyLedgerPage extends LoggedInPage {
         add(form = new DailyLedgerForm("dailyLedgerEdit", new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(new DailyLedger()))));
 
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfDailyLedgers", new ColumnsForDailyLedgerPage(form), new DailyLedgerDataProvider(), 20));
-    }
-
-    @Override
-    public void changedLegalEntity(AjaxRequestTarget target) {
-        super.changedLegalEntity(target);
-        target.add(dataTable);
     }
 }

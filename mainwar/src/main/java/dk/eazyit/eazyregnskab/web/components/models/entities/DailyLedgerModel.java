@@ -45,6 +45,7 @@ public class DailyLedgerModel extends AbstractEntityModel<DailyLedger> {
         LOG.trace("setting DailyLedger entity " + object.getId());
         if (object.getId() == 0) {
             dailyLedgerDAO.create(object);
+            entity = object;
         } else {
             entity = dailyLedgerDAO.save(object);
         }

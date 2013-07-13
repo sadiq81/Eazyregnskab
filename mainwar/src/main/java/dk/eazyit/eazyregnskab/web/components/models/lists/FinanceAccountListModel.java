@@ -41,7 +41,7 @@ public class FinanceAccountListModel extends AbstractEntityListModel<FinanceAcco
 
     @Override
     protected LegalEntity fetchParent() {
-        return getSelectedLegalEntity().getLegalEntityModel().getObject();
+        return getCurrentLegalEntity();
     }
 
     @Override

@@ -4,7 +4,6 @@ import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.Country;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.MoneyCurrency;
-import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
@@ -20,11 +19,9 @@ import java.util.Arrays;
  */
 public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
-    private BaseDataPage parent;
-
-    public LegalEntityForm(String id, IModel<LegalEntity> model, BaseDataPage parent) {
+    public LegalEntityForm(String id, IModel<LegalEntity> model) {
         super(id, model);
-        this.parent = parent;
+
     }
 
     @Override
@@ -40,10 +37,9 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
     @Override
     public void deleteEntity(LegalEntity legalEntity) {
-        if (legalEntityService.deleteLegalEntity(getCurrentUser().getAppUserModel().getObject(), legalEntity)) {
-            getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(getCurrentUser().getAppUserModel().getObject()).get(0)));
-            setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject())));
-            parent.updateLegalEntitySelections();
+        if (legalEntityService.deleteLegalEntity(getCurrentUser(), legalEntity)) {
+            setCurrentLegalEntity(legalEntityService.findLegalEntityByUser(getCurrentUser()).get(0));
+            setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity())));
             getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
         } else {
             getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
@@ -51,18 +47,17 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     }
 
     @Override
-    public CompoundPropertyModel<LegalEntity> newEntity() {
-        LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser().getAppUserModel().getObject());
-        getSelectedLegalEntity().setLegalEntityModel(new LegalEntityModel(newLegalEntity));
-        parent.updateLegalEntitySelections();
+    public LegalEntity buildNewEntity() {
+        LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser());
+        setCurrentLegalEntity(newLegalEntity);
+        getPage().get("legalEntityChooser").setDefaultModelObject(newLegalEntity);
         getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
-        return new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getSelectedLegalEntity().getLegalEntityModel().getObject()));
+        return newLegalEntity;
     }
 
     @Override
     public void saveForm(LegalEntity legalEntity) {
-        legalEntityService.saveLegalEntity(getCurrentUser().getAppUserModel().getObject(), legalEntity);
-        parent.updateLegalEntitySelections();
+        legalEntityService.saveLegalEntity(getCurrentUser(), legalEntity);
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
     }
 

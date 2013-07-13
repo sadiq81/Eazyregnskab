@@ -1,21 +1,17 @@
 package dk.eazyit.eazyregnskab.web.components.page;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
+import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
-import dk.eazyit.eazyregnskab.session.CurrentDailyLedger;
-import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
-import dk.eazyit.eazyregnskab.session.CurrentUser;
-import dk.eazyit.eazyregnskab.web.components.choice.LegalEntityDropDownChoice;
-import dk.eazyit.eazyregnskab.web.components.models.entities.AppUserModel;
-import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
-import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
+import dk.eazyit.eazyregnskab.web.components.choice.LegalEntityChooser;
 import dk.eazyit.eazyregnskab.web.components.navigation.LinkList;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
 import org.apache.wicket.Session;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -40,7 +36,7 @@ public class LoggedInPage extends AppBasePage {
     @SpringBean
     protected FinanceAccountService financeAccountService;
 
-    LegalEntityDropDownChoice legalEntityDropDownChoice;
+    LegalEntityChooser legalEntityChooser;
 
     static final Logger LOG = LoggerFactory.getLogger(LoggedInPage.class);
     protected NotificationPanel feedbackPanel;
@@ -67,8 +63,7 @@ public class LoggedInPage extends AppBasePage {
 
         add(new LinkList("linkList", MenuSetup.createSubMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
 
-        add(legalEntityDropDownChoice = new LegalEntityDropDownChoice("legalEntityList", this));
-
+        add(legalEntityChooser = new LegalEntityChooser("legalEntityList"));
 
     }
 
@@ -76,69 +71,56 @@ public class LoggedInPage extends AppBasePage {
 
         Session session = getSession();
 
-        CurrentUser currentUser = getCurrentUser();
+        AppUser currentUser = getCurrentUser();
         if (currentUser == null) {
-            LOG.debug("Creating CurrentUser");
-            currentUser = new CurrentUser();
-            session.setAttribute(CurrentUser.ATTRIBUTE_NAME, currentUser);
-        }
-        if (currentUser.getAppUserModel() == null) {
-            LOG.debug("No user set");
-            currentUser.setAppUserModel(getAppUserModel());
-            LOG.debug("set user " + currentUser.getAppUserModel().getObject().getUsername());
+            currentUser = getAppUser();
+            LOG.debug("Setting CurrentUser");
+            session.setAttribute(AppUser.ATTRIBUTE_NAME, currentUser);
         }
 
-        CurrentLegalEntity currentLegalEntity = getSelectedLegalEntity();
+        LegalEntity currentLegalEntity = getCurrentLegalEntity();
         if (currentLegalEntity == null) {
-            LOG.debug("Creating CurrentLegalEntity");
-            currentLegalEntity = new CurrentLegalEntity();
-            session.setAttribute(CurrentLegalEntity.ATTRIBUTE_NAME, currentLegalEntity);
+            currentLegalEntity = legalEntityService.findLegalEntityByUser(currentUser).get(0);
+            LOG.debug("Setting CurrentLegalEntity");
+            session.setAttribute(LegalEntity.ATTRIBUTE_NAME, currentLegalEntity);
         }
-        if (currentLegalEntity.getLegalEntityModel() == null) {
-            LOG.debug("No legalEntity selected");
-            //TODO will fail if no legal entities
-            currentLegalEntity.setLegalEntityModel(new LegalEntityModel(legalEntityService.findLegalEntityByUser(currentUser.getAppUserModel().getObject()).get(0)));
-            LOG.debug("Selected legalEntity as first in user access");
-        }
-        CurrentDailyLedger currentDailyLedger = getCurrentDailyLedger();
+
+        DailyLedger currentDailyLedger = getCurrentDailyLedger();
         if (currentDailyLedger == null) {
-            LOG.debug("Creating CurrentDailyLedger");
-            currentDailyLedger = new CurrentDailyLedger();
-            session.setAttribute(CurrentDailyLedger.ATTRIBUTE_NAME, currentDailyLedger);
+            currentDailyLedger = financeAccountService.findDailyLedgerByLegalEntity(currentLegalEntity).get(0);
+            LOG.debug("Setting CurrentDailyLedger");
+            session.setAttribute(DailyLedger.ATTRIBUTE_NAME, currentDailyLedger);
         }
-        if (currentDailyLedger.getDailyLedgerModel() == null) {
-            //TODO will fail if no daily ledger
-            LOG.debug("No dailyLedger selected");
-            currentDailyLedger.setDailyLedgerModel(new DailyLedgerModel(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0)));
-            LOG.debug("Selected daily ledger as first in legal entity");
+
+        if (currentUser == null || currentLegalEntity == null || currentDailyLedger == null) {
+            LOG.warn("EnsureUserInfo Failed with AppUser: " + currentUser + " LegalEntity: " + currentLegalEntity + " DailyLedger: " + currentDailyLedger);
+            throw new NullPointerException("EnsureUserInfo Failed");
         }
     }
 
-    private AppUserModel getAppUserModel() {
+    private AppUser getAppUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        return new AppUserModel(loginService.findAppUserByUsername(name));
+        return loginService.findAppUserByUsername(name);
     }
 
-    public CurrentUser getCurrentUser() {
-        return (CurrentUser) getSession().getAttribute(CurrentUser.ATTRIBUTE_NAME);
+    protected AppUser getCurrentUser() {
+        return (AppUser) getSession().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
 
-    public CurrentLegalEntity getSelectedLegalEntity() {
-        return (CurrentLegalEntity) getSession().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    protected LegalEntity getCurrentLegalEntity() {
+        return (LegalEntity) getSession().getAttribute(LegalEntity.ATTRIBUTE_NAME);
     }
 
-    public CurrentDailyLedger getCurrentDailyLedger() {
-        return (CurrentDailyLedger) getSession().getAttribute(CurrentDailyLedger.ATTRIBUTE_NAME);
+    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+        getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
     }
 
-    public void updateLegalEntitySelections() {
-        LOG.debug("Updating legal entity selections");
-        addOrReplace(legalEntityDropDownChoice, new LegalEntityDropDownChoice("legalEntityList", this));
+    protected DailyLedger getCurrentDailyLedger() {
+        return (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
     }
 
-    public void changedLegalEntity(AjaxRequestTarget target) {
-        getCurrentDailyLedger().getDailyLedgerModel().setObject(financeAccountService.findDailyLedgerByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject()).get(0));
+    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
-
 }

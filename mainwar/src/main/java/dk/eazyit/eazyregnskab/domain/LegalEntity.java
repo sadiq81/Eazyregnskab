@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.domain;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -16,6 +17,8 @@ import java.util.Set;
 })
 @Table(name = "legalentity")
 public class LegalEntity extends BaseEntity {
+
+    public static final String ATTRIBUTE_NAME = LegalEntity.class.getName();
 
     public static final String QUERY_FIND_LEGAL_ENTITY_BY_USER = "LegalEntity::findLegalEntityByUser";
 
@@ -44,10 +47,10 @@ public class LegalEntity extends BaseEntity {
     private MoneyCurrency moneyCurrency;
 
     @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
-    private Set<FinanceAccount> financeAccounts;
+    private List<FinanceAccount> financeAccounts;
 
-    @OneToMany(mappedBy = "legalEntity")
-    private Set<DailyLedger> dailyLedgers;
+    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.EAGER)
+    private List<DailyLedger> dailyLedgers;
 
     public LegalEntity() {
     }
@@ -118,19 +121,19 @@ public class LegalEntity extends BaseEntity {
         this.moneyCurrency = moneyCurrency;
     }
 
-    public Set<FinanceAccount> getFinanceAccounts() {
+    public List<FinanceAccount> getFinanceAccounts() {
         return financeAccounts;
     }
 
-    public void setFinanceAccounts(Set<FinanceAccount> financeAccounts) {
+    public void setFinanceAccounts(List<FinanceAccount> financeAccounts) {
         this.financeAccounts = financeAccounts;
     }
 
-    public Set<DailyLedger> getDailyLedgers() {
+    public List<DailyLedger> getDailyLedgers() {
         return dailyLedgers;
     }
 
-    public void setDailyLedgers(Set<DailyLedger> dailyLedgers) {
+    public void setDailyLedgers(List<DailyLedger> dailyLedgers) {
         this.dailyLedgers = dailyLedgers;
     }
 

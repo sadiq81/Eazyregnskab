@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.choice;
 
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.models.lists.DailyLedgerListModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
@@ -11,25 +12,28 @@ import org.slf4j.LoggerFactory;
 /**
  * @author
  */
-public class DailyLedgerDropDownChoice extends SessionAwareDropDownChoice<DailyLedger> {
+public class DailyLedgerChooser extends SessionAwareDropDownChoice<DailyLedger> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DailyLedgerDropDownChoice.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DailyLedgerChooser.class);
 
-    public DailyLedgerDropDownChoice(String id) {
+    public DailyLedgerChooser(String id) {
         super(id);
-        setDefaultModel(getCurrentDailyLedger().getDailyLedgerModel());
+        setDefaultModel(new DailyLedgerModel(getCurrentDailyLedger()));
         setChoices(new DailyLedgerListModel());
         setChoiceRenderer(new ChoiceRenderer<DailyLedger>("name", "id"));
-
         setOutputMarkupPlaceholderTag(true);
-
         add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                LOG.debug("Changed DailyLeger to " + getCurrentDailyLedger().getDailyLedgerModel().getObject());
+                DailyLedger changed = getConvertedInput();
+                LOG.debug("Changed DailyLeger to " + changed);
+                getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, changed);
                 target.add(getPage());
+
             }
         }));
 
     }
+
+
 }

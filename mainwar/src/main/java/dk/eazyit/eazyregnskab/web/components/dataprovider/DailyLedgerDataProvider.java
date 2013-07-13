@@ -37,12 +37,12 @@ public class DailyLedgerDataProvider extends EazyregnskabSortableDataProvider<Da
         LOG.debug("Creating iterator of DailyLedger with first " + first + " and count " + count);
         SortParam sortParam = getSort();
         if (sortParam != null) {
-            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            LegalEntity legalEntity = getCurrentLegalEntity();
             List<DailyLedger> list = financeAccountService.findDailyLedgerByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
             Iterator<DailyLedger> iterator = list.iterator();
             return iterator;
         } else {
-            LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+            LegalEntity legalEntity = getCurrentLegalEntity();
             List<DailyLedger> list = financeAccountService.findDailyLedgerByLegalEntitySubList(legalEntity, (int) first, (int) count);
             Iterator<DailyLedger> iterator = list.iterator();
             return iterator;
@@ -52,7 +52,7 @@ public class DailyLedgerDataProvider extends EazyregnskabSortableDataProvider<Da
 
     @Override
     public long size() {
-        LegalEntity legalEntity = getSelectedLegalEntity().getLegalEntityModel().getObject();
+        LegalEntity legalEntity = getCurrentLegalEntity();
         int size = financeAccountService.countDailyLedgerOfLegalEntity(legalEntity);
         return size;
     }

@@ -9,7 +9,7 @@
     </appender>
 
     <logger name="dk.eazyit.eazyregnskab" level="DEBUG">
-        <appender-ref ref="STDOUT"></appender-ref>
+        <!--<appender-ref ref="STDOUT"></appender-ref>-->
     </logger>
 
     <root level="WARN">

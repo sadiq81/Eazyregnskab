@@ -32,10 +32,10 @@ public class VatTypeModel extends AbstractEntityModel<VatType> {
     @Override
     protected VatType load(Long id) {
         if (id == 0) {
-            if (entity != null)    LOG.trace("loading empty VatType entity");
+            if (entity != null) LOG.trace("loading empty VatType entity");
             return new VatType();
         } else {
-            if (entity != null)     LOG.trace("loading VatType entity " + entity.getId());
+            if (entity != null) LOG.trace("loading VatType entity " + entity.getId());
             return vatTypeDAO.findById(id);
         }
     }
@@ -45,6 +45,7 @@ public class VatTypeModel extends AbstractEntityModel<VatType> {
         LOG.trace("setting VatType entity " + object.getId());
         if (object.getId() == 0) {
             vatTypeDAO.create(object);
+            entity = object;
         } else {
             entity = vatTypeDAO.save(object);
         }

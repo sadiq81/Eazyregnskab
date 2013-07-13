@@ -4,9 +4,7 @@
 <body>
 
 
-
 <wicket:extend>
-
 
 
     <form wicket:id="dailyLedgerEdit" class="form-horizontal">
@@ -20,6 +18,17 @@
                 <input wicket:id="name" id="name" type="text"/>
             </div>
         </div>
+
+        <div class="control-group">
+            <label class="control-label" for="nextBookingNumber">
+                <wicket:message key="nextBookingNumber"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input wicket:id="nextBookingNumber" id="nextBookingNumber" type="text"/>
+            </div>
+        </div>
+
         <div class="control-group">
             <div class="controls">
 

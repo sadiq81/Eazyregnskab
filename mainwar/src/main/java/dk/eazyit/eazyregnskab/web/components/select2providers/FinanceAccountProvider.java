@@ -2,9 +2,11 @@ package dk.eazyit.eazyregnskab.web.components.select2providers;
 
 import com.vaynberg.wicket.select2.Response;
 import com.vaynberg.wicket.select2.TextChoiceProvider;
+import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
-import dk.eazyit.eazyregnskab.session.CurrentLegalEntity;
 import org.apache.wicket.Session;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -56,7 +58,7 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> {
 
         List<FinanceAccount> result = new ArrayList<FinanceAccount>();
 
-        List<FinanceAccount> list = financeAccountService.findBookableFinanceAccountByLegalEntity(getSelectedLegalEntity().getLegalEntityModel().getObject());
+        List<FinanceAccount> list = financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity());
 
         term = term.toUpperCase();
 
@@ -79,8 +81,24 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> {
     }
 
 
-    protected CurrentLegalEntity getSelectedLegalEntity() {
-        return (CurrentLegalEntity) Session.get().getAttribute(CurrentLegalEntity.ATTRIBUTE_NAME);
+    protected AppUser getCurrentUser() {
+        return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
+    }
+
+    protected LegalEntity getCurrentLegalEntity() {
+        return (LegalEntity) Session.get().getAttribute(LegalEntity.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentLegalEntity(LegalEntity legalEntity) {
+        Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
+    }
+
+    protected DailyLedger getCurrentDailyLedger() {
+        return (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    }
+
+    protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
 
 }
