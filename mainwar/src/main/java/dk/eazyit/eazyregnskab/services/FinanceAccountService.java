@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,10 +31,32 @@ public class FinanceAccountService {
     @Autowired
     private DailyLedgerDAO dailyLedgerDAO;
 
+
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntity(LegalEntity legalEntity) {
         LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
         List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
+        return list;
+    }
+
+    @Transactional
+    public FinanceAccount findLowestFinanceAccountByLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Finding lowest FinanceAccount from legal entity " + legalEntity.toString());
+        FinanceAccount lowest = financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_LOWEST, legalEntity);
+        return lowest;
+    }
+
+    @Transactional
+    public FinanceAccount findHighestFinanceAccountByLegalEntity(LegalEntity legalEntity) {
+        LOG.debug("Finding highest FinanceAccount from legal entity " + legalEntity.toString());
+        FinanceAccount highest = financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_HIGHEST, legalEntity);
+        return highest;
+    }
+
+    public List<FinanceAccount> findFinanceAccountByLegalEntityFromAccountToAccount(LegalEntity legalEntity, FinanceAccount fromAccount, FinanceAccount toAccount) {
+        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
+        List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT,
+                legalEntity, fromAccount.getAccountNumber(), toAccount.getAccountNumber());
         return list;
     }
 
@@ -82,11 +105,17 @@ public class FinanceAccountService {
     }
 
     @Transactional(readOnly = true)
+    public List<BookedFinancePosting> findPostingsFromFinanceAccountFromDateToDate(FinanceAccount account, Date fromDate, Date toDate) {
+        LOG.debug("Finding all BookedFinancePosting from FinanceAccount " + account + " from date " + fromDate + " to date " + toDate);
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_ACCOUNT_FROM_DATE_TO_DATE,
+                account, fromDate, toDate);
+    }
+
+    @Transactional(readOnly = true)
     public List<BookedFinancePosting> findPostingsFromLegalEntity(LegalEntity legalEntity) {
         LOG.debug("Finding all BookedFinancePosting from LegalEntity " + legalEntity.toString());
         return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY, legalEntity);
     }
-
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 

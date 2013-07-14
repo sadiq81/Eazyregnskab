@@ -3,9 +3,11 @@ package dk.eazyit.eazyregnskab.web.components.input;
 import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextField;
 import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextFieldConfig;
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.util.convert.IConverter;
+import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Date;
 
 /**
  * @author Trifork
@@ -20,20 +22,16 @@ public class PlaceholderDateField extends DateTextField {
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
+    public PlaceholderDateField(String markupId, IModel<Date> model, DateTextFieldConfig config) {
+        super(markupId, model, config);
+        setOutputMarkupPlaceholderTag(true);
+        LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
+    }
+
     @Override
     protected void onComponentTag(ComponentTag tag) {
         super.onComponentTag(tag);
         String placeholder = getLocalizer().getString(this.getId(), this.getPage());
         tag.put("placeholder", placeholder);
-    }
-
-    @Override
-    public <C> IConverter<C> getConverter(Class<C> type) {
-        return super.getConverter(type);
-    }
-
-    @Override
-    protected CharSequence createScript(DateTextFieldConfig config) {
-        return super.createScript(config);
     }
 }

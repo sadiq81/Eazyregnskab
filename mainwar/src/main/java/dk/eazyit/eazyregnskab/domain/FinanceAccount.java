@@ -14,17 +14,33 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 ORDER BY accountNumber ASC"),
+
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_LOWEST, query = "select f from FinanceAccount f " +
+                "where f.legalEntity = ?1 and f.accountNumber = " +
+                "(select min(fa.accountNumber) from FinanceAccount fa where fa.legalEntity = ?1)"),
+
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_HIGHEST, query = "select f from FinanceAccount f " +
+                        "where f.legalEntity = ?1 and f.accountNumber = " +
+                        "(select max(fa.accountNumber) from FinanceAccount fa where fa.legalEntity = ?1)"),
+
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 and fa.name = ?2 ORDER BY accountNumber ASC"),
-        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, query = "select fa from FinanceAccount fa " +
-                "WHERE fa.legalEntity = ?1 and fa.accountNumber = ?2 ORDER BY accountNumber ASC")
+
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT, query = "select fa from FinanceAccount fa " +
+                "WHERE fa.legalEntity = ?1 and fa = ?2 ORDER BY accountNumber ASC"),
+
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT, query = "select fa from FinanceAccount fa " +
+                "WHERE fa.legalEntity = ?1 and fa.accountNumber >= ?2 and fa.accountNumber <= ?3 ORDER BY accountNumber ASC")
 })
 @Table(name = "financeaccount")
 public class FinanceAccount extends BaseEntity {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "FinanceAccount::findByLegalEntity";
+    public static final String QUERY_FIND_BY_LEGAL_ENTITY_LOWEST = "FinanceAccount::findByLegalEntityLowest";
+    public static final String QUERY_FIND_BY_LEGAL_ENTITY_HIGHEST = "FinanceAccount::findByLegalEntityHighest";
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME = "FinanceAccount::findByLegalEntityAndName";
-    public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER = "FinanceAccount::findByLegalEntityAndAccountNumber";
+    public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT = "FinanceAccount::findByLegalEntityAndAccount";
+    public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT = "FinanceAccount::findByLegalEntityAndAccountNumberFromAccountToAccount";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

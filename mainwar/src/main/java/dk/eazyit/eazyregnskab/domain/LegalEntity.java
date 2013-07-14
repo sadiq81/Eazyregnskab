@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.domain;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -122,6 +123,7 @@ public class LegalEntity extends BaseEntity {
     }
 
     public List<FinanceAccount> getFinanceAccounts() {
+        if (financeAccounts == null) financeAccounts = new ArrayList<FinanceAccount>();
         return financeAccounts;
     }
 
@@ -130,6 +132,7 @@ public class LegalEntity extends BaseEntity {
     }
 
     public List<DailyLedger> getDailyLedgers() {
+        if (dailyLedgers == null) dailyLedgers = new ArrayList<DailyLedger>();
         return dailyLedgers;
     }
 

@@ -1,7 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
-import org.apache.wicket.Session;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,8 +15,13 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select bp from BookedFinancePosting bp " +
                 "WHERE bp.financeAccount = ?1"),
+
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_ACCOUNT_FROM_DATE_TO_DATE, query = "select bp from BookedFinancePosting bp " +
+                        "WHERE bp.financeAccount = ?1 and bp.date >= ?2 and bp.date <= ?3"),
+
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select bp from BookedFinancePosting bp " +
                 "WHERE bp.vatType = ?1"),
+
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY, query = "select bp from BookedFinancePosting bp " +
                         "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1)"),
 
@@ -26,6 +30,7 @@ import java.util.Date;
 public class BookedFinancePosting extends BaseEntity {
 
     public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "BookedFinancePosting::findBookedFinancePostingByFinanceAccount";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_ACCOUNT_FROM_DATE_TO_DATE = "BookedFinancePosting::findBookedFinancePostingByFinanceAccountsFromDateToDate";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY = "BookedFinancePosting::findBookedFinancePostingByLegalEntity";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE = "BookedFinancePosting::findBookedFinancePostingByVatType";
 

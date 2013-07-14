@@ -5,13 +5,13 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.util.BookedFinancePostingDateComparator;
+import dk.eazyit.eazyregnskab.util.ReportObject;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author
@@ -23,11 +23,26 @@ public class ReportService {
     FinanceAccountService financeAccountService;
 
     @Transactional
-    public List<FinanceAccount> getFinanceAccountsWithSum(LegalEntity legalEntity) {
+    public List<FinanceAccount> getFinanceAccountsWithSum(LegalEntity legalEntity, CompoundPropertyModel<ReportObject> model) {
 
-        //TODO Calculate sums in DB
-        List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntity(legalEntity);
-        List<BookedFinancePosting> financePostingList = financeAccountService.findPostingsFromLegalEntity(legalEntity);
+        Date fromDate = model.getObject().getDateFrom();
+        Date toDate = model.getObject().getDateTo();
+
+        FinanceAccount fromAccount = model.getObject().getAccountFrom();
+        FinanceAccount toAccount = model.getObject().getAccountTo();
+
+        if (fromDate == null || toDate == null || fromAccount == null || toAccount == null) {
+            throw new NullPointerException("Arguments must not be null");
+        }
+
+        //TODO Calculate sums in DB??
+        List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntityFromAccountToAccount(legalEntity, fromAccount, toAccount);
+        List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            List <BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
+            financePostingList.addAll(temp);
+        }
+
         Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
 
         HashMap<Integer, FinanceAccount> financeAccountHashMap = new HashMap<Integer, FinanceAccount>();

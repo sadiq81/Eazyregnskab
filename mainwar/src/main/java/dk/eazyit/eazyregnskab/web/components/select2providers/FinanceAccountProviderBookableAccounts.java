@@ -1,14 +1,8 @@
 package dk.eazyit.eazyregnskab.web.components.select2providers;
 
 import com.vaynberg.wicket.select2.Response;
-import com.vaynberg.wicket.select2.TextChoiceProvider;
-import dk.eazyit.eazyregnskab.domain.AppUser;
-import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
-import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
-import dk.eazyit.eazyregnskab.session.SessionAware;
-import org.apache.wicket.Session;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -19,12 +13,12 @@ import java.util.List;
 /**
  * @author
  */
-public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> implements SessionAware {
+public class FinanceAccountProviderBookableAccounts extends SessionAwareTextChoiceProvider<FinanceAccount> {
 
     @SpringBean
     private FinanceAccountService financeAccountService;
 
-    public FinanceAccountProvider() {
+    public FinanceAccountProviderBookableAccounts() {
         Injector.get().inject(this);
     }
 
@@ -80,31 +74,4 @@ public class FinanceAccountProvider extends TextChoiceProvider<FinanceAccount> i
         }
         return result;
     }
-
-
-    public AppUser getCurrentUser() {
-        return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
-    }
-
-    public LegalEntity getCurrentLegalEntity() {
-        return (LegalEntity) Session.get().getAttribute(LegalEntity.ATTRIBUTE_NAME);
-    }
-
-    public void setCurrentLegalEntity(LegalEntity legalEntity) {
-        Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
-        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
-    }
-
-    public DailyLedger getCurrentDailyLedger() {
-        DailyLedger ledger = (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
-            throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
-        }
-        return ledger;
-    }
-
-    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
-        Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
-    }
-
 }

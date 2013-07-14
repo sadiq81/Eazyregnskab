@@ -58,6 +58,7 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     @Override
     public LegalEntity buildNewEntity() {
         LegalEntity newLegalEntity = legalEntityService.createLegalEntity(getCurrentUser());
+
         setCurrentLegalEntity(newLegalEntity);
 
         //TODO bad design, find another solution without using a reference.

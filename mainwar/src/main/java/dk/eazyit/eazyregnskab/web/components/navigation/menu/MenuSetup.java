@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.navigation.menu;
 
+import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.reflections.Reflections;
 
@@ -14,6 +15,7 @@ public class MenuSetup {
 
         Reflections reflections = new Reflections("dk.eazyit.eazyregnskab.web.app.secure");
         List<Class<? extends LoggedInPage>> annotated = new ArrayList<Class<? extends LoggedInPage>>(reflections.getSubTypesOf(LoggedInPage.class));
+        annotated.addAll(reflections.getSubTypesOf(BaseReportPage.class));
         Collections.sort(annotated, new Comparator<Class<? extends LoggedInPage>>() {
             @Override
             public int compare(Class<? extends LoggedInPage> aClass, Class<? extends LoggedInPage> aClass2) {
@@ -38,6 +40,7 @@ public class MenuSetup {
         Reflections reflections = new Reflections("dk.eazyit.eazyregnskab.web.app.secure");
 
         List<Class<? extends LoggedInPage>> annotated = new ArrayList<Class<? extends LoggedInPage>>(reflections.getSubTypesOf(LoggedInPage.class));
+        annotated.addAll(reflections.getSubTypesOf(BaseReportPage.class));
 
         Collections.sort(annotated, new Comparator<Class<? extends LoggedInPage>>() {
             @Override

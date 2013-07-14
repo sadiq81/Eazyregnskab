@@ -8,43 +8,56 @@
     <style>
         tr.headline {
             background-color: #dddddd;
-            font-weight:bold;
+            font-weight: bold;
         }
+
         tr.sumfrom {
             background-color: #b1b1b1;
-            font-weight:bold;
+            font-weight: bold;
         }
 
     </style>
 
+    <form wicket:id="filters">
 
-    <table class="table table-condensed">
-        <tr>
-            <th>
-                <wicket:message key="account.number"></wicket:message>
-            </th>
-            <th>
-                <wicket:message key="account.name"></wicket:message>
-            </th>
-            <th>
-                <wicket:message key="account.sum"></wicket:message>
-            </th>
-        </tr>
-        <span>
-            <tr wicket:id="financeAccounts">
+        <table>
+            <tr>
                 <td>
-                    <span wicket:id="accountNumber"></span>
+                    <wicket:message key="dateFrom"></wicket:message>
                 </td>
                 <td>
-                    <span wicket:id="accountName"></span>
-                </td>
-                <td>
-                    <span wicket:id="sum"></span>
+                    <wicket:message key="dateTo"></wicket:message>
                 </td>
             </tr>
-        </span>
-    </table>
+            <tr>
+                <td><input class="span2" wicket:id="dateFrom" id="dateFrom" type="text"/></td>
+                <td><input class="span2" wicket:id="dateTo" id="dateTo" type="text"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <wicket:message key="AccountFrom"></wicket:message>
+                </td>
+                <td>
+                    <wicket:message key="AccountTo"></wicket:message>
+                </td>
+            </tr>
+            <tr>
+                <td><input class="span2" wicket:id="accountFrom" id="accountFrom" type="hidden"/></td>
+                <td><input class="span2" wicket:id="accountTo" id="accountTo" type="hidden"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input wicket:id="refresh" class="btn btn-success" type="submit" value="save"/>
+                </td>
+            </tr>
+        </table>
 
+    </form>
+
+    <div wicket:id="balancePanel"></div>
 
 </wicket:extend>
 

@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.VatType;
-import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2Choice;
+import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2ChoiceBookableAccounts;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.VatTypeFormValidator;
@@ -26,7 +26,7 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
         super.addToForm();
         add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
         add(new PlaceholderNumberTextField<Double>("percentage").setMinimum(new Double(0)).setMaximum(new Double(100)).setRequired(true));
-        add(new FinanceAccountSelect2Choice("financeAccount").setRequired(true));
+        add(new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount").setRequired(true));
         add(new VatTypeFormValidator(name));
     }
 

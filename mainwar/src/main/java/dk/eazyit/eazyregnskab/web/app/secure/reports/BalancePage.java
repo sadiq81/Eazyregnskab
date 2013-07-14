@@ -1,13 +1,10 @@
 package dk.eazyit.eazyregnskab.web.app.secure.reports;
 
-import dk.eazyit.eazyregnskab.domain.FinanceAccount;
-import dk.eazyit.eazyregnskab.web.components.models.lists.FinanceAccountListModelWithSum;
+import dk.eazyit.eazyregnskab.web.components.form.BalanceReportForm;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
-import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
+import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
+import dk.eazyit.eazyregnskab.web.components.panels.BalancePanel;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
@@ -17,11 +14,14 @@ import org.slf4j.LoggerFactory;
  * @author
  */
 @MenuPosition(name = "reports.balance", parentPage = BalancePage.class, subLevel = 0, topLevelPage = true, topLevel = 2)
-public class BalancePage extends LoggedInPage {
+public class BalancePage extends BaseReportPage {
 
     private static final Logger LOG = LoggerFactory.getLogger(BalancePage.class);
 
+    BalancePanel balancePanel;
+
     public BalancePage() {
+        super();
         LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
@@ -39,39 +39,13 @@ public class BalancePage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(new ListView<FinanceAccount>("financeAccounts", new FinanceAccountListModelWithSum()) {
-            @Override
-            protected void populateItem(ListItem<FinanceAccount> itemOuter) {
-                FinanceAccount fa = itemOuter.getModelObject();
-                itemOuter.add(new Label("accountNumber", fa.getAccountNumber()));
-                itemOuter.add(new Label("accountName", fa.getName()));
-
-                switch (fa.getFinanceAccountType()) {
-                    case PROFIT:
-                    case EXPENSE:
-                    case ASSET:
-                    case LIABILITY: {
-                        itemOuter.add(new Label("sum", fa.getSum()));
-                        break;
-                    }
-                    case HEADLINE: {
-                        itemOuter.add(new AttributeAppender("class","headline"));
-                        itemOuter.add(new Label("sum", ""));
-                        break;
-                    }
-                    case SUM: {
-                        //TODO calculate sum
-                        itemOuter.add(new AttributeAppender("class","sumfrom"));
-                        itemOuter.add(new Label("sum", fa.getSum()));
-                        break;
-                    }
-                }
-            }
-        });
+        add(balancePanel = new BalancePanel("balancePanel", new CompoundPropertyModel(getDefaultModel())));
+        add(new BalanceReportForm("filters", new CompoundPropertyModel(getDefaultModel()), balancePanel));
     }
 
     @Override
-        protected void configureComponents() {
+    protected void configureComponents() {
 
-        }
+    }
+
 }

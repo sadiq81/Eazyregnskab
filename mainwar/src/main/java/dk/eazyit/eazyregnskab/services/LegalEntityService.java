@@ -113,8 +113,10 @@ public class LegalEntityService {
             }
         }
         bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityDailyLedger", Session.get().getLocale());
-        dailyLedgerDAO.create(new DailyLedger(bundle.getString("start.ledger.name"), legalEntity));
 
+        DailyLedger dailyLedger = new DailyLedger(bundle.getString("start.ledger.name"), legalEntity);
+        dailyLedgerDAO.create(dailyLedger);
+        legalEntity.getDailyLedgers().add(dailyLedger);
         return legalEntity;
     }
 

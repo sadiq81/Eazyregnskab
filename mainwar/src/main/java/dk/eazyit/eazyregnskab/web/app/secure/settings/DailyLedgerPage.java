@@ -26,6 +26,7 @@ public class DailyLedgerPage extends LoggedInPage {
     private static final Logger LOG = LoggerFactory.getLogger(DailyLedgerPage.class);
 
     public DailyLedgerPage() {
+        super();
         LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
