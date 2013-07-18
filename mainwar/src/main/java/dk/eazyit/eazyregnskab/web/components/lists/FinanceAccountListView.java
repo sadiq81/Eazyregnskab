@@ -45,17 +45,20 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
             case ASSET:
             case LIABILITY: {
                 itemOuter.add(new Label("sum", fa.getSum()));
+                itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
                 break;
             }
             case HEADLINE: {
                 itemOuter.add(new AttributeAppender("class", "headline"));
                 itemOuter.add(new Label("sum", ""));
+                itemOuter.add(new Label("sumCompare", ""));
                 break;
             }
             case SUM: {
                 //TODO calculate sum
                 itemOuter.add(new AttributeAppender("class", "sumfrom"));
                 itemOuter.add(new Label("sum", fa.getSum()));
+                itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
                 break;
             }
         }

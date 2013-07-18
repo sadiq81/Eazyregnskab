@@ -20,8 +20,8 @@ import java.util.Set;
                 "(select min(fa.accountNumber) from FinanceAccount fa where fa.legalEntity = ?1)"),
 
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_HIGHEST, query = "select f from FinanceAccount f " +
-                        "where f.legalEntity = ?1 and f.accountNumber = " +
-                        "(select max(fa.accountNumber) from FinanceAccount fa where fa.legalEntity = ?1)"),
+                "where f.legalEntity = ?1 and f.accountNumber = " +
+                "(select max(fa.accountNumber) from FinanceAccount fa where fa.legalEntity = ?1)"),
 
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 and fa.name = ?2 ORDER BY accountNumber ASC"),
@@ -77,6 +77,9 @@ public class FinanceAccount extends BaseEntity {
 
     @Transient
     private Double sum;
+
+    @Transient
+    private Double sumCompare;
 
     public FinanceAccount() {
     }
@@ -175,6 +178,14 @@ public class FinanceAccount extends BaseEntity {
 
     public void setSum(Double sum) {
         this.sum = sum;
+    }
+
+    public Double getSumCompare() {
+        return sumCompare;
+    }
+
+    public void setSumCompare(Double sumCompare) {
+        this.sumCompare = sumCompare;
     }
 
     @Override

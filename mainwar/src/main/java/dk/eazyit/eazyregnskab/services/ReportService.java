@@ -5,6 +5,7 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.util.BookedFinancePostingDateComparator;
+import dk.eazyit.eazyregnskab.util.CalenderUtil;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,14 @@ public class ReportService {
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntityFromAccountToAccount(legalEntity, fromAccount, toAccount);
         List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            List <BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
+            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
             financePostingList.addAll(temp);
+        }
+
+        List<BookedFinancePosting> financePostingListCompare = new ArrayList<BookedFinancePosting>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, CalenderUtil.subtractOneYear(fromDate), CalenderUtil.subtractOneYear(toDate));
+            financePostingListCompare.addAll(temp);
         }
 
         Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
@@ -49,6 +56,7 @@ public class ReportService {
         //Arrange and set sum = 0
         for (FinanceAccount financeAccount : financeAccountsList) {
             financeAccount.setSum(new Double(0));
+            financeAccount.setSumCompare(new Double(0));
             financeAccountHashMap.put(financeAccount.getAccountNumber(), financeAccount);
         }
 
@@ -57,6 +65,12 @@ public class ReportService {
             int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
             FinanceAccount financeAccount = financeAccountHashMap.get(id);
             financeAccount.setSum(financeAccount.getSum() + bookedFinancePosting.getAmount());
+        }
+
+        for (BookedFinancePosting bookedFinancePosting : financePostingListCompare) {
+            int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
+            FinanceAccount financeAccount = financeAccountHashMap.get(id);
+            financeAccount.setSumCompare(financeAccount.getSumCompare() + bookedFinancePosting.getAmount());
         }
 
         //Calculate sum of sum accounts
@@ -69,6 +83,7 @@ public class ReportService {
                 for (FinanceAccount entry : financeAccountHashMap.values()) {
                     if (entry.getAccountNumber() >= sumFrom && entry.getAccountNumber() <= sumTo) {
                         financeAccount.setSum(financeAccount.getSum() + entry.getSum());
+                        financeAccount.setSumCompare(financeAccount.getSumCompare() + entry.getSumCompare());
                     }
                 }
             }

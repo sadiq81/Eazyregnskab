@@ -22,4 +22,18 @@ public class CalenderUtil {
         cal.set(Calendar.DAY_OF_MONTH, 31); // new years eve
         return cal.getTime();
     }
+
+    public static Date addOneYear(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.YEAR, 1);
+        return cal.getTime();
+    }
+
+    public static Date subtractOneYear(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.YEAR, -1);
+        return cal.getTime();
+    }
 }
