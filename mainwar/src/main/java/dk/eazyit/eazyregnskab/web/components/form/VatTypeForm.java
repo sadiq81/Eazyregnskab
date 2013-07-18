@@ -27,6 +27,7 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
         add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
         add(new PlaceholderNumberTextField<Double>("percentage").setMinimum(new Double(0)).setMaximum(new Double(100)).setRequired(true));
         add(new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount").setRequired(true));
+        add(new FinanceAccountSelect2ChoiceBookableAccounts("financeAccountReverse").setRequired(true));
         add(new VatTypeFormValidator(name));
     }
 

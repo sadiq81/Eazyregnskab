@@ -38,6 +38,11 @@ public class VatType extends BaseEntity {
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private FinanceAccount financeAccount;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "financeAccount_reverse_id")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private FinanceAccount financeAccountReverse;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "legalentity_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -92,6 +97,15 @@ public class VatType extends BaseEntity {
 
     public VatType setFinanceAccount(FinanceAccount financeAccount) {
         this.financeAccount = financeAccount;
+        return this;
+    }
+
+    public FinanceAccount getFinanceAccountReverse() {
+        return financeAccountReverse;
+    }
+
+    public VatType setFinanceAccountReverse(FinanceAccount financeAccountReverse) {
+        this.financeAccountReverse = financeAccountReverse;
         return this;
     }
 

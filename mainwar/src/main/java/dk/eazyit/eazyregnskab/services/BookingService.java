@@ -122,6 +122,7 @@ public class BookingService {
         BookedFinancePosting posting = null;
         BookedFinancePosting reverse = null;
         BookedFinancePosting vat = null;
+        BookedFinancePosting vatReverse = null;
 
         if (draftFinancePosting.getFinanceAccount() != null) {
             posting = setupBaseData(draftFinancePosting);
@@ -135,7 +136,7 @@ public class BookingService {
             reverse.setFinanceAccount(draftFinancePosting.getReverseFinanceAccount());
             list.add(reverse);
         }
-        if (draftFinancePosting.getVatType() != null) {
+        if (draftFinancePosting.getVatType() != null && draftFinancePosting.getVatType().getFinanceAccountReverse() == null) {
 
             vat = setupBaseData(draftFinancePosting);
             double amount_without_vat = draftFinancePosting.getAmount() / (1 + (draftFinancePosting.getVatType().getPercentage() / 100));
@@ -144,6 +145,22 @@ public class BookingService {
             list.add(vat);
             posting.setAmount(posting.getAmount() - vat.getAmount());
         }
+
+        if (draftFinancePosting.getVatType() != null && draftFinancePosting.getVatType().getFinanceAccountReverse() != null) {
+
+            vat = setupBaseData(draftFinancePosting);
+            double amount_without_vat = draftFinancePosting.getAmount() / (1 + (draftFinancePosting.getVatType().getPercentage() / 100));
+            vat.setAmount(draftFinancePosting.getAmount() - amount_without_vat);
+            vat.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccount());
+            list.add(vat);
+
+            vatReverse = setupBaseData(draftFinancePosting);
+            vatReverse.setAmount(0 - vat.getAmount());
+            vatReverse.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccountReverse());
+            list.add(vatReverse);
+        }
+
+
         return list;
     }
 

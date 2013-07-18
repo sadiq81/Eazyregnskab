@@ -22,6 +22,7 @@ public class ColumnsForVatTypesPage extends ArrayList<IColumn<VatType, String>> 
     public ColumnsForVatTypesPage(final BaseCreateEditForm<VatType> form) {
         add(new PropertyColumn<VatType, String>(new ResourceModel("name"), "name", "name"));
         add(new PropertyColumn<VatType, String>(new ResourceModel("finance.account"), "financeAccount.name"));
+        add(new PropertyColumn<VatType, String>(new ResourceModel("finance.account.reverse"), "financeAccountReverse.name"));
         add(new NumberPropertyColumn<VatType>(new ResourceModel("percentage"), "percentage", "percentage", 2, 2));
         add(new AbstractColumn<VatType, String>(new ResourceModel("action")) {
             @Override
