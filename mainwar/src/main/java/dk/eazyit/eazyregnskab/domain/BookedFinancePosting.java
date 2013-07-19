@@ -17,13 +17,13 @@ import java.util.Date;
                 "WHERE bp.financeAccount = ?1"),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_ACCOUNT_FROM_DATE_TO_DATE, query = "select bp from BookedFinancePosting bp " +
-                        "WHERE bp.financeAccount = ?1 and bp.date >= ?2 and bp.date <= ?3"),
+                "WHERE bp.financeAccount = ?1 and bp.date >= ?2 and bp.date <= ?3"),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select bp from BookedFinancePosting bp " +
                 "WHERE bp.vatType = ?1"),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY, query = "select bp from BookedFinancePosting bp " +
-                        "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1)"),
+                "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1)"),
 
 })
 @Table(name = "bookedfinanceposting")
@@ -94,8 +94,7 @@ public class BookedFinancePosting extends BaseEntity {
         this.date = date;
     }
 
-    public String getSimpleFormatDate()
-    {
+    public String getSimpleFormatDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-YYYY");
         return sdf.format(getDate());
     }
@@ -114,6 +113,10 @@ public class BookedFinancePosting extends BaseEntity {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public void removeVat(Double vat) {
+        amount -= vat;
     }
 
     public FinanceAccount getFinanceAccount() {

@@ -109,6 +109,10 @@ public class VatType extends BaseEntity {
         return this;
     }
 
+    public boolean isReverse() {
+        return financeAccount != null && financeAccountReverse != null;
+    }
+
     @Override
     public String toString() {
         return Objects.toStringHelper(this)

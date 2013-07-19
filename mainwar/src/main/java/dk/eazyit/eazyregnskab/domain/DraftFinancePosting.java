@@ -60,6 +60,11 @@ public class DraftFinancePosting extends BaseEntity {
     @JoinColumn(name = "vatType_id")
     private VatType vatType;
 
+    @ManyToOne(optional = true)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JoinColumn(name = "reverseVatType_id")
+    private VatType reverseVatType;
+
     @Transient
     private double vatAmount;
 
@@ -155,6 +160,14 @@ public class DraftFinancePosting extends BaseEntity {
         this.vatType = vatType;
     }
 
+    public VatType getReverseVatType() {
+        return reverseVatType;
+    }
+
+    public void setReverseVatType(VatType reverseVatType) {
+        this.reverseVatType = reverseVatType;
+    }
+
     public double getVatAmount() {
         if (vatType != null && vatType.getPercentage() != null && amount != null) {
             return vatType.getPercentage() * amount / 100;
@@ -165,6 +178,19 @@ public class DraftFinancePosting extends BaseEntity {
 
     public void setVatAmount(double vatAmount) {
         this.vatAmount = vatAmount;
+    }
+
+    public DraftFinancePosting getPostingForReverse() {
+        DraftFinancePosting reverse = new DraftFinancePosting();
+        reverse.setBookingNumber(this.getBookingNumber());
+        reverse.setDate(this.getDate());
+        reverse.setText(this.getText());
+        reverse.setAmount(0 - this.getAmount());
+        reverse.setFinanceAccount(this.getReverseFinanceAccount());
+        reverse.setReverseFinanceAccount(null);
+        reverse.setVatType(this.getReverseVatType());
+        reverse.setReverseVatType(null);
+        return reverse;
     }
 
     @Override

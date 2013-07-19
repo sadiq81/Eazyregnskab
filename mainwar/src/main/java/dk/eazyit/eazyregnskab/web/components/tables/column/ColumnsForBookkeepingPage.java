@@ -30,6 +30,7 @@ public class ColumnsForBookkeepingPage extends ArrayList<IColumn<DraftFinancePos
         add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber"));
         add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType.name", "vatType.name"));
         add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber"));
+        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("reverseVatType"), "vatType.name", "vatType.name"));
         add(new CheckboxPropertyColumn<DraftFinancePosting>(new ResourceModel("chose"),"chosen"));
         add(new AbstractColumn<DraftFinancePosting, String>(new ResourceModel("action")) {
             @Override

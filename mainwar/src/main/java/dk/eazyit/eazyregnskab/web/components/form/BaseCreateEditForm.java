@@ -39,7 +39,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
 
     public void addToForm() {
-        add(new AjaxButton("save", new ResourceModel("button.save")) {
+        add(new BaseCreateEditFormAjaxButton("save", new ResourceModel("button.save")) {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -49,7 +49,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
             }
 
         });
-        add(new AjaxButton("new", new ResourceModel("button.new")) {
+        add(new BaseCreateEditFormAjaxButton("new", new ResourceModel("button.new")) {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -64,7 +64,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
                 setVisibilityAllowed(isNewButtonVisible());
             }
         });
-        add(new AjaxButton("delete", new ResourceModel("button.delete")) {
+        add(new BaseCreateEditFormAjaxButton("delete", new ResourceModel("button.delete")) {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -128,8 +128,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
     class BaseCreateEditFormAjaxButton extends AjaxButton {
 
-        BaseCreateEditFormAjaxButton(String id) {
-            super(id);
+        BaseCreateEditFormAjaxButton(String id, IModel<String> model) {
+            super(id, model);
         }
 
         @Override

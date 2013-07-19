@@ -31,6 +31,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     private FinanceAccountSelect2ChoiceBookableAccounts financeAccountChoice;
     private FinanceAccountSelect2ChoiceBookableAccounts reverseFinanceAccountChoice;
     private VatTypeDropDownChoice vatTypeChoice;
+    private VatTypeDropDownChoice reverseVatTypeChoice;
 
     public DraftFinancePostingForm(String id, IModel<DraftFinancePosting> model) {
         super(id, model);
@@ -40,21 +41,25 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void addToForm() {
         super.addToForm();
 
-        //TODO Language chosen from system?
-        add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withLanguage("da").withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
+        add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(reverseFinanceAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("reverseFinanceAccount"));
         add(vatTypeChoice = new VatTypeDropDownChoice("vatType"));
-        add(financeAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount"));
         add(new PlaceholderNumberTextField<Double>("amount").setMaximum(new Double(1000000)).setRequired(true));
-        add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text").setRequired(true));
         add(new PlaceholderNumberTextField<Integer>("bookingNumber").setMaximum(Integer.MAX_VALUE).setRequired(true));
-        add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice, vatTypeChoice));
+        add(financeAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount"));
+        add(reverseVatTypeChoice = new VatTypeDropDownChoice("reverseVatType"));
+        add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text").setRequired(true));
+
+        //TODO VALIDATE VAT combinations and FinanceAccount combinations
+        add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice, vatTypeChoice, reverseVatTypeChoice));
     }
 
     @Override
     protected void configureComponents() {
         configureFinanceAccountChoice();
+        configureFinanceAccountChoiceReverse();
     }
+
 
     @Override
     public void deleteEntity(DraftFinancePosting draftFinancePosting) {
@@ -87,16 +92,42 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
+
                 if (financeAccount != null) {
                     FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
+
                     VatType vatType = financeAccount.getVatType();
                     if (reverse != null) {
                         reverseFinanceAccountChoice.setModelObject(reverse);
                         target.add(reverseFinanceAccountChoice);
+
+                        VatType reverseVatType = reverse.getVatType();
+                        if (reverseVatType != null) {
+                            reverseVatTypeChoice.setModelObject(reverseVatType);
+                            target.add(reverseVatTypeChoice);
+                        }
                     }
+
                     if (vatType != null) {
                         vatTypeChoice.setModelObject(vatType);
                         target.add(vatTypeChoice);
+                    }
+                }
+            }
+        });
+
+    }
+
+    private void configureFinanceAccountChoiceReverse() {
+        reverseFinanceAccountChoice.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
+                if (financeAccount != null) {
+                    VatType vatType = financeAccount.getVatType();
+                    if (vatType != null) {
+                        reverseVatTypeChoice.setModelObject(vatType);
+                        target.add(reverseVatTypeChoice);
                     }
                 }
             }

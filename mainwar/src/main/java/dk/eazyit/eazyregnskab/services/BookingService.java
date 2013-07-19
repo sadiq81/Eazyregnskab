@@ -41,6 +41,8 @@ public class BookingService {
         createBookedFinancePostings(draftFinancePostingList, result);
     }
 
+
+    //TODO create test to verify all types of transactions.
     private void createBookedFinancePostings(List<DraftFinancePosting> draftFinancePostings, BookingResult result) {
 
         Map<Integer, BookedFinancePostingBatch> map = new HashMap<Integer, BookedFinancePostingBatch>();
@@ -119,47 +121,46 @@ public class BookingService {
     private List<BookedFinancePosting> createBookedFinancePostings(DraftFinancePosting draftFinancePosting) {
 
         List<BookedFinancePosting> list = new LinkedList<BookedFinancePosting>();
-        BookedFinancePosting posting = null;
-        BookedFinancePosting reverse = null;
-        BookedFinancePosting vat = null;
-        BookedFinancePosting vatReverse = null;
 
-        if (draftFinancePosting.getFinanceAccount() != null) {
-            posting = setupBaseData(draftFinancePosting);
+        FinanceAccount account = draftFinancePosting.getFinanceAccount();
+        if (account != null) {
+            BookedFinancePosting posting = setupBaseData(draftFinancePosting);
             posting.setAmount(draftFinancePosting.getAmount());
-            posting.setFinanceAccount(draftFinancePosting.getFinanceAccount());
+            posting.setFinanceAccount(account);
             list.add(posting);
-        }
-        if (draftFinancePosting.getReverseFinanceAccount() != null) {
-            reverse = setupBaseData(draftFinancePosting);
-            reverse.setAmount(0 - draftFinancePosting.getAmount());
-            reverse.setFinanceAccount(draftFinancePosting.getReverseFinanceAccount());
-            list.add(reverse);
-        }
-        if (draftFinancePosting.getVatType() != null && draftFinancePosting.getVatType().getFinanceAccountReverse() == null) {
 
-            vat = setupBaseData(draftFinancePosting);
-            double amount_without_vat = draftFinancePosting.getAmount() / (1 + (draftFinancePosting.getVatType().getPercentage() / 100));
-            vat.setAmount(draftFinancePosting.getAmount() - amount_without_vat);
-            vat.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccount());
-            list.add(vat);
-            posting.setAmount(posting.getAmount() - vat.getAmount());
-        }
+            VatType vatType = draftFinancePosting.getVatType();
+            if (vatType != null) {
 
-        if (draftFinancePosting.getVatType() != null && draftFinancePosting.getVatType().getFinanceAccountReverse() != null) {
+                double vat = getVat(draftFinancePosting.getAmount(), vatType.getPercentage());
 
-            vat = setupBaseData(draftFinancePosting);
-            double amount_without_vat = draftFinancePosting.getAmount() / (1 + (draftFinancePosting.getVatType().getPercentage() / 100));
-            vat.setAmount(draftFinancePosting.getAmount() - amount_without_vat);
-            vat.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccount());
-            list.add(vat);
+                if (vatType.isReverse()) {
 
-            vatReverse = setupBaseData(draftFinancePosting);
-            vatReverse.setAmount(0 - vat.getAmount());
-            vatReverse.setFinanceAccount(draftFinancePosting.getVatType().getFinanceAccountReverse());
-            list.add(vatReverse);
+                    BookedFinancePosting vatPosting = setupBaseData(draftFinancePosting);
+                    vatPosting.setAmount(vat);
+                    vatPosting.setFinanceAccount(vatType.getFinanceAccount());
+                    list.add(vatPosting);
+
+                    BookedFinancePosting reverseVatPosting = setupBaseData(draftFinancePosting);
+                    reverseVatPosting.setAmount(0 - vat);
+                    reverseVatPosting.setFinanceAccount(vatType.getFinanceAccountReverse());
+                    list.add(reverseVatPosting);
+
+                } else {
+
+                    BookedFinancePosting vatPosting = setupBaseData(draftFinancePosting);
+                    vatPosting.setAmount(vat);
+                    posting.removeVat(vat);
+                    vatPosting.setFinanceAccount(vatType.getFinanceAccount());
+                    list.add(vatPosting);
+                }
+            }
         }
 
+        FinanceAccount reverse = draftFinancePosting.getReverseFinanceAccount();
+        if (reverse != null) {
+            list.addAll(createBookedFinancePostings(draftFinancePosting.getPostingForReverse()));
+        }
 
         return list;
     }
@@ -171,4 +172,9 @@ public class BookingService {
         bookedFinancePosting.setText(draftFinancePosting.getText());
         return bookedFinancePosting;
     }
+
+    private double getVat(double amount, double percentageInHundreds) {
+        return amount - (amount / (1 + (percentageInHundreds / 100)));
+    }
+
 }
