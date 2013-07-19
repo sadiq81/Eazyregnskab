@@ -42,7 +42,7 @@ public class LegalEntityService {
     }
 
     @Transactional
-    private LegalEntity createBaseDataForNewLegalEntity(LegalEntity legalEntity) {
+    public LegalEntity createBaseDataForNewLegalEntity(LegalEntity legalEntity) {
 
         ResourceBundle bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntity", Session.get().getLocale());
         legalEntity.setName(bundle.getString("new.entity.name"));

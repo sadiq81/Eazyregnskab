@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * @author
  */
-public class ReportObject implements Serializable{
+public class ReportObject implements Serializable {
 
     protected Date dateFrom;
     protected Date dateTo;
@@ -16,6 +16,8 @@ public class ReportObject implements Serializable{
     protected FinanceAccount accountTo;
 
     public ReportObject() {
+        dateFrom = CalenderUtil.getFirstDayInYear();
+        dateTo = CalenderUtil.getLastDayInYear();
     }
 
     public ReportObject(FinanceAccount accountFrom, FinanceAccount accountTo) {
