@@ -6,7 +6,9 @@ import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
+import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
@@ -102,29 +104,26 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     }
 
     public AppUser getCurrentUser() {
-        return (AppUser) getSession().getAttribute(AppUser.ATTRIBUTE_NAME);
-    }
-
-    public LegalEntity getCurrentLegalEntity() {
-        return (LegalEntity) getSession().getAttribute(LegalEntity.ATTRIBUTE_NAME);
-    }
-
-    public void setCurrentLegalEntity(LegalEntity legalEntity) {
-        getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
-        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
-    }
-
-    public DailyLedger getCurrentDailyLedger() {
-        DailyLedger ledger = (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
-            throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
+            return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
         }
-        return ledger;
-    }
 
-    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
-        getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
-    }
+        public LegalEntity getCurrentLegalEntity() {
+            return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
+        }
+
+        public void setCurrentLegalEntity(LegalEntity legalEntity) {
+            ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
+        }
+
+        public DailyLedger getCurrentDailyLedger() {
+            return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
+        }
+
+        public void setCurrentDailyLedger(DailyLedger dailyLedger) {
+            ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
+        }
+
+
 
     class BaseCreateEditFormAjaxButton extends AjaxButton {
 

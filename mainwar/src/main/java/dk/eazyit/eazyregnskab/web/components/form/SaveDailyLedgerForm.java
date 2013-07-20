@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.services.BookingService;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
@@ -57,24 +58,23 @@ public class SaveDailyLedgerForm extends Form {
     }
 
     protected AppUser getCurrentUser() {
-        return (AppUser) getSession().getAttribute(AppUser.ATTRIBUTE_NAME);
+        return ((EazyregnskabSesssion) getSession()).getCurrentUser();
     }
 
     protected LegalEntity getCurrentLegalEntity() {
-        return (LegalEntity) getSession().getAttribute(LegalEntity.ATTRIBUTE_NAME);
+        return ((EazyregnskabSesssion) getSession()).getCurrentLegalEntity();
     }
 
     protected void setCurrentLegalEntity(LegalEntity legalEntity) {
-        getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
-        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
+        ((EazyregnskabSesssion) getSession()).setCurrentLegalEntity(legalEntity);
     }
 
-    protected DailyLedger getCurrentDailyLedger() {
-        return (DailyLedger) getSession().getAttribute(DailyLedger.ATTRIBUTE_NAME);
+    public DailyLedger getCurrentDailyLedger() {
+        return ((EazyregnskabSesssion) getSession()).getCurrentDailyLedger();
     }
 
     protected void setCurrentDailyLedger(DailyLedger dailyLedger) {
-        getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
+        ((EazyregnskabSesssion) getSession()).setCurrentDailyLedger(dailyLedger);
     }
 
 }

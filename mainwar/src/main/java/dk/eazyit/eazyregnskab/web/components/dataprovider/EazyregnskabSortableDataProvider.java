@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.dataprovider;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
@@ -16,28 +17,25 @@ public abstract class EazyregnskabSortableDataProvider<T> extends SortableDataPr
     }
 
     public AppUser getCurrentUser() {
-        return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
-    }
-
-    public LegalEntity getCurrentLegalEntity() {
-        return (LegalEntity) Session.get().getAttribute(LegalEntity.ATTRIBUTE_NAME);
-    }
-
-    public void setCurrentLegalEntity(LegalEntity legalEntity) {
-        Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
-        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
-    }
-
-    public DailyLedger getCurrentDailyLedger() {
-        DailyLedger ledger = (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
-            throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
+            return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
         }
-        return ledger;
-    }
 
-    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
-        Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
-    }
+        public LegalEntity getCurrentLegalEntity() {
+            return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
+        }
+
+        public void setCurrentLegalEntity(LegalEntity legalEntity) {
+            ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
+        }
+
+        public DailyLedger getCurrentDailyLedger() {
+            return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
+        }
+
+        public void setCurrentDailyLedger(DailyLedger dailyLedger) {
+            ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
+        }
+
+
 
 }

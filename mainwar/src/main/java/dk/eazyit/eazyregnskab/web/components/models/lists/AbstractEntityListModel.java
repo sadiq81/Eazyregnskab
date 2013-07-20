@@ -4,6 +4,7 @@ import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
 import org.apache.wicket.model.IModel;
@@ -62,28 +63,24 @@ public abstract class AbstractEntityListModel<T extends EntityWithLongId, E exte
     public abstract void setObject(List<T> object);
 
     public AppUser getCurrentUser() {
-        return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
+        return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
     }
 
     public LegalEntity getCurrentLegalEntity() {
-        return (LegalEntity) Session.get().getAttribute(LegalEntity.ATTRIBUTE_NAME);
+        return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
     }
 
     public void setCurrentLegalEntity(LegalEntity legalEntity) {
-        Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
-        setCurrentDailyLedger(legalEntity.getDailyLedgers().get(0));
+        ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
     }
 
     public DailyLedger getCurrentDailyLedger() {
-        DailyLedger ledger = (DailyLedger) Session.get().getAttribute(DailyLedger.ATTRIBUTE_NAME);
-        if (ledger != null && !getCurrentLegalEntity().getDailyLedgers().contains(ledger)) {
-            throw new NullPointerException("Current dailyLedger is not reflecting current LegalEntity");
-        }
-        return ledger;
+        return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
     }
 
     public void setCurrentDailyLedger(DailyLedger dailyLedger) {
-        Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
+        ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
     }
+
 
 }

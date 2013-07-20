@@ -2,13 +2,17 @@ package dk.eazyit.eazyregnskab.web.app;
 
 import de.agilecoders.wicket.Bootstrap;
 import de.agilecoders.wicket.settings.BootstrapSettings;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.web.app.front.HomePage;
 import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
 import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import org.apache.wicket.Application;
+import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,5 +67,10 @@ public class WicketApplication extends WebApplication implements ApplicationCont
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.ctx = applicationContext;
+    }
+
+    @Override
+    public Session newSession(Request request, Response response) {
+        return new EazyregnskabSesssion(request);
     }
 }

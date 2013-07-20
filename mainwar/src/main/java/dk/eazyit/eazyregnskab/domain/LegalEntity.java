@@ -50,7 +50,7 @@ public class LegalEntity extends BaseEntity {
     @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
     private List<FinanceAccount> financeAccounts;
 
-    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
     private List<DailyLedger> dailyLedgers;
 
     public LegalEntity() {

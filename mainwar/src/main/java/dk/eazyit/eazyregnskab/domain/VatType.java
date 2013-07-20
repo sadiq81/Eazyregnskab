@@ -58,6 +58,14 @@ public class VatType extends BaseEntity {
         this.financeAccount = financeAccount;
     }
 
+    public VatType(String name, Double percentage, FinanceAccount financeAccount, FinanceAccount financeAccountReverse, LegalEntity legalEntity) {
+        this.name = name;
+        this.percentage = percentage;
+        this.financeAccount = financeAccount;
+        this.financeAccountReverse = financeAccountReverse;
+        this.legalEntity = legalEntity;
+    }
+
     @Override
     public Long getId() {
         return id;
