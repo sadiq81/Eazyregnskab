@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.wicket.securepages.settings;
 
+import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import dk.eazyit.eazyregnskab.wicket.securepages.TestLoggedInPage;
 import org.junit.Test;
@@ -15,6 +16,7 @@ public class TestBaseDataPage extends TestLoggedInPage {
         tester.startPage(BaseDataPage.class);
         tester.assertRenderedPage(BaseDataPage.class);
 
+        tester.assertComponent("feedback", NotificationPanel.class);
     }
 
 }
