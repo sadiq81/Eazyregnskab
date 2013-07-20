@@ -44,6 +44,12 @@ public abstract class BaseReportForm extends Form<ReportObject> {
                 if (refreshOnSubmit != null) target.add(refreshOnSubmit);
                 submit(target);
             }
+
+            @Override
+            protected void onError(AjaxRequestTarget target, Form<?> form) {
+                super.onError(target, form);
+                target.add(getPage().get("feedback"));
+            }
         });
 
     }
