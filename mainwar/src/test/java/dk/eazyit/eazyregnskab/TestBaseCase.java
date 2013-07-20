@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.*;
+import dk.eazyit.eazyregnskab.services.BookingService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
@@ -66,6 +67,15 @@ public abstract class TestBaseCase extends TestCase {
 
     @Autowired
     protected FinanceAccountService financeAccountService;
+
+    @Autowired
+    protected BookingService bookingService;
+
+    @Autowired
+    protected BookedFinancePostingDAO bookedFinancePostingDAO;
+
+    @Autowired
+    protected DraftFinancePostingDAO draftFinancePostingDAO;
 
     @Before
     public void BaseCaseSetUp() {

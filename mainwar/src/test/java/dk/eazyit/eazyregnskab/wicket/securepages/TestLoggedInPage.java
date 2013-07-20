@@ -19,10 +19,14 @@ import java.util.List;
 @Transactional
 public abstract class TestLoggedInPage extends TestBaseCase {
 
+    protected AppUser appUser;
+    protected LegalEntity legalEntity;
+    protected DailyLedger dailyLedger;
+
     @Before
     public void LoggedInPageSetUp()  {
 
-        AppUser appUser = new AppUser("test", "test", true, "test","test");
+        appUser = new AppUser("test", "test", true, "test","test");
         appUser = appUserDAO.save(appUser);
         HashSet<AppUserRole> appUserRoles = new HashSet<AppUserRole>();
         AppUserRole appUserRole = new AppUserRole(appUser, Authority.ROLE_USER);
@@ -32,13 +36,12 @@ public abstract class TestLoggedInPage extends TestBaseCase {
 
         Session.get().setAttribute(AppUser.ATTRIBUTE_NAME, appUser);
 
-        LegalEntity legalEntity = new LegalEntity("test", "12345678", "road 1234", "0000", Country.DK, MoneyCurrency.DKK);
+        legalEntity = new LegalEntity("test", "12345678", "road 1234", "0000", Country.DK, MoneyCurrency.DKK);
         legalEntityService.createBaseDataForNewLegalEntity(legalEntity);
         legalEntity = legalEntityDAO.save(legalEntity);
         Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
 
-
-        DailyLedger dailyLedger = new DailyLedger("test", legalEntity);
+        dailyLedger = new DailyLedger("test", legalEntity);
         dailyLedger = dailyLedgerDAO.save(dailyLedger);
         legalEntity.getDailyLedgers().add(dailyLedger);
         Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
@@ -49,7 +52,6 @@ public abstract class TestLoggedInPage extends TestBaseCase {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
         simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("test", "test", simpleGrantedAuthorities));
-
 
     }
 
