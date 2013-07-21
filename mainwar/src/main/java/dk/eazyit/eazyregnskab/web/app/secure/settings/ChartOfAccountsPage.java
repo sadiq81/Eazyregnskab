@@ -7,6 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForChartsOfAccountsPage;
+import dk.eazyit.eazyregnskab.web.components.tables.toolbar.ItemsPerPageToolBar;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -21,6 +22,8 @@ public class ChartOfAccountsPage extends LoggedInPage {
 
     FinanceAccountForm form;
     AjaxFallbackDefaultDataTable dataTable;
+
+
 
     private static final Logger LOG = LoggerFactory.getLogger(ChartOfAccountsPage.class);
 
@@ -44,12 +47,15 @@ public class ChartOfAccountsPage extends LoggedInPage {
         super.addToPage(parameters);
 
         add(form = new FinanceAccountForm("financeAccountEdit", new FinanceAccountModel(new FinanceAccount())));
-
         add(dataTable = new AjaxFallbackDefaultDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), 20));
+        dataTable.addBottomToolbar(new ItemsPerPageToolBar(dataTable));
+
     }
 
     @Override
-        protected void configureComponents() {
+    protected void configureComponents() {
 
-        }
+    }
+
+
 }
