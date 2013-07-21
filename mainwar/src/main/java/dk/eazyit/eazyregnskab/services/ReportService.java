@@ -5,7 +5,6 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.util.BookedFinancePostingDateComparator;
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,9 @@ public class ReportService {
         Date fromDate = model.getObject().getDateFrom();
         Date toDate = model.getObject().getDateTo();
 
+        Date fromDateCompare = model.getObject().getDateFromCompare();
+        Date toDateCompare = model.getObject().getDateToCompare();
+
         FinanceAccount fromAccount = model.getObject().getAccountFrom();
         FinanceAccount toAccount = model.getObject().getAccountTo();
 
@@ -36,7 +38,6 @@ public class ReportService {
             throw new NullPointerException("Arguments must not be null");
         }
 
-        //TODO Calculate sums in DB??
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntityFromAccountToAccount(legalEntity, fromAccount, toAccount);
         List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
@@ -46,7 +47,7 @@ public class ReportService {
 
         List<BookedFinancePosting> financePostingListCompare = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, CalenderUtil.subtractOneYear(fromDate), CalenderUtil.subtractOneYear(toDate));
+            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDateCompare, toDateCompare);
             financePostingListCompare.addAll(temp);
         }
 

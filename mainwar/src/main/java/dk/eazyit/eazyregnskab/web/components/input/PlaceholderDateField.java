@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 
 /**
- * @author Trifork
+ * @author Eazy IT
  */
 public class PlaceholderDateField extends DateTextField {
 

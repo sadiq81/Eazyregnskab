@@ -6,20 +6,20 @@ import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
-import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
 /**
  * @author
  */
-public abstract class SessionAwarePanel extends Panel implements SessionAware {
+public abstract class SessionAwarePanel<T> extends GenericPanel<T> implements SessionAware {
 
     protected SessionAwarePanel(String id) {
         super(id);
         addToPage();
     }
 
-    protected SessionAwarePanel(String id, IModel<?> model) {
+    protected SessionAwarePanel(String id, IModel<T> model) {
         super(id, model);
         addToPage();
     }

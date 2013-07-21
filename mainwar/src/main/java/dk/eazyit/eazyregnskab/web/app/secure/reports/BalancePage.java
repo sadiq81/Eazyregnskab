@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.app.secure.reports;
 
+import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.web.components.form.BalanceReportForm;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
@@ -25,7 +26,7 @@ public class BalancePage extends BaseReportPage {
         LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
-    public BalancePage(IModel<?> model) {
+    public BalancePage(IModel<ReportObject> model) {
         super(model);
         LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model.getObject().toString());
     }

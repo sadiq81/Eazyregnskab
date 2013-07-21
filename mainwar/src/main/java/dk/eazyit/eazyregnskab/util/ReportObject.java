@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.util;
 
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
+import dk.eazyit.eazyregnskab.domain.ReportCompareType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,10 +11,14 @@ import java.util.Date;
  */
 public class ReportObject implements Serializable {
 
+    //TODO all date calculations expect accounting year follows normal year
     protected Date dateFrom;
     protected Date dateTo;
+    protected Date dateFromCompare;
+    protected Date dateToCompare;
     protected FinanceAccount accountFrom;
     protected FinanceAccount accountTo;
+    protected ReportCompareType reportCompareType = ReportCompareType.COMPARE_WITH_SAME_PERIOD_LAST_YEAR;
 
     public ReportObject() {
         dateFrom = CalenderUtil.getFirstDayInYear();
@@ -32,6 +37,14 @@ public class ReportObject implements Serializable {
         this.accountTo = accountTo;
     }
 
+    public String getDates() {
+        return CalenderUtil.getSimpleDateString(getDateFrom()) + " - " + CalenderUtil.getSimpleDateString(getDateTo());
+    }
+
+    public String getDatesCompare() {
+        return CalenderUtil.getSimpleDateString(getDateFromCompare()) + " - " + CalenderUtil.getSimpleDateString(getDateToCompare());
+    }
+
     public Date getDateFrom() {
         return dateFrom;
     }
@@ -48,6 +61,48 @@ public class ReportObject implements Serializable {
         this.dateTo = dateTo;
     }
 
+    public Date getDateFromCompare() {
+
+        switch (getReportCompareType()) {
+            case COMPARE_YEAR_TO_DATE: {
+                return CalenderUtil.getFirstDayInYear(getDateFrom());
+            }
+            case COMPARE_WITH_SAME_PERIOD_LAST_YEAR: {
+                return CalenderUtil.subtractOneYear(getDateFrom());
+            }
+            case COMPARE_TO_BUDGET: {
+                break;
+            }
+        }
+        return getDateFrom();
+    }
+
+    public void setDateFromCompare(Date dateFromCompare) {
+        this.dateFromCompare = dateFromCompare;
+    }
+
+    public Date getDateToCompare() {
+        switch (getReportCompareType()) {
+            case COMPARE_YEAR_TO_DATE: {
+                return getDateTo();
+            }
+            case COMPARE_WITH_SAME_PERIOD_LAST_YEAR: {
+                return CalenderUtil.subtractOneYear(getDateTo());
+            }
+            case COMPARE_TO_BUDGET: {
+                break;
+            }
+            default: {
+                return getDateTo();
+            }
+        }
+        return getDateTo();
+    }
+
+    public void setDateToCompare(Date dateToCompare) {
+        this.dateToCompare = dateToCompare;
+    }
+
     public FinanceAccount getAccountFrom() {
         return accountFrom;
     }
@@ -62,5 +117,13 @@ public class ReportObject implements Serializable {
 
     public void setAccountTo(FinanceAccount accountTo) {
         this.accountTo = accountTo;
+    }
+
+    public ReportCompareType getReportCompareType() {
+        return reportCompareType;
+    }
+
+    public void setReportCompareType(ReportCompareType reportCompareType) {
+        this.reportCompareType = reportCompareType;
     }
 }
