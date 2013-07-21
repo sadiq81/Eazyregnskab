@@ -8,6 +8,7 @@ import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
@@ -28,7 +29,9 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     EnumDropDownChoice<FinanceAccountType> financeAccountType;
     DropDownChoice<FinanceAccount> standardReverseFinanceAccount;
     DropDownChoice<FinanceAccount> sumFrom;
+    Label sumFromLabel;
     DropDownChoice<FinanceAccount> sumTo;
+    Label sumToLabel;
 
     public FinanceAccountForm(String id, IModel<FinanceAccount> model) {
         super(id, model);
@@ -49,7 +52,21 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                 setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
             }
         });
+        add(sumFromLabel = new Label("sumFromLabel", new ResourceModel("sum.from")) {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+            }
+        });
         add(sumTo = new DropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+            }
+        });
+        add(sumToLabel = new Label("sumToLabel", new ResourceModel("sum.to")) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
@@ -115,6 +132,8 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                 target.add(standardReverseFinanceAccount);
                 target.add(sumFrom);
                 target.add(sumTo);
+                target.add(sumFromLabel);
+                target.add(sumToLabel);
 
                 if (lockedTypes.contains((((EnumDropDownChoice<FinanceAccountType>) this.getFormComponent()).getConvertedInput()))) {
                     vatType.setEnabled(false).setDefaultModelObject(null);
@@ -140,10 +159,12 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     private void configureSumFrom() {
         sumFrom.setOutputMarkupPlaceholderTag(true);
+        sumFromLabel.setOutputMarkupPlaceholderTag(true);
     }
 
-    private void configureSumTo() {
+        private void configureSumTo() {
         sumTo.setOutputMarkupPlaceholderTag(true);
+        sumToLabel.setOutputMarkupPlaceholderTag(true);
     }
 
 }
