@@ -159,8 +159,8 @@ public class BookedFinancePosting extends BaseEntity {
                 .add("date", date)
                 .add("text", text)
                 .add("amount", amount)
-//                .add("financeAccount", financeAccount)
-//                .add("appUser", appUser)
+                .add("financeAccount", financeAccount.getName())
+                .add("appUser", appUser != null ? appUser.getUsername() : null)
 //                .add("vatType", vatType)
                 .toString();
     }
