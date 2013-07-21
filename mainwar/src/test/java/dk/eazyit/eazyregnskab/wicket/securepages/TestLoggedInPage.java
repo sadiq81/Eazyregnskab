@@ -36,7 +36,7 @@ public abstract class TestLoggedInPage extends TestBaseCase {
 
         Session.get().setAttribute(AppUser.ATTRIBUTE_NAME, appUser);
 
-        legalEntity = new LegalEntity("test", "12345678", "road 1234", "0000", Country.DK, MoneyCurrency.DKK);
+        legalEntity = new LegalEntity("test", "12345678", "road 1234", "0000", Country.DNK, MoneyCurrency.DKK);
         legalEntityService.createBaseDataForNewLegalEntity(legalEntity);
         legalEntity = legalEntityDAO.save(legalEntity);
         Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);

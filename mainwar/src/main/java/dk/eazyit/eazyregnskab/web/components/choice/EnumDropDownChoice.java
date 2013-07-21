@@ -19,7 +19,6 @@ public class EnumDropDownChoice<t extends Enum<t>> extends DropDownChoice<t> {
         super(id);
         setChoiceRenderer(new EnumChoiceRenderer<t>(this));
         LOG.trace("creating " + this.getClass().getSimpleName() + " with id" + this.getId());
-
     }
 
     public EnumDropDownChoice(String id, IModel<t> model) {

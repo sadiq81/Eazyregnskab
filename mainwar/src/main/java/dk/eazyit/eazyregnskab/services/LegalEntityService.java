@@ -50,7 +50,7 @@ public class LegalEntityService {
         legalEntity.setAddress(bundle.getString("new.entity.address"));
         legalEntity.setPostalCode(bundle.getString("new.entity.postalCode"));
         legalEntity.setMoneyCurrency(MoneyCurrency.DKK);
-        legalEntity.setCountry(Country.DK);
+        legalEntity.setCountry(Country.DNK);
         legalEntityDAO.create(legalEntity);
 
         bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityVatTypes", Session.get().getLocale());

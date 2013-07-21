@@ -8,6 +8,8 @@ import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -20,6 +22,9 @@ import java.util.Arrays;
  */
 public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
+    EnumDropDownChoice<Country> country;
+    EnumDropDownChoice<MoneyCurrency> moneyCurrency;
+
     public LegalEntityForm(String id, IModel<LegalEntity> model) {
         super(id, model);
     }
@@ -31,12 +36,13 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
         add(new PlaceholderTextField<String>("legalIdentification"));
         add(new PlaceholderTextField<String>("address"));
         add(new PlaceholderTextField<String>("postalCode"));
-        add(new EnumDropDownChoice<Country>("country", Arrays.asList(Country.values())).setRequired(true));
-        add(new EnumDropDownChoice<MoneyCurrency>("moneyCurrency", Arrays.asList(MoneyCurrency.values())).setRequired(true));
+        add(country = (EnumDropDownChoice<Country>) new EnumDropDownChoice<Country>("country", Arrays.asList(Country.values())).setRequired(true));
+        add(moneyCurrency = (EnumDropDownChoice<MoneyCurrency>) new EnumDropDownChoice<MoneyCurrency>("moneyCurrency", Arrays.asList(MoneyCurrency.values())).setRequired(true).setOutputMarkupId(true));
     }
 
     @Override
     protected void configureComponents() {
+        configureCountry();
     }
 
 
@@ -47,7 +53,7 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
             setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity())));
 
             //TODO bad design, find another solution without using a reference.
-            ((LoggedInPage)getPage()).changeLegalEntity();
+            ((LoggedInPage) getPage()).changeLegalEntity();
 
             getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
         } else {
@@ -62,7 +68,7 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
         setCurrentLegalEntity(newLegalEntity);
 
         //TODO bad design, find another solution without using a reference.
-        ((LoggedInPage)getPage()).changeLegalEntity();
+        ((LoggedInPage) getPage()).changeLegalEntity();
 
         getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
         return newLegalEntity;
@@ -72,6 +78,18 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     public void saveForm(LegalEntity legalEntity) {
         legalEntityService.saveLegalEntity(getCurrentUser(), legalEntity);
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+    }
+
+    private void configureCountry() {
+        country.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+
+                moneyCurrency.setModelObject(country.getConvertedInput().getMoneyCurrency());
+                target.add(moneyCurrency);
+            }
+        });
+
     }
 
     @Override
