@@ -1,21 +1,21 @@
 package dk.eazyit.eazyregnskab.web.components.button;
 
 import de.agilecoders.wicket.markup.html.bootstrap.button.LoadingBehavior;
-import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 
 /**
  * @author
  */
-public class LoadingButton extends Button {
+public class AjaxLoadingButton extends AjaxButton{
 
-    public LoadingButton(String id) {
+    public AjaxLoadingButton(String id) {
         super(id);
         init();
     }
 
-    public LoadingButton(String id, IModel<String> model) {
+    public AjaxLoadingButton(String id, IModel<String> model) {
         super(id, model);
         init();
     }

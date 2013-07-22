@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
+import de.agilecoders.wicket.markup.html.bootstrap.button.LoadingBehavior;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.BaseEntity;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
@@ -16,6 +17,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,31 +106,31 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     }
 
     public AppUser getCurrentUser() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
-        }
+        return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
+    }
 
-        public LegalEntity getCurrentLegalEntity() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
-        }
+    public LegalEntity getCurrentLegalEntity() {
+        return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
+    }
 
-        public void setCurrentLegalEntity(LegalEntity legalEntity) {
-            ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
-        }
+    public void setCurrentLegalEntity(LegalEntity legalEntity) {
+        ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
+    }
 
-        public DailyLedger getCurrentDailyLedger() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
-        }
+    public DailyLedger getCurrentDailyLedger() {
+        return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
+    }
 
-        public void setCurrentDailyLedger(DailyLedger dailyLedger) {
-            ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
-        }
-
+    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
+    }
 
 
     class BaseCreateEditFormAjaxButton extends AjaxButton {
 
         BaseCreateEditFormAjaxButton(String id, IModel<String> model) {
             super(id, model);
+            add(new LoadingBehavior(new StringResourceModel("button.loading", this, null)));
         }
 
         @Override

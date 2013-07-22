@@ -4,8 +4,8 @@ import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.services.BookingService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
+import dk.eazyit.eazyregnskab.web.components.button.AjaxLoadingButton;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
@@ -29,7 +29,7 @@ public class SaveDailyLedgerForm extends Form {
     }
 
     private void init() {
-        add(new AjaxButton("bookChosen", new ResourceModel("button.book.chosen")) {
+        add(new AjaxLoadingButton("bookChosen", new ResourceModel("button.book.chosen")) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
@@ -42,7 +42,7 @@ public class SaveDailyLedgerForm extends Form {
                 target.add(getPage());
             }
         });
-        add(new AjaxButton("bookAll", new ResourceModel("button.book.all")) {
+        add(new AjaxLoadingButton("bookAll", new ResourceModel("button.book.all")) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
