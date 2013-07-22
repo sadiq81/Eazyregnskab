@@ -92,25 +92,50 @@ public class LegalEntityService {
 
         bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityFinanceAccounts", Session.get().getLocale());
         Map<String, String> map = convertResourceBundleToMap(bundle);
-        map = convertResourceBundleToMap(bundle);
+
+        Map<Integer, FinanceAccount> financeAccounts = new HashMap<Integer, FinanceAccount>();
+
         for (Map.Entry<String, String> entry : map.entrySet()) {
             FinanceAccount financeAccount = null;
             if (entry.getKey().contains("PROFIT") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
                 financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.PROFIT, legalEntity);
+
             } else if (entry.getKey().contains("EXPENSE") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
                 financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.EXPENSE, legalEntity);
+
             } else if (entry.getKey().contains("ASSET") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
                 financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.ASSET, legalEntity);
+
             } else if (entry.getKey().contains("LIABILITY") && !entry.getKey().contains("account.number") && !entry.getKey().contains("vat.type")) {
+
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
                 financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.LIABILITY, legalEntity);
+
+            } else if (entry.getKey().contains("HEADLINE") && !entry.getKey().contains("account.number")) {
+
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.HEADLINE, legalEntity);
+
+            } else if (entry.getKey().contains("SUM") && !entry.getKey().contains("account.number") && !entry.getKey().contains("sum.from") && !entry.getKey().contains("sum.to")) {
+
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                FinanceAccount from = financeAccounts.get(Integer.parseInt(map.get(entry.getKey() + ".sum.from")));
+                FinanceAccount to = financeAccounts.get(Integer.parseInt(map.get(entry.getKey() + ".sum.to")));
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.SUM, legalEntity);
+                financeAccount.setSumFrom(from);
+                financeAccount.setSumTo(to);
             }
 
             if (financeAccount != null && map.get(entry.getKey() + ".vat.type") != null) {
@@ -128,9 +153,13 @@ public class LegalEntityService {
                 }
             }
             if (financeAccount != null) {
+                financeAccounts.put(financeAccount.getAccountNumber(), financeAccount);
                 financeAccountDAO.create(financeAccount);
             }
         }
+
+        financeAccounts = null;
+
         bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityDailyLedger", Session.get().getLocale());
 
         DailyLedger dailyLedger = new DailyLedger(bundle.getString("start.ledger.name"), legalEntity);
