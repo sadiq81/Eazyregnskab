@@ -91,26 +91,34 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
         financeAccountChoice.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
+
                 FinanceAccount financeAccount = (FinanceAccount) getFormComponent().getModelObject();
-
                 if (financeAccount != null) {
-                    FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
 
-                    VatType vatType = financeAccount.getVatType();
-                    if (reverse != null) {
-                        reverseFinanceAccountChoice.setModelObject(reverse);
+                    FinanceAccount ledgerReverse = getCurrentDailyLedger().getFinanceAccount();
+                    if (ledgerReverse != null) {
+                        reverseFinanceAccountChoice.setModelObject(ledgerReverse);
                         target.add(reverseFinanceAccountChoice);
 
-                        VatType reverseVatType = reverse.getVatType();
-                        if (reverseVatType != null) {
-                            reverseVatTypeChoice.setModelObject(reverseVatType);
-                            target.add(reverseVatTypeChoice);
-                        }
-                    }
+                    } else {
 
-                    if (vatType != null) {
-                        vatTypeChoice.setModelObject(vatType);
-                        target.add(vatTypeChoice);
+                        FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
+                        if (reverse != null) {
+                            reverseFinanceAccountChoice.setModelObject(reverse);
+                            target.add(reverseFinanceAccountChoice);
+
+                            VatType reverseVatType = reverse.getVatType();
+                            if (reverseVatType != null) {
+                                reverseVatTypeChoice.setModelObject(reverseVatType);
+                                target.add(reverseVatTypeChoice);
+                            }
+                        }
+
+                        VatType vatType = financeAccount.getVatType();
+                        if (vatType != null) {
+                            vatTypeChoice.setModelObject(vatType);
+                            target.add(vatTypeChoice);
+                        }
                     }
                 }
             }

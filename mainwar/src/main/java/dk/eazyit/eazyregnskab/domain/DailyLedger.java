@@ -25,7 +25,7 @@ public class DailyLedger extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false, length = 20)
     private String name;
 
     @ManyToOne(optional = false)
@@ -36,6 +36,9 @@ public class DailyLedger extends BaseEntity {
 
     @OneToMany(mappedBy = "dailyLedger", fetch = FetchType.LAZY)
     private Set<DraftFinancePosting> draftFinancePosting;
+
+    @ManyToOne(optional = true)
+    private FinanceAccount financeAccount;
 
     public DailyLedger() {
     }
@@ -85,6 +88,14 @@ public class DailyLedger extends BaseEntity {
 
     public void setDraftFinancePosting(Set<DraftFinancePosting> draftFinancePosting) {
         this.draftFinancePosting = draftFinancePosting;
+    }
+
+    public FinanceAccount getFinanceAccount() {
+        return financeAccount;
+    }
+
+    public void setFinanceAccount(FinanceAccount financeAccount) {
+        this.financeAccount = financeAccount;
     }
 
     @Override

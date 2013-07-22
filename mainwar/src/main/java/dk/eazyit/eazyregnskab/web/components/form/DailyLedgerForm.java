@@ -2,8 +2,11 @@ package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.DailyLedgerFormValidator;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -29,6 +32,7 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
         super.addToForm();
         add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
         add(nextBookingNumber = new PlaceholderTextField<Integer>("nextBookingNumber"));
+        add(new DropDownChoice<FinanceAccount>("financeAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
         add(new DailyLedgerFormValidator(name));
     }
 
