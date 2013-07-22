@@ -96,6 +96,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
                 if (financeAccount != null) {
 
                     FinanceAccount ledgerReverse = getCurrentDailyLedger().getFinanceAccount();
+
                     if (ledgerReverse != null) {
                         reverseFinanceAccountChoice.setModelObject(ledgerReverse);
                         target.add(reverseFinanceAccountChoice);
@@ -113,12 +114,12 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
                                 target.add(reverseVatTypeChoice);
                             }
                         }
+                    }
 
-                        VatType vatType = financeAccount.getVatType();
-                        if (vatType != null) {
-                            vatTypeChoice.setModelObject(vatType);
-                            target.add(vatTypeChoice);
-                        }
+                    VatType vatType = financeAccount.getVatType();
+                    if (vatType != null) {
+                        vatTypeChoice.setModelObject(vatType);
+                        target.add(vatTypeChoice);
                     }
                 }
             }

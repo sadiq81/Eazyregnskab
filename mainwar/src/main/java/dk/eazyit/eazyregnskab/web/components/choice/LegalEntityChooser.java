@@ -29,7 +29,7 @@ public class LegalEntityChooser extends SessionAwareDropDownChoice<LegalEntity> 
                 LegalEntity changed = getConvertedInput();
                 LOG.debug("Changed legal entity selections to " + changed);
                 getSession().setAttribute(LegalEntity.ATTRIBUTE_NAME, changed);
-                getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, changed.getDailyLedgers().get(0));
+                getSession().setAttribute(DailyLedger.ATTRIBUTE_NAME, financeAccountService.findDailyLedgerByLegalEntity(changed).get(0));
                 target.add(getPage());
             }
         }));

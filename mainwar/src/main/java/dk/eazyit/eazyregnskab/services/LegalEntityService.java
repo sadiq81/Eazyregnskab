@@ -68,12 +68,27 @@ public class LegalEntityService {
                 FinanceAccountType.LIABILITY, legalEntity);
         financeAccountDAO.create(repr);
 
+        FinanceAccount incomingVatEU = new FinanceAccount(bundle.getString("new.entity.finance.account.LIABILITY.vat.incoming.eu"),
+                Integer.parseInt(bundle.getString("new.entity.finance.account.LIABILITY.vat.incoming.eu.account.number")),
+                FinanceAccountType.LIABILITY, legalEntity);
+        financeAccountDAO.create(incomingVatEU);
+
+        FinanceAccount outgoingVatEU = new FinanceAccount(bundle.getString("new.entity.finance.account.LIABILITY.vat.outgoing.eu"),
+                Integer.parseInt(bundle.getString("new.entity.finance.account.LIABILITY.vat.outgoing.eu.account.number")),
+                FinanceAccountType.LIABILITY, legalEntity);
+        financeAccountDAO.create(outgoingVatEU);
+
         VatType incoming = new VatType(bundle.getString("new.entity.vat.types.incoming"), new Double(bundle.getString("new.entity.vat.types.incoming.percentage")), legalEntity, incomingVat);
         VatType outgoing = new VatType(bundle.getString("new.entity.vat.types.outgoing"), new Double(bundle.getString("new.entity.vat.types.outgoing.percentage")), legalEntity, outgoingVat);
         VatType representation = new VatType(bundle.getString("new.entity.vat.types.representation"), new Double(bundle.getString("new.entity.vat.types.representation.percentage")), legalEntity, repr);
+        VatType EUIncoming = new VatType(bundle.getString("new.entity.vat.types.incoming.eu"), new Double(bundle.getString("new.entity.vat.types.incoming.eu.percentage")), legalEntity, incomingVat, incomingVatEU);
+        VatType EUOutgoing = new VatType(bundle.getString("new.entity.vat.types.outgoing.eu"), new Double(bundle.getString("new.entity.vat.types.outgoing.eu.percentage")), legalEntity, outgoingVat, outgoingVatEU);
+
         vatTypeDAO.create(incoming);
         vatTypeDAO.create(outgoing);
         vatTypeDAO.create(representation);
+        vatTypeDAO.create(EUIncoming);
+        vatTypeDAO.create(EUOutgoing);
 
         bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.newEntityFinanceAccounts", Session.get().getLocale());
         Map<String, String> map = convertResourceBundleToMap(bundle);
@@ -100,12 +115,16 @@ public class LegalEntityService {
 
             if (financeAccount != null && map.get(entry.getKey() + ".vat.type") != null) {
                 String vatType = map.get(entry.getKey() + ".vat.type");
-                if (vatType.contains("I25")) {
+                if (vatType.contains("I25") && !vatType.contains("EU_I25")) {
                     financeAccount.setVatType(incoming);
-                } else if (vatType.contains("U25")) {
+                } else if (vatType.contains("U25") && !vatType.contains("EU_U25")) {
                     financeAccount.setVatType(outgoing);
                 } else if (vatType.contains("REPR")) {
                     financeAccount.setVatType(representation);
+                } else if (vatType.contains("EU_I25")) {
+                    financeAccount.setVatType(EUIncoming);
+                } else if (vatType.contains("EU_U25")) {
+                    financeAccount.setVatType(EUOutgoing);
                 }
             }
             if (financeAccount != null) {

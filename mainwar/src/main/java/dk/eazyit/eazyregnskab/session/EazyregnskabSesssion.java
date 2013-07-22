@@ -5,6 +5,7 @@ import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import org.apache.wicket.Session;
+import org.apache.wicket.injection.Injector;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -19,6 +20,7 @@ public class EazyregnskabSesssion extends WebSession {
 
     public EazyregnskabSesssion(Request request) {
         super(request);
+        Injector.get().inject(this);
     }
 
     public AppUser getCurrentUser() {
