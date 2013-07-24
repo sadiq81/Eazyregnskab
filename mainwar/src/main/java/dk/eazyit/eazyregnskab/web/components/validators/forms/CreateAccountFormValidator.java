@@ -1,8 +1,11 @@
 package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
+import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.lang.Objects;
+import org.apache.wicket.util.time.Duration;
 
 import java.util.regex.Pattern;
 
@@ -31,16 +34,16 @@ public class CreateAccountFormValidator extends BaseFormValidator {
         final FormComponent<?> formComponent3 = getDependentFormComponents()[2];
 
         if (loginService.findAppUserByUsername(formComponent1.getInput()) != null) {
-            error(formComponent1, "username.all.ready.exists");
+            error(new NotificationMessage(new ResourceModel("username.all.ready.exists")).hideAfter(Duration.seconds(DURATION)));
         }
         if (!Pattern.compile(USERNAME_PATTERN).matcher(formComponent1.getInput()).matches()) {
-            error(formComponent2, "username.not.adequate");
+            error(new NotificationMessage(new ResourceModel("username.not.adequate")).hideAfter(Duration.seconds(DURATION)));
         }
         if (!Objects.equal(formComponent2.getInput(), formComponent3.getInput())) {
-            error(formComponent2, "not.equal.passwords");
+            error(new NotificationMessage(new ResourceModel("not.equal.passwords")).hideAfter(Duration.seconds(DURATION)));
         }
         if (!Pattern.compile(PASSWORD_PATTERN).matcher(formComponent2.getInput()).matches()) {
-            error(formComponent2, "password.not.adequate");
+            error(new NotificationMessage(new ResourceModel("password.not.adequate")).hideAfter(Duration.seconds(DURATION)));
         }
     }
 }

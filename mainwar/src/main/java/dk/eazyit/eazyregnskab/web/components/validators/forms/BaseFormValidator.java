@@ -12,12 +12,15 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import java.io.Serializable;
+
 /**
  * @author
  */
 public abstract class BaseFormValidator extends AbstractFormValidator implements SessionAware {
 
     private static final long serialVersionUID = 1L;
+    protected final static int DURATION = 5;
 
     private FormComponent<?>[] components;
 
@@ -43,6 +46,10 @@ public abstract class BaseFormValidator extends AbstractFormValidator implements
         return components;
     }
 
+    public void error(Serializable message){
+        Session.get().error(message);
+    }
+
     public AppUser getCurrentUser() {
             return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
         }
@@ -62,7 +69,6 @@ public abstract class BaseFormValidator extends AbstractFormValidator implements
         public void setCurrentDailyLedger(DailyLedger dailyLedger) {
             ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
         }
-
 
 
 }
