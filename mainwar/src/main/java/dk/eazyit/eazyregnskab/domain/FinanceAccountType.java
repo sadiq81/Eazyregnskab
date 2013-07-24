@@ -9,6 +9,7 @@ public enum FinanceAccountType {
     EXPENSE,
     ASSET,
     LIABILITY,
+    CATEGORY,
     HEADLINE,
     SUM
 

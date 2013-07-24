@@ -23,7 +23,7 @@ import java.util.Arrays;
  */
 public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
-    private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUM));
+    private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUM, FinanceAccountType.CATEGORY));
 
     DropDownChoice<VatType> vatType;
     EnumDropDownChoice<FinanceAccountType> financeAccountType;
@@ -43,38 +43,43 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         add(new PlaceholderTextField<String>("name").setRequired(true));
         add(new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
         add(vatType = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")));
-        add(financeAccountType = new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())));
+        add(financeAccountType = (EnumDropDownChoice<FinanceAccountType>) new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));
         add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
         add(sumFrom = new DropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
-                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+                setRequired(isSumAccount());
+                setVisibilityAllowed(isSumAccount());
             }
         });
         add(sumFromLabel = new Label("sumFromLabel", new ResourceModel("sum.from")) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
-                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+                setVisibilityAllowed(isSumAccount());
             }
         });
         add(sumTo = new DropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
-                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+                setRequired(isSumAccount());
+                setVisibilityAllowed(isSumAccount());
             }
         });
         add(sumToLabel = new Label("sumToLabel", new ResourceModel("sum.to")) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
-                setVisibilityAllowed(financeAccountType.getConvertedInput() == FinanceAccountType.SUM);
+                setVisibilityAllowed(isSumAccount());
             }
         });
     }
 
+    public boolean isSumAccount() {
+        return getModelObject().getFinanceAccountType() == FinanceAccountType.SUM;
+    }
 
     @Override
     public void deleteEntity(FinanceAccount financeAccount) {
@@ -123,10 +128,10 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     private void configureFinanceAccountType() {
-        financeAccountType.setRequired(true);
         financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
+                getFormComponent().processInput();
                 FinanceAccount f = getModelObject();
                 target.add(vatType);
                 target.add(standardReverseFinanceAccount);
@@ -162,7 +167,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         sumFromLabel.setOutputMarkupPlaceholderTag(true);
     }
 
-        private void configureSumTo() {
+    private void configureSumTo() {
         sumTo.setOutputMarkupPlaceholderTag(true);
         sumToLabel.setOutputMarkupPlaceholderTag(true);
     }

@@ -21,7 +21,8 @@ public abstract class ActionPanel<T extends BaseEntity> extends GenericPanel<T> 
         add(new AjaxLink("select") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                target.add(selectItem((T) getParent().getDefaultModelObject()));
+                BaseCreateEditForm form = selectItem((T) getParent().getDefaultModelObject());
+                target.add(form);
             }
         });
 
