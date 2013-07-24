@@ -5,7 +5,6 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
-import dk.eazyit.eazyregnskab.web.components.choice.financeAccountForm.FinanceAccountDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.FinanceAccountFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -49,7 +48,14 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         add(vatType = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")));
         add(financeAccountType = (EnumDropDownChoice<FinanceAccountType>) new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));
         add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
-        add(sumFrom = new FinanceAccountDropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
+        add(sumFrom = new DropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setRequired(isSumAccount());
+                setVisibilityAllowed(isSumAccount());
+            }
+        });
         add(sumFromLabel = new Label("sumFromLabel", new ResourceModel("sum.from")) {
             @Override
             protected void onConfigure() {
@@ -57,7 +63,14 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                 setVisibilityAllowed(isSumAccount());
             }
         });
-        add(sumTo = new FinanceAccountDropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
+        add(sumTo = new DropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")) {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setRequired(isSumAccount());
+                setVisibilityAllowed(isSumAccount());
+            }
+        });
         add(sumToLabel = new Label("sumToLabel", new ResourceModel("sum.to")) {
             @Override
             protected void onConfigure() {
@@ -110,6 +123,11 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     private void configureVatType() {
+        vatType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+            }
+        });
         vatType.setOutputMarkupPlaceholderTag(true);
     }
 
@@ -140,6 +158,11 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     private void configureStandardReverseFinanceAccount() {
+        standardReverseFinanceAccount.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+            }
+        });
         standardReverseFinanceAccount.setOutputMarkupPlaceholderTag(true);
     }
 

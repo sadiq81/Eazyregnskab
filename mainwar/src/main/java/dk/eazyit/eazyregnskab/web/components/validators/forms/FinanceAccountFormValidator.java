@@ -1,10 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.util.time.Duration;
 
 /**
  * @author
@@ -27,10 +24,10 @@ public class FinanceAccountFormValidator extends BaseFormValidator {
         Integer accountNumber = formComponent1.getConvertedInput();
 
         if (financeAccountService.findFinanceAccountByLegalEntityAndName(getCurrentLegalEntity(), accountNumber) != null) {
-            error(new NotificationMessage(new ResourceModel("number.all.ready.exists")).hideAfter(Duration.seconds(DURATION)));
+            error(formComponent1, "number.all.ready.exists");
         }
         if (formComponent1.getInput().length() > 20) {
-            error(new NotificationMessage(new ResourceModel("number.to.long")).hideAfter(Duration.seconds(DURATION)));
+            error(formComponent1, "number.to.long");
         }
     }
 }

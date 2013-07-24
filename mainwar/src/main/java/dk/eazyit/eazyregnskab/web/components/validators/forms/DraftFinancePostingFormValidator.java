@@ -1,10 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.util.time.Duration;
 
 /**
  * @author
@@ -32,16 +29,16 @@ public class DraftFinancePostingFormValidator extends BaseFormValidator {
 
         //TODO Check date within accounting year
         if (text.getInput().length() > 50) {
-            error(new NotificationMessage(new ResourceModel("text.to.long")).hideAfter(Duration.seconds(DURATION)));
+            error(text, "text.to.long");
         }
         if (financeAccount.getConvertedInput() == null && reverseFinanceAccount.getConvertedInput() == null) {
-            error(new NotificationMessage(new ResourceModel("must.chose.one.finance.account")).hideAfter(Duration.seconds(DURATION)));
+            error(financeAccount, "must.chose.one.finance.account");
         }
         if (financeAccount.getConvertedInput() == null && vat.getConvertedInput() != null) {
-            error(new NotificationMessage(new ResourceModel("must.choose.account.for.vat")).hideAfter(Duration.seconds(DURATION)));
+            error(financeAccount, "must.choose.account.for.vat");
         }
         if (reverseFinanceAccount.getConvertedInput() == null && reverseVat.getConvertedInput() != null) {
-            error(new NotificationMessage(new ResourceModel("must.choose.account.for.vat")).hideAfter(Duration.seconds(DURATION)));
+            error(reverseFinanceAccount, "must.choose.account.for.vat");
         }
 
     }

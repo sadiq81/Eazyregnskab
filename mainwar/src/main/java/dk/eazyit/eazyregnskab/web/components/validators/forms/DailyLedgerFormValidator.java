@@ -1,11 +1,8 @@
 package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.util.time.Duration;
 
 /**
  * @author
@@ -30,10 +27,10 @@ public class DailyLedgerFormValidator extends BaseFormValidator {
 
         if (dailyLedger.getId() == 0 && financeAccountService.findDailyLedgerByLegalEntityAndName(getCurrentLegalEntity(),
                 formComponent1.getInput()) != null) {
-            error(new NotificationMessage(new ResourceModel("name.all.ready.exists")).hideAfter(Duration.seconds(DURATION)));
+            error(formComponent1, "name.all.ready.exists");
         }
         if (formComponent1.getInput().length() > 20) {
-            error(new NotificationMessage(new ResourceModel("name.to.long")).hideAfter(Duration.seconds(DURATION)));
+            error(formComponent1, "name.to.long");
         }
     }
 }
