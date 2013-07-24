@@ -201,6 +201,6 @@ public class FinanceAccount extends BaseEntity {
     }
 
     public boolean isBookable() {
-        return financeAccountType != FinanceAccountType.HEADLINE && financeAccountType != FinanceAccountType.SUM;
+        return financeAccountType != FinanceAccountType.HEADLINE && financeAccountType != FinanceAccountType.SUM && financeAccountType != FinanceAccountType.CATEGORY;
     }
 }
