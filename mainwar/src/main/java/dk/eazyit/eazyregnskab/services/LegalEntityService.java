@@ -121,21 +121,18 @@ public class LegalEntityService {
                 String accountNumber = map.get(entry.getKey() + ".account.number");
                 financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.LIABILITY, legalEntity);
 
+            } else if (entry.getKey().contains("CATEGORY") && !entry.getKey().contains("account.number")) {
+
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.CATEGORY, legalEntity);
+
             } else if (entry.getKey().contains("HEADLINE") && !entry.getKey().contains("account.number")) {
 
                 String name = entry.getValue();
                 String accountNumber = map.get(entry.getKey() + ".account.number");
                 financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.HEADLINE, legalEntity);
 
-            } else if (entry.getKey().contains("SUM") && !entry.getKey().contains("account.number") && !entry.getKey().contains("sum.from") && !entry.getKey().contains("sum.to")) {
-
-                String name = entry.getValue();
-                String accountNumber = map.get(entry.getKey() + ".account.number");
-                FinanceAccount from = financeAccounts.get(Integer.parseInt(map.get(entry.getKey() + ".sum.from")));
-                FinanceAccount to = financeAccounts.get(Integer.parseInt(map.get(entry.getKey() + ".sum.to")));
-                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.SUM, legalEntity);
-                financeAccount.setSumFrom(from);
-                financeAccount.setSumTo(to);
             }
 
             if (financeAccount != null && map.get(entry.getKey() + ".vat.type") != null) {
@@ -156,6 +153,28 @@ public class LegalEntityService {
                 financeAccounts.put(financeAccount.getAccountNumber(), financeAccount);
                 financeAccountDAO.create(financeAccount);
             }
+        }
+
+        //TODO create new bundle for sum accounts
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            FinanceAccount financeAccount = null;
+
+            if (entry.getKey().contains("SUM") && !entry.getKey().contains("account.number") && !entry.getKey().contains("sum.from") && !entry.getKey().contains("sum.to")) {
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.SUM, legalEntity);
+                financeAccounts.put(financeAccount.getAccountNumber(), financeAccount);
+                FinanceAccount from = financeAccounts.get(Integer.parseInt(map.get(entry.getKey() + ".sum.from")));
+                FinanceAccount to = financeAccounts.get(Integer.parseInt(map.get(entry.getKey() + ".sum.to")));
+                financeAccount.setSumFrom(from);
+                financeAccount.setSumTo(to);
+            }
+
+            if (financeAccount != null) {
+
+                financeAccountDAO.create(financeAccount);
+            }
+
         }
 
         financeAccounts = null;
