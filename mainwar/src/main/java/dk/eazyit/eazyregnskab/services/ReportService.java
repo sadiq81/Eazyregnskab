@@ -82,7 +82,7 @@ public class ReportService {
                 int sumTo = financeAccount.getSumTo().getAccountNumber();
 
                 for (FinanceAccount entry : financeAccountHashMap.values()) {
-                    if (entry.getAccountNumber() >= sumFrom && entry.getAccountNumber() <= sumTo) {
+                    if (entry.getAccountNumber() >= sumFrom && entry.getAccountNumber() <= sumTo && entry.getFinanceAccountType() != FinanceAccountType.SUM) {
                         financeAccount.setSum(financeAccount.getSum() + entry.getSum());
                         financeAccount.setSumCompare(financeAccount.getSumCompare() + entry.getSumCompare());
                     }
