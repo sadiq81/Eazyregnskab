@@ -29,7 +29,7 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
         init();
     }
 
-    private void init(){
+    private void init() {
         setOutputMarkupId(true);
     }
 
@@ -49,7 +49,13 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
                 itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
                 break;
             }
-            case CATEGORY:
+            case CATEGORY: {
+                itemOuter.add(new AttributeAppender("class", "category"));
+                itemOuter.add(new Label("sum", ""));
+                itemOuter.add(new Label("sumCompare", ""));
+                break;
+            }
+
             case HEADLINE: {
                 itemOuter.add(new AttributeAppender("class", "headline"));
                 itemOuter.add(new Label("sum", ""));
