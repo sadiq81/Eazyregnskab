@@ -49,8 +49,6 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
         add(financeAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount"));
         add(reverseVatTypeChoice = new VatTypeDropDownChoice("reverseVatType"));
         add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text").setRequired(true));
-
-        //TODO VALIDATE VAT combinations and FinanceAccount combinations
         add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice, vatTypeChoice, reverseVatTypeChoice));
     }
 
