@@ -22,6 +22,10 @@ public class FinanceAccountItem extends Item<FinanceAccount> {
     protected void onComponentTag(ComponentTag tag) {
         FinanceAccount financeAccount = getModelObject();
         switch (financeAccount.getFinanceAccountType()) {
+            case CATEGORY: {
+                tag.put("class", "category");
+                break;
+            }
             case HEADLINE: {
                 tag.put("class", "headline");
                 break;

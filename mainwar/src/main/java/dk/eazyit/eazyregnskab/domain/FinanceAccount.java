@@ -5,7 +5,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * @author
@@ -26,8 +25,8 @@ import java.util.Set;
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 and fa.name = ?2 ORDER BY accountNumber ASC"),
 
-        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT, query = "select fa from FinanceAccount fa " +
-                "WHERE fa.legalEntity = ?1 and fa = ?2 ORDER BY accountNumber ASC"),
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, query = "select fa from FinanceAccount fa " +
+                "WHERE fa.legalEntity = ?1 and fa.accountNumber = ?2 ORDER BY accountNumber ASC"),
 
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 and fa.accountNumber >= ?2 and fa.accountNumber <= ?3 ORDER BY accountNumber ASC")
@@ -39,7 +38,7 @@ public class FinanceAccount extends BaseEntity {
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_LOWEST = "FinanceAccount::findByLegalEntityLowest";
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_HIGHEST = "FinanceAccount::findByLegalEntityHighest";
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME = "FinanceAccount::findByLegalEntityAndName";
-    public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT = "FinanceAccount::findByLegalEntityAndAccount";
+    public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER = "FinanceAccount::findByLegalEntityAndAccount";
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT = "FinanceAccount::findByLegalEntityAndAccountNumberFromAccountToAccount";
 
     @Id

@@ -312,6 +312,19 @@ public class FinanceAccountService {
         return financeAccountDAO.findById(l);
     }
 
+    public DailyLedger findDailyLedgerByLegalEntityAndName(LegalEntity currentLegalEntity, String name) {
+        return dailyLedgerDAO.findByNamedQueryUnique(DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY, name, currentLegalEntity);
+    }
+
+    public VatType findVatTypeByNameAndLegalEntity(LegalEntity legalEntity, String name) {
+        return vatTypeDAO.findByNamedQueryUnique(VatType.QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY, name, legalEntity);
+    }
+
+    public FinanceAccount findFinanceAccountByLegalEntityAndName(LegalEntity currentLegalEntity, Integer number) {
+        return financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, currentLegalEntity, number);
+
+    }
+
 
 //    ------------------------------------------------------------------------------------------------------------------------------
 

@@ -1,10 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
-import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
-import dk.eazyit.eazyregnskab.dao.interfaces.VatTypeDAO;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LoginService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
@@ -25,9 +24,7 @@ public abstract class BaseFormValidator extends AbstractFormValidator implements
     @SpringBean
     protected LoginService loginService;
     @SpringBean
-    protected VatTypeDAO vatTypeDAO;
-    @SpringBean
-    protected DailyLedgerDAO dailyLedgerDAO;
+    protected FinanceAccountService financeAccountService;
 
     protected BaseFormValidator(FormComponent... components) {
 

@@ -24,9 +24,9 @@ public class DailyLedgerFormValidator extends BaseFormValidator {
         final FormComponent<?> formComponent1 = getDependentFormComponents()[0];
         DailyLedger dailyLedger = (DailyLedger) formComponent1.getForm().getModelObject();
 
-        if (dailyLedger.getId() == 0 && dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY,
-                formComponent1.getInput(),
-                getCurrentLegalEntity()).size() > 0) {
+
+        if (dailyLedger.getId() == 0 && financeAccountService.findDailyLedgerByLegalEntityAndName(getCurrentLegalEntity(),
+                formComponent1.getInput()) != null) {
             error(formComponent1, "name.all.ready.exists");
         }
         if (formComponent1.getInput().length() > 20) {
