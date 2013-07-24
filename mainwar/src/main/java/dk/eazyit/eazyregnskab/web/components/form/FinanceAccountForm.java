@@ -6,11 +6,13 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
+import dk.eazyit.eazyregnskab.web.components.validators.forms.FinanceAccountFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -25,6 +27,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUM, FinanceAccountType.CATEGORY));
 
+    FormComponent<Integer> accountNumber;
     DropDownChoice<VatType> vatType;
     EnumDropDownChoice<FinanceAccountType> financeAccountType;
     DropDownChoice<FinanceAccount> standardReverseFinanceAccount;
@@ -41,7 +44,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     public void addToForm() {
         super.addToForm();
         add(new PlaceholderTextField<String>("name").setRequired(true));
-        add(new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
+        add(accountNumber = new PlaceholderTextField <Integer>("accountNumber").setRequired(true));
         add(vatType = new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")));
         add(financeAccountType = (EnumDropDownChoice<FinanceAccountType>) new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));
         add(standardReverseFinanceAccount = new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
@@ -75,6 +78,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                 setVisibilityAllowed(isSumAccount());
             }
         });
+        add(new FinanceAccountFormValidator(accountNumber));
     }
 
     public boolean isSumAccount() {
