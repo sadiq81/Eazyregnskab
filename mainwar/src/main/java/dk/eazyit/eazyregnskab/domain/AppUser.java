@@ -34,6 +34,8 @@ public class AppUser extends BaseEntity {
     private String email;
     @Column
     private String verificationUUID;
+    @Column()
+    private Integer itemsPerPage;
 
     public AppUser() {
     }
@@ -42,7 +44,7 @@ public class AppUser extends BaseEntity {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
-        this.email =email;
+        this.email = email;
         this.verificationUUID = verificationUUID;
     }
 
@@ -114,6 +116,15 @@ public class AppUser extends BaseEntity {
         this.verificationUUID = verificationUUID;
     }
 
+    public Integer getItemsPerPage() {
+        if (itemsPerPage == null) itemsPerPage = 20;
+        return itemsPerPage;
+    }
+
+    public void setItemsPerPage(Integer itemsPerPage) {
+        this.itemsPerPage = itemsPerPage;
+    }
+
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
@@ -121,6 +132,7 @@ public class AppUser extends BaseEntity {
                 .add("username", username)
                 .add("password", password)
                 .add("enabled", enabled)
+                .add("itemsPerPage", itemsPerPage)
 //                .add("appUserRoles", appUserRoles)
                 .toString();
     }

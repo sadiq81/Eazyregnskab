@@ -44,7 +44,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
         super.addToPage(parameters);
 
         add(form = new FinanceAccountForm("financeAccountEdit", new FinanceAccountModel(new FinanceAccount())));
-        add(dataTable = new FinanceAccountAjaxFallbackDefaultDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), 20));
+        add(dataTable = new FinanceAccountAjaxFallbackDefaultDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), getCurrentUser().getItemsPerPage()));
 
     }
 

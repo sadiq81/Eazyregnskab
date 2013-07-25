@@ -70,4 +70,8 @@ public class LoginService {
         return appUser;
     }
 
+    @Transactional
+    public AppUser saveUser(AppUser currentUser) {
+        return appUserDAO.save(currentUser);
+    }
 }

@@ -3,7 +3,6 @@ package dk.eazyit.eazyregnskab.web.components.tables.toolbar;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -19,9 +18,9 @@ import java.util.List;
 /**
  * @author
  */
-public class ItemsPerPageToolBar extends AbstractToolbar {
+public class ItemsPerPageToolBar extends SessionAwareToolbar {
 
-    static List<Long> itemsPerPage = new ArrayList<Long>(Arrays.asList(20L, 50L, 100L, 500L));
+    static List<Integer> itemsPerPage = new ArrayList<Integer>(Arrays.asList(20, 50, 100, 500));
 
     public ItemsPerPageToolBar(DataTable<?, ?> table) {
         super(table);
@@ -37,8 +36,9 @@ public class ItemsPerPageToolBar extends AbstractToolbar {
                 return String.valueOf(getTable().getColumns().size());
             }
         }));
+
         td.add(new Label("itemsPerPageLabel", new ResourceModel("items.per.page")));
-        td.add(new DropDownChoice<Long>("itemsPerPage", new ItemsPerPageModel(), itemsPerPage).add(new AjaxFormComponentUpdatingBehavior("onchange") {
+        td.add(new DropDownChoice<Integer>("itemsPerPage", new ItemsPerPageModel(), itemsPerPage).add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 target.add(getTable());
@@ -47,15 +47,19 @@ public class ItemsPerPageToolBar extends AbstractToolbar {
 
     }
 
-    class ItemsPerPageModel implements IModel<Long> {
+    class ItemsPerPageModel implements IModel<Integer> {
         @Override
-        public Long getObject() {
-            return getTable().getItemsPerPage();
+        public Integer getObject() {
+            return getCurrentUser().getItemsPerPage();
         }
 
         @Override
-        public void setObject(Long object) {
+        public void setObject(Integer object) {
             getTable().setItemsPerPage(object);
+            if (object != getCurrentUser().getItemsPerPage()){
+                getCurrentUser().setItemsPerPage(object);
+                loginService.saveUser(getCurrentUser());
+            }
         }
 
         @Override

@@ -23,6 +23,10 @@ public class EazyregnskabSesssion extends WebSession {
         Injector.get().inject(this);
     }
 
+    public void setCurrentUser(AppUser appUser) {
+        Session.get().setAttribute(AppUser.ATTRIBUTE_NAME, appUser);
+    }
+
     public AppUser getCurrentUser() {
         return (AppUser) Session.get().getAttribute(AppUser.ATTRIBUTE_NAME);
     }
