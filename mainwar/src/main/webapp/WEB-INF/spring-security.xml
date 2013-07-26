@@ -24,7 +24,7 @@
                 />
 
         <logout logout-success-url="/app/HomePage"/>
-        <remember-me key="eazyRegnskab" user-service-ref="UserDetailsService"/>
+        <remember-me key="eazyRegnskab-rm-key-juGuMnil55sHop80comps" token-validity-seconds="3600" data-source-ref="dataSource"/>
         <session-management>
             <concurrency-control max-sessions="1"/>
         </session-management>
