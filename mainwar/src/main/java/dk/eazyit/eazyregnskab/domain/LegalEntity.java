@@ -53,6 +53,9 @@ public class LegalEntity extends BaseEntity {
     @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
     private List<DailyLedger> dailyLedgers;
 
+    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
+    private List<FiscalYear> fiscalYears;
+
     public LegalEntity() {
     }
 
@@ -138,6 +141,14 @@ public class LegalEntity extends BaseEntity {
 
     public void setDailyLedgers(List<DailyLedger> dailyLedgers) {
         this.dailyLedgers = dailyLedgers;
+    }
+
+    public List<FiscalYear> getFiscalYears() {
+        return fiscalYears;
+    }
+
+    public void setFiscalYears(List<FiscalYear> fiscalYears) {
+        this.fiscalYears = fiscalYears;
     }
 
     @Override

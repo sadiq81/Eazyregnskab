@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.tables.columns;
+package dk.eazyit.eazyregnskab.web.components.tables.column;
 
 import dk.eazyit.eazyregnskab.web.components.models.entities.FormattedDateModel;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
@@ -17,6 +17,9 @@ public class DatePropertyColumn<T> extends PropertyColumn<T, String> {
 
     private static final long serialVersionUID = 1L;
 
+    public DatePropertyColumn(IModel<String> displayModel, String propertyExpression) {
+        super(displayModel, propertyExpression);
+    }
 
     public DatePropertyColumn(IModel<String> displayModel, String sortProperty, String propertyExpression) {
         super(displayModel, sortProperty, propertyExpression);

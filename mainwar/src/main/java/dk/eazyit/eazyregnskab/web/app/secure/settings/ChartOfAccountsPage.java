@@ -6,7 +6,7 @@ import dk.eazyit.eazyregnskab.web.components.form.FinanceAccountForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForChartsOfAccountsPage;
+import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForChartsOfAccountsPage;
 import dk.eazyit.eazyregnskab.web.components.tables.tables.FinanceAccountAjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

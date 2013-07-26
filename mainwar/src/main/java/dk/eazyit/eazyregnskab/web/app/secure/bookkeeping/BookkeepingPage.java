@@ -8,7 +8,7 @@ import dk.eazyit.eazyregnskab.web.components.form.SaveDailyLedgerForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForBookkeepingPage;
+import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForBookkeepingPage;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;

@@ -4,6 +4,7 @@ import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.FiscalYearService;
 import dk.eazyit.eazyregnskab.services.LoginService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
@@ -25,6 +26,8 @@ public abstract class BaseFormValidator extends AbstractFormValidator implements
     protected LoginService loginService;
     @SpringBean
     protected FinanceAccountService financeAccountService;
+    @SpringBean
+    protected FiscalYearService fiscalYearService;
 
     protected BaseFormValidator(FormComponent... components) {
 

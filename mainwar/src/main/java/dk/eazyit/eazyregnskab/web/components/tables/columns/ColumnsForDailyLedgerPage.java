@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.tables.column;
+package dk.eazyit.eazyregnskab.web.components.tables.columns;
 
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;

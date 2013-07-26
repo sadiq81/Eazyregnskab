@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 /**
- * @author Trifork
+ * @author Eazy IT
  */
 @Service("legalEntityService")
 public class LegalEntityService {

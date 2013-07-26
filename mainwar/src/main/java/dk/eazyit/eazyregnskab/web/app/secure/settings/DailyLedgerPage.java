@@ -6,7 +6,7 @@ import dk.eazyit.eazyregnskab.web.components.form.DailyLedgerForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import dk.eazyit.eazyregnskab.web.components.tables.column.ColumnsForDailyLedgerPage;
+import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForDailyLedgerPage;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;

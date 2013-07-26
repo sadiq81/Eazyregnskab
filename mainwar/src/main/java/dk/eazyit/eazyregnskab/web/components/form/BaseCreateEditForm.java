@@ -1,11 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.markup.html.bootstrap.button.LoadingBehavior;
-import dk.eazyit.eazyregnskab.domain.AppUser;
-import dk.eazyit.eazyregnskab.domain.BaseEntity;
-import dk.eazyit.eazyregnskab.domain.DailyLedger;
-import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.FiscalYearService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
@@ -34,6 +32,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     protected LegalEntityService legalEntityService;
     @SpringBean
     protected FinanceAccountService financeAccountService;
+    @SpringBean
+    protected FiscalYearService fiscalYearService;
 
     protected BaseCreateEditForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));

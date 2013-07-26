@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.tables.columns;
+package dk.eazyit.eazyregnskab.web.components.tables.column;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
