@@ -35,6 +35,11 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     @SpringBean
     protected FiscalYearService fiscalYearService;
 
+    protected BaseCreateEditFormAjaxButton save;
+    protected BaseCreateEditFormAjaxButton nev;
+    protected BaseCreateEditFormAjaxButton delete;
+
+
     protected BaseCreateEditForm(String id, IModel<T> model) {
         super(id, new CompoundPropertyModel<T>(model));
         addToForm();
@@ -43,7 +48,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
 
     public void addToForm() {
-        add(new BaseCreateEditFormAjaxButton("save", new ResourceModel("button.save")) {
+        add(save  = new BaseCreateEditFormAjaxButton("save", new ResourceModel("button.save")) {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -53,7 +58,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
             }
 
         });
-        add(new BaseCreateEditFormAjaxButton("new", new ResourceModel("button.new")) {
+        add(nev = new BaseCreateEditFormAjaxButton("new", new ResourceModel("button.new")) {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -68,7 +73,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
                 setVisibilityAllowed(isNewButtonVisible());
             }
         });
-        add(new BaseCreateEditFormAjaxButton("delete", new ResourceModel("button.delete")) {
+        add(delete = new BaseCreateEditFormAjaxButton("delete", new ResourceModel("button.delete")) {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -103,6 +108,18 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
     protected boolean isDeleteButtonVisible() {
         return false;
+    }
+
+    public BaseCreateEditFormAjaxButton getSave() {
+        return save;
+    }
+
+    public BaseCreateEditFormAjaxButton getNev() {
+        return nev;
+    }
+
+    public BaseCreateEditFormAjaxButton getDelete() {
+        return delete;
     }
 
     public AppUser getCurrentUser() {

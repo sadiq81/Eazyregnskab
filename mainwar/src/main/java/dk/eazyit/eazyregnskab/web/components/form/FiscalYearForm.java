@@ -4,11 +4,16 @@ import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextFieldConfig;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
+import dk.eazyit.eazyregnskab.util.CalenderUtil;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.FiscalYearFormValidator;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
+
+import java.util.Date;
 
 /**
  * @author
@@ -32,6 +37,19 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
 
     @Override
     protected void configureComponents() {
+        configureStart();
+    }
+
+    private void configureStart() {
+        start.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                Date startDate = (Date) getFormComponent().getConvertedInput();
+                Date endDate = CalenderUtil.add(startDate,1,0,-1);
+                end.setModelObject(endDate);
+                target.add(end);
+            }
+        });
     }
 
 

@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.FiscalYearDAO;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
+import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,4 +55,20 @@ public class FiscalYearService {
         List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
         return list;
     }
+
+    @Transactional
+    public List<FiscalYear> findLockedFiscalYearByLegalEntityAfterDate(LegalEntity legalEntity, Date date) {
+        log.debug("Finding closed FiscalYear from legal entity from " + legalEntity.toString() + " after date" + date);
+        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_LOCKED_BY_LEGAL_ENTITY_AFTER_DATE, legalEntity, date, FiscalYearStatus.LOCKED);
+        return list;
+    }
+
+    @Transactional
+    public List<FiscalYear> findOpenFiscalYearByLegalEntityBeforeDate(LegalEntity legalEntity, Date date) {
+        log.debug("Finding open FiscalYear from legal entity from " + legalEntity.toString() + " before date" + date);
+        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE, legalEntity, date, FiscalYearStatus.OPEN);
+        return list;
+    }
+
+
 }

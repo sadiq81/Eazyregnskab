@@ -13,6 +13,8 @@ import dk.eazyit.eazyregnskab.web.components.button.LogoutNavbarButton;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.TopMenuNavBarDropDownButton;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
@@ -92,9 +94,9 @@ public abstract class AppBasePage extends WebPage{
 
     protected abstract void addToPage(PageParameters pageParameters);
 
-//    protected void addToolTipToLabel(Label label, String tooltip) {
-//        label.add(AttributeModifier.append("rel", "tooltip"));
-//        label.add(AttributeModifier.append("data-placement", "top"));
-//        label.add(AttributeModifier.append("data-original-title", new ResourceModel(tooltip)));
-//    }
+    protected void addToolTipToComponent(Component component, String resourceText) {
+        component.add(AttributeModifier.append("rel", "tooltip"));
+        component.add(AttributeModifier.append("data-placement", "top"));
+        component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
+    }
 }

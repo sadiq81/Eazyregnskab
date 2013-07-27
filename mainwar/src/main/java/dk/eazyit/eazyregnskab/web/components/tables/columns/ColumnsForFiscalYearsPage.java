@@ -4,6 +4,7 @@ import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
 import dk.eazyit.eazyregnskab.web.components.panels.action.FiscalYearActionPanel;
 import dk.eazyit.eazyregnskab.web.components.tables.column.DatePropertyColumn;
+import dk.eazyit.eazyregnskab.web.components.tables.column.EnumPropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
@@ -23,6 +24,7 @@ public class ColumnsForFiscalYearsPage extends ArrayList<IColumn<FiscalYear, Str
         add(new DatePropertyColumn<FiscalYear>(new ResourceModel("start"), "start"));
         add(new DatePropertyColumn<FiscalYear>(new ResourceModel("end"), "end"));
         add(new PropertyColumn<FiscalYear, String>(new ResourceModel("daysBetween"), "daysBetween"));
+        add(new EnumPropertyColumn<FiscalYear>(new ResourceModel("FiscalYearStatus"),"fiscalYearStatus"));
         add(new AbstractColumn<FiscalYear, String>(new ResourceModel("action")) {
             @Override
             public void populateItem(Item<ICellPopulator<FiscalYear>> cellItem, String componentId, IModel<FiscalYear> rowModel) {

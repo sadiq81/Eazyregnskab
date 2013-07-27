@@ -43,8 +43,8 @@ public class CalenderUtil {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.YEAR, years);
-        cal.add(Calendar.YEAR, months);
-        cal.add(Calendar.YEAR, days);
+        cal.add(Calendar.MONTH, months);
+        cal.add(Calendar.DATE, days);
         return cal.getTime();
     }
 
