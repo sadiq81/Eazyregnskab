@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
+import dk.eazyit.eazyregnskab.util.CalenderUtil;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 
@@ -38,19 +39,15 @@ public class FiscalYearFormValidator extends BaseFormValidator {
         for (FiscalYear fiscalYear : list) {
 
             //Test dates in new year to see if they are between another finance year
-            if (betweenDates(start, fiscalYear) || betweenDates(end, fiscalYear)) {
+            if (CalenderUtil.betweenDates(start, fiscalYear) || CalenderUtil.betweenDates(end, fiscalYear)) {
                 error(formComponent1, "dates.cross.another.fiscal.year");
                 break;
             }
             //Test dates in new year to see if old years are between new year
-            if (betweenDates(fiscalYear.getStart(), current) || betweenDates(fiscalYear.getEnd(), current)) {
+            if (CalenderUtil.betweenDates(fiscalYear.getStart(), current) || CalenderUtil.betweenDates(fiscalYear.getEnd(), current)) {
                 error(formComponent1, "dates.cross.another.fiscal.year");
                 break;
             }
         }
-    }
-
-    private boolean betweenDates(Date testDate, FiscalYear fiscalYear) {
-        return testDate.compareTo(fiscalYear.getStart()) >= 0 && testDate.compareTo(fiscalYear.getEnd()) <= 0;
     }
 }

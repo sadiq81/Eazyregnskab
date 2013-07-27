@@ -13,6 +13,8 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = FiscalYear.QUERY_FIND_BY_LEGAL_ENTITY, query = "select fy from FiscalYear fy " +
                 "WHERE fy.legalEntity = ?1 ORDER BY start DESC "),
+        @NamedQuery(name = FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY, query = "select fy from FiscalYear fy " +
+                        "WHERE fy.legalEntity = ?1 and fy.fiscalYearStatus =?2 ORDER BY start DESC "),
         @NamedQuery(name = FiscalYear.QUERY_FIND_LOCKED_BY_LEGAL_ENTITY_AFTER_DATE, query = "select fy from FiscalYear fy " +
                 "WHERE fy.legalEntity = ?1 and fy.start > ?2 and fy.fiscalYearStatus = ?3"),
         @NamedQuery(name = FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE, query = "select fy from FiscalYear fy " +
@@ -22,6 +24,7 @@ import java.util.Date;
 public class FiscalYear extends BaseEntity {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "FiscalYear::findByLegalEntity";
+    public static final String QUERY_FIND_OPEN_BY_LEGAL_ENTITY = "FiscalYear::findOpenByLegalEntity";
     public static final String QUERY_FIND_LOCKED_BY_LEGAL_ENTITY_AFTER_DATE = "FiscalYear::findByLegalEntityAfterDate";
     public static final String QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE = "FiscalYear::findByLegalEntityBeforeDate";
 

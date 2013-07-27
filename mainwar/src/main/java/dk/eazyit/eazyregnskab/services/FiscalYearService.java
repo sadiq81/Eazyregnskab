@@ -50,6 +50,13 @@ public class FiscalYearService {
     }
 
     @Transactional
+    public List<FiscalYear> findOpenFiscalYearByLegalEntity(LegalEntity legalEntity) {
+        log.debug("Finding open FiscalYear from legal entity from " + legalEntity.toString());
+        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY, legalEntity, FiscalYearStatus.OPEN);
+        return list;
+    }
+
+    @Transactional
     public List<FiscalYear> findFiscalYearByLegalEntity(LegalEntity legalEntity) {
         log.debug("Finding all FiscalYear from legal entity from " + legalEntity.toString());
         List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);

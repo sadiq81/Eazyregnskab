@@ -1,5 +1,7 @@
 package dk.eazyit.eazyregnskab.util;
 
+import dk.eazyit.eazyregnskab.domain.FiscalYear;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,5 +67,9 @@ public class CalenderUtil {
     public static String getSimpleDateString(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
         return sdf.format(date);
+    }
+
+    public static boolean betweenDates(Date testDate, FiscalYear fiscalYear) {
+        return testDate.compareTo(fiscalYear.getStart()) >= 0 && testDate.compareTo(fiscalYear.getEnd()) <= 0;
     }
 }

@@ -79,7 +79,7 @@ public class TestBookingService extends TestLoggedInPage {
         draft.setVatType(sales.getVatType());
         draftFinancePostingDAO.save(draft);
 
-        bookingService.BookAll(dailyLedger, new BookingResult());
+        bookingService.BookDailyLedger(dailyLedger, new BookingResult(), true);
 
         List<FinanceAccount> accountList = new ArrayList<FinanceAccount>();
         accountList.add(sales);
@@ -114,7 +114,7 @@ public class TestBookingService extends TestLoggedInPage {
         draft.setReverseVatType(purchases.getVatType());
         draftFinancePostingDAO.save(draft);
 
-        bookingService.BookAll(dailyLedger, new BookingResult());
+        bookingService.BookDailyLedger(dailyLedger, new BookingResult(), true);
 
         List<FinanceAccount> accountList = new ArrayList<FinanceAccount>();
         accountList.add(sales);
@@ -148,7 +148,7 @@ public class TestBookingService extends TestLoggedInPage {
         draft.setVatType(salesWithEUVat.getVatType());
         draftFinancePostingDAO.save(draft);
 
-        bookingService.BookAll(dailyLedger, new BookingResult());
+        bookingService.BookDailyLedger(dailyLedger, new BookingResult(), true);
 
         List<FinanceAccount> accountList = new ArrayList<FinanceAccount>();
         accountList.add(salesWithEUVat);
@@ -182,7 +182,7 @@ public class TestBookingService extends TestLoggedInPage {
         draft.setReverseVatType(purchasesWithEUVat.getVatType());
         draftFinancePostingDAO.save(draft);
 
-        bookingService.BookAll(dailyLedger, new BookingResult());
+        bookingService.BookDailyLedger(dailyLedger, new BookingResult(), true);
 
         List<FinanceAccount> accountList = new ArrayList<FinanceAccount>();
         accountList.add(salesWithEUVat);

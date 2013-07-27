@@ -10,7 +10,8 @@ import java.util.List;
 public class BookingResult implements Serializable {
 
     BookingStatus bookingStatus = BookingStatus.SUCCESS;
-    List<Integer> list = new ArrayList<Integer>();
+    List<Integer> notInBalance = new ArrayList<Integer>();
+    List<Integer> notInOpenFiscalYear = new ArrayList<Integer>();
 
     public BookingStatus getBookingStatus() {
         return bookingStatus;
@@ -20,20 +21,41 @@ public class BookingResult implements Serializable {
         this.bookingStatus = bookingStatus;
     }
 
-    public List<Integer> getList() {
-        return list;
+    public List<Integer> getNotInBalance() {
+        return notInBalance;
     }
 
-    public void setList(List<Integer> list) {
-        this.list = list;
+    public void setNotInBalance(List<Integer> notInBalance) {
+        this.notInBalance = notInBalance;
     }
 
-    public String getListOfErrors() {
+    public List<Integer> getNotInOpenFiscalYear() {
+        return notInOpenFiscalYear;
+    }
+
+    public void setNotInOpenFiscalYear(List<Integer> notInOpenFiscalYear) {
+        this.notInOpenFiscalYear = notInOpenFiscalYear;
+    }
+
+    public String getListOfNotInBalance() {
+
         StringBuilder sb = new StringBuilder("");
-        for (Integer integer : list) {
+        for (Integer integer : notInBalance) {
             sb.append(" " + integer.toString() + ",");
         }
         sb.deleteCharAt(sb.lastIndexOf(","));
+
+        return sb.toString();
+    }
+
+    public String getListOfNotInFiscalYear() {
+
+        StringBuilder sb = new StringBuilder("");
+        for (Integer integer : notInOpenFiscalYear) {
+            sb.append(" " + integer.toString() + ",");
+        }
+        sb.deleteCharAt(sb.lastIndexOf(","));
+
         return sb.toString();
     }
 }

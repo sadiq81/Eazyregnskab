@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.services;
 import dk.eazyit.eazyregnskab.dao.interfaces.BookedFinancePostingDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.DraftFinancePostingDAO;
 import dk.eazyit.eazyregnskab.domain.*;
+import dk.eazyit.eazyregnskab.util.CalenderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,28 +23,63 @@ public class BookingService {
     DraftFinancePostingDAO draftFinancePostingDAO;
     @Autowired
     FinanceAccountService financeAccountService;
+    @Autowired
+    FiscalYearService fiscalYearService;
 
     @Transactional
-    public void BookChosen(DailyLedger dailyLedger, BookingResult result) {
+    public void BookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
+
         List<DraftFinancePosting> draftFinancePostingList = financeAccountService.findPostingsFromDailyLedger(dailyLedger);
+
+        List<DraftFinancePosting> markedForSave = bookAll ? draftFinancePostingList : removeNotMarkedForSave(draftFinancePostingList);
+
+        List<DraftFinancePosting> withinOpenFiscalYears = checkWithinOpenFiscalYear(markedForSave, dailyLedger, result);
+
+        Map<Integer, BookedFinancePostingBatch> notCheckBookedFinancePostings = createBookedFinancePostings(withinOpenFiscalYears);
+
+        Map<Integer, BookedFinancePostingBatch> inBalance = checkBookedFinancePostingsForBalance(notCheckBookedFinancePostings, result);
+
+        saveCheckedBookedFinancePostings(inBalance);
+
+    }
+
+    private List<DraftFinancePosting> removeNotMarkedForSave(List<DraftFinancePosting> draftFinancePostings) {
+
         List<DraftFinancePosting> markedForSave = new ArrayList<DraftFinancePosting>();
-        for (DraftFinancePosting draftFinancePosting : draftFinancePostingList) {
+
+        for (DraftFinancePosting draftFinancePosting : draftFinancePostings) {
             if (draftFinancePosting.isChosen()) {
                 markedForSave.add(draftFinancePosting);
             }
         }
-        createBookedFinancePostings(markedForSave, result);
-    }
 
-    @Transactional
-    public void BookAll(DailyLedger dailyLedger, BookingResult result) {
-        List<DraftFinancePosting> draftFinancePostingList = financeAccountService.findPostingsFromDailyLedger(dailyLedger);
-        createBookedFinancePostings(draftFinancePostingList, result);
+        return markedForSave;
     }
 
 
-    //TODO create test to verify all types of transactions.
-    private void createBookedFinancePostings(List<DraftFinancePosting> draftFinancePostings, BookingResult result) {
+    private List<DraftFinancePosting> checkWithinOpenFiscalYear
+            (List<DraftFinancePosting> draftFinancePostings, DailyLedger dailyLedger, BookingResult bookingResult) {
+
+        List<FiscalYear> fiscalYears = fiscalYearService.findOpenFiscalYearByLegalEntity(dailyLedger.getLegalEntity());
+        List<DraftFinancePosting> isWithOpenFiscalYear = new ArrayList<DraftFinancePosting>();
+
+        for (DraftFinancePosting draftFinancePosting : draftFinancePostings) {
+
+            for (FiscalYear fiscalYear : fiscalYears) {
+                if (CalenderUtil.betweenDates(draftFinancePosting.getDate(), fiscalYear)) {
+                    isWithOpenFiscalYear.add(draftFinancePosting);
+                    break;
+                } else {
+                    bookingResult.getNotInOpenFiscalYear().add(draftFinancePosting.getBookingNumber());
+                }
+            }
+        }
+        return isWithOpenFiscalYear;
+    }
+
+
+    private Map<Integer, BookedFinancePostingBatch> createBookedFinancePostings
+            (List<DraftFinancePosting> draftFinancePostings) {
 
         Map<Integer, BookedFinancePostingBatch> map = new HashMap<Integer, BookedFinancePostingBatch>();
 
@@ -60,62 +96,7 @@ public class BookingService {
             map.put(batch.getBookingNumber(), batch);
         }
 
-        checkBookedFinancePostingsForBalance(map, result);
-    }
-
-    private void checkBookedFinancePostingsForBalance(Map<Integer, BookedFinancePostingBatch> map, BookingResult result) {
-
-        Map<Integer, BookedFinancePostingBatch> toBedSaved = new HashMap<Integer, BookedFinancePostingBatch>(map);
-
-        for (Map.Entry<Integer, BookedFinancePostingBatch> entry : map.entrySet()) {
-
-            BookingStatus bookingStatus = BookingStatus.SUCCESS;
-
-            Double amount = new Double(0);
-            List<Date> dateList = new ArrayList<Date>();
-
-            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
-                amount += bookedFinancePosting.getAmount();
-                dateList.add(bookedFinancePosting.getDate());
-            }
-
-            //Check balance of posting
-            if (amount != 0) {
-                bookingStatus = BookingStatus.ERROR;
-            }
-            //Check same date
-            Date prev = null;
-            for (Date date : dateList) {
-
-                if (prev == null) prev = date;
-
-                if (date.compareTo(prev) != 0) {
-                    bookingStatus = BookingStatus.ERROR;
-                    break;
-                }
-                prev = date;
-            }
-
-            //Remove if error
-            if (bookingStatus == BookingStatus.ERROR) {
-                result.setBookingStatus(BookingStatus.ERROR);
-                result.getList().add(entry.getKey());
-                toBedSaved.remove(entry.getKey());
-            }
-        }
-        saveCheckedBookedFinancePostings(toBedSaved);
-    }
-
-    private void saveCheckedBookedFinancePostings(Map<Integer, BookedFinancePostingBatch> map) {
-
-        for (Map.Entry<Integer, BookedFinancePostingBatch> entry : map.entrySet()) {
-            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
-                bookedFinancePostingDAO.save(bookedFinancePosting);
-            }
-            for (DraftFinancePosting draftFinancePosting : entry.getValue().getDraftFinancePostingList()) {
-                draftFinancePostingDAO.delete(draftFinancePosting);
-            }
-        }
+        return map;
     }
 
     private List<BookedFinancePosting> createBookedFinancePostings(DraftFinancePosting draftFinancePosting) {
@@ -176,5 +157,62 @@ public class BookingService {
     private double getVat(double amount, double percentageInHundreds) {
         return amount - (amount / (1 + (percentageInHundreds / 100)));
     }
+
+
+    private Map<Integer, BookedFinancePostingBatch> checkBookedFinancePostingsForBalance(Map<Integer, BookedFinancePostingBatch> map, BookingResult result) {
+
+        Map<Integer, BookedFinancePostingBatch> isInBalance = new HashMap<Integer, BookedFinancePostingBatch>(map);
+
+        for (Map.Entry<Integer, BookedFinancePostingBatch> entry : map.entrySet()) {
+
+            BookingStatus bookingStatus = BookingStatus.SUCCESS;
+
+            Double amount = new Double(0);
+            List<Date> dateList = new ArrayList<Date>();
+
+            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
+                amount += bookedFinancePosting.getAmount();
+                dateList.add(bookedFinancePosting.getDate());
+            }
+
+            //Check balance of posting
+            if (amount != 0) {
+                bookingStatus = BookingStatus.ERROR;
+            }
+            //Check same date
+            Date prev = null;
+            for (Date date : dateList) {
+
+                if (prev == null) prev = date;
+
+                if (date.compareTo(prev) != 0) {
+                    bookingStatus = BookingStatus.ERROR;
+                    break;
+                }
+                prev = date;
+            }
+
+            //Remove if error
+            if (bookingStatus == BookingStatus.ERROR) {
+                result.setBookingStatus(BookingStatus.ERROR);
+                result.getNotInBalance().add(entry.getKey());
+                isInBalance.remove(entry.getKey());
+            }
+        }
+        return isInBalance;
+    }
+
+    private void saveCheckedBookedFinancePostings(Map<Integer, BookedFinancePostingBatch> clearedAllChecks) {
+
+        for (Map.Entry<Integer, BookedFinancePostingBatch> entry : clearedAllChecks.entrySet()) {
+            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
+                bookedFinancePostingDAO.save(bookedFinancePosting);
+            }
+            for (DraftFinancePosting draftFinancePosting : entry.getValue().getDraftFinancePostingList()) {
+                draftFinancePostingDAO.delete(draftFinancePosting);
+            }
+        }
+    }
+
 
 }

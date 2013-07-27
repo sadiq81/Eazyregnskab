@@ -19,9 +19,8 @@ public class SaveDailyLedgerForm extends Form {
 
     @SpringBean
     BookingService bookingService;
-    BookingResult bookingResult;
 
-    protected final static int DURATION = 5;
+    protected final static int DURATION = 15;
 
     public SaveDailyLedgerForm(String id) {
         super(id);
@@ -33,12 +32,7 @@ public class SaveDailyLedgerForm extends Form {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
-                bookingService.BookChosen(getCurrentDailyLedger(), bookingResult = new BookingResult());
-                if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
-                    getSession().error(new NotificationMessage(
-                            new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfErrors()))
-                            .hideAfter(Duration.seconds(DURATION)));
-                }
+                bookPostings(false);
                 target.add(getPage());
             }
         });
@@ -46,16 +40,30 @@ public class SaveDailyLedgerForm extends Form {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
-                bookingService.BookAll(getCurrentDailyLedger(), bookingResult = new BookingResult());
-                if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
-                    getSession().error(new NotificationMessage(
-                            new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfErrors()))
-                            .hideAfter(Duration.seconds(DURATION)));
-                }
+                bookPostings(true);
                 target.add(getPage());
             }
         });
     }
+
+    private void bookPostings(boolean bookAll) {
+
+        BookingResult bookingResult;
+
+        bookingService.BookDailyLedger(getCurrentDailyLedger(), bookingResult = new BookingResult(), bookAll);
+        if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
+            getSession().error(new NotificationMessage(
+                    new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfNotInBalance()))
+                    .hideAfter(Duration.seconds(DURATION)));
+        }
+
+        if (bookingResult.getNotInOpenFiscalYear().size() > 0) {
+            getSession().error(new NotificationMessage(
+                    new StringResourceModel("following.postings.where.not.in.open.fiscal.year", this, null, "", bookingResult.getListOfNotInFiscalYear()))
+                    .hideAfter(Duration.seconds(DURATION)));
+        }
+    }
+
 
     protected AppUser getCurrentUser() {
         return ((EazyregnskabSesssion) getSession()).getCurrentUser();
