@@ -86,12 +86,6 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
         return date;
     }
 
-    @Override
-    protected void onBeforeRender() {
-        super.onBeforeRender();
-        getModelObject().setBookingNumber(getCurrentDailyLedger().getNextBookingNumber());
-    }
-
     private void configureFinanceAccountChoice() {
 
         financeAccountChoice.add(new AjaxFormComponentUpdatingBehavior("onchange") {

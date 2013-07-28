@@ -47,7 +47,7 @@ public class BookkeepingPage extends LoggedInPage {
         super.addToPage(parameters);
 
         add(dailyLedgerChoice = new DailyLedgerChooser("dailyLedgerList"));
-        add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting()))));
+        add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber())))));
         add(new AjaxFallbackDefaultDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), financePostingDataProvider = new FinancePostingDataProvider(), 20));
         add(new SaveDailyLedgerForm("book"));
     }
