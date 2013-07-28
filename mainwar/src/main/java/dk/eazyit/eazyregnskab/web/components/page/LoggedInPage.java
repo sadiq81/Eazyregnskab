@@ -4,6 +4,7 @@ import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
@@ -25,7 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * @author EazyIT
  */
-public abstract class LoggedInPage extends AppBasePage implements SessionAware{
+public abstract class LoggedInPage extends AppBasePage implements SessionAware {
 
     public static final String PARAM_LEGAL_ENTITY = "legalEntity";
 
@@ -37,6 +38,9 @@ public abstract class LoggedInPage extends AppBasePage implements SessionAware{
 
     @SpringBean
     protected FinanceAccountService financeAccountService;
+
+    @SpringBean
+    protected DailyLedgerService dailyLedgerService;
 
     LegalEntityChooser legalEntityChooser;
 
@@ -89,7 +93,7 @@ public abstract class LoggedInPage extends AppBasePage implements SessionAware{
 
         DailyLedger currentDailyLedger = getCurrentDailyLedger();
         if (currentDailyLedger == null) {
-            currentDailyLedger = financeAccountService.findDailyLedgerByLegalEntity(currentLegalEntity).get(0);
+            currentDailyLedger = dailyLedgerService.findDailyLedgerByLegalEntity(currentLegalEntity).get(0);
             LOG.debug("Setting CurrentDailyLedger");
             session.setAttribute(DailyLedger.ATTRIBUTE_NAME, currentDailyLedger);
         }
@@ -111,25 +115,24 @@ public abstract class LoggedInPage extends AppBasePage implements SessionAware{
     }
 
     public AppUser getCurrentUser() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
-        }
+        return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
+    }
 
-        public LegalEntity getCurrentLegalEntity() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
-        }
+    public LegalEntity getCurrentLegalEntity() {
+        return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
+    }
 
-        public void setCurrentLegalEntity(LegalEntity legalEntity) {
-            ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
-        }
+    public void setCurrentLegalEntity(LegalEntity legalEntity) {
+        ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
+    }
 
-        public DailyLedger getCurrentDailyLedger() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
-        }
+    public DailyLedger getCurrentDailyLedger() {
+        return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
+    }
 
-        public void setCurrentDailyLedger(DailyLedger dailyLedger) {
-            ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
-        }
-
+    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
+    }
 
 
     protected abstract void configureComponents();

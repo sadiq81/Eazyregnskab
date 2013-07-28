@@ -3,15 +3,20 @@ package dk.eazyit.eazyregnskab.web.components.dataprovider;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  * @author
  */
 public abstract class EazyregnskabSortableDataProvider<T> extends SortableDataProvider<T, String> implements SessionAware {
+
+    @SpringBean
+    DailyLedgerService dailyLedgerService;
 
     public EazyregnskabSortableDataProvider() {
     }

@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.choice;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
@@ -25,6 +26,9 @@ public class SessionAwareDropDownChoice<T> extends DropDownChoice<T> implements 
 
     @SpringBean
     protected FinanceAccountService financeAccountService;
+
+    @SpringBean
+    protected DailyLedgerService dailyLedgerService;
 
     public SessionAwareDropDownChoice(String id) {
         super(id);

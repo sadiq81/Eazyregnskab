@@ -30,7 +30,7 @@ public class TestLoginService extends TestBaseCase {
         Assert.assertTrue(legalEntityAccessList.size() == 1);
         Assert.assertTrue(user.equals(legalEntityAccessList.get(0).getAppUser()));
 
-        List<DailyLedger> dailyLedgers = financeAccountService.findDailyLedgerByLegalEntity(legalEntity);
+        List<DailyLedger> dailyLedgers = dailyLedgerService.findDailyLedgerByLegalEntity(legalEntity);
         Assert.assertTrue(dailyLedgers.size() == 1);
 
         List<FinanceAccount> financeAccountList = financeAccountService.findFinanceAccountByLegalEntity(legalEntity);

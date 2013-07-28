@@ -80,12 +80,6 @@ public class FinanceAccountService {
         return list;
     }
 
-    @Transactional
-    public List<DailyLedger> findDailyLedgerByLegalEntity(LegalEntity legalEntity) {
-        LOG.debug("Finding all DailyLedger from legal entity " + legalEntity.toString());
-        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
-        return list;
-    }
 
     @Transactional(readOnly = true)
     public List<VatType> findAllVatTypesForLegalEntity(LegalEntity legalEntity) {
@@ -133,12 +127,7 @@ public class FinanceAccountService {
         return list;
     }
 
-    @Transactional
-    public List<DailyLedger> findDailyLedgerByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
-        LOG.debug("Finding all DailyLedger from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
-        return list;
-    }
+
 
     @Transactional
     public List<DraftFinancePosting> findFinancePostingByDailyLedgerSubList(DailyLedger dailyLedger, int first, int count) {
@@ -164,12 +153,6 @@ public class FinanceAccountService {
         return list;
     }
 
-    @Transactional
-    public List<DailyLedger> findDailyLedgerByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
-        LOG.debug("Finding all DailyLedger from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
-        return list;
-    }
 
     @Transactional
     public List<DraftFinancePosting> findFinancePostingByDailyLedgerSubListSortBy(DailyLedger dailyLedger, int first, int count, String sortProperty, boolean Ascending) {
@@ -194,11 +177,6 @@ public class FinanceAccountService {
         return financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size();
     }
 
-    @Transactional
-    public int countDailyLedgerOfLegalEntity(LegalEntity legalEntity) {
-        LOG.debug("Couting all DailyLedger from legalEntity " + legalEntity.toString());
-        return dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size();
-    }
 
     @Transactional
     public int countFinancePostingOfDailyLedger(DailyLedger dailyLedger) {
@@ -220,12 +198,7 @@ public class FinanceAccountService {
         return findPostingsFromAccount(financeAccount).size() == 0;
     }
 
-    @Transactional(readOnly = true)
-    public boolean isDeletingDailyLedgerAllowed(DailyLedger dailyLedger, LegalEntity legalEntity) {
-        return findPostingsFromDailyLedger(dailyLedger).size() == 0 &&
-                dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size() > 1 &&
-                draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size() == 0;
-    }
+
 
     @Transactional(readOnly = true)
     public boolean isDeletingVatTypeAllowed(VatType vatType) {
@@ -246,15 +219,7 @@ public class FinanceAccountService {
         }
     }
 
-    @Transactional
-    public boolean deleteDailyLedger(DailyLedger dailyLedger) {
-        if (isDeletingDailyLedgerAllowed(dailyLedger, dailyLedger.getLegalEntity())) {
-            dailyLedgerDAO.delete(dailyLedger);
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     @Transactional
     public void deleteFinancePosting(DraftFinancePosting draftFinancePosting) {
@@ -284,15 +249,7 @@ public class FinanceAccountService {
         }
     }
 
-    @Transactional
-    public void saveDailyLedger(DailyLedger dailyLedger, LegalEntity legalEntity) {
-        if (dailyLedger.getId() == 0) {
-            dailyLedger.setLegalEntity(legalEntity);
-            dailyLedgerDAO.create(dailyLedger);
-        } else {
-            dailyLedgerDAO.save(dailyLedger);
-        }
-    }
+
 
     @Transactional
     public void saveDraftFinancePosting(DraftFinancePosting draftFinancePosting) {
@@ -319,9 +276,6 @@ public class FinanceAccountService {
         return financeAccountDAO.findById(l);
     }
 
-    public DailyLedger findDailyLedgerByLegalEntityAndName(LegalEntity currentLegalEntity, String name) {
-        return dailyLedgerDAO.findByNamedQueryUnique(DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY, name, currentLegalEntity);
-    }
 
     public VatType findVatTypeByNameAndLegalEntity(LegalEntity legalEntity, String name) {
         return vatTypeDAO.findByNamedQueryUnique(VatType.QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY, name, legalEntity);

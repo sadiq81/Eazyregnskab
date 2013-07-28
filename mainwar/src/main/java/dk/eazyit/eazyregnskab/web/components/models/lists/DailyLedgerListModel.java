@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.models.lists;
 
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ import java.util.List;
 public class DailyLedgerListModel extends AbstractEntityListModel<DailyLedger, LegalEntity> {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    DailyLedgerService dailyLedgerService;
 
     static final Logger LOG = LoggerFactory.getLogger(DailyLedgerListModel.class);
 
@@ -36,7 +36,7 @@ public class DailyLedgerListModel extends AbstractEntityListModel<DailyLedger, L
 
     @Override
     protected List<DailyLedger> load(LegalEntity id) {
-        return financeAccountService.findDailyLedgerByLegalEntity(id);
+        return dailyLedgerService.findDailyLedgerByLegalEntity(id);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DailyLedgerListModel extends AbstractEntityListModel<DailyLedger, L
     @Override
     public void setObject(List<DailyLedger> object) {
         for (DailyLedger dailyLedger : object) {
-            financeAccountService.saveDailyLedger(dailyLedger, fetchParent());
+            dailyLedgerService.saveDailyLedger(dailyLedger, fetchParent());
         }
     }
 

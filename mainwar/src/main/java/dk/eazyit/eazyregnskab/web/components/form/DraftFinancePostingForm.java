@@ -77,7 +77,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void saveForm(DraftFinancePosting draftFinancePosting) {
         financeAccountService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
         getCurrentDailyLedger().setNextBookingNumber(draftFinancePosting.getBookingNumber() + 1);
-        financeAccountService.saveDailyLedger(getCurrentDailyLedger(),getCurrentLegalEntity());
+        dailyLedgerService.saveDailyLedger(getCurrentDailyLedger(),getCurrentLegalEntity());
         insertNewEntityInModel();
     }
 

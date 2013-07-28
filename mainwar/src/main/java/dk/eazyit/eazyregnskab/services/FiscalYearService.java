@@ -56,6 +56,17 @@ public class FiscalYearService {
     }
 
     @Transactional
+    public void openFiscalYear(FiscalYear fiscalYear, Date nextYearStart) {
+
+        if (CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1).compareTo(nextYearStart) != 0) {
+            throw new NullPointerException("Next year must be 1 day after previous");
+        }
+
+
+
+    }
+
+    @Transactional
     public void closeFiscalYear(FiscalYear fiscalYear, Date nextYearStart) {
 
         if (CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1).compareTo(nextYearStart) != 0) {

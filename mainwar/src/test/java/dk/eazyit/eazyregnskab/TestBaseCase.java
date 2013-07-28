@@ -1,10 +1,7 @@
 package dk.eazyit.eazyregnskab;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.*;
-import dk.eazyit.eazyregnskab.services.BookingService;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
-import dk.eazyit.eazyregnskab.services.LegalEntityService;
-import dk.eazyit.eazyregnskab.services.LoginService;
+import dk.eazyit.eazyregnskab.services.*;
 import dk.eazyit.eazyregnskab.web.app.WicketApplication;
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
@@ -67,6 +64,9 @@ public abstract class TestBaseCase extends TestCase {
 
     @Autowired
     protected FinanceAccountService financeAccountService;
+
+    @Autowired
+    protected DailyLedgerService dailyLedgerService;
 
     @Autowired
     protected BookingService bookingService;

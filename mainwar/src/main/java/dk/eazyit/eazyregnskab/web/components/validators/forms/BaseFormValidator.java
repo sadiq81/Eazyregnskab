@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.validators.forms;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.FiscalYearService;
 import dk.eazyit.eazyregnskab.services.LoginService;
@@ -26,6 +27,8 @@ public abstract class BaseFormValidator extends AbstractFormValidator implements
     protected LoginService loginService;
     @SpringBean
     protected FinanceAccountService financeAccountService;
+    @SpringBean
+    protected DailyLedgerService dailyLedgerService;
     @SpringBean
     protected FiscalYearService fiscalYearService;
 

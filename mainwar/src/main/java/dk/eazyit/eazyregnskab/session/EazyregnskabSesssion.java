@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.session;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import org.apache.wicket.Session;
 import org.apache.wicket.injection.Injector;
@@ -17,6 +18,8 @@ public class EazyregnskabSesssion extends WebSession {
 
     @SpringBean
     FinanceAccountService financeAccountService;
+    @SpringBean
+    DailyLedgerService dailyLedgerService;
 
     public EazyregnskabSesssion(Request request) {
         super(request);
@@ -37,7 +40,7 @@ public class EazyregnskabSesssion extends WebSession {
 
     public void setCurrentLegalEntity(LegalEntity legalEntity) {
         Session.get().setAttribute(LegalEntity.ATTRIBUTE_NAME, legalEntity);
-        setCurrentDailyLedger(financeAccountService.findDailyLedgerByLegalEntity(legalEntity).get(0));
+        setCurrentDailyLedger(dailyLedgerService.findDailyLedgerByLegalEntity(legalEntity).get(0));
     }
 
     public DailyLedger getCurrentDailyLedger() {
