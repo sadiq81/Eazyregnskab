@@ -1,7 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.panels;
 
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.PostingService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.injection.Injector;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CheckBoxPanel extends Panel {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    PostingService postingService;
 
     public CheckBoxPanel(String componentId, IModel dataModel) {
         super(componentId, dataModel);
@@ -27,9 +27,10 @@ public class CheckBoxPanel extends Panel {
         add(new AjaxCheckBox("checkbox", dataModel) {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                DraftFinancePosting draftFinancePosting = (DraftFinancePosting) ((PropertyModel) getModel()).getInnermostModelOrObject();
-                financeAccountService.saveDraftFinancePosting(draftFinancePosting);
                 processInput();
+                DraftFinancePosting draftFinancePosting = (DraftFinancePosting) ((PropertyModel) getModel()).getInnermostModelOrObject();
+                postingService.saveDraftFinancePosting(draftFinancePosting);
+
             }
         });
     }

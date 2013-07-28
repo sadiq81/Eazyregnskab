@@ -15,16 +15,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("financeAccountService")
+@Service("dailyLedgerService")
 public class DailyLedgerService {
 
     private Logger LOG = LoggerFactory.getLogger(DailyLedgerService.class);
 
     @Autowired
-    FinanceAccountService financeAccountService;
+    private FinanceAccountService financeAccountService;
 
     @Autowired
     private DailyLedgerDAO dailyLedgerDAO;
+
+    @Autowired
+    private PostingService postingService;
 
 
     @Transactional
@@ -56,7 +59,7 @@ public class DailyLedgerService {
 
     @Transactional(readOnly = true)
     public boolean isDeletingDailyLedgerAllowed(DailyLedger dailyLedger, LegalEntity legalEntity) {
-        return financeAccountService.findPostingsFromDailyLedger(dailyLedger).size() == 0 &&
+        return postingService.findPostingsFromDailyLedger(dailyLedger).size() == 0 &&
                 dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size() > 1;
     }
 

@@ -1,6 +1,8 @@
 package dk.eazyit.eazyregnskab.dao.impl;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.GenericDAO;
+import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
+import dk.eazyit.eazyregnskab.domain.BookedFinancePostingType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
@@ -11,7 +13,10 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Required;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -404,6 +409,11 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public void delete(T entity) {
+
+        if (entity instanceof BookedFinancePosting && ((BookedFinancePosting) entity).getBookedFinancePostingType() != BookedFinancePostingType.PRIMO) {
+            throw new NullPointerException("MUST NEVER DELETE BOOKED FINANCEPOSTING");
+        }
+
         logger.debug("Deleting " + entity.toString() + " from database");
         entity = getEntityManager().merge(entity);
         getEntityManager().remove(entity);

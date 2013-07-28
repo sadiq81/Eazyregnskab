@@ -2,7 +2,6 @@ package dk.eazyit.eazyregnskab.web.components.panels.action;
 
 import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
-import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
 import dk.eazyit.eazyregnskab.services.FiscalYearService;
 import dk.eazyit.eazyregnskab.util.CalenderUtil;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
@@ -44,14 +43,14 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 FiscalYear fiscalYear = getItem();
+
                 List after = fiscalYearService.findLockedFiscalYearByLegalEntityAfterDate(fiscalYear.getLegalEntity(), fiscalYear.getEnd());
 
                 if (after.size() > 0) {
                     getSession().error(new NotificationMessage(new ResourceModel("can.only.open.if.next.open")).hideAfter(Duration.seconds(DURATION)));
                 } else {
 
-                    fiscalYear.setFiscalYearStatus(FiscalYearStatus.OPEN);
-                    fiscalYearService.save(fiscalYear);
+                    fiscalYearService.openFiscalYear(fiscalYear);
                     getSession().success(new NotificationMessage(new ResourceModel("year.opened")).hideAfter(Duration.seconds(DURATION)));
                 }
                 target.add(getPage());

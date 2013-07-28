@@ -5,7 +5,7 @@ import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextField
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.VatType;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.PostingService;
 import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2ChoiceBookableAccounts;
 import dk.eazyit.eazyregnskab.web.components.choice.VatTypeDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
@@ -26,7 +26,7 @@ import org.apache.wicket.util.time.Duration;
 public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePosting> {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    PostingService postingService;
 
     PlaceholderDateField date;
     PlaceholderTextField text;
@@ -63,7 +63,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
     @Override
     public void deleteEntity(DraftFinancePosting draftFinancePosting) {
-        financeAccountService.deleteFinancePosting(draftFinancePosting);
+        postingService.deleteFinancePosting(draftFinancePosting);
         getSession().success(new NotificationMessage(new ResourceModel("finance.posting.was.deleted")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel();
     }
@@ -75,7 +75,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
     @Override
     public void saveForm(DraftFinancePosting draftFinancePosting) {
-        financeAccountService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
+        postingService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
         getCurrentDailyLedger().setNextBookingNumber(draftFinancePosting.getBookingNumber() + 1);
         dailyLedgerService.saveDailyLedger(getCurrentDailyLedger(),getCurrentLegalEntity());
         insertNewEntityInModel();

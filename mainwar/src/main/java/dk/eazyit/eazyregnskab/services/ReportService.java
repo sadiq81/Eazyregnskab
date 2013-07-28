@@ -18,6 +18,8 @@ public class ReportService {
 
     @Autowired
     FinanceAccountService financeAccountService;
+    @Autowired
+    PostingService postingService;
 
     @Transactional
     public List<FinanceAccount> getFinanceAccountsWithSum(FiscalYear fiscalYear) {
@@ -26,7 +28,7 @@ public class ReportService {
 
         List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fiscalYear.getStart(), fiscalYear.getEnd());
+            List<BookedFinancePosting> temp = postingService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fiscalYear.getStart(), fiscalYear.getEnd());
             financePostingList.addAll(temp);
         }
 
@@ -65,13 +67,13 @@ public class ReportService {
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntityFromAccountToAccount(legalEntity, fromAccount, toAccount);
         List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
+            List<BookedFinancePosting> temp = postingService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
             financePostingList.addAll(temp);
         }
 
         List<BookedFinancePosting> financePostingListCompare = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDateCompare, toDateCompare);
+            List<BookedFinancePosting> temp = postingService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDateCompare, toDateCompare);
             financePostingListCompare.addAll(temp);
         }
 

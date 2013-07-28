@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.dataprovider;
 
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.PostingService;
 import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 import org.apache.wicket.injection.Injector;
@@ -20,7 +20,7 @@ import java.util.List;
 public class FinancePostingDataProvider extends EazyregnskabSortableDataProvider<DraftFinancePosting> {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    PostingService postingService;
 
     private static final Logger LOG = LoggerFactory.getLogger(FinancePostingDataProvider.class);
 
@@ -38,11 +38,11 @@ public class FinancePostingDataProvider extends EazyregnskabSortableDataProvider
         if (sortParam != null) {
             LOG.debug(" and sorting after " + sortParam.getProperty());
             DailyLedger dailyLedger = getCurrentDailyLedger();
-            List<DraftFinancePosting> list = financeAccountService.findFinancePostingByDailyLedgerSubListSortBy(dailyLedger, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
+            List<DraftFinancePosting> list = postingService.findFinancePostingByDailyLedgerSubListSortBy(dailyLedger, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
             Iterator<DraftFinancePosting> iterator = list.iterator();
             return iterator;
         } else {
-            Iterator<DraftFinancePosting> iterator = financeAccountService.findFinancePostingByDailyLedgerSubList(
+            Iterator<DraftFinancePosting> iterator = postingService.findFinancePostingByDailyLedgerSubList(
                     getCurrentDailyLedger(),
                     (int) first,
                     (int) count).iterator();
@@ -52,7 +52,7 @@ public class FinancePostingDataProvider extends EazyregnskabSortableDataProvider
 
     @Override
     public long size() {
-        int size = financeAccountService.countFinancePostingOfDailyLedger(getCurrentDailyLedger());
+        int size = postingService.countFinancePostingOfDailyLedger(getCurrentDailyLedger());
         return size;
     }
 

@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.dataprovider;
 
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.PostingService;
 import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
@@ -21,7 +21,7 @@ import java.util.List;
 public class DraftFinancePostingDataProvider extends EazyregnskabSortableDataProvider<DraftFinancePosting> {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    PostingService postingService;
 
     List<DraftFinancePosting> list;
 
@@ -42,13 +42,13 @@ public class DraftFinancePostingDataProvider extends EazyregnskabSortableDataPro
             LOG.debug(" and sorting after " + sortParam.getProperty());
             if (list == null) {
                 DailyLedger dailyLedger = getCurrentDailyLedger();
-                list = financeAccountService.findFinancePostingByDailyLedgerSubListSortBy(dailyLedger, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
+                list = postingService.findFinancePostingByDailyLedgerSubListSortBy(dailyLedger, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
             }
             Iterator<DraftFinancePosting> iterator = list.iterator();
             return iterator;
         } else {
             if (list == null) {
-                list = financeAccountService.findFinancePostingByDailyLedgerSubList(
+                list = postingService.findFinancePostingByDailyLedgerSubList(
                         getCurrentDailyLedger(),
                         (int) first,
                         (int) count);
@@ -59,7 +59,7 @@ public class DraftFinancePostingDataProvider extends EazyregnskabSortableDataPro
 
     @Override
     public long size() {
-        int size = financeAccountService.countFinancePostingOfDailyLedger(getCurrentDailyLedger());
+        int size = postingService.countFinancePostingOfDailyLedger(getCurrentDailyLedger());
         return size;
     }
 

@@ -20,6 +20,8 @@ public class VatTypeService {
 
     @SpringBean
     FinanceAccountService financeAccountService;
+    @SpringBean
+    PostingService postingService;
 
     private Logger LOG = LoggerFactory.getLogger(VatTypeService.class);
 
@@ -54,8 +56,8 @@ public class VatTypeService {
 
     @Transactional(readOnly = true)
     public boolean isDeletingVatTypeAllowed(VatType vatType) {
-        return financeAccountService.findDraftFinancePostingsByVatType(vatType).size() == 0 &&
-                financeAccountService.findBookedFinancePostingsByVatType(vatType).size() == 0;
+        return postingService.findDraftFinancePostingsByVatType(vatType).size() == 0 &&
+                postingService.findBookedFinancePostingsByVatType(vatType).size() == 0;
 
     }
 

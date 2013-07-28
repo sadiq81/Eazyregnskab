@@ -24,12 +24,14 @@ public class BookingService {
     @Autowired
     FinanceAccountService financeAccountService;
     @Autowired
+    PostingService postingService;
+    @Autowired
     FiscalYearService fiscalYearService;
 
     @Transactional
     public void BookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
 
-        List<DraftFinancePosting> draftFinancePostingList = financeAccountService.findPostingsFromDailyLedger(dailyLedger);
+        List<DraftFinancePosting> draftFinancePostingList = postingService.findPostingsFromDailyLedger(dailyLedger);
 
         List<DraftFinancePosting> markedForSave = bookAll ? draftFinancePostingList : removeNotMarkedForSave(draftFinancePostingList);
 
@@ -73,7 +75,10 @@ public class BookingService {
                     break;
                 }
             }
-            if (!isWithIn) bookingResult.getNotInOpenFiscalYear().add(draftFinancePosting.getBookingNumber());
+            if (!isWithIn) {
+                bookingResult.getNotInOpenFiscalYear().add(draftFinancePosting.getBookingNumber());
+                bookingResult.setBookingStatus(BookingStatus.ERROR);
+            }
 
         }
         return isWithOpenFiscalYear;

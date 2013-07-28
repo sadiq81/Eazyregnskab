@@ -1,6 +1,5 @@
 package dk.eazyit.eazyregnskab.services;
 
-import dk.eazyit.eazyregnskab.dao.interfaces.BookedFinancePostingDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.FiscalYearDAO;
 import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.util.CalenderUtil;
@@ -30,7 +29,7 @@ public class FiscalYearService {
     @Autowired
     FinanceAccountService financeAccountService;
     @Autowired
-    BookedFinancePostingDAO bookedFinancePostingDAO;
+    PostingService postingService;
 
     @Transactional
     public boolean save(FiscalYear fiscalYear) {
@@ -56,13 +55,19 @@ public class FiscalYearService {
     }
 
     @Transactional
-    public void openFiscalYear(FiscalYear fiscalYear, Date nextYearStart) {
+    public void openFiscalYear(FiscalYear fiscalYear) {
 
-        if (CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1).compareTo(nextYearStart) != 0) {
-            throw new NullPointerException("Next year must be 1 day after previous");
+        List<FinanceAccount> financeAccounts = financeAccountService.findBookableFinanceAccountByLegalEntity(fiscalYear.getLegalEntity());
+
+        for (FinanceAccount financeAccount : financeAccounts) {
+            BookedFinancePosting primo = postingService.findPrimoPostingsFromAccount(financeAccount, CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1));
+            postingService.deleteBookedPosting(primo);
         }
 
+        fiscalYear.setFiscalYearStatus(FiscalYearStatus.OPEN);
+        save(fiscalYear);
 
+        log.info("opened fiscal year " + fiscalYear);
 
     }
 
@@ -76,6 +81,7 @@ public class FiscalYearService {
         List<FinanceAccount> financeAccountsWithSum = reportService.getFinanceAccountsWithSum(fiscalYear);
 
         FinanceAccount year_end_account = financeAccountService.findSystemFinanceAccountByLegalEntity(fiscalYear.getLegalEntity(), FinanceAccountType.YEAR_END);
+        if (year_end_account == null) throw new NullPointerException("Year end must not be null");
 
         Double resultOfYear = new Double(0);
         List<BookedFinancePosting> primoPostings = new ArrayList<BookedFinancePosting>();
@@ -84,7 +90,12 @@ public class FiscalYearService {
 
             switch (financeAccount.getFinanceAccountType()) {
                 case PROFIT:
-                case EXPENSE:
+                case EXPENSE: {
+                    BookedFinancePosting posting = setupBaseData(nextYearStart);
+                    posting.setAmount(new Double(0));
+                    posting.setFinanceAccount(financeAccount);
+                    primoPostings.add(posting);
+                }
                 case YEAR_END: {
                     resultOfYear = resultOfYear + financeAccount.getSum();
                     break;
@@ -115,7 +126,7 @@ public class FiscalYearService {
         primoPostings.add(year_end_posting);
 
         for (BookedFinancePosting posting : primoPostings) {
-            bookedFinancePostingDAO.save(posting);
+            postingService.saveBookedFinancePosting(posting);
         }
 
         fiscalYear.setFiscalYearStatus(FiscalYearStatus.LOCKED);

@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.models.lists;
 
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.PostingService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ import java.util.List;
 public class BookedFinancePostingListModel extends AbstractEntityListModel<BookedFinancePosting, FinanceAccount> {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    PostingService postingService;
 
     static final Logger LOG = LoggerFactory.getLogger(BookedFinancePostingListModel.class);
 
@@ -40,7 +40,7 @@ public class BookedFinancePostingListModel extends AbstractEntityListModel<Booke
     @Override
     protected List<BookedFinancePosting> load(FinanceAccount id) {
 
-        List<BookedFinancePosting> list1 = financeAccountService.findPostingsFromFinanceAccount(id);
+        List<BookedFinancePosting> list1 = postingService.findPostingsFromFinanceAccount(id);
         List<BookedFinancePosting> sortedAndSummed = new ArrayList<BookedFinancePosting>();
         Collections.sort(list1, new Comparator<BookedFinancePosting>() {
             @Override
