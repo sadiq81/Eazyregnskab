@@ -9,6 +9,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.FiscalYearFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -80,7 +81,10 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
         } else {
             getSession().error(new NotificationMessage(new ResourceModel("fiscal.year.dates.are.in.use")).hideAfter(Duration.seconds(DURATION)));
         }
+    }
 
-
+    @Override
+    public FormComponent focusAfterSave() {
+        return start;
     }
 }

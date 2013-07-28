@@ -6,6 +6,7 @@ import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2ChoiceB
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.VatTypeFormValidator;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -60,6 +61,11 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
         financeAccountService.saveVatType(vatType, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel();
+    }
 
+
+    @Override
+    public FormComponent focusAfterSave() {
+        return name;
     }
 }

@@ -11,6 +11,7 @@ import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -48,13 +49,14 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
 
     public void addToForm() {
-        add(save  = new BaseCreateEditFormAjaxButton("save", new ResourceModel("button.save")) {
+        add(save = new BaseCreateEditFormAjaxButton("save", new ResourceModel("button.save")) {
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 LOG.debug("Saving form " + form.getId() + " with object " + form.getModelObject().toString());
                 saveForm((T) form.getModelObject());
                 target.add(getPage());
+                target.focusComponent(focusAfterSave());
             }
 
         });
@@ -97,6 +99,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     public void insertNewEntityInModel() {
         setModel(new CompoundPropertyModel<T>(buildNewEntity()));
     }
+
+    public abstract FormComponent focusAfterSave();
 
     public abstract T buildNewEntity();
 

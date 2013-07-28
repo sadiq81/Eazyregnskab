@@ -10,6 +10,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -22,6 +23,7 @@ import java.util.Arrays;
  */
 public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
+    PlaceholderTextField name;
     EnumDropDownChoice<Country> country;
     EnumDropDownChoice<MoneyCurrency> moneyCurrency;
 
@@ -32,7 +34,7 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(new PlaceholderTextField<String>("name").setRequired(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
         add(new PlaceholderTextField<String>("legalIdentification"));
         add(new PlaceholderTextField<String>("address"));
         add(new PlaceholderTextField<String>("postalCode"));
@@ -78,6 +80,11 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     public void saveForm(LegalEntity legalEntity) {
         legalEntityService.saveLegalEntity(getCurrentUser(), legalEntity);
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+    }
+
+    @Override
+    public FormComponent focusAfterSave() {
+        return name;
     }
 
     private void configureCountry() {

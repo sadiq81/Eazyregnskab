@@ -14,6 +14,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.DraftFinancePostingFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -27,6 +28,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     @SpringBean
     FinanceAccountService financeAccountService;
 
+    PlaceholderDateField date;
     PlaceholderTextField text;
     private FinanceAccountSelect2ChoiceBookableAccounts financeAccountChoice;
     private FinanceAccountSelect2ChoiceBookableAccounts reverseFinanceAccountChoice;
@@ -41,7 +43,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void addToForm() {
         super.addToForm();
 
-        add(new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
+        add(date = (PlaceholderDateField) new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(reverseFinanceAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("reverseFinanceAccount"));
         add(vatTypeChoice = new VatTypeDropDownChoice("vatType"));
         add(new PlaceholderNumberTextField<Double>("amount").setMaximum(new Double(1000000)).setRequired(true));
@@ -76,6 +78,11 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
         financeAccountService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
         getCurrentDailyLedger().setNextBookingNumber(draftFinancePosting.getBookingNumber() + 1);
         insertNewEntityInModel();
+    }
+
+    @Override
+    public FormComponent focusAfterSave() {
+        return date;
     }
 
     @Override

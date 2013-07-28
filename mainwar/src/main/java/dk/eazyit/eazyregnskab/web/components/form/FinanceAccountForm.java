@@ -28,6 +28,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUM, FinanceAccountType.CATEGORY));
 
+    PlaceholderTextField name;
     FormComponent<Integer> accountNumber;
     DropDownChoice<VatType> vatType;
     EnumDropDownChoice<FinanceAccountType> financeAccountType;
@@ -44,7 +45,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(new PlaceholderTextField<String>("name").setRequired(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField <String>("name").setRequired(true));
         add(accountNumber = new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
         add(vatType = (DropDownChoice<VatType>) new DropDownChoice<VatType>("vatType", financeAccountService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(financeAccountType = (EnumDropDownChoice<FinanceAccountType>) new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));
@@ -80,6 +81,11 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         financeAccountService.saveFinanceAccount(financeAccount, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel();
+    }
+
+    @Override
+    public FormComponent focusAfterSave() {
+        return name;
     }
 
     @Override

@@ -7,6 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.DailyLedgerFormValidator;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -69,5 +70,8 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
         insertNewEntityInModel();
     }
 
-
+    @Override
+    public FormComponent focusAfterSave() {
+        return name;
+    }
 }
