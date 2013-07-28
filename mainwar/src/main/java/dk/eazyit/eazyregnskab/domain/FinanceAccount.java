@@ -14,6 +14,9 @@ import javax.persistence.*;
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, query = "select fa from FinanceAccount fa " +
                 "WHERE fa.legalEntity = ?1 ORDER BY accountNumber ASC"),
 
+        @NamedQuery(name = FinanceAccount.QUERY_FIND_SYSTEM_ACCOUNT_BY_LEGAL_ENTITY, query = "select fa from FinanceAccount fa " +
+                       "WHERE fa.legalEntity = ?1 and fa.financeAccountType =?2 "),
+
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_LOWEST, query = "select f from FinanceAccount f " +
                 "where f.legalEntity = ?1 and f.accountNumber = " +
                 "(select min(fa.accountNumber) from FinanceAccount fa where fa.legalEntity = ?1)"),
@@ -35,6 +38,7 @@ import javax.persistence.*;
 public class FinanceAccount extends BaseEntity {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "FinanceAccount::findByLegalEntity";
+    public static final String QUERY_FIND_SYSTEM_ACCOUNT_BY_LEGAL_ENTITY = "FinanceAccount::findSystemAccountByLegalEntity";
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_LOWEST = "FinanceAccount::findByLegalEntityLowest";
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_HIGHEST = "FinanceAccount::findByLegalEntityHighest";
     public static final String QUERY_FIND_BY_LEGAL_ENTITY_AND_NAME = "FinanceAccount::findByLegalEntityAndName";
@@ -185,6 +189,10 @@ public class FinanceAccount extends BaseEntity {
 
     public void setSumCompare(Double sumCompare) {
         this.sumCompare = sumCompare;
+    }
+
+    public boolean isSystemAccount() {
+        return financeAccountType.isSystem_account();
     }
 
     @Override

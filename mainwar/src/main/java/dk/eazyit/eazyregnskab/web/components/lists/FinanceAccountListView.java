@@ -43,7 +43,7 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
             case PROFIT:
             case EXPENSE:
             case ASSET:
-
+            case YEAR_END:
             case LIABILITY: {
                 itemOuter.add(new Label("sum", fa.getSum()));
                 itemOuter.add(new Label("sumCompare", fa.getSumCompare()));

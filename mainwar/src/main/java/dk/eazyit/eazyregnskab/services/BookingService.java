@@ -148,6 +148,7 @@ public class BookingService {
 
     private BookedFinancePosting setupBaseData(DraftFinancePosting draftFinancePosting) {
         BookedFinancePosting bookedFinancePosting = new BookedFinancePosting();
+        bookedFinancePosting.setBookedFinancePostingType(BookedFinancePostingType.NORMAL);
         bookedFinancePosting.setDate(draftFinancePosting.getDate());
         bookedFinancePosting.setBookingNumber(draftFinancePosting.getBookingNumber());
         bookedFinancePosting.setText(draftFinancePosting.getText());

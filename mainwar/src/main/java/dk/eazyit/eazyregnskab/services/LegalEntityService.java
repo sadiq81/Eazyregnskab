@@ -133,6 +133,12 @@ public class LegalEntityService {
                 String accountNumber = map.get(entry.getKey() + ".account.number");
                 financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.HEADLINE, legalEntity);
 
+            } else if (entry.getKey().contains("SYSTEM") && !entry.getKey().contains("account.number") && !entry.getKey().contains("account.type")) {
+
+                String name = entry.getValue();
+                String accountNumber = map.get(entry.getKey() + ".account.number");
+                String accountType = map.get(entry.getKey() + ".account.type");
+                financeAccount = new FinanceAccount(name, Integer.parseInt(accountNumber), FinanceAccountType.valueOf(accountType), legalEntity);
             }
 
             if (financeAccount != null && map.get(entry.getKey() + ".vat.type") != null) {

@@ -1,9 +1,6 @@
 package dk.eazyit.eazyregnskab.services;
 
-import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
-import dk.eazyit.eazyregnskab.domain.FinanceAccount;
-import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
-import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.util.BookedFinancePostingDateComparator;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -21,6 +18,33 @@ public class ReportService {
 
     @Autowired
     FinanceAccountService financeAccountService;
+
+    @Transactional
+    public List<FinanceAccount> getFinanceAccountsWithSum(FiscalYear fiscalYear) {
+
+        List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntity(fiscalYear.getLegalEntity());
+
+        List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            List<BookedFinancePosting> temp = financeAccountService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fiscalYear.getStart(), fiscalYear.getEnd());
+            financePostingList.addAll(temp);
+        }
+
+        HashMap<Integer, FinanceAccount> financeAccountHashMap = new HashMap<Integer, FinanceAccount>();
+        //Arrange and set sum = 0
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            financeAccount.setSum(new Double(0));
+            financeAccountHashMap.put(financeAccount.getAccountNumber(), financeAccount);
+        }
+
+        //Calculate sum of individual accounts
+        for (BookedFinancePosting bookedFinancePosting : financePostingList) {
+            int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
+            FinanceAccount financeAccount = financeAccountHashMap.get(id);
+            financeAccount.setSum(financeAccount.getSum() + bookedFinancePosting.getAmount());
+        }
+        return financeAccountsList;
+    }
 
     @Transactional
     public List<FinanceAccount> getFinanceAccountsWithSum(LegalEntity legalEntity, CompoundPropertyModel<ReportObject> model) {
@@ -68,6 +92,7 @@ public class ReportService {
             financeAccount.setSum(financeAccount.getSum() + bookedFinancePosting.getAmount());
         }
 
+        //Calculate sum of compare accounts
         for (BookedFinancePosting bookedFinancePosting : financePostingListCompare) {
             int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
             FinanceAccount financeAccount = financeAccountHashMap.get(id);

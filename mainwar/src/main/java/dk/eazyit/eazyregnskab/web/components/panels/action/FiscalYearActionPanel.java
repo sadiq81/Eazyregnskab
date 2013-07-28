@@ -4,6 +4,7 @@ import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
 import dk.eazyit.eazyregnskab.services.FiscalYearService;
+import dk.eazyit.eazyregnskab.util.CalenderUtil;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
 import dk.eazyit.eazyregnskab.web.components.link.LoadingAjaxLink;
 import dk.eazyit.eazyregnskab.web.components.models.entities.FiscalYearModel;
@@ -55,25 +56,43 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
                 }
                 target.add(getPage());
             }
+
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(!getItem().isOpen());
+            }
         });
         addToolTipToComponent(open, "button.open");
+
         add(close = new LoadingAjaxLink("close") {
             @Override
             public void onClick(AjaxRequestTarget target) {
+
                 FiscalYear fiscalYear = getItem();
+
                 List after = fiscalYearService.findOpenFiscalYearByLegalEntityBeforeDate(fiscalYear.getLegalEntity(), fiscalYear.getStart());
+
+                FiscalYear next;
 
                 if (after.size() > 0) {
                     getSession().error(new NotificationMessage(new ResourceModel("can.only.close.if.previous.closed")).hideAfter(Duration.seconds(DURATION)));
+                } else if ((next = fiscalYearService.findNextFiscalYearByLegalEntity(fiscalYear.getLegalEntity(), CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1))) == null) {
+                    getSession().error(new NotificationMessage(new ResourceModel("next.fiscal.year.not.found")).hideAfter(Duration.seconds(DURATION)));
                 } else {
-                    fiscalYear.setFiscalYearStatus(FiscalYearStatus.LOCKED);
-                    fiscalYearService.save(fiscalYear);
+                    fiscalYearService.closeFiscalYear(fiscalYear, next.getStart());
                     getSession().success(new NotificationMessage(new ResourceModel("year.closed")).hideAfter(Duration.seconds(DURATION)));
                 }
                 target.add(getPage());
             }
+
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(getItem().isOpen());
+            }
         });
-        addToolTipToComponent(close,"button.close");
+        addToolTipToComponent(close, "button.close");
 
     }
 

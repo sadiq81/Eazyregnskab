@@ -39,7 +39,7 @@
           <factory-entry name="entityManagerFactory" value="dataSource" />
           <factory-entry name="punit" />
         </datasource-mapping>
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/test/resources/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes/META-INF/persistence.xml" />
       </configuration>
     </facet>
     <facet type="wicketforge" name="Wicket">

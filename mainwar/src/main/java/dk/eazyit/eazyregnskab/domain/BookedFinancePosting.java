@@ -63,6 +63,10 @@ public class BookedFinancePosting extends BaseEntity {
     @JoinColumn(name = "vatType_id")
     private VatType vatType;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private BookedFinancePostingType bookedFinancePostingType;
+
     @Transient
     private Double sum;
 
@@ -149,6 +153,14 @@ public class BookedFinancePosting extends BaseEntity {
 
     public void setSum(Double sum) {
         this.sum = sum;
+    }
+
+    public BookedFinancePostingType getBookedFinancePostingType() {
+        return bookedFinancePostingType;
+    }
+
+    public void setBookedFinancePostingType(BookedFinancePostingType bookedFinancePostingType) {
+        this.bookedFinancePostingType = bookedFinancePostingType;
     }
 
     @Override

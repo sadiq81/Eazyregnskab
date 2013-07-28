@@ -36,4 +36,10 @@ public class FinanceAccountActionPanel extends ActionPanel<FinanceAccount> {
     protected void deleteItem(FinanceAccount financeAccount) {
         form.deleteEntity(financeAccount);
     }
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        getDelete().setVisibilityAllowed(!getModelObject().isSystemAccount());
+    }
 }

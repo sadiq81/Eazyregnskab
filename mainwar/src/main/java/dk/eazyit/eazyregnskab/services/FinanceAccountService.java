@@ -40,6 +40,13 @@ public class FinanceAccountService {
     }
 
     @Transactional
+    public FinanceAccount findSystemFinanceAccountByLegalEntity(LegalEntity legalEntity, FinanceAccountType financeAccountType) {
+        LOG.debug("Finding system FinanceAccount from legal entity " + legalEntity.toString());
+        FinanceAccount account = financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_SYSTEM_ACCOUNT_BY_LEGAL_ENTITY, legalEntity, financeAccountType);
+        return account;
+    }
+
+    @Transactional
     public FinanceAccount findLowestFinanceAccountByLegalEntity(LegalEntity legalEntity) {
         LOG.debug("Finding lowest FinanceAccount from legal entity " + legalEntity.toString());
         FinanceAccount lowest = financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_LOWEST, legalEntity);
