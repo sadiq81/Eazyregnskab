@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
-import org.apache.wicket.ajax.AjaxRequestTarget;
+import dk.eazyit.eazyregnskab.web.components.validators.forms.BalanceReportFormValidator;import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 
@@ -15,6 +15,13 @@ public class BalanceReportForm extends BaseReportForm{
 
     public BalanceReportForm(String id, IModel model, WebMarkupContainer refreshOnSubmit) {
         super(id, model, refreshOnSubmit);
+    }
+
+    @Override
+    protected void addToPage() {
+        super.addToPage();
+
+        add(new BalanceReportFormValidator());
     }
 
     @Override

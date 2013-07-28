@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.util;
 
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
+import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -70,6 +71,11 @@ public class CalenderUtil {
     }
 
     public static boolean betweenDates(Date testDate, FiscalYear fiscalYear) {
-        return testDate.compareTo(fiscalYear.getStart()) >= 0 && testDate.compareTo(fiscalYear.getEnd()) <= 0;
+        DateTime date = new DateTime(testDate).toDateMidnight().toDateTime();
+        testDate = date.toDate();
+        boolean after = testDate.compareTo(fiscalYear.getStart()) >= 0;
+        boolean before = testDate.compareTo(fiscalYear.getEnd()) <= 0;
+
+        return after && before;
     }
 }
