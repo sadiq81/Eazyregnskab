@@ -65,14 +65,16 @@ public class BookingService {
 
         for (DraftFinancePosting draftFinancePosting : draftFinancePostings) {
 
+            boolean isWithIn = false;
             for (FiscalYear fiscalYear : fiscalYears) {
                 if (CalenderUtil.betweenDates(draftFinancePosting.getDate(), fiscalYear)) {
                     isWithOpenFiscalYear.add(draftFinancePosting);
+                    isWithIn = true;
                     break;
-                } else {
-                    bookingResult.getNotInOpenFiscalYear().add(draftFinancePosting.getBookingNumber());
                 }
             }
+            if (!isWithIn) bookingResult.getNotInOpenFiscalYear().add(draftFinancePosting.getBookingNumber());
+
         }
         return isWithOpenFiscalYear;
     }

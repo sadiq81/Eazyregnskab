@@ -51,17 +51,26 @@ public class SaveDailyLedgerForm extends Form {
         BookingResult bookingResult;
 
         bookingService.BookDailyLedger(getCurrentDailyLedger(), bookingResult = new BookingResult(), bookAll);
+
         if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
-            getSession().error(new NotificationMessage(
-                    new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfNotInBalance()))
+
+            if (bookingResult.getNotInBalance().size() > 0) {
+                getSession().error(new NotificationMessage(
+                        new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfNotInBalance()))
+                        .hideAfter(Duration.seconds(DURATION)));
+            }
+
+            if (bookingResult.getNotInOpenFiscalYear().size() > 0) {
+                getSession().error(new NotificationMessage(
+                        new StringResourceModel("following.postings.where.not.in.open.fiscal.year", this, null, "", bookingResult.getListOfNotInFiscalYear()))
+                        .hideAfter(Duration.seconds(DURATION)));
+            }
+        } else {
+            getSession().success(new NotificationMessage(
+                    new StringResourceModel("finance.postings.where.booked", this, null, ""))
                     .hideAfter(Duration.seconds(DURATION)));
         }
 
-        if (bookingResult.getNotInOpenFiscalYear().size() > 0) {
-            getSession().error(new NotificationMessage(
-                    new StringResourceModel("following.postings.where.not.in.open.fiscal.year", this, null, "", bookingResult.getListOfNotInFiscalYear()))
-                    .hideAfter(Duration.seconds(DURATION)));
-        }
     }
 
 

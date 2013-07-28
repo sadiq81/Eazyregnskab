@@ -55,6 +55,7 @@ public class FiscalYearService {
         return true;
     }
 
+    @Transactional
     public void closeFiscalYear(FiscalYear fiscalYear, Date nextYearStart) {
 
         if (CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1).compareTo(nextYearStart) != 0) {
@@ -79,7 +80,7 @@ public class FiscalYearService {
                 }
                 case ASSET:
                 case LIABILITY: {
-                    BookedFinancePosting posting  = setupBaseData(nextYearStart);
+                    BookedFinancePosting posting = setupBaseData(nextYearStart);
                     posting.setAmount(financeAccount.getSum());
                     posting.setFinanceAccount(financeAccount);
                     primoPostings.add(posting);
@@ -99,10 +100,17 @@ public class FiscalYearService {
 
         BookedFinancePosting year_end_posting = setupBaseData(nextYearStart);
         year_end_posting.setFinanceAccount(year_end_account);
+        year_end_posting.setAmount(resultOfYear);
         primoPostings.add(year_end_posting);
 
+        for (BookedFinancePosting posting : primoPostings) {
+            bookedFinancePostingDAO.save(posting);
+        }
+
         fiscalYear.setFiscalYearStatus(FiscalYearStatus.LOCKED);
-//        save(fiscalYear);
+        save(fiscalYear);
+
+        log.info("closed fiscal year " + fiscalYear + " with year result " + resultOfYear);
 
     }
 
