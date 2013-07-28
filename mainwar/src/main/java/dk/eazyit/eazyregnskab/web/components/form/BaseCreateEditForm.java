@@ -2,10 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.markup.html.bootstrap.button.LoadingBehavior;
 import dk.eazyit.eazyregnskab.domain.*;
-import dk.eazyit.eazyregnskab.services.DailyLedgerService;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
-import dk.eazyit.eazyregnskab.services.FiscalYearService;
-import dk.eazyit.eazyregnskab.services.LegalEntityService;
+import dk.eazyit.eazyregnskab.services.*;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
@@ -38,6 +35,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     protected DailyLedgerService dailyLedgerService;
     @SpringBean
     protected FiscalYearService fiscalYearService;
+    @SpringBean
+    protected VatTypeService vatTypeService;
 
     protected BaseCreateEditFormAjaxButton save;
     protected BaseCreateEditFormAjaxButton nev;

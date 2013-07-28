@@ -26,11 +26,6 @@ public class FinanceAccountService {
     private DraftFinancePostingDAO draftFinancePostingDAO;
     @Autowired
     private BookedFinancePostingDAO bookedFinancePostingDAO;
-    @Autowired
-    private VatTypeDAO vatTypeDAO;
-    @Autowired
-    private DailyLedgerDAO dailyLedgerDAO;
-
 
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntity(LegalEntity legalEntity) {
@@ -82,12 +77,6 @@ public class FinanceAccountService {
 
 
     @Transactional(readOnly = true)
-    public List<VatType> findAllVatTypesForLegalEntity(LegalEntity legalEntity) {
-        LOG.debug("Finding all VatType from legal entity " + legalEntity.toString());
-        return vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity);
-    }
-
-    @Transactional(readOnly = true)
     public List<DraftFinancePosting> findPostingsFromAccount(FinanceAccount financeAccount) {
         LOG.debug("Finding all DraftFinancePosting from FinanceAccount " + financeAccount.toString());
         return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount);
@@ -118,8 +107,6 @@ public class FinanceAccountService {
         return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY, legalEntity);
     }
 
-//    ------------------------------------------------------------------------------------------------------------------------------
-
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
         LOG.debug("Finding all FinanceAccount from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
@@ -127,24 +114,12 @@ public class FinanceAccountService {
         return list;
     }
 
-
-
     @Transactional
     public List<DraftFinancePosting> findFinancePostingByDailyLedgerSubList(DailyLedger dailyLedger, int first, int count) {
         LOG.debug("Finding all DraftFinancePosting from DailyLedger starting with " + first + " to  " + count + " from " + dailyLedger.toString());
         List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), dailyLedger);
         return list;
     }
-
-    @Transactional
-    public List<VatType> findVatTypeByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
-        LOG.debug("Finding all VatType from legalEntity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<VatType> list = vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
-        return list;
-    }
-
-
-//    ------------------------------------------------------------------------------------------------------------------------------
 
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
@@ -162,21 +137,10 @@ public class FinanceAccountService {
     }
 
     @Transactional
-    public List<VatType> findVatTypeByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
-        LOG.debug("Finding all VatType from legalEntity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<VatType> list = vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
-        return list;
-    }
-
-//    ------------------------------------------------------------------------------------------------------------------------------
-
-
-    @Transactional
     public int countFinanceAccountOfLegalEntity(LegalEntity legalEntity) {
         LOG.debug("Couting all financeAccount from legalEntity " + legalEntity.toString());
         return financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size();
     }
-
 
     @Transactional
     public int countFinancePostingOfDailyLedger(DailyLedger dailyLedger) {
@@ -184,30 +148,20 @@ public class FinanceAccountService {
         return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, dailyLedger).size();
     }
 
-    @Transactional
-    public int countVatTypesOfLegalEntity(LegalEntity legalEntity) {
-        LOG.debug("Couting all VatType from legalEntity " + legalEntity.toString());
-        return vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity).size();
-    }
-
-//    ------------------------------------------------------------------------------------------------------------------------------
-
-
     @Transactional(readOnly = true)
     public boolean isDeletingFinanceAccountAllowed(FinanceAccount financeAccount) {
         return findPostingsFromAccount(financeAccount).size() == 0;
     }
 
-
-
-    @Transactional(readOnly = true)
-    public boolean isDeletingVatTypeAllowed(VatType vatType) {
-        return (draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType).size() == 0 &&
-                bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType).size() == 0);
-
+    @Transactional
+    public List<DraftFinancePosting> findDraftFinancePostingsByVatType(VatType vatType) {
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType);
     }
 
-//    ------------------------------------------------------------------------------------------------------------------------------
+    @Transactional
+    public List<BookedFinancePosting> findBookedFinancePostingsByVatType(VatType vatType) {
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType);
+    }
 
     @Transactional
     public boolean deleteFinanceAccount(FinanceAccount financeAccount) {
@@ -219,25 +173,10 @@ public class FinanceAccountService {
         }
     }
 
-
-
     @Transactional
     public void deleteFinancePosting(DraftFinancePosting draftFinancePosting) {
         draftFinancePostingDAO.delete(draftFinancePosting);
     }
-
-    @Transactional
-    public boolean deleteVatType(VatType vatType) {
-        if (isDeletingVatTypeAllowed(vatType)) {
-            vatTypeDAO.delete(vatType);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-//    ------------------------------------------------------------------------------------------------------------------------------
-
 
     @Transactional
     public void saveFinanceAccount(FinanceAccount financeAccount, LegalEntity legalEntity) {
@@ -249,8 +188,6 @@ public class FinanceAccountService {
         }
     }
 
-
-
     @Transactional
     public void saveDraftFinancePosting(DraftFinancePosting draftFinancePosting) {
         if (draftFinancePosting.getId() == 0) {
@@ -261,32 +198,13 @@ public class FinanceAccountService {
     }
 
     @Transactional
-    public void saveVatType(VatType vatType, LegalEntity legalEntity) {
-        if (vatType.getId() == 0) {
-            vatType.setLegalEntity(legalEntity);
-            vatTypeDAO.create(vatType);
-        }
-        vatTypeDAO.save(vatType);
-    }
-
-//    ------------------------------------------------------------------------------------------------------------------------------
-
-    @Transactional
     public FinanceAccount findFinanceAccountById(long l) {
         return financeAccountDAO.findById(l);
     }
 
 
-    public VatType findVatTypeByNameAndLegalEntity(LegalEntity legalEntity, String name) {
-        return vatTypeDAO.findByNamedQueryUnique(VatType.QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY, name, legalEntity);
-    }
 
     public FinanceAccount findFinanceAccountByLegalEntityAndName(LegalEntity currentLegalEntity, Integer number) {
         return financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, currentLegalEntity, number);
-
     }
-
-
-//    ------------------------------------------------------------------------------------------------------------------------------
-
 }

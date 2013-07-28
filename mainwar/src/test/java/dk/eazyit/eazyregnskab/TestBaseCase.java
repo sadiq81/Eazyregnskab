@@ -69,6 +69,9 @@ public abstract class TestBaseCase extends TestCase {
     protected DailyLedgerService dailyLedgerService;
 
     @Autowired
+    protected VatTypeService vatTypeService;
+
+    @Autowired
     protected BookingService bookingService;
 
     @Autowired

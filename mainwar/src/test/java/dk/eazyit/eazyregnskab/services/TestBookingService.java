@@ -55,10 +55,10 @@ public class TestBookingService extends TestLoggedInPage {
         financeAccountService.saveFinanceAccount(incomingEUVat = new FinanceAccount("incomingEUVat", 8002, FinanceAccountType.LIABILITY, legalEntity), legalEntity);
         financeAccountService.saveFinanceAccount(outgoingEUVat = new FinanceAccount("outgoingEUVat", 8003, FinanceAccountType.LIABILITY, legalEntity), legalEntity);
 
-        financeAccountService.saveVatType(vatIncoming = new VatType("vatIncoming", 25D, legalEntity, incomingVat), legalEntity);
-        financeAccountService.saveVatType(vatOutgoing = new VatType("vatOutgoing", 25D, legalEntity, outgoingVat), legalEntity);
-        financeAccountService.saveVatType(vatIncomingEU = new VatType("vatIncomingEU", 25D, incomingVat, incomingEUVat, legalEntity), legalEntity);
-        financeAccountService.saveVatType(vatOutgoingEU = new VatType("vatOutgoingEU", 25D, outgoingVat, outgoingEUVat, legalEntity), legalEntity);
+        vatTypeService.saveVatType(vatIncoming = new VatType("vatIncoming", 25D, legalEntity, incomingVat), legalEntity);
+        vatTypeService.saveVatType(vatOutgoing = new VatType("vatOutgoing", 25D, legalEntity, outgoingVat), legalEntity);
+        vatTypeService.saveVatType(vatIncomingEU = new VatType("vatIncomingEU", 25D, incomingVat, incomingEUVat, legalEntity), legalEntity);
+        vatTypeService.saveVatType(vatOutgoingEU = new VatType("vatOutgoingEU", 25D, outgoingVat, outgoingEUVat, legalEntity), legalEntity);
 
         sales.setVatType(vatOutgoing);
         salesWithEUVat.setVatType(vatOutgoingEU);

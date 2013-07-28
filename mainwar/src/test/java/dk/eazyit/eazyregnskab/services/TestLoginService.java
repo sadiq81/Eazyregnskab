@@ -36,7 +36,7 @@ public class TestLoginService extends TestBaseCase {
         List<FinanceAccount> financeAccountList = financeAccountService.findFinanceAccountByLegalEntity(legalEntity);
 //        Assert.assertTrue(financeAccountList.size() == 96);
 
-        List<VatType> vatTypeList = financeAccountService.findAllVatTypesForLegalEntity(legalEntity);
+        List<VatType> vatTypeList = vatTypeService.findAllVatTypesForLegalEntity(legalEntity);
         Assert.assertTrue(vatTypeList.size() == 5);
 
     }

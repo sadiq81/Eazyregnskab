@@ -24,7 +24,7 @@ public class VatTypeFormValidator extends BaseFormValidator {
         final FormComponent<?> formComponent1 = getDependentFormComponents()[0];
         VatType vatType = (VatType) formComponent1.getForm().getModelObject();
 
-        if (vatType.getId() == 0 && financeAccountService.findVatTypeByNameAndLegalEntity(getCurrentLegalEntity(),
+        if (vatType.getId() == 0 && vatTypeService.findVatTypeByNameAndLegalEntity(getCurrentLegalEntity(),
                 formComponent1.getInput()) != null) {
             error(formComponent1, "name.all.ready.exists");
         }

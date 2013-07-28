@@ -18,7 +18,7 @@ import java.util.List;
 @Service("financeAccountService")
 public class DailyLedgerService {
 
-    private Logger LOG = LoggerFactory.getLogger(FinanceAccountService.class);
+    private Logger LOG = LoggerFactory.getLogger(DailyLedgerService.class);
 
     @Autowired
     FinanceAccountService financeAccountService;

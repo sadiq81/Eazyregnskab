@@ -3,10 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.validators.forms;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
-import dk.eazyit.eazyregnskab.services.DailyLedgerService;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
-import dk.eazyit.eazyregnskab.services.FiscalYearService;
-import dk.eazyit.eazyregnskab.services.LoginService;
+import dk.eazyit.eazyregnskab.services.*;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
@@ -31,6 +28,8 @@ public abstract class BaseFormValidator extends AbstractFormValidator implements
     protected DailyLedgerService dailyLedgerService;
     @SpringBean
     protected FiscalYearService fiscalYearService;
+    @SpringBean
+    protected VatTypeService vatTypeService;
 
     protected BaseFormValidator(FormComponent... components) {
 

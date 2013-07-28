@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.models.lists;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.VatTypeService;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -16,7 +17,7 @@ import java.util.List;
 public class VatTypeListModel extends AbstractEntityListModel<VatType, LegalEntity> {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    VatTypeService vatTypeService;
 
     static final Logger LOG = LoggerFactory.getLogger(VatTypeListModel.class);
 
@@ -36,7 +37,7 @@ public class VatTypeListModel extends AbstractEntityListModel<VatType, LegalEnti
 
     @Override
     protected List<VatType> load(LegalEntity id) {
-        return financeAccountService.findAllVatTypesForLegalEntity(id);
+        return vatTypeService.findAllVatTypesForLegalEntity(id);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class VatTypeListModel extends AbstractEntityListModel<VatType, LegalEnti
     @Override
     public void setObject(List<VatType> object) {
         for (VatType vatType : object) {
-            financeAccountService.saveVatType(vatType, fetchParent());
+            vatTypeService.saveVatType(vatType, fetchParent());
         }
     }
 }

@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.dataprovider;
 
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.VatType;
-import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.VatTypeService;
 import dk.eazyit.eazyregnskab.web.components.models.entities.VatTypeModel;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 import org.apache.wicket.injection.Injector;
@@ -20,7 +20,7 @@ import java.util.List;
 public class VatTypeDataProvider extends EazyregnskabSortableDataProvider<VatType> {
 
     @SpringBean
-    FinanceAccountService financeAccountService;
+    VatTypeService vatTypeService;
 
     private static final Logger LOG = LoggerFactory.getLogger(VatTypeDataProvider.class);
 
@@ -37,12 +37,12 @@ public class VatTypeDataProvider extends EazyregnskabSortableDataProvider<VatTyp
         SortParam sortParam = getSort();
         if (sortParam != null) {
             LegalEntity legalEntity = getCurrentLegalEntity();
-            List<VatType> list = financeAccountService.findVatTypeByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
+            List<VatType> list = vatTypeService.findVatTypeByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
             Iterator<VatType> iterator = list.iterator();
             return iterator;
         } else {
             LegalEntity legalEntity = getCurrentLegalEntity();
-            List<VatType> list = financeAccountService.findVatTypeByLegalEntitySubList(legalEntity, (int) first, (int) count);
+            List<VatType> list = vatTypeService.findVatTypeByLegalEntitySubList(legalEntity, (int) first, (int) count);
             Iterator<VatType> iterator = list.iterator();
             return iterator;
         }
@@ -52,7 +52,7 @@ public class VatTypeDataProvider extends EazyregnskabSortableDataProvider<VatTyp
     @Override
     public long size() {
         LegalEntity legalEntity = getCurrentLegalEntity();
-        int size = financeAccountService.countVatTypesOfLegalEntity(legalEntity);
+        int size = vatTypeService.countVatTypesOfLegalEntity(legalEntity);
         return size;
     }
 
