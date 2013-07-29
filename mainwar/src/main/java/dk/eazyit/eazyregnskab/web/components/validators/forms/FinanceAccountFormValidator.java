@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
+import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 
@@ -21,11 +22,15 @@ public class FinanceAccountFormValidator extends BaseFormValidator {
     public void validate(Form<?> form) {
 
         final FormComponent<Integer> formComponent1 = (FormComponent<Integer>) getDependentFormComponents()[0];
+        FinanceAccount account = (FinanceAccount) form.getModelObject();
         Integer accountNumber = formComponent1.getConvertedInput();
 
-        if (financeAccountService.findFinanceAccountByLegalEntityAndName(getCurrentLegalEntity(), accountNumber) != null) {
+        FinanceAccount number = financeAccountService.findFinanceAccountByLegalEntityAndName(getCurrentLegalEntity(), accountNumber);
+
+        if (number != null && !account.getId().equals(number.getId())) {
             error(formComponent1, "number.all.ready.exists");
         }
+
         if (formComponent1.getInput().length() > 20) {
             error(formComponent1, "number.to.long");
         }
