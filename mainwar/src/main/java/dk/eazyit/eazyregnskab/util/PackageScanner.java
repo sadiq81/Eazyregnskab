@@ -10,7 +10,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * @author Trifork
+ * @author Eazyregnskab
  */
 @Service
 public class PackageScanner {

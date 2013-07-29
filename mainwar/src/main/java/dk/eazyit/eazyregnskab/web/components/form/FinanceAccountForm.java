@@ -11,6 +11,7 @@ import dk.eazyit.eazyregnskab.web.components.label.financeaccountform.SumLabel;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.FinanceAccountFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -54,6 +55,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         add(sumFromLabel = (SumLabel) new SumLabel("sumFromLabel", new ResourceModel("sum.from")).setOutputMarkupPlaceholderTag(true));
         add(sumTo = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumToLabel = (SumLabel) new SumLabel("sumToLabel", new ResourceModel("sum.to")).setOutputMarkupPlaceholderTag(true));
+        add(new CheckBox("locked"));
         add(new FinanceAccountFormValidator(accountNumber));
     }
 
@@ -94,6 +96,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     private void configureFinanceAccountType() {
+        financeAccountType.setNullValid(false);
         financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {

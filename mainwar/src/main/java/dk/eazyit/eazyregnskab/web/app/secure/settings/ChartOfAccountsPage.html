@@ -34,12 +34,20 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3"></td>
-                <td><span wicket:id="sumFromLabel"></span></td>
-                <td><span wicket:id="sumToLabel"></span></td>
+                <td colspan="2"></td>
+                <td>
+                    <wicket:message key="locked"></wicket:message>
+                </td>
+                <td>
+                    <span wicket:id="sumFromLabel"></span>
+                </td>
+                <td>
+                    <span wicket:id="sumToLabel"></span>
+                </td>
             </tr>
             <tr>
-                <td colspan="3"></td>
+                <td colspan="2"></td>
+                <td><input wicket:id="locked" type="checkbox"/></td>
                 <td><select class="span2" wicket:id="sumFrom" id="sumFrom"/></td>
                 <td><select class="span2" wicket:id="sumTo" id="sumTo"/></td>
             </tr>

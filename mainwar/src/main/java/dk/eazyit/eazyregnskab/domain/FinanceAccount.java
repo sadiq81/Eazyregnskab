@@ -78,6 +78,9 @@ public class FinanceAccount extends BaseEntity {
     @JoinColumn(name = "legalentity_id")
     private LegalEntity legalEntity;
 
+    @Column
+    private boolean locked;
+
     @Transient
     private Double sum;
 
@@ -193,6 +196,14 @@ public class FinanceAccount extends BaseEntity {
 
     public boolean isSystemAccount() {
         return financeAccountType.isSystem_account();
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     @Override
