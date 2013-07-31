@@ -68,7 +68,7 @@ public class DraftFinancePosting extends BaseEntity {
     @Transient
     private double vatAmount;
 
-    @Column
+    @Transient
     private boolean chosen;
 
     public DraftFinancePosting() {
@@ -148,8 +148,9 @@ public class DraftFinancePosting extends BaseEntity {
         return chosen;
     }
 
-    public void setChosen(boolean chosen) {
+    public DraftFinancePosting setChosen(boolean chosen) {
         this.chosen = chosen;
+        return this;
     }
 
     public VatType getVatType() {

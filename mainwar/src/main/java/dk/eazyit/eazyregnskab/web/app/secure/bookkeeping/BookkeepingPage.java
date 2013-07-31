@@ -22,6 +22,7 @@ public class BookkeepingPage extends LoggedInPage {
     private static final long serialVersionUID = 1L;
 
     private static final Logger LOG = LoggerFactory.getLogger(BookkeepingPage.class);
+    boolean selected = false;
 
     private DailyLedgerChooser dailyLedgerChoice;
     private DraftFinancePostingForm form;

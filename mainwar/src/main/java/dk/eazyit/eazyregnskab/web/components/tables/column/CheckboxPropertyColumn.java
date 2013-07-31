@@ -26,7 +26,8 @@ public class CheckboxPropertyColumn<T> extends PropertyColumn<T, String> {
 
     @Override
     public IModel getDataModel(IModel<T> rowModel) {
-        return new PropertyModel<Boolean>(rowModel.getObject(), getPropertyExpression());
+        PropertyModel model = new PropertyModel<Boolean>(rowModel.getObject(), getPropertyExpression());
+        return model;
     }
 
     @Override
