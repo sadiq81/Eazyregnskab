@@ -45,11 +45,11 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
         add(date = (PlaceholderDateField) new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(reverseFinanceAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("reverseFinanceAccount"));
-        add(vatTypeChoice = new VatTypeDropDownChoice("vatType"));
+        add(vatTypeChoice = (VatTypeDropDownChoice) new VatTypeDropDownChoice("vatType").setNullValid(true));
         add(new PlaceholderNumberTextField<Double>("amount").setMaximum(new Double(1000000)).setRequired(true));
         add(new PlaceholderNumberTextField<Integer>("bookingNumber").setMaximum(Integer.MAX_VALUE).setRequired(true));
         add(financeAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount"));
-        add(reverseVatTypeChoice = new VatTypeDropDownChoice("reverseVatType"));
+        add(reverseVatTypeChoice = (VatTypeDropDownChoice) new VatTypeDropDownChoice("reverseVatType").setNullValid(true));
         add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text").setRequired(true));
         add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice, vatTypeChoice, reverseVatTypeChoice));
     }
@@ -77,7 +77,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void saveForm(DraftFinancePosting draftFinancePosting) {
         postingService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
         getCurrentDailyLedger().setNextBookingNumber(draftFinancePosting.getBookingNumber() + 1);
-        dailyLedgerService.saveDailyLedger(getCurrentDailyLedger(),getCurrentLegalEntity());
+        dailyLedgerService.saveDailyLedger(getCurrentDailyLedger(), getCurrentLegalEntity());
         insertNewEntityInModel();
     }
 
@@ -98,20 +98,18 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
                     FinanceAccount ledgerReverse = getCurrentDailyLedger().getFinanceAccount();
 
                     if (ledgerReverse != null) {
+
                         reverseFinanceAccountChoice.setModelObject(ledgerReverse);
-                        target.add(reverseFinanceAccountChoice);
 
                     } else {
 
                         FinanceAccount reverse = financeAccount.getStandardReverseFinanceAccount();
                         if (reverse != null) {
                             reverseFinanceAccountChoice.setModelObject(reverse);
-                            target.add(reverseFinanceAccountChoice);
 
                             VatType reverseVatType = reverse.getVatType();
                             if (reverseVatType != null) {
                                 reverseVatTypeChoice.setModelObject(reverseVatType);
-                                target.add(reverseVatTypeChoice);
                             }
                         }
                     }
@@ -119,9 +117,13 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
                     VatType vatType = financeAccount.getVatType();
                     if (vatType != null) {
                         vatTypeChoice.setModelObject(vatType);
-                        target.add(vatTypeChoice);
+                    } else {
+                        vatTypeChoice.setModelObject(null);
+
                     }
+
                 }
+                target.add(vatTypeChoice, reverseFinanceAccountChoice, reverseVatTypeChoice);
             }
         });
 
@@ -136,8 +138,11 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
                     VatType vatType = financeAccount.getVatType();
                     if (vatType != null) {
                         reverseVatTypeChoice.setModelObject(vatType);
-                        target.add(reverseVatTypeChoice);
+                    } else {
+                        reverseVatTypeChoice.setModelObject(null);
                     }
+                    target.add(reverseVatTypeChoice);
+
                 }
             }
         });
