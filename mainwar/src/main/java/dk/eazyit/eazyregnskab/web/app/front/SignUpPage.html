@@ -70,15 +70,27 @@
 
                         <div class="control-group">
                             <div class="controls">
-                                <button type="submit" class="btn">
-                                    <wicket:message key="create.account"></wicket:message>
+                                <button wicket:id="save" type="submit" class="btn">
+                                    <span wicket:id="save.button.label"></span>
                                 </button>
                             </div>
                         </div>
                     </fieldset>
                 </form>
+
+
+                <div class="control-group">
+                    <div class="controls">
+                        <h6>
+                            <span wicket:id="what.to.do.now"></span>
+                        </h6>
+                    </div>
+                </div>
+
             </div>
         </div>
+
+
     </div>
 
 </wicket:extend>

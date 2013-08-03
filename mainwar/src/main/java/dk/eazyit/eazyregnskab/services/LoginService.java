@@ -46,6 +46,7 @@ public class LoginService {
         mailService.SendConfirmationEmail(appUser.getEmail(), appUser.getVerificationUUID());
         appUserDAO.create(appUser);
         appUserRoleDAO.create(new AppUserRole(appUser, Authority.ROLE_USER));
+        log.info("Created account for " + username);
 
 
     }
@@ -54,7 +55,7 @@ public class LoginService {
     public boolean activeUser(String username, String password, String UUID) {
         AppUser appUser = findAppUserByUsername(username);
         String pass2 = shaPasswordEncoder.encodePassword(password, username);
-        if (appUser.getPassword().equals(pass2) && appUser.getVerificationUUID().equals(UUID)) {
+        if (appUser != null && appUser.getPassword().equals(pass2) && appUser.getVerificationUUID().equals(UUID)) {
             appUser.setEnabled(true);
             appUser.setVerificationUUID(null);
             legalEntityService.createLegalEntity(appUser);
@@ -69,6 +70,12 @@ public class LoginService {
     @Transactional(readOnly = true)
     public AppUser findAppUserByUsername(String username) {
         AppUser appUser = appUserDAO.findByNamedQueryUnique(AppUser.QUERY_FIND_BY_USER_NAME, username);
+        return appUser;
+    }
+
+    @Transactional(readOnly = true)
+    public AppUser findAppUserByEmail(String email) {
+        AppUser appUser = appUserDAO.findByNamedQueryUnique(AppUser.QUERY_FIND_BY_EMAIL, email);
         return appUser;
     }
 

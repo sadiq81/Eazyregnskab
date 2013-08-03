@@ -48,16 +48,25 @@
 
                         <div class="control-group">
                             <div class="controls">
-                                <button type="submit" class="btn">
-                                    <wicket:message key="confirm.account"></wicket:message>
+                                <button wicket:id="save" type="submit" class="btn">
+                                    <span wicket:id="save.label"></span>
                                 </button>
                             </div>
                         </div>
                     </fieldset>
                 </form>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <a href="#" wicket:id="loginLink">
+                            <span wicket:id="login.label"></span>
+                        </a>
+                    </div>
+                </div>
+
+                </div>
             </div>
         </div>
-    </div>
 
 </wicket:extend>
 

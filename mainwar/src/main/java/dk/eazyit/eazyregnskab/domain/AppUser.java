@@ -10,12 +10,14 @@ import java.util.Set;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = AppUser.QUERY_FIND_BY_USER_NAME, query = "select a from AppUser a where a.username = ?1")
+        @NamedQuery(name = AppUser.QUERY_FIND_BY_USER_NAME, query = "select a from AppUser a where a.username = ?1"),
+        @NamedQuery(name = AppUser.QUERY_FIND_BY_EMAIL, query = "select a from AppUser a where a.email = ?1")
 })
 @Table(name = "users")
 public class AppUser extends BaseEntity {
 
     public static final String QUERY_FIND_BY_USER_NAME = "AppUser::findByUserName";
+    public static final String QUERY_FIND_BY_EMAIL = "AppUser::findByEmail";
 
     public static final String ATTRIBUTE_NAME = AppUser.class.getName();
 
@@ -30,11 +32,11 @@ public class AppUser extends BaseEntity {
     private boolean enabled;
     @OneToMany(mappedBy = "appUser", fetch = FetchType.LAZY)
     private Set<AppUserRole> appUserRoles;
-    @Column
+    @Column(nullable = false, unique = true)
     private String email;
     @Column
     private String verificationUUID;
-    @Column()
+    @Column
     private Integer itemsPerPage;
 
     public AppUser() {

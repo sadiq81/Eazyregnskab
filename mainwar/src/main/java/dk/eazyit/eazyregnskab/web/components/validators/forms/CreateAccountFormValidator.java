@@ -29,6 +29,7 @@ public class CreateAccountFormValidator extends BaseFormValidator {
         final FormComponent<?> formComponent1 = getDependentFormComponents()[0];
         final FormComponent<?> formComponent2 = getDependentFormComponents()[1];
         final FormComponent<?> formComponent3 = getDependentFormComponents()[2];
+        final FormComponent<?> formComponent4 = getDependentFormComponents()[3];
 
         if (loginService.findAppUserByUsername(formComponent1.getInput()) != null) {
             error(formComponent1, "username.all.ready.exists");
@@ -41,6 +42,9 @@ public class CreateAccountFormValidator extends BaseFormValidator {
         }
         if (!Pattern.compile(PASSWORD_PATTERN).matcher(formComponent2.getInput()).matches()) {
             error(formComponent2, "password.not.adequate");
+        }
+        if (loginService.findAppUserByEmail(formComponent4.getInput()) != null) {
+            error(formComponent3, "email.all.ready.in.use");
         }
     }
 }
