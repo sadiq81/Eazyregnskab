@@ -46,7 +46,7 @@ public class LoginService {
         mailService.SendConfirmationEmail(appUser.getEmail(), appUser.getVerificationUUID());
         appUserDAO.create(appUser);
         appUserRoleDAO.create(new AppUserRole(appUser, Authority.ROLE_USER));
-        legalEntityService.createLegalEntity(appUser);
+
 
     }
 
@@ -57,6 +57,7 @@ public class LoginService {
         if (appUser.getPassword().equals(pass2) && appUser.getVerificationUUID().equals(UUID)) {
             appUser.setEnabled(true);
             appUser.setVerificationUUID(null);
+            legalEntityService.createLegalEntity(appUser);
             appUserDAO.save(appUser);
             return true;
         } else {
