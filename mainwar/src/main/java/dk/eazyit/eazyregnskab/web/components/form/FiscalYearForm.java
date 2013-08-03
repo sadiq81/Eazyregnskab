@@ -41,18 +41,18 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
         configureStart();
     }
 
+
     private void configureStart() {
         start.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 Date startDate = (Date) getFormComponent().getConvertedInput();
-                Date endDate = CalenderUtil.add(startDate,1,0,-1);
+                Date endDate = CalenderUtil.add(startDate, 1, 0, -1);
                 end.setModelObject(endDate);
                 target.add(end);
             }
         });
     }
-
 
     @Override
     public void deleteEntity(FiscalYear fiscalYear) {
