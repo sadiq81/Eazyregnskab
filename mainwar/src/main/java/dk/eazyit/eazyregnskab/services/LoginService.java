@@ -56,6 +56,7 @@ public class LoginService {
         String pass2 = shaPasswordEncoder.encodePassword(password, username);
         if (appUser.getPassword().equals(pass2) && appUser.getVerificationUUID().equals(UUID)) {
             appUser.setEnabled(true);
+            appUser.setVerificationUUID(null);
             appUserDAO.save(appUser);
             return true;
         } else {
