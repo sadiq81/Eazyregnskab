@@ -26,7 +26,10 @@ import java.util.Date;
                 "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1)"),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT, query = "select bp from BookedFinancePosting bp " +
-                "WHERE bp.financeAccount = ?1 and bp.date = ?2 and bp.bookedFinancePostingType = ?3 ")
+                "WHERE bp.financeAccount = ?1 and bp.date = ?2 and bp.bookedFinancePostingType = ?3 "),
+
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, query = "select bp from BookedFinancePosting  bp " +
+                "WHERE bp.financeAccount.legalEntity = ?1 and bp.date >= ?2 and bp.date <= ?3 ")
 
 })
 @Table(name = "bookedfinanceposting")
@@ -37,6 +40,7 @@ public class BookedFinancePosting extends BaseEntity {
     public static final String QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY = "BookedFinancePosting::findBookedFinancePostingByLegalEntity";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE = "BookedFinancePosting::findBookedFinancePostingByVatType";
     public static final String QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT = "BookedFinancePosting::findPrimoFinancePostingByAccount";
+    public static final String QUERY_FIND_FINANCE_POSTING_IN_YEAR = "BookedFinancePosting::findBookedFinancePostingInYear";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

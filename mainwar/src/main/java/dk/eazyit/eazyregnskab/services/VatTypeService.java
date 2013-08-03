@@ -3,7 +3,6 @@ package dk.eazyit.eazyregnskab.services;
 import dk.eazyit.eazyregnskab.dao.interfaces.VatTypeDAO;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.VatType;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,9 @@ import java.util.List;
 @Service("vatTypeService")
 public class VatTypeService {
 
-    @SpringBean
+    @Autowired
     FinanceAccountService financeAccountService;
-    @SpringBean
+    @Autowired
     PostingService postingService;
 
     private Logger LOG = LoggerFactory.getLogger(VatTypeService.class);
@@ -54,20 +53,13 @@ public class VatTypeService {
         return vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, legalEntity).size();
     }
 
-    @Transactional(readOnly = true)
-    public boolean isDeletingVatTypeAllowed(VatType vatType) {
-        return postingService.findDraftFinancePostingsByVatType(vatType).size() == 0 &&
-                postingService.findBookedFinancePostingsByVatType(vatType).size() == 0;
-
-    }
-
     @Transactional
     public boolean deleteVatType(VatType vatType) {
-        if (isDeletingVatTypeAllowed(vatType)) {
+        if (vatType.isInUse() || postingService.findDraftFinancePostingsByVatType(vatType).size() > 0 ) {
+            return false;
+        } else {
             vatTypeDAO.delete(vatType);
             return true;
-        } else {
-            return false;
         }
     }
 
@@ -82,5 +74,10 @@ public class VatTypeService {
 
     public VatType findVatTypeByNameAndLegalEntity(LegalEntity legalEntity, String name) {
         return vatTypeDAO.findByNamedQueryUnique(VatType.QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY, name, legalEntity);
+    }
+
+    public void setVatTypeInUse(VatType vatType) {
+        vatType.setInUse(true);
+        vatTypeDAO.save(vatType);
     }
 }

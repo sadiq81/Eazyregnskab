@@ -121,6 +121,4 @@ public class FiscalYear extends BaseEntity {
     public boolean isOpen() {
         return fiscalYearStatus == FiscalYearStatus.OPEN;
     }
-
-
 }

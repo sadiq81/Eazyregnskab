@@ -15,7 +15,7 @@ import javax.persistence.*;
                 "WHERE fa.legalEntity = ?1 ORDER BY accountNumber ASC"),
 
         @NamedQuery(name = FinanceAccount.QUERY_FIND_SYSTEM_ACCOUNT_BY_LEGAL_ENTITY, query = "select fa from FinanceAccount fa " +
-                       "WHERE fa.legalEntity = ?1 and fa.financeAccountType =?2 "),
+                "WHERE fa.legalEntity = ?1 and fa.financeAccountType =?2 "),
 
         @NamedQuery(name = FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_LOWEST, query = "select f from FinanceAccount f " +
                 "where f.legalEntity = ?1 and f.accountNumber = " +
@@ -86,6 +86,9 @@ public class FinanceAccount extends BaseEntity {
 
     @Transient
     private Double sumCompare;
+
+    @Column(nullable = false)
+    private boolean inUse;
 
     public FinanceAccount() {
     }
@@ -204,6 +207,14 @@ public class FinanceAccount extends BaseEntity {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    public boolean isInUse() {
+        return inUse;
+    }
+
+    public void setInUse(boolean inUse) {
+        this.inUse = inUse;
     }
 
     @Override

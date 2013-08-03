@@ -18,7 +18,9 @@ import java.util.Date;
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, query = "select fp from DraftFinancePosting fp " +
                 "WHERE fp.dailyLedger = ?1"),
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select fp from DraftFinancePosting fp " +
-                "WHERE fp.vatType = ?1")
+                "WHERE fp.vatType = ?1"),
+        @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, query = "select fp from DraftFinancePosting fp " +
+                "WHERE (fp.financeAccount.legalEntity = ?1 or fp.reverseFinanceAccount.legalEntity =?1) and fp.date >= ?2 and fp.date <= ?3 ")
 })
 @Table(name = "draftfinanceposting")
 public class DraftFinancePosting extends BaseEntity {
@@ -26,6 +28,7 @@ public class DraftFinancePosting extends BaseEntity {
     public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "DraftFinancePosting::findDraftFinancePostingByFinanceAccount";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER = "DraftFinancePosting::findDraftFinancePostingByDailyLedger";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE = "DraftFinancePosting::findDraftFinancePostingByVatType";
+    public static final String QUERY_FIND_FINANCE_POSTING_IN_YEAR = "DraftFinancePosting::findDraftFinancePostingInYear";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

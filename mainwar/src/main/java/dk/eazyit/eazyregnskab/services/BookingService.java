@@ -27,6 +27,8 @@ public class BookingService {
     PostingService postingService;
     @Autowired
     FiscalYearService fiscalYearService;
+    @Autowired
+    VatTypeService vatTypeService;
 
     @Transactional
     public void BookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
@@ -59,8 +61,7 @@ public class BookingService {
     }
 
 
-    private List<DraftFinancePosting> checkWithinOpenFiscalYear
-            (List<DraftFinancePosting> draftFinancePostings, DailyLedger dailyLedger, BookingResult bookingResult) {
+    private List<DraftFinancePosting> checkWithinOpenFiscalYear(List<DraftFinancePosting> draftFinancePostings, DailyLedger dailyLedger, BookingResult bookingResult) {
 
         List<FiscalYear> fiscalYears = fiscalYearService.findOpenFiscalYearByLegalEntity(dailyLedger.getLegalEntity());
         List<DraftFinancePosting> isWithOpenFiscalYear = new ArrayList<DraftFinancePosting>();
@@ -85,8 +86,7 @@ public class BookingService {
     }
 
 
-    private Map<Integer, BookedFinancePostingBatch> createBookedFinancePostings
-            (List<DraftFinancePosting> draftFinancePostings) {
+    private Map<Integer, BookedFinancePostingBatch> createBookedFinancePostings(List<DraftFinancePosting> draftFinancePostings) {
 
         Map<Integer, BookedFinancePostingBatch> map = new HashMap<Integer, BookedFinancePostingBatch>();
 
@@ -112,6 +112,7 @@ public class BookingService {
 
         FinanceAccount account = draftFinancePosting.getFinanceAccount();
         if (account != null) {
+
             BookedFinancePosting posting = setupBaseData(draftFinancePosting);
             posting.setAmount(draftFinancePosting.getAmount());
             posting.setFinanceAccount(account);
@@ -127,11 +128,13 @@ public class BookingService {
                     BookedFinancePosting vatPosting = setupBaseData(draftFinancePosting);
                     vatPosting.setAmount(vat);
                     vatPosting.setFinanceAccount(vatType.getFinanceAccount());
+                    vatPosting.setVatType(vatType);
                     list.add(vatPosting);
 
                     BookedFinancePosting reverseVatPosting = setupBaseData(draftFinancePosting);
                     reverseVatPosting.setAmount(0 - vat);
                     reverseVatPosting.setFinanceAccount(vatType.getFinanceAccountReverse());
+                    reverseVatPosting.setVatType(vatType);
                     list.add(reverseVatPosting);
 
                 } else {
@@ -140,6 +143,7 @@ public class BookingService {
                     vatPosting.setAmount(vat);
                     posting.removeVat(vat);
                     vatPosting.setFinanceAccount(vatType.getFinanceAccount());
+                    vatPosting.setVatType(vatType);
                     list.add(vatPosting);
                 }
             }
@@ -214,6 +218,14 @@ public class BookingService {
 
         for (Map.Entry<Integer, BookedFinancePostingBatch> entry : clearedAllChecks.entrySet()) {
             for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
+
+                if (!bookedFinancePosting.getFinanceAccount().isInUse()) {
+                    financeAccountService.setFinanceAccountInUse(bookedFinancePosting.getFinanceAccount());
+                }
+                if (bookedFinancePosting.getVatType() != null && !bookedFinancePosting.getVatType().isInUse()) {
+                    vatTypeService.setVatTypeInUse(bookedFinancePosting.getVatType());
+                }
+
                 bookedFinancePostingDAO.save(bookedFinancePosting);
             }
             for (DraftFinancePosting draftFinancePosting : entry.getValue().getDraftFinancePostingList()) {

@@ -95,19 +95,20 @@ public class FinanceAccountService {
         return financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size();
     }
 
-    @Transactional(readOnly = true)
-    public boolean isDeletingFinanceAccountAllowed(FinanceAccount financeAccount) {
-        return postingService.findPostingsFromAccount(financeAccount).size() == 0;
+    @Transactional
+    public boolean deleteFinanceAccount(FinanceAccount financeAccount) {
+        if (financeAccount.isInUse() || postingService.findDraftPostingsFromAccount(financeAccount).size() > 0) {
+            return false;
+        } else {
+            financeAccountDAO.delete(financeAccount);
+            return true;
+        }
     }
 
     @Transactional
-    public boolean deleteFinanceAccount(FinanceAccount financeAccount) {
-        if (isDeletingFinanceAccountAllowed(financeAccount)) {
-            financeAccountDAO.delete(financeAccount);
-            return true;
-        } else {
-            return false;
-        }
+    public void setFinanceAccountInUse(FinanceAccount financeAccountInUse) {
+        financeAccountInUse.setInUse(true);
+        financeAccountDAO.save(financeAccountInUse);
     }
 
     @Transactional
@@ -124,7 +125,6 @@ public class FinanceAccountService {
     public FinanceAccount findFinanceAccountById(long l) {
         return financeAccountDAO.findById(l);
     }
-
 
 
     public FinanceAccount findFinanceAccountByLegalEntityAndName(LegalEntity currentLegalEntity, Integer number) {

@@ -48,6 +48,9 @@ public class VatType extends BaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private LegalEntity legalEntity;
 
+    @Column(nullable = false)
+    private boolean inUse;
+
     public VatType() {
     }
 
@@ -127,6 +130,14 @@ public class VatType extends BaseEntity {
 
     public boolean isReverse() {
         return financeAccount != null && financeAccountReverse != null;
+    }
+
+    public boolean isInUse() {
+        return inUse;
+    }
+
+    public void setInUse(boolean inUse) {
+        this.inUse = inUse;
     }
 
     @Override

@@ -48,9 +48,14 @@ public class FiscalYearService {
 
     @Transactional
     public boolean deleteFiscalYear(FiscalYear fiscalYear) {
+        if (!fiscalYear.isOpen() ||
+                postingService.findDraftFinancePostingsByYear(fiscalYear).size() > 0 ||
+                postingService.findBookedFinancePostingsByYear(fiscalYear).size() > 0) {
 
-        //TODO checks for postings
-        fiscalYearDAO.delete(fiscalYear);
+            return false;
+        } else {
+            fiscalYearDAO.delete(fiscalYear);
+        }
         return true;
     }
 

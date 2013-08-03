@@ -32,7 +32,7 @@ public class PostingService {
     }
 
     @Transactional(readOnly = true)
-    public List<DraftFinancePosting> findPostingsFromAccount(FinanceAccount financeAccount) {
+    public List<DraftFinancePosting> findDraftPostingsFromAccount(FinanceAccount financeAccount) {
         LOG.debug("Finding all DraftFinancePosting from FinanceAccount " + financeAccount.toString());
         return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, financeAccount);
     }
@@ -59,7 +59,20 @@ public class PostingService {
 
     @Transactional
     public List<DraftFinancePosting> findDraftFinancePostingsByVatType(VatType vatType) {
+        LOG.debug("Finding all DraftFinancePosting with VatType"  + vatType.toString());
         return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType);
+    }
+
+    @Transactional
+    public List<DraftFinancePosting> findDraftFinancePostingsByYear(FiscalYear fiscalYear) {
+        LOG.debug("Finding all DraftFinancePosting with VatType"  + fiscalYear.toString());
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
+    }
+
+    @Transactional
+    public List<BookedFinancePosting> findBookedFinancePostingsByYear(FiscalYear fiscalYear) {
+        LOG.debug("Finding all DraftFinancePosting with VatType"  + fiscalYear.toString());
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
     }
 
     @Transactional
