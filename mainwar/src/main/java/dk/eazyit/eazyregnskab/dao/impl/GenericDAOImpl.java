@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.dao.impl;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.GenericDAO;
+import dk.eazyit.eazyregnskab.domain.BaseEntity;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePostingType;
 import org.apache.commons.logging.Log;
@@ -19,6 +20,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +35,7 @@ import java.util.Map;
  * @param <ID> The primary key type
  * @author Eazy IT
  */
-public abstract class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
+public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializable> implements GenericDAO<T, ID> {
 
     // ~ Instance fields
     // --------------------------------------------------------
@@ -424,6 +426,8 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
      */
     @Override
     public T save(T entity) {
+        if (entity.getCreated() == null) entity.setCreated(new Date());
+        entity.setLastChanged(new Date());
         logger.debug("Saving " + entity.toString() + " to database");
         return getEntityManager().merge(entity);
     }
@@ -431,6 +435,8 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements Gene
 
     @Override
     public void create(T entity) {
+        if (entity.getCreated() == null) entity.setCreated(new Date());
+        entity.setLastChanged(new Date());
         logger.debug("Creating " + entity.toString() + " in database");
         getEntityManager().persist(entity);
     }

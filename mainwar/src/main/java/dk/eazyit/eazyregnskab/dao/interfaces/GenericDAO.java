@@ -1,5 +1,6 @@
 package dk.eazyit.eazyregnskab.dao.interfaces;
 
+import dk.eazyit.eazyregnskab.domain.BaseEntity;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Example;
@@ -17,7 +18,7 @@ import java.util.Map;
  * @author Jurgen Lust
  * @see <a href="http://www.bejug.org/confluenceBeJUG/display/BeJUG/Generic+DAO+example">Source</a>
  */
-public interface GenericDAO<T, ID extends Serializable> {
+public interface GenericDAO<T extends BaseEntity, ID extends Serializable> {
     //~ Methods ----------------------------------------------------------------
 
     /**
