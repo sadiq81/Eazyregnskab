@@ -198,7 +198,7 @@ public class FinanceAccount extends BaseEntity {
     }
 
     public boolean isSystemAccount() {
-        return financeAccountType.isSystem_account();
+        return financeAccountType != null && financeAccountType.isSystem_account();
     }
 
     public boolean isLocked() {

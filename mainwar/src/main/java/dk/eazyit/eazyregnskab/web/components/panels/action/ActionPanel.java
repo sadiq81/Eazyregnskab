@@ -26,23 +26,38 @@ public abstract class ActionPanel<T extends BaseEntity> extends GenericPanel<T> 
      */
     public ActionPanel(String id, IModel<T> model) {
         super(id, model);
-        add(select =new LoadingAjaxLink("select") {
+        add(select = new LoadingAjaxLink("select") {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 BaseCreateEditForm form = selectItem(getItem());
-                target.add(form);
+                target.focusComponent(form);
+                target.appendJavaScript("window.document.body.scrollTop = 0");
+                target.appendJavaScript("window.document.documentElement.scrollTop = 0");
+                target.add(form, select);
+            }
+
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(selectAllowed());
             }
         });
-        addToolTipToComponent(select,"button.edit");
+        addToolTipToComponent(select, "button.edit");
 
         add(delete = new LoadingAjaxLink("delete") {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 deleteItem((T) getParent().getDefaultModelObject());
-                target.add(getPage());
+                target.add(getPage(), delete);
+            }
+
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(deleteAllowed());
             }
         });
-        addToolTipToComponent(delete,"button.delete");
+        addToolTipToComponent(delete, "button.delete");
     }
 
     protected abstract BaseCreateEditForm<T> selectItem(T entity);
@@ -53,20 +68,12 @@ public abstract class ActionPanel<T extends BaseEntity> extends GenericPanel<T> 
         return (T) getDefaultModelObject();
     }
 
-    public LoadingAjaxLink getSelect() {
-        return select;
+    protected boolean selectAllowed() {
+        return true;
     }
 
-    public void setSelect(LoadingAjaxLink select) {
-        this.select = select;
-    }
-
-    public LoadingAjaxLink getDelete() {
-        return delete;
-    }
-
-    public void setDelete(LoadingAjaxLink delete) {
-        this.delete = delete;
+    protected boolean deleteAllowed() {
+        return true;
     }
 
     protected void addToolTipToComponent(Component component, String resourceText) {

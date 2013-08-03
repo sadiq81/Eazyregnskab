@@ -92,9 +92,11 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
             }
         });
         addToolTipToComponent(close, "button.close");
+    }
 
-        getSelect().setVisibilityAllowed(false);
-
+    @Override
+    protected boolean selectAllowed() {
+        return false;
     }
 
     @Override

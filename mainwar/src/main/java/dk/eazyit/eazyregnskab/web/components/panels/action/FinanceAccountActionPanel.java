@@ -38,8 +38,12 @@ public class FinanceAccountActionPanel extends ActionPanel<FinanceAccount> {
     }
 
     @Override
-    protected void onConfigure() {
-        super.onConfigure();
-        getDelete().setVisibilityAllowed(!getModelObject().isSystemAccount());
+    protected boolean selectAllowed() {
+        return super.selectAllowed();
+    }
+
+    @Override
+    protected boolean deleteAllowed() {
+        return !getModelObject().isSystemAccount();
     }
 }

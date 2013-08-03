@@ -6,6 +6,7 @@ import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountDropDownChoice;
+import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountTypeDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.label.financeaccountform.SumLabel;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.FinanceAccountFormValidator;
@@ -32,12 +33,13 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     PlaceholderTextField name;
     FormComponent<Integer> accountNumber;
     DropDownChoice<VatType> vatType;
-    EnumDropDownChoice<FinanceAccountType> financeAccountType;
+    FinanceAccountTypeDropDownChoice financeAccountType;
     DropDownChoice<FinanceAccount> standardReverseFinanceAccount;
     DropDownChoice<FinanceAccount> sumFrom;
     SumLabel sumFromLabel;
     DropDownChoice<FinanceAccount> sumTo;
     SumLabel sumToLabel;
+    CheckBox locked;
 
     public FinanceAccountForm(String id, IModel<FinanceAccount> model) {
         super(id, model);
@@ -46,16 +48,16 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(name = (PlaceholderTextField) new PlaceholderTextField <String>("name").setRequired(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
         add(accountNumber = new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
         add(vatType = (DropDownChoice<VatType>) new DropDownChoice<VatType>("vatType", vatTypeService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")).setOutputMarkupPlaceholderTag(true));
-        add(financeAccountType = (EnumDropDownChoice<FinanceAccountType>) new EnumDropDownChoice<FinanceAccountType>("financeAccountType", Arrays.asList(FinanceAccountType.values())).setRequired(true));
+        add(financeAccountType = (FinanceAccountTypeDropDownChoice) new FinanceAccountTypeDropDownChoice("financeAccountType", FinanceAccountType.getNonSystemAccounts()).setRequired(true));
         add(standardReverseFinanceAccount = (DropDownChoice<FinanceAccount>) new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumFrom = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumFromLabel = (SumLabel) new SumLabel("sumFromLabel", new ResourceModel("sum.from")).setOutputMarkupPlaceholderTag(true));
         add(sumTo = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumToLabel = (SumLabel) new SumLabel("sumToLabel", new ResourceModel("sum.to")).setOutputMarkupPlaceholderTag(true));
-        add(new CheckBox("locked"));
+        add(locked = new CheckBox("locked"));
         add(new FinanceAccountFormValidator(accountNumber));
     }
 
@@ -96,6 +98,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     private void configureFinanceAccountType() {
+        financeAccountType.setEnabled(!getModelObject().isSystemAccount());
         financeAccountType.setNullValid(false);
         financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
@@ -114,5 +117,17 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                 target.add(vatType, standardReverseFinanceAccount, sumFrom, sumTo, sumFromLabel, sumToLabel);
             }
         });
+    }
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        vatType.setEnabled(!getModelObject().isSystemAccount());
+        financeAccountType.setEnabled(!getModelObject().isSystemAccount());
+        standardReverseFinanceAccount.setEnabled(!getModelObject().isSystemAccount());
+        locked.setEnabled(!getModelObject().isSystemAccount());
+        sumFrom.setRequired(FinanceAccountType.SUM.equals(getModelObject().getFinanceAccountType()));
+        sumTo.setRequired(FinanceAccountType.SUM.equals(getModelObject().getFinanceAccountType()));
+
     }
 }
