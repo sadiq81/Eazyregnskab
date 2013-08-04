@@ -8,6 +8,8 @@ import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.*;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -170,4 +172,9 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
         }
     }
 
+    protected void addToolTipToComponent(Component component, String resourceText) {
+            component.add(AttributeModifier.append("rel", "tooltip"));
+            component.add(AttributeModifier.append("data-placement", "top"));
+            component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
+        }
 }

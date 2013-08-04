@@ -43,6 +43,7 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     @Override
     protected void configureComponents() {
         configureCountry();
+        addToolTipToComponent(getNev(), "can.not.undo");
     }
 
 
