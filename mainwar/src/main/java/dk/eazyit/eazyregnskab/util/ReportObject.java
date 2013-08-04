@@ -19,6 +19,7 @@ public class ReportObject implements Serializable {
     protected FinanceAccount accountFrom;
     protected FinanceAccount accountTo;
     protected ReportCompareType reportCompareType = ReportCompareType.COMPARE_WITH_SAME_PERIOD_LAST_YEAR;
+    protected boolean hideAccountsWithOutSum;
 
     public ReportObject() {
         dateFrom = CalenderUtil.getFirstDayInYear();
@@ -125,5 +126,13 @@ public class ReportObject implements Serializable {
 
     public void setReportCompareType(ReportCompareType reportCompareType) {
         this.reportCompareType = reportCompareType;
+    }
+
+    public boolean isHideAccountsWithOutSum() {
+        return hideAccountsWithOutSum;
+    }
+
+    public void setHideAccountsWithOutSum(boolean hideAccountsWithOutSum) {
+        this.hideAccountsWithOutSum = hideAccountsWithOutSum;
     }
 }

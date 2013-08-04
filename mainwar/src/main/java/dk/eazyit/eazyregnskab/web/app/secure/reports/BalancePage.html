@@ -8,7 +8,7 @@
 
     <form wicket:id="filters">
 
-        <table>
+        <table class="table">
             <tr>
                 <td>
                     <wicket:message key="dateFrom"></wicket:message>
@@ -21,29 +21,37 @@
                 <td>
                     <wicket:message key="compare.to"></wicket:message>
                 </td>
+                <td class="span3"></td>
             </tr>
             <tr>
                 <td><input class="span2" wicket:id="dateFrom" id="dateFrom" type="text"/></td>
                 <td><input class="span2" wicket:id="dateTo" id="dateTo" type="text"/></td>
-                <td><select wicket:id="reportCompareType"></select></td>
+                <td><select class="span3" wicket:id="reportCompareType"></select></td>
+                <td class="span3"></td>
             </tr>
             <tr>
                 <td>
                     <wicket:message key="accountFrom"></wicket:message>
                 </td>
-                <td colspan="2">
+                <td>
                     <wicket:message key="accountTo"></wicket:message>
                 </td>
+                <td>
+                    <wicket:message key="hide.accounts.without.sum"></wicket:message>
+                </td>
+                <td class="span3"></td>
             </tr>
             <tr>
                 <td><input class="span2" wicket:id="accountFrom" id="accountFrom" type="hidden"/></td>
-                <td colspan="2"><input class="span2" wicket:id="accountTo" id="accountTo" type="hidden"/></td>
+                <td><input class="span2" wicket:id="accountTo" id="accountTo" type="hidden"/></td>
+                <td><input wicket:id="hideAccountsWithOutSum" type="checkbox"/></td>
+                <td class="span3"></td>
             </tr>
             <tr>
-                <td colspan="3"><br></td>
+                <td colspan="4"><br></td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <input wicket:id="refresh" class="btn btn-success" type="submit" value="save"/>
                 </td>
             </tr>

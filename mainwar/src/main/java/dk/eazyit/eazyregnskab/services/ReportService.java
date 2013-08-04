@@ -117,6 +117,18 @@ public class ReportService {
                 year_result_compare += bookedFinancePosting.getAmount();
         }
 
+        List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            if (!financeAccount.getSum().equals(new Double(0)) && !financeAccount.getSumCompare().equals(new Double(0)))
+            {
+                onlyWithSum.add(financeAccount);
+            }
+        }
+
+        if (model.getObject().isHideAccountsWithOutSum()) {
+            financeAccountsList = onlyWithSum;
+        }
+
         //Set sum for current result
         for (FinanceAccount financeAccount : financeAccountsList) {
 

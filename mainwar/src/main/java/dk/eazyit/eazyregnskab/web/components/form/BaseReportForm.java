@@ -12,6 +12,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
@@ -47,6 +48,12 @@ public abstract class BaseReportForm extends Form<ReportObject> {
         add(new FinanceAccountSelect2ChoiceAllAccounts("accountFrom").setRequired(true));
         add(new FinanceAccountSelect2ChoiceAllAccounts("accountTo").setRequired(true));
         add(new EnumDropDownChoice<ReportCompareType>("reportCompareType", Arrays.asList(ReportCompareType.values())).setRequired(true));
+        add(new AjaxCheckBox("hideAccountsWithOutSum") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                processInput();
+            }
+        });
 
         add(new AjaxLoadingButton("refresh", new ResourceModel("button.refresh")) {
             @Override
@@ -101,6 +108,7 @@ public abstract class BaseReportForm extends Form<ReportObject> {
             }
         });
         addToolTipToComponent(minus, "minus.one.year");
+
 
     }
 
