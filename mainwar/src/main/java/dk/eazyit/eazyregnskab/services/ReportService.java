@@ -25,12 +25,7 @@ public class ReportService {
     public List<FinanceAccount> getFinanceAccountsWithSum(FiscalYear fiscalYear) {
 
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntity(fiscalYear.getLegalEntity());
-
-        List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
-        for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = postingService.findBookedPostingsFromFinanceAccountFromDateToDate(financeAccount, fiscalYear.getStart(), fiscalYear.getEnd());
-            financePostingList.addAll(temp);
-        }
+        List<BookedFinancePosting> financePostingList = postingService.findBookedPostingsFromLegalEntityFromDateToDate(fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
 
         HashMap<Integer, FinanceAccount> financeAccountHashMap = new HashMap<Integer, FinanceAccount>();
         //Arrange and set sum = 0
@@ -70,21 +65,8 @@ public class ReportService {
         }
 
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntityFromAccountToAccount(legalEntity, fromAccount, toAccount);
-        List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
-        for (FinanceAccount financeAccount : financeAccountsList) {
-
-            if (financeAccount.getFinanceAccountType().equals(FinanceAccountType.CURRENT_RESULT))
-                current_result = financeAccount;
-
-            List<BookedFinancePosting> temp = postingService.findBookedPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
-            financePostingList.addAll(temp);
-        }
-
-        List<BookedFinancePosting> financePostingListCompare = new ArrayList<BookedFinancePosting>();
-        for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = postingService.findBookedPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDateCompare, toDateCompare);
-            financePostingListCompare.addAll(temp);
-        }
+        List<BookedFinancePosting> financePostingList = postingService.findBookedPostingsFromLegalEntityFromDateToDate(legalEntity, fromDate, toDate);
+        List<BookedFinancePosting> financePostingListCompare = postingService.findBookedPostingsFromLegalEntityFromDateToDate(legalEntity, fromDateCompare, toDateCompare);
 
         Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
 
@@ -95,7 +77,6 @@ public class ReportService {
             financeAccount.setSumCompare(new Double(0));
             financeAccountHashMap.put(financeAccount.getAccountNumber(), financeAccount);
         }
-
 
         //Calculate sum of individual accounts and sum of year result
         for (BookedFinancePosting bookedFinancePosting : financePostingList) {
@@ -108,19 +89,18 @@ public class ReportService {
         }
 
         //Calculate sum of compare accounts and sum of year result
-        for (BookedFinancePosting bookedFinancePosting : financePostingListCompare) {
-            int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
+        for (BookedFinancePosting bookedFinancePostingCompare : financePostingListCompare) {
+            int id = bookedFinancePostingCompare.getFinanceAccount().getAccountNumber();
             FinanceAccount financeAccount = financeAccountHashMap.get(id);
-            financeAccount.setSumCompare(financeAccount.getSumCompare() + bookedFinancePosting.getAmount());
+            financeAccount.setSumCompare(financeAccount.getSumCompare() + bookedFinancePostingCompare.getAmount());
 
             if (financeAccount.getFinanceAccountType().isOperating_account())
-                year_result_compare += bookedFinancePosting.getAmount();
+                year_result_compare += bookedFinancePostingCompare.getAmount();
         }
 
         List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            if (!financeAccount.getSum().equals(new Double(0)) && !financeAccount.getSumCompare().equals(new Double(0)))
-            {
+            if (!financeAccount.getSum().equals(new Double(0)) && !financeAccount.getSumCompare().equals(new Double(0))) {
                 onlyWithSum.add(financeAccount);
             }
         }
@@ -131,12 +111,10 @@ public class ReportService {
 
         //Set sum for current result
         for (FinanceAccount financeAccount : financeAccountsList) {
-
             if (financeAccount.getFinanceAccountType().equals(FinanceAccountType.CURRENT_RESULT)) {
                 financeAccount.setSum(year_result);
                 financeAccount.setSumCompare(year_result_compare);
             }
-
         }
 
         //Calculate sum of sum accounts

@@ -137,6 +137,12 @@ public class PostingService {
     }
 
     @Transactional(readOnly = true)
+    public List<BookedFinancePosting> findBookedPostingsFromLegalEntityFromDateToDate(LegalEntity legalEntity, Date from, Date to) {
+        LOG.debug("Finding all BookedFinancePosting from LegalEntity " + legalEntity.toString() + " from date " + from + " to date " + to );
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY_FROM_DATE_TO_DATE, legalEntity, from, to);
+    }
+
+    @Transactional(readOnly = true)
     public BookedFinancePosting findPrimoPostingsFromAccount(FinanceAccount financeAccount, Date start) {
         LOG.debug("Finding primo BookedFinancePosting from account" + financeAccount.toString());
         return bookedFinancePostingDAO.findByNamedQueryUnique(BookedFinancePosting.QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT, financeAccount, start, BookedFinancePostingType.PRIMO);
