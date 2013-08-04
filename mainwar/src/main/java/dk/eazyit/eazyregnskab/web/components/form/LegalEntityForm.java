@@ -6,12 +6,10 @@ import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.MoneyCurrency;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
-import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
@@ -50,17 +48,18 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
     @Override
     public void deleteEntity(LegalEntity legalEntity) {
-        if (legalEntityService.deleteLegalEntity(getCurrentUser(), legalEntity)) {
-            setCurrentLegalEntity(legalEntityService.findLegalEntityByUser(getCurrentUser()).get(0));
-            setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity())));
-
-            //TODO bad design, find another solution without using a reference.
-            ((LoggedInPage) getPage()).changeLegalEntity();
-
-            getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-        } else {
-            getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
-        }
+        throw new NullPointerException("ILLEGAL FUNCTION");
+        //        if (legalEntityService.deleteLegalEntity(getCurrentUser(), legalEntity)) {
+        //            setCurrentLegalEntity(legalEntityService.findLegalEntityByUser(getCurrentUser()).get(0));
+        //            setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity())));
+        //
+        //
+        //            ((LoggedInPage) getPage()).changeLegalEntity();
+        //
+        //            getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+        //        } else {
+        //            getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
+        //        }
     }
 
     @Override
@@ -106,6 +105,6 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
     @Override
     protected boolean isDeleteButtonVisible() {
-        return true;
+        return false;
     }
 }
