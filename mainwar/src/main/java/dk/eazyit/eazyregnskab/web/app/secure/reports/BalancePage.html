@@ -6,18 +6,21 @@
 <wicket:extend>
 
 
-
     <form wicket:id="filters">
 
         <table>
             <tr>
                 <td>
                     <wicket:message key="dateFrom"></wicket:message>
+                    <button class="btn btn-mini" wicket:id="minusOneYear"><i class="icon-step-backward"></i></button>
+                    <button class="btn btn-mini" wicket:id="plusOneYear"><i class="icon-step-forward"></i></button>
                 </td>
                 <td>
                     <wicket:message key="dateTo"></wicket:message>
                 </td>
-                <td><wicket:message key="compare.to"></wicket:message></td>
+                <td>
+                    <wicket:message key="compare.to"></wicket:message>
+                </td>
             </tr>
             <tr>
                 <td><input class="span2" wicket:id="dateFrom" id="dateFrom" type="text"/></td>
@@ -37,7 +40,7 @@
                 <td colspan="2"><input class="span2" wicket:id="accountTo" id="accountTo" type="hidden"/></td>
             </tr>
             <tr>
-                <td colspan="3"></td><br>
+                <td colspan="3"><br></td>
             </tr>
             <tr>
                 <td colspan="3">

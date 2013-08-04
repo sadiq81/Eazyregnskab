@@ -18,8 +18,8 @@ public class BalanceReportForm extends BaseReportForm{
     }
 
     @Override
-    protected void addToPage() {
-        super.addToPage();
+    protected void addToForm() {
+        super.addToForm();
 
         add(new BalanceReportFormValidator());
     }

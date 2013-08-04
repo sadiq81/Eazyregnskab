@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "persistent_logins")
-public class RememberMe extends BaseEntity{
+public class RememberMe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
