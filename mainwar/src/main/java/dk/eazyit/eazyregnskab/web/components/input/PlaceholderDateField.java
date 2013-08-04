@@ -1,7 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.input;
 
-import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextField;
-import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextFieldConfig;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextField;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;

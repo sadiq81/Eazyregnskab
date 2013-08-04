@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2ChoiceBookableAccounts;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;

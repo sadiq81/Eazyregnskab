@@ -1,8 +1,8 @@
 package dk.eazyit.eazyregnskab.web.components.navigation.menu;
 
-import de.agilecoders.wicket.markup.html.bootstrap.button.dropdown.MenuBookmarkablePageLink;
-import de.agilecoders.wicket.markup.html.bootstrap.extensions.button.DropDownAutoOpen;
-import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarDropDownButton;
+import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.MenuBookmarkablePageLink;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.button.DropDownAutoOpen;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;

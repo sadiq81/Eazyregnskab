@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.Country;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.MoneyCurrency;

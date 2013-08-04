@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.link;
 
-import de.agilecoders.wicket.markup.html.bootstrap.button.LoadingBehavior;
+import de.agilecoders.wicket.core.markup.html.bootstrap.button.LoadingBehavior;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;

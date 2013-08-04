@@ -1,7 +1,10 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
-import de.agilecoders.wicket.markup.html.bootstrap.button.LoadingBehavior;
-import dk.eazyit.eazyregnskab.domain.*;
+import de.agilecoders.wicket.core.markup.html.bootstrap.button.LoadingBehavior;
+import dk.eazyit.eazyregnskab.domain.AppUser;
+import dk.eazyit.eazyregnskab.domain.BaseEntity;
+import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.*;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.session.SessionAware;

@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.wicket.securepages.settings;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.ChartOfAccountsPage;
 import dk.eazyit.eazyregnskab.wicket.securepages.TestLoggedInPage;
 import org.junit.Test;

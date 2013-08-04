@@ -1,7 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
-import de.agilecoders.wicket.markup.html.bootstrap.extensions.form.DateTextFieldConfig;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
+import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
 import dk.eazyit.eazyregnskab.util.CalenderUtil;

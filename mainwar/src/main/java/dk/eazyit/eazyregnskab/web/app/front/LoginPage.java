@@ -1,7 +1,7 @@
 package dk.eazyit.eazyregnskab.web.app.front;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
 import org.apache.wicket.model.IModel;

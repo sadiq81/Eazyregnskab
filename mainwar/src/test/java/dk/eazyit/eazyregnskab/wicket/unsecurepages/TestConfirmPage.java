@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.wicket.unsecurepages;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationPanel;
 import dk.eazyit.eazyregnskab.TestBaseCase;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.AppUserRole;

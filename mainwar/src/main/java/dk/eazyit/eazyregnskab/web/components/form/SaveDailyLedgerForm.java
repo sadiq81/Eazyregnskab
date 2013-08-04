@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.services.BookingService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;

@@ -1,9 +1,9 @@
 package dk.eazyit.eazyregnskab.web.components.page;
 
-import de.agilecoders.wicket.Bootstrap;
-import de.agilecoders.wicket.markup.html.bootstrap.image.IconType;
-import de.agilecoders.wicket.markup.html.bootstrap.navbar.Navbar;
-import de.agilecoders.wicket.markup.html.bootstrap.navbar.NavbarComponents;
+import de.agilecoders.wicket.core.Bootstrap;
+import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 import dk.eazyit.eazyregnskab.web.app.front.AboutPage;
 import dk.eazyit.eazyregnskab.web.app.front.ContactPage;
 import dk.eazyit.eazyregnskab.web.app.front.HomePage;
@@ -62,6 +62,7 @@ public abstract class AppBasePage extends WebPage{
         topMenu.brandName(new ResourceModel("eazy.regnskab.brand"));
 
         //Front menu button
+
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                 new LoggedOutNavButton(HomePage.class, new ResourceModel("home")).setIconType(IconType.home),
                 new LoggedOutNavButton(AboutPage.class, new ResourceModel("about")),

@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.panels.action;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationMessage;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.services.FiscalYearService;
 import dk.eazyit.eazyregnskab.util.CalenderUtil;

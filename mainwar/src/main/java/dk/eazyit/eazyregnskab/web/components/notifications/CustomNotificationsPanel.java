@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.notifications;
 
-import de.agilecoders.wicket.markup.html.bootstrap.common.NotificationPanel;
+import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationPanel;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
 
 /**
