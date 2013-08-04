@@ -28,14 +28,14 @@ public class SaveDailyLedgerForm extends Form {
     }
 
     private void init() {
-        add(new AjaxLoadingButton("bookChosen", new ResourceModel("button.book.chosen")) {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                super.onSubmit(target, form);
-                bookPostings(false);
-                target.add(getPage());
-            }
-        });
+//        add(new AjaxLoadingButton("bookChosen", new ResourceModel("button.book.chosen")) {
+//            @Override
+//            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+//                super.onSubmit(target, form);
+//                bookPostings(false);
+//                target.add(getPage());
+//            }
+//        });
         add(new AjaxLoadingButton("bookAll", new ResourceModel("button.book.all")) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
