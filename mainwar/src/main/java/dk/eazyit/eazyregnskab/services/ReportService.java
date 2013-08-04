@@ -103,7 +103,7 @@ public class ReportService {
             FinanceAccount financeAccount = financeAccountHashMap.get(id);
             financeAccount.setSum(financeAccount.getSum() + bookedFinancePosting.getAmount());
 
-            if (financeAccount.getFinanceAccountType().isProfit_or_expense())
+            if (financeAccount.getFinanceAccountType().isOperating_account())
                 year_result += bookedFinancePosting.getAmount();
         }
 
@@ -113,7 +113,7 @@ public class ReportService {
             FinanceAccount financeAccount = financeAccountHashMap.get(id);
             financeAccount.setSumCompare(financeAccount.getSumCompare() + bookedFinancePosting.getAmount());
 
-            if (financeAccount.getFinanceAccountType().isProfit_or_expense())
+            if (financeAccount.getFinanceAccountType().isOperating_account())
                 year_result_compare += bookedFinancePosting.getAmount();
         }
 
@@ -136,6 +136,14 @@ public class ReportService {
 
                 for (FinanceAccount entry : financeAccountHashMap.values()) {
                     if (entry.getAccountNumber() >= sumFrom && entry.getAccountNumber() <= sumTo && entry.getFinanceAccountType() != FinanceAccountType.SUM) {
+                        financeAccount.setSum(financeAccount.getSum() + entry.getSum());
+                        financeAccount.setSumCompare(financeAccount.getSumCompare() + entry.getSumCompare());
+                    }
+                }
+            } else if (financeAccount.getFinanceAccountType().equals(FinanceAccountType.BALANCE_CHECK)) {
+
+                for (FinanceAccount entry : financeAccountHashMap.values()) {
+                    if (entry.getFinanceAccountType().isOperating_account() || entry.getFinanceAccountType().isBalance_account()) {
                         financeAccount.setSum(financeAccount.getSum() + entry.getSum());
                         financeAccount.setSumCompare(financeAccount.getSumCompare() + entry.getSumCompare());
                     }

@@ -63,6 +63,7 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
                 itemOuter.add(new Label("sumCompare", ""));
                 break;
             }
+            case BALANCE_CHECK:
             case SUM: {
                 //TODO calculate sum
                 itemOuter.add(new AttributeAppender("class", "sumfrom"));

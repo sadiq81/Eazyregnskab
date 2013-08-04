@@ -113,6 +113,8 @@ public class FiscalYearService {
                     primoPostings.add(posting);
                     break;
                 }
+                case BALANCE_CHECK:
+                case CURRENT_RESULT:
                 case CATEGORY:
                 case HEADLINE:
                 case SUM: {

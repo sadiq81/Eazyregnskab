@@ -8,20 +8,21 @@ import java.util.List;
  */
 public enum FinanceAccountType {
 
-    PROFIT(false, true),
-    EXPENSE(false, true),
-    ASSET(false, false),
-    LIABILITY(false, false),
-    YEAR_END(true, false),
-    CURRENT_RESULT(true, false),
-    CATEGORY(false, false),
-    HEADLINE(false, false),
-    SUM(false, false),
-    BALANCE_CHECK(true, false);
+    PROFIT(false, true, false),
+    EXPENSE(false, true, false),
+    ASSET(false, false, true),
+    LIABILITY(false, false, true),
+    YEAR_END(true, false, true),
+    CURRENT_RESULT(true, false, false),
+    CATEGORY(false, false, false),
+    HEADLINE(false, false, false),
+    SUM(false, false, false),
+    BALANCE_CHECK(true, false, false);
 
-    private FinanceAccountType(boolean system_account, boolean profit_or_expense) {
+    private FinanceAccountType(boolean system_account, boolean operating_account, boolean balance_account) {
         this.system_account = system_account;
-        this.profit_or_expense = profit_or_expense;
+        this.operating_account = operating_account;
+        this.balance_account = balance_account;
     }
 
     public static List<FinanceAccountType> getNonSystemAccounts() {
@@ -44,10 +45,15 @@ public enum FinanceAccountType {
         return system_account;
     }
 
-    public boolean isProfit_or_expense() {
-        return profit_or_expense;
+    public boolean isOperating_account() {
+        return operating_account;
+    }
+
+    public boolean isBalance_account() {
+        return balance_account;
     }
 
     private boolean system_account;
-    private boolean profit_or_expense;
+    private boolean operating_account;
+    private boolean balance_account;
 }
