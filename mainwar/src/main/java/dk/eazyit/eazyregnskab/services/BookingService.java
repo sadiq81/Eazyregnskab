@@ -33,7 +33,7 @@ public class BookingService {
     @Transactional
     public void BookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
 
-        List<DraftFinancePosting> draftFinancePostingList = postingService.findPostingsFromDailyLedger(dailyLedger);
+        List<DraftFinancePosting> draftFinancePostingList = postingService.findDraftPostingsFromDailyLedger(dailyLedger);
 
         List<DraftFinancePosting> markedForSave = bookAll ? draftFinancePostingList : removeNotMarkedForSave(draftFinancePostingList);
 

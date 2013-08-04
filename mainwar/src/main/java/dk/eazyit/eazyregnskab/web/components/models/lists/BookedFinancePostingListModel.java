@@ -40,7 +40,7 @@ public class BookedFinancePostingListModel extends AbstractEntityListModel<Booke
     @Override
     protected List<BookedFinancePosting> load(FinanceAccount id) {
 
-        List<BookedFinancePosting> list1 = postingService.findPostingsFromFinanceAccount(id);
+        List<BookedFinancePosting> list1 = postingService.findBookedPostingsFromFinanceAccount(id);
         List<BookedFinancePosting> sortedAndSummed = new ArrayList<BookedFinancePosting>();
         Collections.sort(list1, new Comparator<BookedFinancePosting>() {
             @Override

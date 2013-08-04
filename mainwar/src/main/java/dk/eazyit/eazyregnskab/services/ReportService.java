@@ -28,7 +28,7 @@ public class ReportService {
 
         List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = postingService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fiscalYear.getStart(), fiscalYear.getEnd());
+            List<BookedFinancePosting> temp = postingService.findBookedPostingsFromFinanceAccountFromDateToDate(financeAccount, fiscalYear.getStart(), fiscalYear.getEnd());
             financePostingList.addAll(temp);
         }
 
@@ -76,13 +76,13 @@ public class ReportService {
             if (financeAccount.getFinanceAccountType().equals(FinanceAccountType.CURRENT_RESULT))
                 current_result = financeAccount;
 
-            List<BookedFinancePosting> temp = postingService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
+            List<BookedFinancePosting> temp = postingService.findBookedPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
             financePostingList.addAll(temp);
         }
 
         List<BookedFinancePosting> financePostingListCompare = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            List<BookedFinancePosting> temp = postingService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDateCompare, toDateCompare);
+            List<BookedFinancePosting> temp = postingService.findBookedPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDateCompare, toDateCompare);
             financePostingListCompare.addAll(temp);
         }
 

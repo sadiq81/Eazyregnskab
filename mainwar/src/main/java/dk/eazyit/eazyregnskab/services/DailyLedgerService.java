@@ -59,8 +59,8 @@ public class DailyLedgerService {
 
     @Transactional(readOnly = true)
     public boolean isDeletingDailyLedgerAllowed(DailyLedger dailyLedger, LegalEntity legalEntity) {
-        return postingService.findPostingsFromDailyLedger(dailyLedger).size() == 0 &&
-                dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size() > 1;
+        return postingService.findDraftPostingByDailyLedgerSubList(dailyLedger, 0, 1).size() == 0 &&
+                findDailyLedgerByLegalEntitySubList(legalEntity, 0, 2).size() > 1;
     }
 
     @Transactional

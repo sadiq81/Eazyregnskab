@@ -97,7 +97,7 @@ public class FinanceAccountService {
 
     @Transactional
     public boolean deleteFinanceAccount(FinanceAccount financeAccount) {
-        if (financeAccount.isInUse() || postingService.findDraftPostingsFromAccount(financeAccount).size() > 0) {
+        if (financeAccount.isInUse() || postingService.findDraftPostingsFromAccountSubList(financeAccount, 0, 1).size() > 0) {
             return false;
         } else {
             financeAccountDAO.delete(financeAccount);

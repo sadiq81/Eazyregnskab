@@ -15,10 +15,13 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, query = "select fp from DraftFinancePosting fp " +
                 "WHERE fp.financeAccount = ?1 or fp.reverseFinanceAccount = ?1"),
+
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, query = "select fp from DraftFinancePosting fp " +
                 "WHERE fp.dailyLedger = ?1"),
+
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, query = "select fp from DraftFinancePosting fp " +
-                "WHERE fp.vatType = ?1"),
+                "WHERE fp.vatType = ?1 or fp.reverseVatType =?1 "),
+
         @NamedQuery(name = DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, query = "select fp from DraftFinancePosting fp " +
                 "WHERE (fp.financeAccount.legalEntity = ?1 or fp.reverseFinanceAccount.legalEntity =?1) and fp.date >= ?2 and fp.date <= ?3 ")
 })

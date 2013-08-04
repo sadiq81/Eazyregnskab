@@ -44,7 +44,7 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
             public void onClick(AjaxRequestTarget target) {
                 FiscalYear fiscalYear = getItem();
 
-                List after = fiscalYearService.findLockedFiscalYearByLegalEntityAfterDate(fiscalYear.getLegalEntity(), fiscalYear.getEnd());
+                List after = fiscalYearService.findLockedFiscalYearByLegalEntityAfterDateSubList(fiscalYear.getLegalEntity(), fiscalYear.getEnd(), 0, 1);
 
                 if (after.size() > 0) {
                     getSession().error(new NotificationMessage(new ResourceModel("can.only.open.if.next.open")).hideAfter(Duration.seconds(DURATION)));
@@ -70,7 +70,7 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
 
                 FiscalYear fiscalYear = getItem();
 
-                List after = fiscalYearService.findOpenFiscalYearByLegalEntityBeforeDate(fiscalYear.getLegalEntity(), fiscalYear.getStart());
+                List after = fiscalYearService.findOpenFiscalYearByLegalEntityBeforeDateSubList(fiscalYear.getLegalEntity(), fiscalYear.getStart(), 0, 1);
 
                 FiscalYear next;
 

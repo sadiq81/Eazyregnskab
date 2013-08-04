@@ -55,7 +55,7 @@ public class VatTypeService {
 
     @Transactional
     public boolean deleteVatType(VatType vatType) {
-        if (vatType.isInUse() || postingService.findDraftFinancePostingsByVatType(vatType).size() > 0 ) {
+        if (vatType.isInUse() || postingService.findDraftFinancePostingsByVatTypeSubList(vatType, 0, 1).size() > 0) {
             return false;
         } else {
             vatTypeDAO.delete(vatType);
