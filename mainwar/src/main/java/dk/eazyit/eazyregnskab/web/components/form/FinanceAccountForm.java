@@ -53,9 +53,9 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         add(vatType = (DropDownChoice<VatType>) new DropDownChoice<VatType>("vatType", vatTypeService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(financeAccountType = (FinanceAccountTypeDropDownChoice) new FinanceAccountTypeDropDownChoice("financeAccountType", FinanceAccountType.getNonSystemAccounts()).setRequired(true));
         add(standardReverseFinanceAccount = (DropDownChoice<FinanceAccount>) new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
-        add(sumFrom = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
+        add(sumFrom = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumFromLabel = (SumLabel) new SumLabel("sumFromLabel", new ResourceModel("sum.from")).setOutputMarkupPlaceholderTag(true));
-        add(sumTo = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumTo", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
+        add(sumTo = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumTo", financeAccountService.findFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumToLabel = (SumLabel) new SumLabel("sumToLabel", new ResourceModel("sum.to")).setOutputMarkupPlaceholderTag(true));
         add(locked = new CheckBox("locked"));
         add(new FinanceAccountFormValidator(accountNumber));
