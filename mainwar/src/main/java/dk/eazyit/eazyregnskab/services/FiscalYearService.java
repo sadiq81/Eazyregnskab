@@ -35,15 +35,11 @@ public class FiscalYearService {
     public boolean save(FiscalYear fiscalYear) {
 
         if (fiscalYear.getId() != null && fiscalYear.getId() != 0) {
-
-            //TODO on change check if year contains postings beyond changed dates
             fiscalYearDAO.save(fiscalYear);
         } else {
             fiscalYearDAO.save(fiscalYear);
         }
-
         return true;
-
     }
 
     @Transactional
@@ -192,6 +188,13 @@ public class FiscalYearService {
         log.debug("Finding open FiscalYear from legal entity from " + legalEntity.toString() + " before date" + date);
         List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE, legalEntity, date, FiscalYearStatus.OPEN);
         return list;
+    }
+
+    @Transactional
+    public FiscalYear findLastFiscalYearByLegalEntity(LegalEntity legalEntity) {
+        log.debug("Finding last FiscalYear from legal entity from " + legalEntity.toString());
+        FiscalYear last = fiscalYearDAO.findByNamedQueryUnique(FiscalYear.QUERY_FIND_LAST_BY_LEGAL_ENTITY, legalEntity);
+        return last;
     }
 
 

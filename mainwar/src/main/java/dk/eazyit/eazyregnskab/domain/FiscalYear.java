@@ -24,7 +24,13 @@ import java.util.Date;
                 "WHERE fy.legalEntity = ?1 and fy.start > ?2 and fy.fiscalYearStatus = ?3"),
 
         @NamedQuery(name = FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE, query = "select fy from FiscalYear fy " +
-                "WHERE fy.legalEntity = ?1 and fy.end < ?2 and fy.fiscalYearStatus = ?3")
+                "WHERE fy.legalEntity = ?1 and fy.end < ?2 and fy.fiscalYearStatus = ?3"),
+
+        @NamedQuery(name = FiscalYear.QUERY_FIND_LAST_BY_LEGAL_ENTITY, query = "select fy from FiscalYear fy " +
+                        "WHERE fy.start = (select MAX(fy2.start) from FiscalYear fy2 where fy2.legalEntity = ?1 ) and fy.legalEntity = ?1"),
+
+
+
 })
 @Table(name = "fiscalyear")
 public class FiscalYear extends BaseEntity {
@@ -34,6 +40,7 @@ public class FiscalYear extends BaseEntity {
     public static final String QUERY_FIND_NEXT_OPEN_BY_LEGAL_ENTITY = "FiscalYear::findNextOpenByLegalEntity";
     public static final String QUERY_FIND_LOCKED_BY_LEGAL_ENTITY_AFTER_DATE = "FiscalYear::findByLegalEntityAfterDate";
     public static final String QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE = "FiscalYear::findByLegalEntityBeforeDate";
+    public static final String QUERY_FIND_LAST_BY_LEGAL_ENTITY = "FiscalYear::findLastByLegalEntity";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
