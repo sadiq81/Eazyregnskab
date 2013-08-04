@@ -44,6 +44,7 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
             case EXPENSE:
             case ASSET:
             case YEAR_END:
+            case CURRENT_RESULT:
             case LIABILITY: {
                 itemOuter.add(new Label("sum", fa.getSum()));
                 itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
@@ -68,6 +69,9 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
                 itemOuter.add(new Label("sum", fa.getSum()));
                 itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
                 break;
+            }
+            default:{
+                throw new NullPointerException("Forgot to add account type to markup");
             }
         }
     }

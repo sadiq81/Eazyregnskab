@@ -60,6 +60,11 @@ public class ReportService {
         FinanceAccount fromAccount = model.getObject().getAccountFrom();
         FinanceAccount toAccount = model.getObject().getAccountTo();
 
+        FinanceAccount current_result;
+        Double year_result = new Double(0);
+        Double year_result_compare = new Double(0);
+
+
         if (fromDate == null || toDate == null || fromAccount == null || toAccount == null) {
             throw new NullPointerException("Arguments must not be null");
         }
@@ -67,6 +72,10 @@ public class ReportService {
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntityFromAccountToAccount(legalEntity, fromAccount, toAccount);
         List<BookedFinancePosting> financePostingList = new ArrayList<BookedFinancePosting>();
         for (FinanceAccount financeAccount : financeAccountsList) {
+
+            if (financeAccount.getFinanceAccountType().equals(FinanceAccountType.CURRENT_RESULT))
+                current_result = financeAccount;
+
             List<BookedFinancePosting> temp = postingService.findPostingsFromFinanceAccountFromDateToDate(financeAccount, fromDate, toDate);
             financePostingList.addAll(temp);
         }
@@ -87,18 +96,35 @@ public class ReportService {
             financeAccountHashMap.put(financeAccount.getAccountNumber(), financeAccount);
         }
 
-        //Calculate sum of individual accounts
+
+        //Calculate sum of individual accounts and sum of year result
         for (BookedFinancePosting bookedFinancePosting : financePostingList) {
             int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
             FinanceAccount financeAccount = financeAccountHashMap.get(id);
             financeAccount.setSum(financeAccount.getSum() + bookedFinancePosting.getAmount());
+
+            if (financeAccount.getFinanceAccountType().isProfit_or_expense())
+                year_result += bookedFinancePosting.getAmount();
         }
 
-        //Calculate sum of compare accounts
+        //Calculate sum of compare accounts and sum of year result
         for (BookedFinancePosting bookedFinancePosting : financePostingListCompare) {
             int id = bookedFinancePosting.getFinanceAccount().getAccountNumber();
             FinanceAccount financeAccount = financeAccountHashMap.get(id);
             financeAccount.setSumCompare(financeAccount.getSumCompare() + bookedFinancePosting.getAmount());
+
+            if (financeAccount.getFinanceAccountType().isProfit_or_expense())
+                year_result_compare += bookedFinancePosting.getAmount();
+        }
+
+        //Set sum for current result
+        for (FinanceAccount financeAccount : financeAccountsList) {
+
+            if (financeAccount.getFinanceAccountType().equals(FinanceAccountType.CURRENT_RESULT)) {
+                financeAccount.setSum(year_result);
+                financeAccount.setSumCompare(year_result_compare);
+            }
+
         }
 
         //Calculate sum of sum accounts
