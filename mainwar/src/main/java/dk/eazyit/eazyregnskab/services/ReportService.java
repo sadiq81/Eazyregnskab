@@ -100,7 +100,7 @@ public class ReportService {
 
         List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
         for (FinanceAccount financeAccount : financeAccountsList) {
-            if (!financeAccount.getSum().equals(new Double(0)) && !financeAccount.getSumCompare().equals(new Double(0))) {
+            if ((!financeAccount.getSum().equals(new Double(0)) && !financeAccount.getSumCompare().equals(new Double(0))) || financeAccount.getFinanceAccountType().includeInOnlyWithSum()) {
                 onlyWithSum.add(financeAccount);
             }
         }
