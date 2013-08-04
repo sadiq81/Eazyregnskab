@@ -22,4 +22,6 @@ public class FinanceAccountSelect2ChoiceAllAccounts extends Select2Choice<Financ
         setProvider(new FinanceAccountProviderAllAcccounts());
         getSettings().setAllowClear(true);
     }
+
+
 }
