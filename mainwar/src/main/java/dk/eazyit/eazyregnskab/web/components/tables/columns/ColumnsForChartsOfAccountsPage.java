@@ -24,7 +24,7 @@ public class ColumnsForChartsOfAccountsPage extends ArrayList<IColumn<FinanceAcc
         add(new FinanceAccountPropertyColumn<String>(new ResourceModel("name"), "name", "name"));
         add(new FinanceAccountPropertyColumn<String>(new ResourceModel("accountNumber"), "accountNumber", "accountNumber"));
         add(new FinanceAccountPropertyColumn<String>(new ResourceModel("vatType"), "vatType.percentage", "vatType.name"));
-        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("standard.reverse.finance.account"), "standardReverseFinanceAccount.name", "standardReverseFinanceAccount.name"));
+        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("sum.from.to"), "sumFromTo"));
         add(new EnumPropertyColumn<FinanceAccount>(new ResourceModel("financeAccountType"), "financeAccountType", "financeAccountType"));
         add(new AbstractColumn<FinanceAccount, String>(new ResourceModel("action")) {
             @Override

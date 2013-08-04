@@ -90,6 +90,9 @@ public class FinanceAccount extends BaseEntity {
     @Column(nullable = false)
     private boolean inUse;
 
+    @Transient
+    private String sumFromTo;
+
     public FinanceAccount() {
     }
 
@@ -215,6 +218,16 @@ public class FinanceAccount extends BaseEntity {
 
     public void setInUse(boolean inUse) {
         this.inUse = inUse;
+    }
+
+    public String getSumFromTo() {
+        String from = sumFrom != null ? sumFrom.getAccountNumber().toString() : "";
+        String to = sumTo != null ? sumTo.getAccountNumber().toString() : "";
+        return (!from.equals("") && !to.equals("")) ? from + "..." + to : "";
+    }
+
+    public void setSumFromTo(String sumFromTo) {
+        this.sumFromTo = sumFromTo;
     }
 
     @Override
