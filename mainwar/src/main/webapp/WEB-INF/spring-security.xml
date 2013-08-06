@@ -15,15 +15,15 @@
 
 
     <http auto-config="true">
+        <intercept-url pattern="/app/front/**" requires-channel='http' access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/app/secure/**" requires-channel='https' access="ROLE_USER"/>
-        <intercept-url pattern="/app/LoginPage" requires-channel='https' access="ROLE_ANONYMOUS"/>
         <form-login
-                authentication-failure-url="/app/LoginPage?error=true"
-                login-page="/app/LoginPage"
+                authentication-failure-url="/app/front/LoginPage?error=true"
+                login-page="/app/front/LoginPage"
                 default-target-url="/app/secure/bookkeeping/BookkeepingPage"
                 />
 
-        <logout logout-success-url="/app/HomePage"/>
+        <logout logout-success-url="/app/front/HomePage"/>
         <remember-me key="eazyRegnskab-rm-key-juGuMnil55sHop80comps" token-validity-seconds="3600" data-source-ref="dataSource"/>
         <session-management>
             <concurrency-control max-sessions="1"/>

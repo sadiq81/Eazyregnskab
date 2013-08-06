@@ -56,7 +56,7 @@ public class WicketApplication extends WebApplication implements ApplicationCont
         getApplicationSettings().setAccessDeniedPage(HomePage.class);
 
         Bootstrap.install(Application.get(), new BootstrapSettings());
-        mountPackage("/app", HomePage.class);
+        mountPackage("/app/front", HomePage.class);
         mountPackage("app/secure/bookkeeping", BookkeepingPage.class);
         mountPackage("app/secure/settings", BaseDataPage.class);
         mountPackage("app/secure/reports", BalancePage.class);
