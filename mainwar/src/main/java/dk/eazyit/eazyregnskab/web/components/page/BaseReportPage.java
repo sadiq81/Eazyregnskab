@@ -1,6 +1,6 @@
 package dk.eazyit.eazyregnskab.web.components.page;
 
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -29,8 +29,8 @@ public abstract class BaseReportPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
         setDefaultModel(new CompoundPropertyModel<ReportObject>(reportObject = new ReportObject(
-                CalenderUtil.getFirstDayInYear(),
-                CalenderUtil.getLastDayInYear(),
+                CalendarUtil.getFirstDayInYear(),
+                CalendarUtil.getLastDayInYear(),
                 financeAccountService.findLowestFinanceAccountByLegalEntity(getCurrentLegalEntity()),
                 financeAccountService.findHighestFinanceAccountByLegalEntity(getCurrentLegalEntity()))));
     }

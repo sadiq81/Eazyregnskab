@@ -3,7 +3,7 @@ package dk.eazyit.eazyregnskab.services;
 import dk.eazyit.eazyregnskab.dao.interfaces.BookedFinancePostingDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.DraftFinancePostingDAO;
 import dk.eazyit.eazyregnskab.domain.*;
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,7 +70,7 @@ public class BookingService {
 
             boolean isWithIn = false;
             for (FiscalYear fiscalYear : fiscalYears) {
-                if (CalenderUtil.betweenDates(draftFinancePosting.getDate(), fiscalYear)) {
+                if (CalendarUtil.betweenDates(draftFinancePosting.getDate(), fiscalYear)) {
                     isWithOpenFiscalYear.add(draftFinancePosting);
                     isWithIn = true;
                     break;

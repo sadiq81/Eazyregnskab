@@ -4,7 +4,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessa
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.FiscalYearFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -45,8 +45,8 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     private void configureDates() {
         FiscalYear fiscalYear = getModelObject();
         FiscalYear last = fiscalYearService.findLastFiscalYearByLegalEntity(getCurrentLegalEntity());
-        fiscalYear.setStart(CalenderUtil.add(last.getEnd(), 0, 0, 1));
-        fiscalYear.setEnd(CalenderUtil.add(last.getEnd(), 1, 0, 0));
+        fiscalYear.setStart(CalendarUtil.add(last.getEnd(), 0, 0, 1));
+        fiscalYear.setEnd(CalendarUtil.add(last.getEnd(), 1, 0, 0));
     }
 
 
@@ -55,7 +55,7 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 Date startDate = (Date) getFormComponent().getConvertedInput();
-                Date endDate = CalenderUtil.add(startDate, 1, 0, -1);
+                Date endDate = CalendarUtil.add(startDate, 1, 0, -1);
                 end.setModelObject(endDate);
                 target.add(end);
             }
@@ -80,8 +80,8 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     public FiscalYear buildNewEntity() {
         FiscalYear fiscalYear = new FiscalYear();
         FiscalYear last = fiscalYearService.findLastFiscalYearByLegalEntity(getCurrentLegalEntity());
-        fiscalYear.setStart(CalenderUtil.add(last.getEnd(), 0, 0, 1));
-        fiscalYear.setEnd(CalenderUtil.add(last.getEnd(), 1, 0, 0));
+        fiscalYear.setStart(CalendarUtil.add(last.getEnd(), 0, 0, 1));
+        fiscalYear.setEnd(CalendarUtil.add(last.getEnd(), 1, 0, 0));
         return fiscalYear.setFiscalYearStatus(FiscalYearStatus.OPEN).setLegalEntity(getCurrentLegalEntity());
     }
 

@@ -3,7 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.panels.action;
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.services.FiscalYearService;
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import dk.eazyit.eazyregnskab.web.components.form.BaseCreateEditForm;
 import dk.eazyit.eazyregnskab.web.components.link.LoadingAjaxLink;
 import dk.eazyit.eazyregnskab.web.components.models.entities.FiscalYearModel;
@@ -76,7 +76,7 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
 
                 if (after.size() > 0) {
                     getSession().error(new NotificationMessage(new ResourceModel("can.only.close.if.previous.closed")).hideAfter(Duration.seconds(DURATION)));
-                } else if ((next = fiscalYearService.findNextFiscalYearByLegalEntity(fiscalYear.getLegalEntity(), CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1))) == null) {
+                } else if ((next = fiscalYearService.findNextFiscalYearByLegalEntity(fiscalYear.getLegalEntity(), CalendarUtil.add(fiscalYear.getEnd(), 0, 0, 1))) == null) {
                     getSession().error(new NotificationMessage(new ResourceModel("next.fiscal.year.not.found")).hideAfter(Duration.seconds(DURATION)));
                 } else {
                     fiscalYearService.closeFiscalYear(fiscalYear, next.getStart());

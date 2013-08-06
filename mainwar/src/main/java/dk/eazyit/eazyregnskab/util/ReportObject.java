@@ -22,8 +22,8 @@ public class ReportObject implements Serializable {
     protected boolean hideAccountsWithOutSum;
 
     public ReportObject() {
-        dateFrom = CalenderUtil.getFirstDayInYear();
-        dateTo = CalenderUtil.getLastDayInYear();
+        dateFrom = CalendarUtil.getFirstDayInYear();
+        dateTo = CalendarUtil.getLastDayInYear();
     }
 
     public ReportObject(FinanceAccount accountFrom, FinanceAccount accountTo) {
@@ -39,11 +39,11 @@ public class ReportObject implements Serializable {
     }
 
     public String getDates() {
-        return CalenderUtil.getSimpleDateString(getDateFrom()) + " - " + CalenderUtil.getSimpleDateString(getDateTo());
+        return CalendarUtil.getSimpleDateString(getDateFrom()) + " - " + CalendarUtil.getSimpleDateString(getDateTo());
     }
 
     public String getDatesCompare() {
-        return CalenderUtil.getSimpleDateString(getDateFromCompare()) + " - " + CalenderUtil.getSimpleDateString(getDateToCompare());
+        return CalendarUtil.getSimpleDateString(getDateFromCompare()) + " - " + CalendarUtil.getSimpleDateString(getDateToCompare());
     }
 
     public Date getDateFrom() {
@@ -66,10 +66,10 @@ public class ReportObject implements Serializable {
 
         switch (getReportCompareType()) {
             case COMPARE_YEAR_TO_DATE: {
-                return CalenderUtil.getFirstDayInYear(getDateFrom());
+                return CalendarUtil.getFirstDayInYear(getDateFrom());
             }
             case COMPARE_WITH_SAME_PERIOD_LAST_YEAR: {
-                return CalenderUtil.subtractOneYear(getDateFrom());
+                return CalendarUtil.subtractOneYear(getDateFrom());
             }
             case COMPARE_TO_BUDGET: {
                 break;
@@ -88,7 +88,7 @@ public class ReportObject implements Serializable {
                 return getDateTo();
             }
             case COMPARE_WITH_SAME_PERIOD_LAST_YEAR: {
-                return CalenderUtil.subtractOneYear(getDateTo());
+                return CalendarUtil.subtractOneYear(getDateTo());
             }
             case COMPARE_TO_BUDGET: {
                 break;

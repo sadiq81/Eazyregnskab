@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.validators.forms;
 
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.services.FiscalYearService;
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -28,7 +28,7 @@ public class BalanceReportFormValidator extends BaseFormValidator {
         boolean withIn = false;
         for (FiscalYear fiscalYear : fiscalYearList) {
 
-            if (CalenderUtil.betweenDates(reportObject.getDateFrom(), fiscalYear) && CalenderUtil.betweenDates(reportObject.getDateTo(), fiscalYear)) {
+            if (CalendarUtil.betweenDates(reportObject.getDateFrom(), fiscalYear) && CalendarUtil.betweenDates(reportObject.getDateTo(), fiscalYear)) {
                 withIn = true;
                 break;
             }

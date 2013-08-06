@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * @author
  */
-public class CalenderUtil {
+public class CalendarUtil {
 
 
     public static Date getFirstDayInYear() {

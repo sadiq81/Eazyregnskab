@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.FiscalYearDAO;
 import dk.eazyit.eazyregnskab.domain.*;
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import org.apache.wicket.model.ResourceModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +61,7 @@ public class FiscalYearService {
         List<FinanceAccount> financeAccounts = financeAccountService.findBookableFinanceAccountByLegalEntity(fiscalYear.getLegalEntity());
 
         for (FinanceAccount financeAccount : financeAccounts) {
-            BookedFinancePosting primo = postingService.findPrimoPostingsFromAccount(financeAccount, CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1));
+            BookedFinancePosting primo = postingService.findPrimoPostingsFromAccount(financeAccount, CalendarUtil.add(fiscalYear.getEnd(), 0, 0, 1));
             postingService.deleteBookedPosting(primo);
         }
 
@@ -75,7 +75,7 @@ public class FiscalYearService {
     @Transactional
     public void closeFiscalYear(FiscalYear fiscalYear, Date nextYearStart) {
 
-        if (CalenderUtil.add(fiscalYear.getEnd(), 0, 0, 1).compareTo(nextYearStart) != 0) {
+        if (CalendarUtil.add(fiscalYear.getEnd(), 0, 0, 1).compareTo(nextYearStart) != 0) {
             throw new NullPointerException("Next year must be 1 day after previous");
         }
 

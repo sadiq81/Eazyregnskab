@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import dk.eazyit.eazyregnskab.domain.ReportCompareType;
-import dk.eazyit.eazyregnskab.util.CalenderUtil;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.web.components.button.AjaxLoadingButton;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
@@ -77,8 +77,8 @@ public abstract class BaseReportForm extends Form<ReportObject> {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 ReportObject reportObject = ((ReportObject) form.getModelObject());
-                reportObject.setDateFrom(CalenderUtil.add(reportObject.getDateFrom(), 1, 0, 0));
-                reportObject.setDateTo(CalenderUtil.add(reportObject.getDateTo(), 1, 0, 0));
+                reportObject.setDateFrom(CalendarUtil.add(reportObject.getDateFrom(), 1, 0, 0));
+                reportObject.setDateTo(CalendarUtil.add(reportObject.getDateTo(), 1, 0, 0));
                 target.add(getPage());
 
             }
@@ -96,8 +96,8 @@ public abstract class BaseReportForm extends Form<ReportObject> {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 ReportObject reportObject = ((ReportObject) form.getModelObject());
-                reportObject.setDateFrom(CalenderUtil.add(reportObject.getDateFrom(), -1, 0, 0));
-                reportObject.setDateTo(CalenderUtil.add(reportObject.getDateTo(), -1, 0, 0));
+                reportObject.setDateFrom(CalendarUtil.add(reportObject.getDateFrom(), -1, 0, 0));
+                reportObject.setDateTo(CalendarUtil.add(reportObject.getDateTo(), -1, 0, 0));
                 target.add(getPage());
             }
 
