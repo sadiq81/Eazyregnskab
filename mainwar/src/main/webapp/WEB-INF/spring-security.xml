@@ -15,6 +15,7 @@
 
 
     <http auto-config="true">
+        <intercept-url pattern="/app/front/LoginPage*" requires-channel='https' access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/app/front/**" requires-channel='http' access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/app/secure/**" requires-channel='https' access="ROLE_USER"/>
         <form-login

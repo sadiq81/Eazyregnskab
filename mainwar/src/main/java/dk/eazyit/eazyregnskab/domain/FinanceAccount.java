@@ -5,6 +5,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author
@@ -92,6 +94,9 @@ public class FinanceAccount extends BaseEntity {
 
     @Transient
     private String sumFromTo;
+
+    @Transient
+    private List<BookedFinancePosting> bookedFinancePostingList;
 
     public FinanceAccount() {
     }
@@ -230,6 +235,15 @@ public class FinanceAccount extends BaseEntity {
         this.sumFromTo = sumFromTo;
     }
 
+    public List<BookedFinancePosting> getBookedFinancePostingList() {
+        if (bookedFinancePostingList == null) bookedFinancePostingList = new ArrayList<BookedFinancePosting>();
+        return bookedFinancePostingList;
+    }
+
+    public void setBookedFinancePostingList(List<BookedFinancePosting> bookedFinancePostingList) {
+        this.bookedFinancePostingList = bookedFinancePostingList;
+    }
+
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
@@ -244,6 +258,9 @@ public class FinanceAccount extends BaseEntity {
     }
 
     public boolean isBookable() {
-        return financeAccountType != FinanceAccountType.HEADLINE && financeAccountType != FinanceAccountType.SUM && financeAccountType != FinanceAccountType.CATEGORY;
+        return financeAccountType != FinanceAccountType.HEADLINE &&
+                financeAccountType != FinanceAccountType.SUM &&
+                financeAccountType != FinanceAccountType.CATEGORY &&
+                financeAccountType != FinanceAccountType.BALANCE_CHECK;
     }
 }

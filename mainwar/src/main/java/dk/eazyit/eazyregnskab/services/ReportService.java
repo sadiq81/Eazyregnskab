@@ -68,7 +68,7 @@ public class ReportService {
         List<BookedFinancePosting> financePostingList = postingService.findBookedPostingsFromLegalEntityFromDateToDate(legalEntity, fromDate, toDate);
         List<BookedFinancePosting> financePostingListCompare = postingService.findBookedPostingsFromLegalEntityFromDateToDate(legalEntity, fromDateCompare, toDateCompare);
 
-        Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
+//        Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
 
         HashMap<Integer, FinanceAccount> financeAccountHashMap = new HashMap<Integer, FinanceAccount>();
         //Arrange and set sum = 0
@@ -142,5 +142,66 @@ public class ReportService {
         }
 
         return financeAccountsList;
+    }
+
+
+    public List<FinanceAccount> getFinanceAccountsWithBookedFinancePostings(LegalEntity id, CompoundPropertyModel<ReportObject> cpm) {
+
+        Date fromDate = cpm.getObject().getDateFrom();
+        Date toDate = cpm.getObject().getDateTo();
+
+        FinanceAccount fromAccount = cpm.getObject().getAccountFrom();
+        FinanceAccount toAccount = cpm.getObject().getAccountTo();
+
+        List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntityFromAccountToAccount(id, fromAccount, toAccount);
+        List<BookedFinancePosting> financePostingList = postingService.findBookedPostingsFromLegalEntityByIntervalFromDateToDate(financeAccountsList, fromDate, toDate);
+
+        Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
+
+        List<FinanceAccount> onlyOperationsAndBalanceAccounts = new ArrayList<FinanceAccount>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            if (financeAccount.isBookable()) onlyOperationsAndBalanceAccounts.add(financeAccount);
+        }
+        financeAccountsList = onlyOperationsAndBalanceAccounts;
+
+        HashMap<Integer, FinanceAccount> financeAccountHashMap = new HashMap<Integer, FinanceAccount>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            financeAccountHashMap.put(financeAccount.getAccountNumber(), financeAccount);
+        }
+
+        for (BookedFinancePosting bookedFinancePosting : financePostingList) {
+            financeAccountHashMap.get(bookedFinancePosting.getFinanceAccount().getAccountNumber()).getBookedFinancePostingList().add(bookedFinancePosting);
+        }
+
+        List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            //TODO Make sure all accounts have primo postings, including first. Then this is easier
+            if (financeAccount.getBookedFinancePostingList().size() > 0 && !(financeAccount.getBookedFinancePostingList().size() == 1 && financeAccount.getBookedFinancePostingList().get(0).getBookedFinancePostingType().equals(BookedFinancePostingType.PRIMO))) {
+                onlyWithSum.add(financeAccount);
+            }
+        }
+
+        if (cpm.getObject().isHideAccountsWithOutSum()) {
+            financeAccountsList = onlyWithSum;
+        }
+
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            BookedFinancePosting previous = null;
+            for (BookedFinancePosting bookedFinancePosting : financeAccount.getBookedFinancePostingList()) {
+                if (previous == null) {
+                    previous = bookedFinancePosting;
+                    previous.setSum(previous.getAmount());
+                } else {
+                    bookedFinancePosting.setSum(previous.getSum() + bookedFinancePosting.getAmount());
+                }
+            }
+            //TODO Make sure all accounts have primo postings, including first. Then this is irelevant
+            if (financeAccount.getBookedFinancePostingList().size() > 0 && !financeAccount.getBookedFinancePostingList().get(0).getBookedFinancePostingType().equals(BookedFinancePostingType.PRIMO)) {
+                financeAccount.getBookedFinancePostingList().add(0, new BookedFinancePosting().setDate(fromDate).setBookingNumber(0).setText("Primo").setAmount(0D).setSum(0D).setBookedFinancePostingType(BookedFinancePostingType.PRIMO));
+            }
+        }
+
+        return financeAccountsList;
+
     }
 }

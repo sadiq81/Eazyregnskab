@@ -26,13 +26,16 @@ import java.util.Date;
                 "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1)"),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_LEGAL_ENTITY_FROM_DATE_TO_DATE, query = "select bp from BookedFinancePosting bp " +
-                        "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1) and bp.date >= ?2 and bp.date <= ?3"),
+                "WHERE bp.financeAccount.id in (select fp.id from FinanceAccount fp where fp.legalEntity = ?1) and bp.date >= ?2 and bp.date <= ?3"),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT, query = "select bp from BookedFinancePosting bp " +
                 "WHERE bp.financeAccount = ?1 and bp.date = ?2 and bp.bookedFinancePostingType = ?3 "),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, query = "select bp from BookedFinancePosting  bp " +
-                "WHERE bp.financeAccount.legalEntity = ?1 and bp.date >= ?2 and bp.date <= ?3 ")
+                "WHERE bp.financeAccount.legalEntity = ?1 and bp.date >= ?2 and bp.date <= ?3 "),
+
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_INTERVAL_AND_DATE, query = "select bp from BookedFinancePosting  bp " +
+                "WHERE bp.financeAccount in (?1) and bp.date >= ?2 and bp.date <= ?3 ")
 
 })
 @Table(name = "bookedfinanceposting")
@@ -45,6 +48,7 @@ public class BookedFinancePosting extends BaseEntity {
     public static final String QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE = "BookedFinancePosting::findBookedFinancePostingByVatType";
     public static final String QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT = "BookedFinancePosting::findPrimoFinancePostingByAccount";
     public static final String QUERY_FIND_FINANCE_POSTING_IN_YEAR = "BookedFinancePosting::findBookedFinancePostingInYear";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_INTERVAL_AND_DATE = "BookedFinancePosting::findBookedFinancePostingByIntervalAndDate";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,16 +102,19 @@ public class BookedFinancePosting extends BaseEntity {
         return bookingNumber;
     }
 
-    public void setBookingNumber(int bookingNumber) {
+    public BookedFinancePosting setBookingNumber(int bookingNumber) {
         this.bookingNumber = bookingNumber;
+        return this;
     }
+
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public BookedFinancePosting setDate(Date date) {
         this.date = date;
+        return this;
     }
 
     public String getSimpleFormatDate() {
@@ -119,16 +126,18 @@ public class BookedFinancePosting extends BaseEntity {
         return text;
     }
 
-    public void setText(String text) {
+    public BookedFinancePosting setText(String text) {
         this.text = text;
+        return this;
     }
 
     public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public BookedFinancePosting setAmount(Double amount) {
         this.amount = amount;
+        return this;
     }
 
     public void removeVat(Double vat) {
@@ -139,8 +148,9 @@ public class BookedFinancePosting extends BaseEntity {
         return financeAccount;
     }
 
-    public void setFinanceAccount(FinanceAccount financeAccount) {
+    public BookedFinancePosting setFinanceAccount(FinanceAccount financeAccount) {
         this.financeAccount = financeAccount;
+        return this;
     }
 
     public AppUser getAppUser() {
@@ -163,16 +173,18 @@ public class BookedFinancePosting extends BaseEntity {
         return sum;
     }
 
-    public void setSum(Double sum) {
+    public BookedFinancePosting setSum(Double sum) {
         this.sum = sum;
+        return this;
     }
 
     public BookedFinancePostingType getBookedFinancePostingType() {
         return bookedFinancePostingType;
     }
 
-    public void setBookedFinancePostingType(BookedFinancePostingType bookedFinancePostingType) {
+    public BookedFinancePosting setBookedFinancePostingType(BookedFinancePostingType bookedFinancePostingType) {
         this.bookedFinancePostingType = bookedFinancePostingType;
+        return this;
     }
 
     @Override
