@@ -92,10 +92,6 @@ public class FiscalYearService {
             switch (financeAccount.getFinanceAccountType()) {
                 case PROFIT:
                 case EXPENSE: {
-                    BookedFinancePosting posting = setupBaseData(nextYearStart);
-                    posting.setAmount(new Double(0));
-                    posting.setFinanceAccount(financeAccount);
-                    primoPostings.add(posting);
                 }
                 case YEAR_END: {
                     resultOfYear = resultOfYear + financeAccount.getSum();
@@ -103,10 +99,12 @@ public class FiscalYearService {
                 }
                 case ASSET:
                 case LIABILITY: {
-                    BookedFinancePosting posting = setupBaseData(nextYearStart);
-                    posting.setAmount(financeAccount.getSum());
-                    posting.setFinanceAccount(financeAccount);
-                    primoPostings.add(posting);
+                    if (!financeAccount.getSum().equals(0)) {
+                        BookedFinancePosting posting = setupBaseData(nextYearStart);
+                        posting.setAmount(financeAccount.getSum());
+                        posting.setFinanceAccount(financeAccount);
+                        primoPostings.add(posting);
+                    }
                     break;
                 }
                 case BALANCE_CHECK:
@@ -114,7 +112,6 @@ public class FiscalYearService {
                 case CATEGORY:
                 case HEADLINE:
                 case SUM: {
-
                     break;
                 }
                 default: {

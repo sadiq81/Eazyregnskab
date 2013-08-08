@@ -21,6 +21,8 @@ public class ReportService {
     @Autowired
     PostingService postingService;
 
+    private static Double ZERO = new Double(0);
+
     @Transactional
     public List<FinanceAccount> getFinanceAccountsWithSum(FiscalYear fiscalYear) {
 
@@ -173,32 +175,38 @@ public class ReportService {
             financeAccountHashMap.get(bookedFinancePosting.getFinanceAccount().getAccountNumber()).getBookedFinancePostingList().add(bookedFinancePosting);
         }
 
-        List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
-        for (FinanceAccount financeAccount : financeAccountsList) {
-            //TODO Make sure all accounts have primo postings, including first. Then this is easier
-            if (financeAccount.getBookedFinancePostingList().size() > 0 && !(financeAccount.getBookedFinancePostingList().size() == 1 && financeAccount.getBookedFinancePostingList().get(0).getBookedFinancePostingType().equals(BookedFinancePostingType.PRIMO))) {
-                onlyWithSum.add(financeAccount);
+        if (cpm.getObject().isHideAccountsWithOutTransactions()) {
+            List<FinanceAccount> onlyWithTransactions = new ArrayList<FinanceAccount>();
+            for (FinanceAccount financeAccount : financeAccountsList) {
+                if (financeAccount.getBookedFinancePostingList().size() > 0) {
+                    onlyWithTransactions.add(financeAccount);
+                }
             }
-        }
-
-        if (cpm.getObject().isHideAccountsWithOutSum()) {
-            financeAccountsList = onlyWithSum;
+            financeAccountsList = onlyWithTransactions;
         }
 
         for (FinanceAccount financeAccount : financeAccountsList) {
             BookedFinancePosting previous = null;
             for (BookedFinancePosting bookedFinancePosting : financeAccount.getBookedFinancePostingList()) {
                 if (previous == null) {
-                    previous = bookedFinancePosting;
-                    previous.setSum(previous.getAmount());
+                    bookedFinancePosting.setSum(bookedFinancePosting.getAmount());
                 } else {
                     bookedFinancePosting.setSum(previous.getSum() + bookedFinancePosting.getAmount());
                 }
+                previous = bookedFinancePosting;
             }
-            //TODO Make sure all accounts have primo postings, including first. Then this is irelevant
-            if (financeAccount.getBookedFinancePostingList().size() > 0 && !financeAccount.getBookedFinancePostingList().get(0).getBookedFinancePostingType().equals(BookedFinancePostingType.PRIMO)) {
-                financeAccount.getBookedFinancePostingList().add(0, new BookedFinancePosting().setDate(fromDate).setBookingNumber(0).setText("Primo").setAmount(0D).setSum(0D).setBookedFinancePostingType(BookedFinancePostingType.PRIMO));
+        }
+
+        if (cpm.getObject().isHideAccountsWithOutSum()) {
+            List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
+            for (FinanceAccount financeAccount : financeAccountsList) {
+
+                if (financeAccount.getBookedFinancePostingList().size() > 0 &&
+                        !ZERO.equals(financeAccount.getBookedFinancePostingList().get(financeAccount.getBookedFinancePostingList().size() - 1).getSum())) {
+                    onlyWithSum.add(financeAccount);
+                }
             }
+            financeAccountsList = onlyWithSum;
         }
 
         return financeAccountsList;
