@@ -100,14 +100,12 @@ public class ReportService {
                 year_result_compare += bookedFinancePostingCompare.getAmount();
         }
 
-        List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
-        for (FinanceAccount financeAccount : financeAccountsList) {
-            if ((!financeAccount.getSum().equals(new Double(0)) && !financeAccount.getSumCompare().equals(new Double(0))) || financeAccount.getFinanceAccountType().includeInOnlyWithSum()) {
-                onlyWithSum.add(financeAccount);
-            }
-        }
-
         if (model.getObject().isHideAccountsWithOutSum()) {
+            List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
+            for (FinanceAccount financeAccount : financeAccountsList) {
+                if ((!financeAccount.getSum().equals(new Double(0)) || !financeAccount.getSumCompare().equals(new Double(0))) || financeAccount.getFinanceAccountType().includeInOnlyWithSum())
+                    onlyWithSum.add(financeAccount);
+            }
             financeAccountsList = onlyWithSum;
         }
 
