@@ -12,7 +12,7 @@ import org.apache.wicket.model.StringResourceModel;
 /**
  * @author
  */
-public class BalancePanel extends SessionAwarePanel<ReportObject> {
+public class BalancePanel extends ReportPanel {
 
     public BalancePanel(String id) {
         super(id);
@@ -34,9 +34,5 @@ public class BalancePanel extends SessionAwarePanel<ReportObject> {
 
     }
 
-    @Override
-    protected void onConfigure() {
-        super.onConfigure();
-        setVisibilityAllowed(getModelObject().isSubmitHasBeenPressed());
-    }
+
 }

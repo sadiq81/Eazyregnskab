@@ -9,7 +9,7 @@ import org.apache.wicket.model.IModel;
 /**
  * @author
  */
-public class FinanceAccountsPanel extends SessionAwarePanel<ReportObject> {
+public class FinanceAccountsPanel extends ReportPanel {
 
     public FinanceAccountsPanel(String id) {
         super(id);
