@@ -154,6 +154,12 @@ public class PostingService {
         return bookedFinancePostingDAO.findByNamedQueryUnique(BookedFinancePosting.QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT, financeAccount, start, BookedFinancePostingType.PRIMO);
     }
 
+    @Transactional(readOnly = true)
+    public List<BookedFinancePosting> findBookedPostingsFromLegalEntityByBookingNumber(LegalEntity legalEntity, BookedFinancePosting bookedFinancePosting) {
+        LOG.debug("Finding  BookedFinancePosting with number " + bookedFinancePosting.getBookingNumber());
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_BOOKING_NUMBER, legalEntity, bookedFinancePosting.getDate(), bookedFinancePosting.getBookingNumber());
+    }
+
     @Transactional
     public void saveBookedFinancePosting(BookedFinancePosting bookedFinancePosting) {
         if (bookedFinancePosting.getId() == 0) {

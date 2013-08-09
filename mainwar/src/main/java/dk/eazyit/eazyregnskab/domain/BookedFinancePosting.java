@@ -35,7 +35,10 @@ import java.util.Date;
                 "WHERE bp.financeAccount.legalEntity = ?1 and bp.date >= ?2 and bp.date <= ?3 "),
 
         @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_INTERVAL_AND_DATE, query = "select bp from BookedFinancePosting  bp " +
-                "WHERE bp.financeAccount in (?1) and bp.date >= ?2 and bp.date <= ?3 ")
+                "WHERE bp.financeAccount in (?1) and bp.date >= ?2 and bp.date <= ?3 "),
+
+        @NamedQuery(name = BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_BOOKING_NUMBER, query = "select bp from BookedFinancePosting  bp " +
+                "WHERE bp.financeAccount.legalEntity = ?1 and bp.date = ?2 and bp.bookingNumber = ?3 ")
 
 })
 @Table(name = "bookedfinanceposting")
@@ -49,6 +52,9 @@ public class BookedFinancePosting extends BaseEntity {
     public static final String QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT = "BookedFinancePosting::findPrimoFinancePostingByAccount";
     public static final String QUERY_FIND_FINANCE_POSTING_IN_YEAR = "BookedFinancePosting::findBookedFinancePostingInYear";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_INTERVAL_AND_DATE = "BookedFinancePosting::findBookedFinancePostingByIntervalAndDate";
+    public static final String QUERY_FIND_FINANCE_POSTING_BY_BOOKING_NUMBER = "BookedFinancePosting::findBookedFinancePostingByBookingNumber";
+
+    public static final String PARAM_BOOKED_FINANCE_POSTING_BOOKING_NUMBER = BookedFinancePosting.class.getName() + ".bookingNumber";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

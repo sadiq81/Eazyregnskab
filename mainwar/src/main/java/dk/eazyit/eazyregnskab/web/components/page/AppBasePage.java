@@ -100,4 +100,6 @@ public abstract class AppBasePage extends WebPage{
         component.add(AttributeModifier.append("data-placement", "top"));
         component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
     }
+
+
 }
