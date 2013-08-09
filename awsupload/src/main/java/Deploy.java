@@ -9,6 +9,13 @@ import java.io.File;
 public class Deploy {
     public static void main(String[] arg) throws Exception {
 
+        System.out.println("Uploading new version in: ");
+        for (int i = 10; i > 0 ; i--){
+            if (i != 1) System.out.println(i + " seconds");
+            if (i == 1) System.out.println(i + " second");
+            Thread.sleep(1000);
+        }
+
         String username = arg[0];
         String pathToKey = arg[1];
         String hostname = arg[2];
