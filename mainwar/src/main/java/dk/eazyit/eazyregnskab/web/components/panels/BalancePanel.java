@@ -12,7 +12,7 @@ import org.apache.wicket.model.StringResourceModel;
 /**
  * @author
  */
-public class BalancePanel extends SessionAwarePanel {
+public class BalancePanel extends SessionAwarePanel<ReportObject> {
 
     public BalancePanel(String id) {
         super(id);
@@ -24,18 +24,19 @@ public class BalancePanel extends SessionAwarePanel {
 
     @Override
     protected void addToPage() {
-        setOutputMarkupId(true);
+        setOutputMarkupPlaceholderTag(true);
 
         add(new FinanceAccountListView("financeAccounts", new FinanceAccountListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
-        add(new Label("dates", new PropertyModel<ReportObject>(getDefaultModel(),"dates")));
-        add(new Label("datesCompare", new PropertyModel<ReportObject>(getDefaultModel(),"datesCompare")));
+        add(new Label("dates", new PropertyModel<ReportObject>(getDefaultModel(), "dates")));
+        add(new Label("datesCompare", new PropertyModel<ReportObject>(getDefaultModel(), "datesCompare")));
 
-        add(new Label("compareType", new StringResourceModel("ReportCompareType.${reportCompareType}",this,getDefaultModel())));
-
+        add(new Label("compareType", new StringResourceModel("ReportCompareType.${reportCompareType}", this, getDefaultModel())));
 
     }
 
-
-
-
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        setVisibilityAllowed(getModelObject().isSubmitHasBeenPressed());
+    }
 }

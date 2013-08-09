@@ -19,8 +19,9 @@ public class ReportObject implements Serializable {
     protected FinanceAccount accountFrom;
     protected FinanceAccount accountTo;
     protected ReportCompareType reportCompareType = ReportCompareType.COMPARE_WITH_SAME_PERIOD_LAST_YEAR;
-    protected boolean hideAccountsWithOutSum;
-    protected boolean hideAccountsWithOutTransactions;
+    protected boolean hideAccountsWithOutSum = true;
+    protected boolean hideAccountsWithOutTransactions = true;
+    protected boolean submitHasBeenPressed;
 
     public ReportObject() {
         dateFrom = CalendarUtil.getFirstDayInYear();
@@ -143,5 +144,13 @@ public class ReportObject implements Serializable {
 
     public void setHideAccountsWithOutTransactions(boolean hideAccountsWithOutTransactions) {
         this.hideAccountsWithOutTransactions = hideAccountsWithOutTransactions;
+    }
+
+    public boolean isSubmitHasBeenPressed() {
+        return submitHasBeenPressed;
+    }
+
+    public void setSubmitHasBeenPressed(boolean submitHasBeenPressed) {
+        this.submitHasBeenPressed = submitHasBeenPressed;
     }
 }

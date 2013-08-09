@@ -24,16 +24,19 @@ public abstract class BaseReportForm extends Form<ReportObject> {
     WebMarkupContainer refreshOnSubmit;
     AjaxButton plus;
     AjaxButton minus;
+    BaseReportForm self;
 
     public BaseReportForm(String id, WebMarkupContainer refreshOnSubmit) {
         super(id);
         this.refreshOnSubmit = refreshOnSubmit;
+        self = this;
         addToForm();
     }
 
     public BaseReportForm(String id, IModel model, WebMarkupContainer refreshOnSubmit) {
         super(id, model);
         this.refreshOnSubmit = refreshOnSubmit;
+        self = this;
         addToForm();
     }
 
@@ -56,6 +59,7 @@ public abstract class BaseReportForm extends Form<ReportObject> {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 target.add(this);
+                self.getModelObject().setSubmitHasBeenPressed(true);
                 if (refreshOnSubmit != null) target.add(refreshOnSubmit);
                 submit(target);
             }

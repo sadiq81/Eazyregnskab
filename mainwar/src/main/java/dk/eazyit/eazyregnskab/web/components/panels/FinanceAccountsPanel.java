@@ -9,7 +9,7 @@ import org.apache.wicket.model.IModel;
 /**
  * @author
  */
-public class FinanceAccountsPanel extends SessionAwarePanel {
+public class FinanceAccountsPanel extends SessionAwarePanel<ReportObject> {
 
     public FinanceAccountsPanel(String id) {
         super(id);
@@ -21,13 +21,17 @@ public class FinanceAccountsPanel extends SessionAwarePanel {
 
     @Override
     protected void addToPage() {
-        setOutputMarkupId(true);
+        setOutputMarkupPlaceholderTag(true);
 
         add(new BookedFinancePostingListView("postings", new BookedFinancePostingListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
 
     }
 
-
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        setVisibilityAllowed(getModelObject().isSubmitHasBeenPressed());
+    }
 
 
 }
