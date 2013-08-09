@@ -24,6 +24,7 @@ public class BalancePanel extends ReportPanel {
 
     @Override
     protected void addToPage() {
+        super.addToPage();
         setOutputMarkupPlaceholderTag(true);
 
         add(new FinanceAccountListView("financeAccounts", new FinanceAccountListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));

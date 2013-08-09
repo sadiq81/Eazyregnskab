@@ -11,6 +11,8 @@ import org.apache.wicket.model.IModel;
  */
 public class FinanceAccountsPanel extends ReportPanel {
 
+    BookedFinancePostingListView postings;
+
     public FinanceAccountsPanel(String id) {
         super(id);
     }
@@ -21,10 +23,10 @@ public class FinanceAccountsPanel extends ReportPanel {
 
     @Override
     protected void addToPage() {
+        super.addToPage();
         setOutputMarkupPlaceholderTag(true);
 
-        add(new BookedFinancePostingListView("postings", new BookedFinancePostingListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
-
+        add(postings = new BookedFinancePostingListView("postings", new BookedFinancePostingListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
     }
 
     @Override

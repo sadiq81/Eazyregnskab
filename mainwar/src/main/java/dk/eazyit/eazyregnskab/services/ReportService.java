@@ -143,6 +143,10 @@ public class ReportService {
             }
         }
 
+        if (financeAccountsList.size() == 0) {
+            model.getObject().setEmptyReport(true);
+        }
+
         return financeAccountsList;
     }
 
@@ -207,6 +211,10 @@ public class ReportService {
                 }
             }
             financeAccountsList = onlyWithSum;
+        }
+
+        if (financeAccountsList.size() == 0) {
+            cpm.getObject().setEmptyReport(true);
         }
 
         return financeAccountsList;

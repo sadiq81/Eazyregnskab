@@ -6,87 +6,88 @@
 </head>
 <body>
 
+<wicket:extend>
+    <!--<wicket:panel>-->
 
-<wicket:panel>
+        <table class="table table-condensed">
+            <span wicket:id="postings">
+                <!--<tr class="success">-->
+                <!--<td>-->
+                <!--<wicket:message key="accountNumber"></wicket:message>-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<wicket:message key="accountName"></wicket:message>-->
+                <!--</td>-->
+                <!--<td colspan="4"></td>-->
+                <!--</tr>-->
+                <tr class="success">
+                    <th>
+                        <h4>
+                            <span wicket:id="accountNumber"></span>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <span wicket:id="accountName"></span>
+                        </h4>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
 
-    <table class="table table-condensed">
-        <span wicket:id="postings">
-            <!--<tr class="success">-->
-            <!--<td>-->
-            <!--<wicket:message key="accountNumber"></wicket:message>-->
-            <!--</td>-->
-            <!--<td>-->
-            <!--<wicket:message key="accountName"></wicket:message>-->
-            <!--</td>-->
-            <!--<td colspan="4"></td>-->
-            <!--</tr>-->
-            <tr class="success">
-                <th>
-                    <h4>
-                        <span wicket:id="accountNumber"></span>
-                    </h4>
-                </th>
-                <th>
-                    <h4>
-                        <span wicket:id="accountName"></span>
-                    </h4>
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-
-            </tr>
-            <tr>
-                <th>
-                    <wicket:message key="date"></wicket:message>
-                </th>
-                <th>
-                    <wicket:message key="bookingNumber"></wicket:message>
-                </th>
-                <th>
-                    <wicket:message key="text"></wicket:message>
-                </th>
-                <th>
-                    <wicket:message key="vatType.name"></wicket:message>
-                </th>
-                <th style="text-align: right">
-                    <wicket:message key="amount"></wicket:message>
-                </th>
-                <th style="text-align: right">
-                    <wicket:message key="sum"></wicket:message>
-                </th>
-            </tr>
-            <span>
-                <tr wicket:id="postings">
-                    <td>
-                        <span wicket:id="date"></span>
-                    </td>
-                    <td>
-                        <span wicket:id="bookingNumber"></span>
-                    </td>
-                    <td>
-                        <span wicket:id="text"></span>
-                    </td>
-                    <td>
-                        <span wicket:id="vatType.name"></span>
-                    </td>
-                    <td style="text-align: right">
-                        <span wicket:id="amount"></span>
-                    </td>
-                    <td style="text-align: right">
-                        <span wicket:id="sum"></span>
-                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <wicket:message key="date"></wicket:message>
+                    </th>
+                    <th>
+                        <wicket:message key="bookingNumber"></wicket:message>
+                    </th>
+                    <th>
+                        <wicket:message key="text"></wicket:message>
+                    </th>
+                    <th>
+                        <wicket:message key="vatType.name"></wicket:message>
+                    </th>
+                    <th style="text-align: right">
+                        <wicket:message key="amount"></wicket:message>
+                    </th>
+                    <th style="text-align: right">
+                        <wicket:message key="sum"></wicket:message>
+                    </th>
+                </tr>
+                <span>
+                    <tr wicket:id="postings">
+                        <td>
+                            <span wicket:id="date"></span>
+                        </td>
+                        <td>
+                            <span wicket:id="bookingNumber"></span>
+                        </td>
+                        <td>
+                            <span wicket:id="text"></span>
+                        </td>
+                        <td>
+                            <span wicket:id="vatType.name"></span>
+                        </td>
+                        <td style="text-align: right">
+                            <span wicket:id="amount"></span>
+                        </td>
+                        <td style="text-align: right">
+                            <span wicket:id="sum"></span>
+                        </td>
+                    </tr>
+                </span>
+                <tr>
+                    <td colspan="6" style="border-top-style: none"><br></td>
+                </tr>
+                <tr class="">
+                    <td colspan="6" style="border-top-style: none"><br></td>
                 </tr>
             </span>
-            <tr>
-                <td colspan="6" style="border-top-style: none"><br></td>
-            </tr>
-            <tr class="">
-                <td colspan="6" style="border-top-style: none"><br></td>
-            </tr>
-        </span>
-    </table>
-</wicket:panel>
+        </table>
+    <!--</wicket:panel>-->
+</wicket:extend>
 </body>
 </html>

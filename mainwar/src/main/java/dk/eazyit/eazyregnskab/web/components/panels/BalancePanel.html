@@ -6,44 +6,47 @@
 </head>
 <body>
 
-
-<wicket:panel>
-    <table class="table table-condensed">
-        <tr>
-            <th>
-                <wicket:message key="account.number"></wicket:message>
-            </th>
-            <th>
-                <wicket:message key="account.name"></wicket:message>
-            </th>
-            <th style="text-align: right">
-                <wicket:message key="account.sum"></wicket:message><br>
-                <span wicket:id="dates"></span>
-            </th>
-            <td></td>
-            <th style="text-align: right">
-                <span wicket:id="compareType"></span><br>
-                <span wicket:id="datesCompare"></span>
-            </th>
-        </tr>
-        <span>
-            <tr wicket:id="financeAccounts">
-                <td>
-                    <span wicket:id="accountNumber"></span>
-                </td>
-                <td>
-                    <span wicket:id="accountName"></span>
-                </td>
-                <td style="text-align: right">
-                    <span wicket:id="sum"></span>
-                </td>
+<wicket:extend>
+    <!--<wicket:panel>-->
+        <table class="table table-condensed">
+            <tr>
+                <th>
+                    <wicket:message key="account.number"></wicket:message>
+                </th>
+                <th>
+                    <wicket:message key="account.name"></wicket:message>
+                </th>
+                <th style="text-align: right">
+                    <wicket:message key="account.sum"></wicket:message>
+                    <br>
+                    <span wicket:id="dates"></span>
+                </th>
                 <td></td>
-                <td style="text-align: right">
-                    <span wicket:id="sumCompare"></span>
-                </td>
+                <th style="text-align: right">
+                    <span wicket:id="compareType"></span>
+                    <br>
+                    <span wicket:id="datesCompare"></span>
+                </th>
             </tr>
-        </span>
-    </table>
-</wicket:panel>
+            <span>
+                <tr wicket:id="financeAccounts">
+                    <td>
+                        <span wicket:id="accountNumber"></span>
+                    </td>
+                    <td>
+                        <span wicket:id="accountName"></span>
+                    </td>
+                    <td style="text-align: right">
+                        <span wicket:id="sum"></span>
+                    </td>
+                    <td></td>
+                    <td style="text-align: right">
+                        <span wicket:id="sumCompare"></span>
+                    </td>
+                </tr>
+            </span>
+        </table>
+    <!--</wicket:panel>-->
+</wicket:extend>
 </body>
 </html>

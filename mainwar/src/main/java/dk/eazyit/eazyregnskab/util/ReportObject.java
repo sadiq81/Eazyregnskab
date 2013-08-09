@@ -22,6 +22,7 @@ public class ReportObject implements Serializable {
     protected boolean hideAccountsWithOutSum = true;
     protected boolean hideAccountsWithOutTransactions = true;
     protected boolean submitHasBeenPressed;
+    protected boolean emptyReport;
 
     public ReportObject() {
         dateFrom = CalendarUtil.getFirstDayInYear();
@@ -152,5 +153,13 @@ public class ReportObject implements Serializable {
 
     public void setSubmitHasBeenPressed(boolean submitHasBeenPressed) {
         this.submitHasBeenPressed = submitHasBeenPressed;
+    }
+
+    public boolean isEmptyReport() {
+        return emptyReport;
+    }
+
+    public void setEmptyReport(boolean emptyReport) {
+        this.emptyReport = emptyReport;
     }
 }
