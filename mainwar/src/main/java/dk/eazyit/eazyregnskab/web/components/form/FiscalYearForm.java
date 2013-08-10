@@ -45,8 +45,13 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     private void configureDates() {
         FiscalYear fiscalYear = getModelObject();
         FiscalYear last = fiscalYearService.findLastFiscalYearByLegalEntity(getCurrentLegalEntity());
-        fiscalYear.setStart(CalendarUtil.add(last.getEnd(), 0, 0, 1));
-        fiscalYear.setEnd(CalendarUtil.add(last.getEnd(), 1, 0, 0));
+        if (last != null) {
+            fiscalYear.setStart(CalendarUtil.add(last.getEnd(), 0, 0, 1));
+            fiscalYear.setEnd(CalendarUtil.add(last.getEnd(), 1, 0, 0));
+        } else {
+            fiscalYear.setStart(CalendarUtil.getFirstDayInYear());
+            fiscalYear.setEnd(CalendarUtil.getLastDayInYear());
+        }
     }
 
 

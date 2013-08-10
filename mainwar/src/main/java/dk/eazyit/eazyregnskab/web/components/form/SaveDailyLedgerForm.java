@@ -70,7 +70,6 @@ public class SaveDailyLedgerForm extends Form {
                     new StringResourceModel("finance.postings.where.booked", this, null, ""))
                     .hideAfter(Duration.seconds(DURATION)));
         }
-
     }
 
 

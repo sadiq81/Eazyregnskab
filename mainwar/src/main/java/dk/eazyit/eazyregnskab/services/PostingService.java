@@ -171,7 +171,7 @@ public class PostingService {
 
     @Transactional
     public void deleteBookedPosting(BookedFinancePosting bookedFinancePosting) {
-        if (bookedFinancePosting.getBookedFinancePostingType() != BookedFinancePostingType.PRIMO) {
+        if (!BookedFinancePostingType.PRIMO.equals(bookedFinancePosting.getBookedFinancePostingType())) {
             throw new NullPointerException("MUST NEVER DELETE BOOKED FINANCEPOSTING");
         }
         bookedFinancePostingDAO.delete(bookedFinancePosting);

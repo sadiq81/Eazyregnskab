@@ -158,6 +158,9 @@ public interface GenericDAO<T extends BaseEntity, ID extends Serializable> {
      */
     T save(final T entity);
 
+
+    void save(List<T> entities);
+
     /**
      * @param entity the entity to create
      */
@@ -171,4 +174,6 @@ public interface GenericDAO<T extends BaseEntity, ID extends Serializable> {
     void delete(final T entity);
 
     T findByNamedQueryUnique(String name, Integer maxResults, Object... params);
+
+
 }

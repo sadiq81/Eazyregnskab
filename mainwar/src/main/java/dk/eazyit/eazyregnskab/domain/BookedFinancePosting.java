@@ -89,6 +89,12 @@ public class BookedFinancePosting extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private BookedFinancePostingType bookedFinancePostingType;
 
+    @OneToOne
+    private BookedFinancePosting vatPosting;
+
+    @OneToOne
+    private BookedFinancePosting reverseVatPosting;
+
     @Transient
     private Double sum;
 
@@ -191,6 +197,22 @@ public class BookedFinancePosting extends BaseEntity {
     public BookedFinancePosting setBookedFinancePostingType(BookedFinancePostingType bookedFinancePostingType) {
         this.bookedFinancePostingType = bookedFinancePostingType;
         return this;
+    }
+
+    public BookedFinancePosting getReverseVatPosting() {
+        return reverseVatPosting;
+    }
+
+    public void setReverseVatPosting(BookedFinancePosting reverseVatPosting) {
+        this.reverseVatPosting = reverseVatPosting;
+    }
+
+    public BookedFinancePosting getVatPosting() {
+        return vatPosting;
+    }
+
+    public void setVatPosting(BookedFinancePosting vatPosting) {
+        this.vatPosting = vatPosting;
     }
 
     @Override

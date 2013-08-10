@@ -1,15 +1,15 @@
 package dk.eazyit.eazyregnskab.web.components.link;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.ResourceModel;
 
 /**
  * @author
  */
-public abstract class ToolTipLink extends Link {
+public abstract class AjaxToolTipLink<T> extends AjaxLink<T> {
 
-    protected ToolTipLink(String id, String resourceText) {
+    protected AjaxToolTipLink(String id, String resourceText) {
         super(id);
         add(AttributeModifier.append("rel", "tooltip"));
         add(AttributeModifier.append("data-placement", "top"));

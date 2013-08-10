@@ -60,9 +60,10 @@ public class FiscalYearService {
 
         List<FinanceAccount> financeAccounts = financeAccountService.findBookableFinanceAccountByLegalEntity(fiscalYear.getLegalEntity());
 
+        //TODO find all primo in same transaction.
         for (FinanceAccount financeAccount : financeAccounts) {
             BookedFinancePosting primo = postingService.findPrimoPostingsFromAccount(financeAccount, CalendarUtil.add(fiscalYear.getEnd(), 0, 0, 1));
-            postingService.deleteBookedPosting(primo);
+            if (primo != null) postingService.deleteBookedPosting(primo);
         }
 
         fiscalYear.setFiscalYearStatus(FiscalYearStatus.OPEN);

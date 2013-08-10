@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.web.app.secure.reports;
 
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.web.components.form.FinanceAccountsReportForm;
+import dk.eazyit.eazyregnskab.web.components.modal.PostingsModal;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
 import dk.eazyit.eazyregnskab.web.components.panels.FinanceAccountsPanel;
@@ -20,6 +21,7 @@ public class FinanceAccountsPage extends BaseReportPage {
     private static final Logger LOG = LoggerFactory.getLogger(FinanceAccountsPage.class);
 
     FinanceAccountsPanel financeAccountsPanel;
+    public PostingsModal postingsModal;
 
     public FinanceAccountsPage() {
         super();
@@ -40,6 +42,7 @@ public class FinanceAccountsPage extends BaseReportPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
+        add(postingsModal = new PostingsModal("postingsModal"));
         add(financeAccountsPanel = new FinanceAccountsPanel("financeAccounts", new CompoundPropertyModel(getDefaultModel())));
         add(new FinanceAccountsReportForm("filters", new CompoundPropertyModel(getDefaultModel()), financeAccountsPanel));
     }
@@ -48,5 +51,7 @@ public class FinanceAccountsPage extends BaseReportPage {
     protected void configureComponents() {
 
     }
+
+
 
 }

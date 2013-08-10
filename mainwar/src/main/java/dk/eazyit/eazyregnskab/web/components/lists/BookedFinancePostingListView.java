@@ -2,10 +2,11 @@ package dk.eazyit.eazyregnskab.web.components.lists;
 
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
+import dk.eazyit.eazyregnskab.web.app.secure.reports.FinanceAccountsPage;
 import dk.eazyit.eazyregnskab.web.components.label.DateLabel;
-import dk.eazyit.eazyregnskab.web.components.link.ToolTipLink;
-import dk.eazyit.eazyregnskab.web.components.popup.EazyRegnskabPopUpSettings;
-import dk.eazyit.eazyregnskab.web.components.popup.PostingPopUp;
+import dk.eazyit.eazyregnskab.web.components.link.AjaxToolTipLink;
+import dk.eazyit.eazyregnskab.web.components.modal.PostingsModal;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -49,19 +50,21 @@ public class BookedFinancePostingListView extends ListView<FinanceAccount> {
             @Override
             protected void populateItem(final ListItem<BookedFinancePosting> itemInner) {
 
-                BookedFinancePosting bfp = itemInner.getModelObject();
+                final BookedFinancePosting bfp = itemInner.getModelObject();
                 itemInner.add(new DateLabel("date", bfp.getDate()));
                 itemInner.add(new Label("bookingNumber", bfp.getBookingNumber()));
                 itemInner.add(new Label("text", bfp.getText()));
                 itemInner.add(new Label("vatType.name", bfp.getVatType() != null ? bfp.getVatType().getName() : ""));
                 itemInner.add(new Label("amount", bfp.getAmount()));
                 itemInner.add(new Label("sum", bfp.getSum()));
-                itemInner.add(new ToolTipLink("postings", "tooltip.postings") {
+                itemInner.add(new AjaxToolTipLink("postings", "tooltip.postings") {
                     @Override
-                    public void onClick() {
-                        setResponsePage(new PostingPopUp(itemInner.getModel()));
+                    public void onClick(AjaxRequestTarget target) {
+
+                        ((PostingsModal) ((FinanceAccountsPage) getPage()).postingsModal.setItem(bfp)).show(target);
+
                     }
-                }.setPopupSettings(new EazyRegnskabPopUpSettings(getString("tooltip.postings"))));
+                });
             }
         });
 

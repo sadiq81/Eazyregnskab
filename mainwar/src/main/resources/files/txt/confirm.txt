@@ -346,7 +346,7 @@
                                                             	<tr>
                                                                 	<td valign="middle" class="templateButtonContent">
                                                                     	<div mc:edit="std_content01">
-                                                                        	<a href="http://www.eazyregnskab.dk/app/ConfirmPage?id=*|ID|*" target="_blank">Confirm</a>
+                                                                        	<a href="https://www.eazyregnskab.dk/app/front/ConfirmPage?id=*|ID|*" target="_blank">Confirm</a>
                                                                         </div>
                                                                     </td>
                                                                 </tr>

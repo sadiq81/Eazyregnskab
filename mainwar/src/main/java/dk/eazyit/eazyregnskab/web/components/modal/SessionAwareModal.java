@@ -1,22 +1,27 @@
-package dk.eazyit.eazyregnskab.web.components.popup;
+package dk.eazyit.eazyregnskab.web.components.modal;
 
-import de.agilecoders.wicket.core.Bootstrap;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.Session;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.model.IModel;
 
 /**
  * @author
  */
-public class SessionAwarePopUp<T> extends WebPage {
+public class SessionAwareModal<T> extends ModalWindow {
 
-    protected SessionAwarePopUp(IModel<T> model) {
-        super(model);
+
+    public SessionAwareModal(String id) {
+        super(id);
+    }
+
+    public SessionAwareModal(String id, IModel<T> model) {
+        super(id, model);
     }
 
     public AppUser getCurrentUser() {
@@ -40,8 +45,14 @@ public class SessionAwarePopUp<T> extends WebPage {
     }
 
     @Override
-    public void renderHead(IHeaderResponse response) {
-        super.renderHead(response);
-        Bootstrap.renderHead(response);
+    public String getCssClassName() {
+        return CSS_CLASS_GRAY;
+    }
+
+    protected Component addToolTipToComponent(Component component, String text) {
+        component.add(AttributeModifier.append("rel", "tooltip"));
+        component.add(AttributeModifier.append("data-placement", "top"));
+        component.add(AttributeModifier.append("data-original-title", text));
+        return component;
     }
 }

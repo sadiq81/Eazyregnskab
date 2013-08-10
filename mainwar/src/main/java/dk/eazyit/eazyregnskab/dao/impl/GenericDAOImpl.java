@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Example;
@@ -441,4 +442,23 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
         getEntityManager().persist(entity);
     }
 
+    @Override
+    public void save(List<T> entities) {
+
+        Session session = (Session) getEntityManager().getDelegate();
+        Transaction tx = session.beginTransaction();
+        for (int i = 0; i < entities.size(); i++) {
+            T entity = entities.get(i);
+            if (entity.getCreated() == null) entity.setCreated(new Date());
+            entity.setLastChanged(new Date());
+            logger.debug("Saving " + entity.toString() + " to database");
+            session.save(entity);
+            if (i % 50 == 0) {
+                session.flush();
+                session.clear();
+            }
+        }
+        tx.commit();
+        session.close();
+    }
 }
