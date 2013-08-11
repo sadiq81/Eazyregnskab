@@ -80,6 +80,7 @@ public class BookedFinancePosting extends BaseEntity {
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 
+    //Only used if posting is vat posting
     @ManyToOne(optional = true)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "vatType_id")
@@ -95,8 +96,14 @@ public class BookedFinancePosting extends BaseEntity {
     @OneToOne
     private BookedFinancePosting reverseVatPosting;
 
+    @OneToOne
+    private BookedFinancePosting reversePosting;
+
     @Transient
     private Double sum;
+
+    @Column
+    private boolean isReverse;
 
     public BookedFinancePosting() {
     }
@@ -203,16 +210,35 @@ public class BookedFinancePosting extends BaseEntity {
         return reverseVatPosting;
     }
 
-    public void setReverseVatPosting(BookedFinancePosting reverseVatPosting) {
+    public BookedFinancePosting setReverseVatPosting(BookedFinancePosting reverseVatPosting) {
         this.reverseVatPosting = reverseVatPosting;
+        return this;
     }
 
     public BookedFinancePosting getVatPosting() {
         return vatPosting;
     }
 
-    public void setVatPosting(BookedFinancePosting vatPosting) {
+    public BookedFinancePosting setVatPosting(BookedFinancePosting vatPosting) {
         this.vatPosting = vatPosting;
+        return this;
+    }
+
+    public BookedFinancePosting getReversePosting() {
+        return reversePosting;
+    }
+
+    public BookedFinancePosting setReversePosting(BookedFinancePosting reversePosting) {
+        this.reversePosting = reversePosting;
+        return this;
+    }
+
+    public boolean isReverse() {
+        return isReverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        isReverse = reverse;
     }
 
     @Override

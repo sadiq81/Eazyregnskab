@@ -29,6 +29,8 @@ public class BookingService {
     FiscalYearService fiscalYearService;
     @Autowired
     VatTypeService vatTypeService;
+    @Autowired
+    DailyLedgerService dailyLedgerService;
 
     @Transactional
     public void BookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
@@ -107,11 +109,13 @@ public class BookingService {
     private List<BookedFinancePosting> createBookedFinancePostings(DraftFinancePosting draftFinancePosting) {
 
         List<BookedFinancePosting> list = new LinkedList<BookedFinancePosting>();
+        BookedFinancePosting posting = null;
+        BookedFinancePosting reversePosting;
 
         FinanceAccount account = draftFinancePosting.getFinanceAccount();
         if (account != null) {
 
-            BookedFinancePosting posting = setupBaseData(draftFinancePosting);
+            posting = setupBaseData(draftFinancePosting);
             posting.setAmount(draftFinancePosting.getAmount());
             posting.setFinanceAccount(account);
             list.add(posting);
@@ -154,8 +158,54 @@ public class BookingService {
         }
 
         FinanceAccount reverse = draftFinancePosting.getReverseFinanceAccount();
+
         if (reverse != null) {
-            list.addAll(createBookedFinancePostings(draftFinancePosting.getPostingForReverse()));
+
+            reversePosting = setupBaseData(draftFinancePosting);
+            reversePosting.setAmount(0 - draftFinancePosting.getAmount());
+            reversePosting.setFinanceAccount(reverse);
+
+            list.add(reversePosting);
+
+            VatType vatType = draftFinancePosting.getReverseVatType();
+            if (vatType != null) {
+
+                double vat = getVat(0 - draftFinancePosting.getAmount(), vatType.getPercentage());
+
+                if (vatType.isReverse()) {
+
+                    BookedFinancePosting vatPosting = setupBaseData(draftFinancePosting);
+                    vatPosting.setAmount(vat);
+                    vatPosting.setFinanceAccount(vatType.getFinanceAccount());
+                    vatPosting.setVatType(vatType);
+                    list.add(vatPosting);
+
+                    reversePosting.setVatPosting(vatPosting);
+
+                    BookedFinancePosting reverseVatPosting = setupBaseData(draftFinancePosting);
+                    reverseVatPosting.setAmount(0 - vat);
+                    reverseVatPosting.setFinanceAccount(vatType.getFinanceAccountReverse());
+                    reverseVatPosting.setVatType(vatType);
+                    list.add(reverseVatPosting);
+
+                    reversePosting.setReverseVatPosting(reverseVatPosting);
+
+                } else {
+
+                    BookedFinancePosting vatPosting = setupBaseData(draftFinancePosting);
+                    vatPosting.setAmount(vat);
+                    reversePosting.removeVat(vat);
+                    vatPosting.setFinanceAccount(vatType.getFinanceAccount());
+                    vatPosting.setVatType(vatType);
+                    list.add(vatPosting);
+
+                    reversePosting.setVatPosting(vatPosting);
+                }
+            }
+            if (posting != null) {
+                posting.setReversePosting(reversePosting);
+                reversePosting.setReverse(true);
+            }
         }
 
         return list;
@@ -221,7 +271,7 @@ public class BookingService {
 
         for (Map.Entry<Integer, BookedFinancePostingBatch> entry : clearedAllChecks.entrySet()) {
 
-            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList() ) {
+            for (BookedFinancePosting bookedFinancePosting : entry.getValue().getList()) {
 
                 if (!bookedFinancePosting.getFinanceAccount().isInUse()) {
                     financeAccountService.setFinanceAccountInUse(bookedFinancePosting.getFinanceAccount());
@@ -236,8 +286,11 @@ public class BookingService {
                 if (bookedFinancePosting.getReverseVatPosting() != null && bookedFinancePosting.getReverseVatPosting().getId().equals(0L)) {
                     bookedFinancePostingDAO.create(bookedFinancePosting.getReverseVatPosting());
                 }
+                if (bookedFinancePosting.getReversePosting() != null && bookedFinancePosting.getReversePosting().getId().equals(0L)) {
+                    bookedFinancePostingDAO.create(bookedFinancePosting.getReversePosting());
+                }
 
-                bookedFinancePostingDAO.create(bookedFinancePosting);
+                if (bookedFinancePosting.getId().equals(0L)) bookedFinancePostingDAO.create(bookedFinancePosting);
 
             }
 
@@ -248,17 +301,62 @@ public class BookingService {
     }
 
     @Transactional
-    public void reversePostings(List<BookedFinancePosting> list) {
-
+    public void regretPostings(List<BookedFinancePosting> list, DailyLedger dailyLedger) {
+        for (DraftFinancePosting draftFinancePosting : createNewFromListOfBookedFinancePostings(list, dailyLedger)) {
+            draftFinancePostingDAO.create(draftFinancePosting.reverseAmount());
+        }
     }
 
     @Transactional
-    public void copyPostings(List<BookedFinancePosting> list) {
-
+    public void copyPostings(List<BookedFinancePosting> list, DailyLedger dailyLedger) {
+        for (DraftFinancePosting draftFinancePosting : createNewFromListOfBookedFinancePostings(list, dailyLedger)) {
+            draftFinancePostingDAO.create(draftFinancePosting);
+        }
     }
 
     @Transactional
-    public void flipPostings(List<BookedFinancePosting> list) {
+    public void flipPostings(List<BookedFinancePosting> list, DailyLedger dailyLedger) {
+        for (DraftFinancePosting draftFinancePosting : createNewFromListOfBookedFinancePostings(list, dailyLedger)) {
+            draftFinancePostingDAO.create(draftFinancePosting.reverseAmount());
+        }
+        for (DraftFinancePosting draftFinancePosting : createNewFromListOfBookedFinancePostings(list, dailyLedger)) {
+            draftFinancePostingDAO.create(draftFinancePosting.reverseAmount());
+        }
+    }
 
+    private List<DraftFinancePosting> createNewFromListOfBookedFinancePostings(List<BookedFinancePosting> list, DailyLedger dailyLedger) {
+        List<DraftFinancePosting> draftFinancePostingList = new ArrayList<DraftFinancePosting>();
+
+        List<BookedFinancePosting> noneVatPostings = new ArrayList<BookedFinancePosting>();
+        for (BookedFinancePosting posting : list) {
+            if (posting.getVatType() == null) {
+                noneVatPostings.add(posting);
+            }
+        }
+
+        for (BookedFinancePosting posting : noneVatPostings) {
+
+            if (!posting.isReverse()) {
+                DraftFinancePosting draft = new DraftFinancePosting(posting).setDailyLedger(dailyLedger);
+                draftFinancePostingList.add(draft);
+
+                if (posting.getVatPosting() != null && posting.getReverseVatPosting() == null) {
+                    draft.setVatType(posting.getVatPosting().getVatType());
+                    draft.addAmount(posting.getVatPosting().getAmount());
+                } else if (posting.getVatPosting() != null && posting.getReverseVatPosting() != null) {
+                    draft.setVatType(posting.getVatPosting().getVatType());
+                }
+
+                if (posting.getReversePosting() != null) {
+                    draft.setReverseFinanceAccount(posting.getReversePosting().getFinanceAccount());
+
+                    if (posting.getReversePosting().getVatPosting() != null) {
+                        draft.setReverseVatType(posting.getReversePosting().getVatPosting().getVatType());
+                    }
+                }
+            }
+        }
+
+        return draftFinancePostingList;
     }
 }

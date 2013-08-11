@@ -80,6 +80,14 @@ public class DraftFinancePosting extends BaseEntity {
     public DraftFinancePosting() {
     }
 
+    public DraftFinancePosting(BookedFinancePosting bookedFinancePosting) {
+        this.bookingNumber = bookedFinancePosting.getBookingNumber();
+        this.date = bookedFinancePosting.getDate();
+        this.text = bookedFinancePosting.getText();
+        this.amount = bookedFinancePosting.getAmount();
+        this.financeAccount = bookedFinancePosting.getFinanceAccount();
+    }
+
     public DraftFinancePosting(int bookingNumber) {
         this.bookingNumber = bookingNumber;
     }
@@ -123,6 +131,10 @@ public class DraftFinancePosting extends BaseEntity {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public void addAmount(Double amount) {
+        this.amount += amount;
     }
 
     public FinanceAccount getFinanceAccount() {
@@ -187,6 +199,7 @@ public class DraftFinancePosting extends BaseEntity {
         this.vatAmount = vatAmount;
     }
 
+
     public DraftFinancePosting getPostingForReverse() {
         DraftFinancePosting reverse = new DraftFinancePosting();
         reverse.setBookingNumber(this.getBookingNumber());
@@ -198,6 +211,11 @@ public class DraftFinancePosting extends BaseEntity {
         reverse.setVatType(this.getReverseVatType());
         reverse.setReverseVatType(null);
         return reverse;
+    }
+
+    public DraftFinancePosting reverseAmount() {
+        amount = -amount;
+        return this;
     }
 
     @Override

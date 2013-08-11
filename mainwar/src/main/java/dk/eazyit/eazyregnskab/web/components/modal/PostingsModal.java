@@ -4,6 +4,7 @@ import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.services.BookingService;
+import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.PostingService;
 import dk.eazyit.eazyregnskab.web.components.label.DateLabel;
 import dk.eazyit.eazyregnskab.web.components.link.AjaxToolTipLink;
@@ -30,6 +31,8 @@ public class PostingsModal extends SessionAwareModal<BookedFinancePosting> {
     PostingService postingService;
     @SpringBean
     BookingService bookingService;
+    @SpringBean
+    DailyLedgerService dailyLedgerService;
 
     public BookedFinancePosting item;
     List<BookedFinancePosting> postingList;
@@ -59,12 +62,10 @@ public class PostingsModal extends SessionAwareModal<BookedFinancePosting> {
         Page(String id) {
             super(id);
 
-            //TODO notice to user that postings are in ledger
-
-            add(new AjaxToolTipLink("postings.reverse", "postings.reverse.help") {
+            add(new AjaxToolTipLink("postings.regret", "postings.regret.help") {
                 @Override
                 public void onClick(AjaxRequestTarget target) {
-                    bookingService.reversePostings(postingList);
+                    bookingService.regretPostings(postingList, dailyLedgerService.findDailyLedgerByLegalEntitySubList(getCurrentLegalEntity(), 0, 1).get(0));
                     getSession().success(new NotificationMessage(new ResourceModel("postings.have.been.added.to.daily.ledger")).hideAfter(Duration.seconds(5)));
                     self.close(target);
                 }
@@ -72,7 +73,7 @@ public class PostingsModal extends SessionAwareModal<BookedFinancePosting> {
             add(new AjaxToolTipLink("postings.copy", "postings.copy.help") {
                 @Override
                 public void onClick(AjaxRequestTarget target) {
-                    bookingService.copyPostings(postingList);
+                    bookingService.copyPostings(postingList, dailyLedgerService.findDailyLedgerByLegalEntitySubList(getCurrentLegalEntity(), 0, 1).get(0));
                     getSession().success(new NotificationMessage(new ResourceModel("postings.have.been.added.to.daily.ledger")).hideAfter(Duration.seconds(5)));
                     self.close(target);
                 }
@@ -80,7 +81,7 @@ public class PostingsModal extends SessionAwareModal<BookedFinancePosting> {
             add(new AjaxToolTipLink("postings.flip", "postings.flip.help") {
                 @Override
                 public void onClick(AjaxRequestTarget target) {
-                    bookingService.flipPostings(postingList);
+                    bookingService.flipPostings(postingList, dailyLedgerService.findDailyLedgerByLegalEntitySubList(getCurrentLegalEntity(), 0, 1).get(0));
                     getSession().success(new NotificationMessage(new ResourceModel("postings.have.been.added.to.daily.ledger")).hideAfter(Duration.seconds(5)));
                     self.close(target);
                 }
