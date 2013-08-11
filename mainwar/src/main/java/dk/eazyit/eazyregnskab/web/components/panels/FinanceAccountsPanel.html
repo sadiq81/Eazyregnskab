@@ -9,7 +9,7 @@
 <wicket:extend>
     <!--<wicket:panel>-->
 
-    <table class="table table-condensed">
+    <table class="table table-condensed table-bordered">
         <span wicket:id="postings">
             <!--<tr class="success">-->
             <!--<td>-->
@@ -20,22 +20,14 @@
             <!--</td>-->
             <!--<td colspan="4"></td>-->
             <!--</tr>-->
-            <tr class="success">
+            <tr class="headline">
                 <th>
-                    <h4>
-                        <span wicket:id="accountNumber"></span>
-                    </h4>
-                </th>
-                <th>
-                    <h4>
-                        <span wicket:id="accountName"></span>
-                    </h4>
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
 
+                        <span wicket:id="accountNumber"></span>
+                </th>
+                <th colspan="6">
+                        <span wicket:id="accountName"></span>
+                </th>
             </tr>
             <tr>
                 <th>
@@ -86,10 +78,10 @@
                 </tr>
             </span>
             <tr>
-                <td colspan="6" style="border-top-style: none"><br></td>
+                <td colspan="7"><br></td>
             </tr>
-            <tr class="">
-                <td colspan="6" style="border-top-style: none"><br></td>
+            <tr>
+                <td colspan="7" style="border-top-style: none"><br></td>
             </tr>
         </span>
     </table>

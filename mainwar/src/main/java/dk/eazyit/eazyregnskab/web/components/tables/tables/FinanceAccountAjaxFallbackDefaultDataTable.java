@@ -24,4 +24,5 @@ public class FinanceAccountAjaxFallbackDefaultDataTable extends AjaxFallbackDefa
     protected Item newRowItem(final String id, final int index, final IModel model) {
         return new FinanceAccountItem(id, index, model);
     }
+
 }
