@@ -31,6 +31,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
     private static final Logger LOG = LoggerFactory.getLogger(BaseCreateEditForm.class);
     protected final static int DURATION = 5;
+    protected final static Double DOUBLE_ZERO = new Double(0);
 
     @SpringBean
     protected LegalEntityService legalEntityService;
@@ -72,7 +73,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 LOG.debug("Creating new in form " + form.getId() + " with object " + form.getModelObject().toString());
-                insertNewEntityInModel();
+                insertNewEntityInModel((T) form.getModelObject());
                 target.add(getPage());
             }
 
@@ -103,13 +104,13 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
 
     public abstract void deleteEntity(T entity);
 
-    public void insertNewEntityInModel() {
-        setModel(new CompoundPropertyModel<T>(buildNewEntity()));
+    public void insertNewEntityInModel(T previous) {
+        setModel(new CompoundPropertyModel<T>(buildNewEntity(previous)));
     }
 
     public abstract FormComponent focusAfterSave();
 
-    public abstract T buildNewEntity();
+    public abstract T buildNewEntity(T previous);
 
     public abstract void saveForm(T entity);
 
@@ -173,8 +174,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     }
 
     protected void addToolTipToComponent(Component component, String resourceText) {
-            component.add(AttributeModifier.append("rel", "tooltip"));
-            component.add(AttributeModifier.append("data-placement", "top"));
-            component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
-        }
+        component.add(AttributeModifier.append("rel", "tooltip"));
+        component.add(AttributeModifier.append("data-placement", "top"));
+        component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
+    }
 }

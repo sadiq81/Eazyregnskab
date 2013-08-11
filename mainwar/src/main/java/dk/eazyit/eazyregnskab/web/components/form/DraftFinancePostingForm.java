@@ -28,6 +28,8 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     @SpringBean
     PostingService postingService;
 
+    DraftFinancePosting lastSaved;
+
     PlaceholderDateField date;
     PlaceholderTextField text;
     private FinanceAccountSelect2ChoiceBookableAccounts financeAccountChoice;
@@ -43,7 +45,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void addToForm() {
         super.addToForm();
 
-        add(date = (PlaceholderDateField) new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
+        add(date = (PlaceholderDateField) new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true).setOutputMarkupId(true));
         add(reverseFinanceAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("reverseFinanceAccount"));
         add(vatTypeChoice = (VatTypeDropDownChoice) new VatTypeDropDownChoice("vatType").setNullValid(true));
         add(new PlaceholderNumberTextField<Double>("amount").setMaximum(new Double(1000000)).setRequired(true));
@@ -65,20 +67,26 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void deleteEntity(DraftFinancePosting draftFinancePosting) {
         postingService.deleteFinancePosting(draftFinancePosting);
         getSession().success(new NotificationMessage(new ResourceModel("finance.posting.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-        insertNewEntityInModel();
+        insertNewEntityInModel(draftFinancePosting);
     }
 
     @Override
-    public DraftFinancePosting buildNewEntity() {
-        return new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber());
+    public DraftFinancePosting buildNewEntity(DraftFinancePosting previous) {
+
+        if (DOUBLE_ZERO.equals(dailyLedgerService.checkBalanceOfDailyLedger(getCurrentDailyLedger()))) {
+            getCurrentDailyLedger().setNextBookingNumber(previous.getBookingNumber() + 1);
+            dailyLedgerService.saveDailyLedger(getCurrentDailyLedger(), getCurrentLegalEntity());
+            return new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber());
+        } else {
+            return new DraftFinancePosting().setDate(previous.getDate()).setBookingNumber(previous.getBookingNumber()).setText(previous.getText());
+        }
     }
 
     @Override
     public void saveForm(DraftFinancePosting draftFinancePosting) {
+        lastSaved = draftFinancePosting;
         postingService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
-        getCurrentDailyLedger().setNextBookingNumber(draftFinancePosting.getBookingNumber() + 1);
-        dailyLedgerService.saveDailyLedger(getCurrentDailyLedger(), getCurrentLegalEntity());
-        insertNewEntityInModel();
+        insertNewEntityInModel(draftFinancePosting);
     }
 
     @Override

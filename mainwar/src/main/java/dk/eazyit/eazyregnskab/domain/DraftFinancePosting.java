@@ -105,24 +105,27 @@ public class DraftFinancePosting extends BaseEntity {
         return bookingNumber;
     }
 
-    public void setBookingNumber(int bookingNumber) {
+    public DraftFinancePosting setBookingNumber(int bookingNumber) {
         this.bookingNumber = bookingNumber;
+        return this;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public DraftFinancePosting setDate(Date date) {
         this.date = date;
+        return this;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public DraftFinancePosting setText(String text) {
         this.text = text;
+        return this;
     }
 
     public Double getAmount() {

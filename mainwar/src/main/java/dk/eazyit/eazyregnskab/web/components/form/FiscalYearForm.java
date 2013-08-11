@@ -72,7 +72,7 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
         if (fiscalYear.getId() != 0) {
             if (fiscalYearService.deleteFiscalYear(fiscalYear)) {
                 getSession().success(new NotificationMessage(new ResourceModel("fiscal.year.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                insertNewEntityInModel();
+                insertNewEntityInModel(fiscalYear);
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("fiscal.year.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
@@ -82,11 +82,10 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     }
 
     @Override
-    public FiscalYear buildNewEntity() {
+    public FiscalYear buildNewEntity(FiscalYear previous) {
         FiscalYear fiscalYear = new FiscalYear();
-        FiscalYear last = fiscalYearService.findLastFiscalYearByLegalEntity(getCurrentLegalEntity());
-        fiscalYear.setStart(CalendarUtil.add(last.getEnd(), 0, 0, 1));
-        fiscalYear.setEnd(CalendarUtil.add(last.getEnd(), 1, 0, 0));
+        fiscalYear.setStart(CalendarUtil.add(previous.getEnd(), 0, 0, 1));
+        fiscalYear.setEnd(CalendarUtil.add(previous.getEnd(), 1, 0, 0));
         return fiscalYear.setFiscalYearStatus(FiscalYearStatus.OPEN).setLegalEntity(getCurrentLegalEntity());
     }
 
@@ -94,7 +93,7 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     public void saveForm(FiscalYear fiscalYear) {
         if (fiscalYearService.save(fiscalYear.setLegalEntity(getCurrentLegalEntity()))) {
             getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
-            insertNewEntityInModel();
+            insertNewEntityInModel(fiscalYear);
         } else {
             getSession().error(new NotificationMessage(new ResourceModel("fiscal.year.dates.are.in.use")).hideAfter(Duration.seconds(DURATION)));
         }

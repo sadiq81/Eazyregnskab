@@ -48,7 +48,7 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
                 setCurrentDailyLedger(dailyLedgerService.findDailyLedgerByLegalEntity(getCurrentLegalEntity()).get(0));
                 getSession().success(new NotificationMessage(new ResourceModel("daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 LOG.info("Deleting Dailyledger " + getModelObject().toString());
-                insertNewEntityInModel();
+                insertNewEntityInModel(dailyLedger);
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("daily.ledger.is.in.use")).hideAfter(Duration.seconds(DURATION)));
                 LOG.info("Not able to delete Dailyledger since its in use " + dailyLedger.toString());
@@ -59,7 +59,7 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
     }
 
     @Override
-    public DailyLedger buildNewEntity() {
+    public DailyLedger buildNewEntity(DailyLedger previous) {
         return new DailyLedger("", getCurrentLegalEntity());
     }
 
@@ -67,7 +67,7 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
     public void saveForm(DailyLedger dailyLedger) {
         dailyLedgerService.saveDailyLedger(dailyLedger, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
-        insertNewEntityInModel();
+        insertNewEntityInModel(dailyLedger);
     }
 
     @Override

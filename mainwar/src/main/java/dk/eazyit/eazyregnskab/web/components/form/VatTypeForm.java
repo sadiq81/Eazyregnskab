@@ -42,7 +42,7 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
         if (vatType.getId() != 0) {
             if (vatTypeService.deleteVatType(vatType)) {
                 getSession().success(new NotificationMessage(new ResourceModel("vat.type.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                insertNewEntityInModel();
+                insertNewEntityInModel(vatType);
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("vat.type.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
@@ -52,7 +52,7 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     }
 
     @Override
-    public VatType buildNewEntity() {
+    public VatType buildNewEntity(VatType previous) {
         return new VatType();
     }
 
@@ -60,7 +60,7 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     public void saveForm(VatType vatType) {
         vatTypeService.saveVatType(vatType, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
-        insertNewEntityInModel();
+        insertNewEntityInModel(vatType);
     }
 
 

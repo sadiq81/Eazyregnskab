@@ -66,7 +66,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         if (financeAccount.getId() != 0) {
             if (financeAccountService.deleteFinanceAccount(financeAccount)) {
                 getSession().success(new NotificationMessage(new ResourceModel("finance.account.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                insertNewEntityInModel();
+                insertNewEntityInModel(financeAccount);
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("finance.account.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
@@ -76,7 +76,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     @Override
-    public FinanceAccount buildNewEntity() {
+    public FinanceAccount buildNewEntity(FinanceAccount previous) {
         return new FinanceAccount();
     }
 
@@ -84,7 +84,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     public void saveForm(FinanceAccount financeAccount) {
         financeAccountService.saveFinanceAccount(financeAccount, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
-        insertNewEntityInModel();
+        insertNewEntityInModel(financeAccount);
     }
 
     @Override

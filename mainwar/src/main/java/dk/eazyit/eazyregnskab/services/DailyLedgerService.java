@@ -6,6 +6,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.DailyLedgerDAO;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,9 +84,22 @@ public class DailyLedgerService {
         }
     }
 
+    @Transactional
     public DailyLedger findDailyLedgerByLegalEntityAndName(LegalEntity currentLegalEntity, String name) {
         return dailyLedgerDAO.findByNamedQueryUnique(DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY, name, currentLegalEntity);
     }
 
+    @Transactional
+    public Double checkBalanceOfDailyLedger(DailyLedger dailyLedger) {
 
+        List<DraftFinancePosting> list = postingService.findDraftPostingsFromDailyLedger(dailyLedger);
+
+        Double sum = new Double(0);
+        for (DraftFinancePosting draftFinancePosting : list) {
+            if (draftFinancePosting.getFinanceAccount() == null || draftFinancePosting.getReverseFinanceAccount() == null) {
+                sum += draftFinancePosting.getAmount();
+            }
+        }
+        return sum;
+    }
 }
