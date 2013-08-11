@@ -7,8 +7,7 @@
 <body>
 
 <wicket:extend>
-    <!--<wicket:panel>-->
-        <table class="table table-condensed">
+        <table class="table table-condensed table-bordered">
             <tr>
                 <th>
                     <wicket:message key="account.number"></wicket:message>
@@ -21,7 +20,6 @@
                     <br>
                     <span wicket:id="dates"></span>
                 </th>
-                <td></td>
                 <th style="text-align: right">
                     <span wicket:id="compareType"></span>
                     <br>
@@ -39,14 +37,12 @@
                     <td style="text-align: right">
                         <span wicket:id="sum"></span>
                     </td>
-                    <td></td>
                     <td style="text-align: right">
                         <span wicket:id="sumCompare"></span>
                     </td>
                 </tr>
             </span>
         </table>
-    <!--</wicket:panel>-->
 </wicket:extend>
 </body>
 </html>
