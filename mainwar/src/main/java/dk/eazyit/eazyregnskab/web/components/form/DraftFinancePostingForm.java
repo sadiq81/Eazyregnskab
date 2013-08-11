@@ -28,8 +28,6 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     @SpringBean
     PostingService postingService;
 
-    DraftFinancePosting lastSaved;
-
     PlaceholderDateField date;
     PlaceholderTextField text;
     private FinanceAccountSelect2ChoiceBookableAccounts financeAccountChoice;
@@ -76,7 +74,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
         if (DOUBLE_ZERO.equals(dailyLedgerService.checkBalanceOfDailyLedger(getCurrentDailyLedger()))) {
             getCurrentDailyLedger().setNextBookingNumber(previous.getBookingNumber() + 1);
             dailyLedgerService.saveDailyLedger(getCurrentDailyLedger(), getCurrentLegalEntity());
-            return new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber());
+            return new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber()).setDate(previous.getDate());
         } else {
             return new DraftFinancePosting().setDate(previous.getDate()).setBookingNumber(previous.getBookingNumber()).setText(previous.getText());
         }
@@ -84,7 +82,6 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
     @Override
     public void saveForm(DraftFinancePosting draftFinancePosting) {
-        lastSaved = draftFinancePosting;
         postingService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
         insertNewEntityInModel(draftFinancePosting);
     }
