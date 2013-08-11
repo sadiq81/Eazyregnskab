@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.services.BookingService;
+import dk.eazyit.eazyregnskab.services.PostingService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.web.components.button.AjaxLoadingButton;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -19,6 +20,8 @@ public class SaveDailyLedgerForm extends Form {
 
     @SpringBean
     BookingService bookingService;
+    @SpringBean
+    PostingService postingService;
 
     protected final static int DURATION = 15;
 
@@ -41,6 +44,14 @@ public class SaveDailyLedgerForm extends Form {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
                 bookPostings(true);
+                target.add(getPage());
+            }
+        });
+        add(new AjaxLoadingButton("clear.daily.ledger", new ResourceModel("button.clear.daily.ledger")) {
+            @Override
+            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                super.onSubmit(target, form);
+                postingService.clearDailyLedger(getCurrentDailyLedger());
                 target.add(getPage());
             }
         });

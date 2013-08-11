@@ -176,4 +176,12 @@ public class PostingService {
         }
         bookedFinancePostingDAO.delete(bookedFinancePosting);
     }
+
+    @Transactional
+    public void clearDailyLedger(DailyLedger currentDailyLedger) {
+        LOG.debug("Clearing dailyledger " + currentDailyLedger);
+        for (DraftFinancePosting draftFinancePosting : findDraftPostingsFromDailyLedger(currentDailyLedger)) {
+            draftFinancePostingDAO.delete(draftFinancePosting);
+        }
+    }
 }
