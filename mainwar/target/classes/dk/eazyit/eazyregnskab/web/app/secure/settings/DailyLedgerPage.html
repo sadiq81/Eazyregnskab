@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+
+<wicket:extend>
+
+
+    <form wicket:id="dailyLedgerEdit" class="form-horizontal">
+
+        <div class="control-group">
+            <label class="control-label" for="name">
+                <wicket:message key="name"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input wicket:id="name" id="name" type="text"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="nextBookingNumber">
+                <wicket:message key="nextBookingNumber"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input wicket:id="nextBookingNumber" id="nextBookingNumber" type="text"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="financeAccount">
+                <wicket:message key="financeAccount"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <select wicket:id="financeAccount" id="financeAccount" type="text"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+
+                <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
+                <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
+                <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>
+
+            </div>
+        </div>
+
+    </form>
+
+    <table class="table" cellspacing="0" wicket:id="chartOfDailyLedgers">[table]</table>
+
+</wicket:extend>
+
+</body>
+</html>

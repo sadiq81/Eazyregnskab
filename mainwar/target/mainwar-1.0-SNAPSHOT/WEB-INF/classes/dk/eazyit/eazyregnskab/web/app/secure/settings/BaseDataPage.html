@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+
+
+<wicket:extend>
+
+
+
+    <form wicket:id="legalEntityEdit" class="form-horizontal">
+
+        <div class="control-group">
+            <label class="control-label" for="name">
+                <wicket:message key="name"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input wicket:id="name" id="name" type="text"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="legalIdentification">
+                <wicket:message key="legalIdentification"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input wicket:id="legalIdentification" id="legalIdentification" type="text"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="address">
+                <wicket:message key="address"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input wicket:id="address" id="address" type="text"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="postalCode">
+                <wicket:message key="postalCode"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <input wicket:id="postalCode" id="postalCode" type="text"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="country">
+                <wicket:message key="country"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <select wicket:id="country" id="country"></select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="moneyCurrency">
+                <wicket:message key="moneyCurrency"></wicket:message>
+            </label>
+
+            <div class="controls">
+                <select wicket:id="moneyCurrency" id="moneyCurrency"></select>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+
+                <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
+                <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
+                <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>
+
+            </div>
+        </div>
+
+    </form>
+
+</wicket:extend>
+
+</body>
+</html>

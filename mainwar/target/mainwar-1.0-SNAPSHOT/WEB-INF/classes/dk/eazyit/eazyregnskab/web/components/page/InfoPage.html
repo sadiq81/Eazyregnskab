@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/">
+<body>
+<wicket:extend>
+
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h1>
+                    <wicket:message key="title"></wicket:message>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+                   <div class="span7">
+                       <h2>
+                           <wicket:message key="info.text.heading"></wicket:message>
+                       </h2>
+                       <p>
+                           <wicket:message key="info.text"></wicket:message>
+                       </p>
+
+                   </div>
+                   <div class="span4 offset1">
+                       <img wicket:id="right_side" class="img-polaroid" width="386"/>
+                   </div>
+
+               </div>
+        <wicket:child>
+
+        </wicket:child>
+    </div>
+
+</wicket:extend>
+</body>
+</html>

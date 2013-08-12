@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+
+<wicket:extend>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="span5 offset3">
+
+                <br><br><br><br><br><br>
+
+                <div wicket:id="feedback"></div>
+
+                <form wicket:id="create_account" class="form-horizontal">
+                    <fieldset>
+                        <div class="controls">
+                            <h1>
+                                <wicket:message key="create.account"></wicket:message>
+                            </h1>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="username">
+                                <wicket:message key="username"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="username" wicket:id="username" class="input-block-level" type='text'
+                                       value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="password">
+                                <wicket:message key="password"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="password" wicket:id="password" class="input-block-level" type='password'
+                                       value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="repeat_password">
+                                <wicket:message key="repeat.password"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="repeat_password" wicket:id="repeat_password" class="input-block-level"
+                                       type='password' value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="email">
+                                <wicket:message key="email"></wicket:message>
+                            </label>
+
+                            <div class="controls">
+                                <input id="email" wicket:id="email" class="input-block-level"
+                                       type='email' value=''>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <button wicket:id="save" type="submit" class="btn">
+                                    <span wicket:id="save.button.label"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+
+                <div class="control-group">
+                    <div class="controls">
+                        <h6>
+                            <span wicket:id="what.to.do.now"></span>
+                        </h6>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</wicket:extend>
+
+</body>
+</html>
