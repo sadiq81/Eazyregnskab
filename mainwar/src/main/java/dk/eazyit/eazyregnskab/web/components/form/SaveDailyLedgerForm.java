@@ -6,6 +6,7 @@ import dk.eazyit.eazyregnskab.services.BookingService;
 import dk.eazyit.eazyregnskab.services.PostingService;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.web.components.button.AjaxLoadingButton;
+import dk.eazyit.eazyregnskab.web.components.modal.AreYouSureModal;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.ResourceModel;
@@ -23,23 +24,29 @@ public class SaveDailyLedgerForm extends Form {
     @SpringBean
     PostingService postingService;
 
+    AreYouSureModal areYouSureModal;
+    AjaxLoadingButton bookAll;
+    AjaxLoadingButton clear;
+
     protected final static int DURATION = 15;
 
     public SaveDailyLedgerForm(String id) {
         super(id);
-        init();
     }
 
-    private void init() {
-//        add(new AjaxLoadingButton("bookChosen", new ResourceModel("button.book.chosen")) {
-//            @Override
-//            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-//                super.onSubmit(target, form);
-//                bookPostings(false);
-//                target.add(getPage());
-//            }
-//        });
-        add(new AjaxLoadingButton("bookAll", new ResourceModel("button.book.all")) {
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+
+        //        add(new AjaxLoadingButton("bookChosen", new ResourceModel("button.book.chosen")) {
+        //            @Override
+        //            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+        //                super.onSubmit(target, form);
+        //                bookPostings(false);
+        //                target.add(getPage());
+        //            }
+        //        });
+        add(bookAll = new AjaxLoadingButton("bookAll", new ResourceModel("button.book.all")) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
@@ -47,12 +54,25 @@ public class SaveDailyLedgerForm extends Form {
                 target.add(getPage());
             }
         });
-        add(new AjaxLoadingButton("clear.daily.ledger", new ResourceModel("button.clear.daily.ledger")) {
+
+        add(clear = new AjaxLoadingButton("clear.daily.ledger", new ResourceModel("button.clear.daily.ledger")) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
+                areYouSureModal.show(target);
+            }
+        });
+
+        add(areYouSureModal = new AreYouSureModal("are.you.sure", new StringResourceModel("do.you.want.clear.daily.ledger",getPage(), null).getObject()) {
+            @Override
+            protected void onConfirm(AjaxRequestTarget target) {
                 postingService.clearDailyLedger(getCurrentDailyLedger());
                 target.add(getPage());
+            }
+
+            @Override
+            protected void onCancel(AjaxRequestTarget target) {
+                target.add(clear);
             }
         });
     }
