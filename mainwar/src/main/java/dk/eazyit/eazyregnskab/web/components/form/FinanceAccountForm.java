@@ -98,7 +98,6 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     private void configureFinanceAccountType() {
-        financeAccountType.setEnabled(!getModelObject().isSystemAccount());
         financeAccountType.setNullValid(false);
         financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
@@ -110,11 +109,19 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
                     standardReverseFinanceAccount.setEnabled(false).setDefaultModelObject(null);
                     sumFrom.setDefaultModelObject(null);
                     sumTo.setDefaultModelObject(null);
+                    target.add(vatType, standardReverseFinanceAccount, sumFrom, sumTo, sumFromLabel, sumToLabel);
                 } else {
-                    vatType.setEnabled(true);
-                    standardReverseFinanceAccount.setEnabled(true);
+                    if (!vatType.isEnabled()) {
+                        vatType.setEnabled(true);
+                        target.add(vatType);
+                    }
+                    if (!standardReverseFinanceAccount.isEnabled()) {
+                        standardReverseFinanceAccount.setEnabled(true);
+                        target.add(standardReverseFinanceAccount);
+                    }
                 }
-                target.add(vatType, standardReverseFinanceAccount, sumFrom, sumTo, sumFromLabel, sumToLabel);
+                target.add(sumFrom, sumTo, sumFromLabel, sumToLabel);
+
             }
         });
     }
