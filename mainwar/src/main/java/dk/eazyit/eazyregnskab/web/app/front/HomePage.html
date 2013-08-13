@@ -6,42 +6,75 @@
 
 <wicket:extend>
 
+    <br><br><br><br><br>
+
     <div class="container">
 
-        <!-- Jumbotron -->
-        <div class="jumbotron">
-            <h1><wicket:message key="eazy.regnskab"></wicket:message>!</h1>
+        <div class="row">
+            <div class="span5">
 
-            <p class="lead"><wicket:message key="lead.text"></wicket:message>.</p>
-            <a wicket:id="signUp" class="btn btn-large btn-success" href="#"><wicket:message key="get.started.today"></wicket:message></a>
+
+                <!-- Jumbotron -->
+                <div class="jumbotron">
+                    <h2>
+                        <wicket:message key="eazy.regnskab"></wicket:message>
+                        !
+                    </h2>
+
+                    <p class="lead">
+                        <wicket:message key="lead.text"></wicket:message>
+                        .
+                    </p>
+                    <a wicket:id="signUp" class="btn btn-large btn-success" href="#">
+                        <wicket:message key="get.started.today"></wicket:message>
+                    </a>
+                </div>
+            </div>
+            <div class="span5">
+
+                <div wicket:id="carousel"></div>
+            </div>
         </div>
-
-        <hr>
 
         <!-- Example row of columns -->
         <div class="row-fluid">
             <div class="span4">
-                <h2><wicket:message key="what.you.get"></wicket:message></h2>
+                <h2>
+                    <wicket:message key="what.you.get"></wicket:message>
+                </h2>
 
-                <p> <wicket:message key="what.you.get.text"></wicket:message></p>
+                <p>
+                    <wicket:message key="what.you.get.text"></wicket:message>
+                </p>
 
-                <p><a wicket:id="whatYouGet" class="btn" href="#"><wicket:message key="view.details"></wicket:message> &raquo;</a></p>
+                <p><a wicket:id="whatYouGet" class="btn" href="#">
+                    <wicket:message key="view.details"></wicket:message> &raquo;</a></p>
             </div>
 
             <div class="span4">
-                <h2><wicket:message key="for.administrators"></wicket:message></h2>
+                <h2>
+                    <wicket:message key="for.administrators"></wicket:message>
+                </h2>
 
-                <p> <wicket:message key="for.administrators.text"></wicket:message></p>
+                <p>
+                    <wicket:message key="for.administrators.text"></wicket:message>
+                </p>
 
-                <p><a wicket:id="forAdministrators" class="btn" href="#"><wicket:message key="view.details"></wicket:message> &raquo;</a></p>
+                <p><a wicket:id="forAdministrators" class="btn" href="#">
+                    <wicket:message key="view.details"></wicket:message> &raquo;</a></p>
             </div>
 
             <div class="span4">
-                <h2><wicket:message key="pricing"></wicket:message></h2>
+                <h2>
+                    <wicket:message key="pricing"></wicket:message>
+                </h2>
 
-                <p> <wicket:message key="pricing.text"></wicket:message></p>
+                <p>
+                    <wicket:message key="pricing.text"></wicket:message>
+                </p>
 
-                <p><a wicket:id="pricing" class="btn" href="#"><wicket:message key="view.details"></wicket:message> &raquo;</a></p>
+                <p><a wicket:id="pricing" class="btn" href="#">
+                    <wicket:message key="view.details"></wicket:message> &raquo;</a></p>
             </div>
 
         </div>

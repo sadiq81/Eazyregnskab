@@ -315,7 +315,7 @@
                                             <td class="headerContent">
                                             
                                             	<!-- // Begin Module: Standard Header Image \\ -->
-                                            	<img src="http://wwww.eazyregnskab.dk/pictures/css/confirm.png" style="max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                                            	<img src="http://wwww.eazyregnskab.dk/css/pictures/confirm.png" style="max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
                                             	<!-- // End Module: Standard Header Image \\ -->
                                             
                                             </td>
@@ -336,7 +336,7 @@
                                                     <tr>
                                                         <td valign="top" class="bodyContent">
                                                             <div mc:edit="std_content00">
-                                                                 <strong>Get started:</strong> To confirm you e-mail and user account, please click the button below.
+                                                                 <strong>Get started:</strong> To confirm you e-mail and user account, please click the link below.
                                                                 </div>
 														</td>
                                                     </tr>
