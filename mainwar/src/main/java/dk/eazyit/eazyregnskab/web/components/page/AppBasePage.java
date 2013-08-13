@@ -17,6 +17,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.IHeaderContributor;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -94,6 +95,13 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
         add(topMenu);
         addToPage(parameters);
         LOG.trace("Created top menu");
+
+        initMeta();
+    }
+
+    private void initMeta() {
+        add(new WebMarkupContainer("meta.description").add(new AttributeModifier("content", new ResourceModel("meta.description"))));
+        add(new WebMarkupContainer("meta.keywords").add(new AttributeModifier("content", new ResourceModel("meta.keywords"))));
     }
 
     protected abstract void addToPage(PageParameters pageParameters);

@@ -7,32 +7,14 @@
     <title>
         <wicket:message key="title"></wicket:message>
     </title>
+    <meta wicket:id="meta.description" name="description" content="A short description for this page"/>
+    <meta wicket:id="meta.keywords" name="keywords" content="keyword1, keyword2"/>
+    <meta name="google-site-verification" content="kybpszTubFp3_pwBWVcJGbaEHPQH9-kDimRPn41VL0c" />
 </head>
 
 <body>
 
-<script id="_webengage_script_tag" type="text/javascript">
-  var _weq = _weq || {};
-  _weq['webengage.licenseCode'] = '58add0c9';
-  _weq['webengage.widgetVersion'] = "4.0";
 
-  (function(d){
-    var _we = d.createElement('script');
-    _we.type = 'text/javascript';
-    _we.async = true;
-    _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
-    var _sNode = d.getElementById('_webengage_script_tag');
-    _sNode.parentNode.insertBefore(_we, _sNode);
-  })(document);
-</script>
-
-<script id="test">
-
-    jQuery(function ($) {
-        $('[rel=tooltip]').tooltip()
-    });
-
-</script>
 
 <style type="text/css">
 
@@ -131,7 +113,28 @@
     <p class="muted credit">&copy; EazyIT 2013</p>
 </div>
 
+<script id="test">
 
+    jQuery(function ($) {
+        $('[rel=tooltip]').tooltip()
+    });
+
+</script>
+
+<script id="_webengage_script_tag" type="text/javascript">
+  var _weq = _weq || {};
+  _weq['webengage.licenseCode'] = '58add0c9';
+  _weq['webengage.widgetVersion'] = "4.0";
+
+  (function(d){
+    var _we = d.createElement('script');
+    _we.type = 'text/javascript';
+    _we.async = true;
+    _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+    var _sNode = d.getElementById('_webengage_script_tag');
+    _sNode.parentNode.insertBefore(_we, _sNode);
+  })(document);
+</script>
 
 
 </body>
