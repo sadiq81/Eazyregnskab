@@ -31,8 +31,9 @@ public abstract class ActionPanel<T extends BaseEntity> extends GenericPanel<T> 
             public void onClick(AjaxRequestTarget target) {
                 BaseCreateEditForm form = selectItem(getItem());
                 target.focusComponent(form);
-                target.appendJavaScript("window.document.body.scrollTop = 0");
-                target.appendJavaScript("window.document.documentElement.scrollTop = 0");
+//                target.appendJavaScript("window.document.body.scrollTop = 0");
+//                target.appendJavaScript("window.document.documentElement.scrollTop = 0");
+                target.appendJavaScript("$('html, body').animate({ scrollTop: 0 }, 'slow');");
                 target.add(form, select);
             }
 
