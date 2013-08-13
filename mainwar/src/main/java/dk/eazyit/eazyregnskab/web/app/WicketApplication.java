@@ -7,8 +7,12 @@ import dk.eazyit.eazyregnskab.web.app.front.HomePage;
 import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
 import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
+import dk.eazyit.eazyregnskab.web.components.markupfilter.HeaderHandler;
 import org.apache.wicket.Application;
 import org.apache.wicket.Session;
+import org.apache.wicket.markup.MarkupFactory;
+import org.apache.wicket.markup.MarkupParser;
+import org.apache.wicket.markup.MarkupResourceStream;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
@@ -48,6 +52,18 @@ public class WicketApplication extends WebApplication implements ApplicationCont
     public void init() {
         super.init();
 
+        getMarkupSettings().setMarkupFactory(
+                new MarkupFactory() {
+                    @Override
+                    public MarkupParser newMarkupParser(MarkupResourceStream resource) {
+                        MarkupParser parser = super.newMarkupParser(resource);
+                        parser.add(new HeaderHandler());
+                        return parser;
+                    }
+
+                    ;
+                });
+
         LOG.info("Starting application on time " + Calendar.getInstance());
         Locale.setDefault(Locale.ROOT);
 
@@ -62,7 +78,6 @@ public class WicketApplication extends WebApplication implements ApplicationCont
         mountPackage("app/secure/reports", BalancePage.class);
 
         getComponentInstantiationListeners().add(new SpringComponentInjector(this, ctx, true));
-
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -73,4 +88,6 @@ public class WicketApplication extends WebApplication implements ApplicationCont
     public Session newSession(Request request, Response response) {
         return new EazyregnskabSesssion(request);
     }
+
+
 }

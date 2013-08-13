@@ -16,6 +16,7 @@ import dk.eazyit.eazyregnskab.web.components.navigation.menu.TopMenuNavBarDropDo
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -27,7 +28,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Eazy IT
  */
-public abstract class AppBasePage extends WebPage{
+public abstract class AppBasePage extends WebPage implements IHeaderContributor {
 
     Navbar topMenu;
     protected final static int DURATION = 5;
@@ -53,8 +54,10 @@ public abstract class AppBasePage extends WebPage{
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
         Bootstrap.renderHead(response);
-    }
 
+//        String locale = getSession().getLocale().toString();
+//        response.render(new JavaScriptUrlReferenceHeaderItem("/js/feedback/feedback-"+locale+".js", "feedback", true, null, null));
+    }
 
     private void initMenu(PageParameters parameters) {
 
@@ -101,5 +104,8 @@ public abstract class AppBasePage extends WebPage{
         component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
     }
 
+    private boolean isDevelopmentSystem() {
+        return System.getProperty("development") != null;
+    }
 
 }
