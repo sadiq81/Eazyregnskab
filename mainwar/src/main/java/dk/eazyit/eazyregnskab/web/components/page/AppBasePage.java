@@ -4,10 +4,7 @@ import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
-import dk.eazyit.eazyregnskab.web.app.front.AboutPage;
-import dk.eazyit.eazyregnskab.web.app.front.ContactPage;
-import dk.eazyit.eazyregnskab.web.app.front.HomePage;
-import dk.eazyit.eazyregnskab.web.app.front.LoginPage;
+import dk.eazyit.eazyregnskab.web.app.front.*;
 import dk.eazyit.eazyregnskab.web.components.button.LoggedOutNavButton;
 import dk.eazyit.eazyregnskab.web.components.button.LogoutNavbarButton;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
@@ -19,6 +16,7 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -97,6 +95,12 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
         LOG.trace("Created top menu");
 
         initMeta();
+        initfooterLink();
+    }
+
+    private void initfooterLink() {
+
+        add(new BookmarkablePageLink<PrivacyPage>("privacy", PrivacyPage.class));
     }
 
     private void initMeta() {
@@ -106,10 +110,11 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
 
     protected abstract void addToPage(PageParameters pageParameters);
 
-    protected void addToolTipToComponent(Component component, String resourceText) {
+    protected Component addToolTipToComponent(Component component, String resourceText) {
         component.add(AttributeModifier.append("rel", "tooltip"));
         component.add(AttributeModifier.append("data-placement", "top"));
         component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
+        return component;
     }
 
     private boolean isDevelopmentSystem() {
