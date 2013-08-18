@@ -95,12 +95,13 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
         LOG.trace("Created top menu");
 
         initMeta();
-        initfooterLink();
+        initFooterLink();
     }
 
-    private void initfooterLink() {
+    private void initFooterLink() {
 
         add(new BookmarkablePageLink<PrivacyPage>("privacy", PrivacyPage.class));
+        add(new BookmarkablePageLink<PrivacyPage>("terms", TermsPage.class));
     }
 
     private void initMeta() {

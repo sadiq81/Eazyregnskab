@@ -15,6 +15,8 @@ import org.apache.wicket.markup.MarkupParser;
 import org.apache.wicket.markup.MarkupResourceStream;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.protocol.https.HttpsConfig;
+import org.apache.wicket.protocol.https.HttpsMapper;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
@@ -78,6 +80,12 @@ public class WicketApplication extends WebApplication implements ApplicationCont
         mountPackage("app/secure/reports", BalancePage.class);
 
         getComponentInstantiationListeners().add(new SpringComponentInjector(this, ctx, true));
+
+        if (System.getProperty("local") != null) {
+            setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig(8080, 8443)));
+        } else {
+            setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig(80, 443)));
+        }
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
