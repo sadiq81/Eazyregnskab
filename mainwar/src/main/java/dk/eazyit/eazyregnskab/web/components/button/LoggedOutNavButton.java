@@ -1,12 +1,12 @@
 package dk.eazyit.eazyregnskab.web.components.button;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import org.apache.wicket.Page;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * @author EazyIT
@@ -24,6 +24,6 @@ public class LoggedOutNavButton<T> extends NavbarButton<T> {
     @Override
     protected void onConfigure() {
         super.onConfigure();
-        setVisibilityAllowed(SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"));
+        setVisibilityAllowed(!((EazyregnskabSesssion) getSession()).isSignedIn());
     }
 }

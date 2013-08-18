@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.app.front;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationPanel;
-import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
+import dk.eazyit.eazyregnskab.web.components.form.SignInForm;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -44,6 +44,9 @@ public class LoginPage extends AppBasePage {
             LOG.debug("Error on login was shown to user");
             getSession().error(new NotificationMessage(new ResourceModel("error.on.login")).hideAfter(Duration.seconds(DURATION)));
         }
-        add(new LoadingButton("login", new ResourceModel("login")));
+
+        add(new SignInForm("signIn"));
+
+
     }
 }

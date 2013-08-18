@@ -15,9 +15,12 @@
 
     <context:annotation-config/>
 
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <context:component-scan base-package="dk.eazyit.eazyregnskab"/>
+
+    <bean id="loggerListener"
+          class="dk.eazyit.eazyregnskab.services.LoggerListener"/>
 
     <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
         <constructor-arg value="256"/>

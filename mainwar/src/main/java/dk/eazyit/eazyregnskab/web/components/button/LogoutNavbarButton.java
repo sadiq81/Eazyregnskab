@@ -1,10 +1,10 @@
 package dk.eazyit.eazyregnskab.web.components.button;
 
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import org.apache.wicket.Page;
 import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * @author Trifork
@@ -19,13 +19,8 @@ public class LogoutNavbarButton<T> extends LoggedInButton<T> {
     }
 
     @Override
-    protected CharSequence getURL() {
-        return "/j_spring_security_logout";
-    }
-
-    @Override
     protected void onConfigure() {
         super.onConfigure();
-        setVisibilityAllowed(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"));
+        setVisibilityAllowed(((EazyregnskabSesssion) getSession()).isSignedIn());
     }
 }

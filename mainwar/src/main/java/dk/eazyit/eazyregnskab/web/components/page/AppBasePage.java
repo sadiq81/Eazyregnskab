@@ -87,7 +87,7 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
 
         //Logged in menu buttons
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
-                new LogoutNavbarButton(WebPage.class, new ResourceModel("logout"))
+                new LogoutNavbarButton(LogoutPage.class, new ResourceModel("logout"))
         ));
 
         add(topMenu);

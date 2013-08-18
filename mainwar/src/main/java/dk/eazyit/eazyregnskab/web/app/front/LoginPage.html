@@ -15,7 +15,7 @@
 
                 <div wicket:id="feedback"></div>
 
-                <form class="form-horizontal" action="j_spring_security_check" method="post">
+                <form wicket:id="signIn" class="form-horizontal">
                     <fieldset>
 
                         <div class="controls">
@@ -25,22 +25,22 @@
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="j_username">
+                            <label class="control-label" for="username">
                                 <wicket:message key="username"></wicket:message>
                             </label>
 
                             <div class="controls">
-                                <input id="j_username" class="input-block-level" type='text' name='j_username' value=''>
+                                <input wicket:id="username" id="username" class="input-block-level" type='text' name='username' value=''>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="j_password">
+                            <label class="control-label" for="password">
                                 <wicket:message key="password"></wicket:message>
                             </label>
 
                             <div class="controls">
-                                <input id="j_password" class="input-block-level" type='password' name='j_password'
+                                <input wicket:id="password" id="password" class="input-block-level" type='password' name='password'
                                        value=''>
                             </div>
                         </div>
@@ -48,10 +48,10 @@
                         <div class="control-group">
                             <div class="controls">
                                 <label class="checkbox">
-                                    <input id="_spring_security_remember_me" name="_spring_security_remember_me" type="checkbox" value="true"/>
+                                    <input wicket:id="rememberMe" id="rememberMe" name="rememberMe" type="checkbox" value="true"/>
                                     <wicket:message key="remember.me"></wicket:message>
                                 </label>
-                                <button wicket:id="login" type="submit" class="btn">
+                                <button type="submit" class="btn">
                                     <wicket:message key="login"></wicket:message>
                                 </button>
                             </div>

@@ -3,11 +3,11 @@ package dk.eazyit.eazyregnskab.web.components.navigation.menu;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.dropdown.MenuBookmarkablePageLink;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.button.DropDownAutoOpen;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,6 +42,6 @@ public abstract class TopMenuNavBarDropDownButton<T extends LoggedInPage> extend
     @Override
     protected void onConfigure() {
         super.onConfigure();
-        setVisibilityAllowed(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"));
+        setVisibilityAllowed(((EazyregnskabSesssion) getSession()).isSignedIn());
     }
 }

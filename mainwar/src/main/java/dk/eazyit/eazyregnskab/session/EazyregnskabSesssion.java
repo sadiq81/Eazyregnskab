@@ -5,25 +5,62 @@ import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.LoginService;
 import org.apache.wicket.Session;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.injection.Injector;
-import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 /**
  * @author
  */
-public class EazyregnskabSesssion extends WebSession {
+public class EazyregnskabSesssion extends AuthenticatedWebSession {
 
     @SpringBean
     FinanceAccountService financeAccountService;
     @SpringBean
     DailyLedgerService dailyLedgerService;
+    @SpringBean
+    private LoginService loginService;
+    @SpringBean
+    ShaPasswordEncoder shaPasswordEncoder;
+
+
+    private static final Logger LOG = LoggerFactory.getLogger(EazyregnskabSesssion.class);
 
     public EazyregnskabSesssion(Request request) {
         super(request);
         Injector.get().inject(this);
+    }
+
+    @Override
+    public boolean authenticate(String username, String password) {
+
+        AppUser appUser = loginService.findAppUserByUsername(username);
+
+        if (appUser == null) {
+            return false;
+        } else if (!appUser.isEnabled()) {
+            return false;
+        } else if (!appUser.isActive()) {
+            return false;
+        } else if (shaPasswordEncoder.encodePassword(password, username).equals(appUser.getPassword())) {
+            setCurrentUser(appUser);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Roles getRoles() {
+        Roles roles = new Roles(loginService.getUserRoles(getCurrentUser()));
+        return roles;
     }
 
     public void setCurrentUser(AppUser appUser) {

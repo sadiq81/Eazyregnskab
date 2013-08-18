@@ -2,7 +2,7 @@ package dk.eazyit.eazyregnskab.web.app.front;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationPanel;
-import dk.eazyit.eazyregnskab.domain.CreateAppUserInfo;
+import dk.eazyit.eazyregnskab.domain.SimpleAppUserInfo;
 import dk.eazyit.eazyregnskab.services.LoginService;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderPasswordField;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
@@ -35,7 +35,7 @@ public class SignUpPage extends AppBasePage {
     EmailTextField emailTextField;
 
     private static final long serialVersionUID = 1L;
-    private CreateAppUserInfo createInfo;
+    private SimpleAppUserInfo createInfo;
     protected final static int DURATION = 15;
 
     private static final String USERNAME_PATTERN = "^[a-z0-9_-]{8,25}$";
@@ -69,13 +69,13 @@ public class SignUpPage extends AppBasePage {
 
         add(new NotificationPanel("feedback").setOutputMarkupPlaceholderTag(true));
 
-        add(signUpForm = new SignUpForm("create_account", new CompoundPropertyModel<CreateAppUserInfo>(createInfo = new CreateAppUserInfo())));
+        add(signUpForm = new SignUpForm("create_account", new CompoundPropertyModel<SimpleAppUserInfo>(createInfo = new SimpleAppUserInfo())));
 
         add(whatToDoNow = (MultiLineLabel) new MultiLineLabel("what.to.do.now", new ResourceModel("what.to.do.now")).setVisibilityAllowed(false).setOutputMarkupPlaceholderTag(true).setEscapeModelStrings(false));
 
     }
 
-    public final class SignUpForm extends Form<CreateAppUserInfo> {
+    public final class SignUpForm extends Form<SimpleAppUserInfo> {
 
         public SignUpForm(final String id, IModel model) {
             super(id, model);
@@ -89,7 +89,7 @@ public class SignUpPage extends AppBasePage {
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     super.onSubmit(target, form);
 
-                    CreateAppUserInfo userinfo = (CreateAppUserInfo) form.getModelObject();
+                    SimpleAppUserInfo userinfo = (SimpleAppUserInfo) form.getModelObject();
                     loginService.createUser(userinfo.getUsername(), userinfo.getPassword(), userinfo.getEmail());
                     getSession().info(new NotificationMessage(new StringResourceModel("account.created.for.user", getPage(), new Model<Serializable>(userinfo))) + " " + userinfo.getUsername());
 

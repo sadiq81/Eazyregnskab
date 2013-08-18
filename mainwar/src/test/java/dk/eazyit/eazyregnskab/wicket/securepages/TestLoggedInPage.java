@@ -29,7 +29,7 @@ public abstract class TestLoggedInPage extends TestBaseCase {
         appUser = new AppUser("test", "test", true, "test","test");
         appUser = appUserDAO.save(appUser);
         HashSet<AppUserRole> appUserRoles = new HashSet<AppUserRole>();
-        AppUserRole appUserRole = new AppUserRole(appUser, Authority.ROLE_USER);
+        AppUserRole appUserRole = new AppUserRole(appUser, "USER");
         appUserRole = appUserRoleDAO.save(appUserRole);
         appUserRoles.add(appUserRole);
         appUser.setAppUserRoles(appUserRoles);

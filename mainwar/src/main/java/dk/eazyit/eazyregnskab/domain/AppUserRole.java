@@ -29,15 +29,14 @@ public class AppUserRole extends BaseEntity {
     private AppUser appUser;
 
     @Column(unique = false, nullable = false, length = 25)
-    @Enumerated(EnumType.STRING)
-    private Authority authority;
+    private String role;
 
     public AppUserRole() {
     }
 
-    public AppUserRole(AppUser appUser, Authority authority) {
+    public AppUserRole(AppUser appUser, String role) {
         this.appUser = appUser;
-        this.authority = authority;
+        this.role = role;
     }
 
     public Long getId() {
@@ -56,12 +55,12 @@ public class AppUserRole extends BaseEntity {
         this.appUser = appUser;
     }
 
-    public Authority getAuthority() {
-        return authority;
+    public String getRole() {
+        return role;
     }
 
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

@@ -4,21 +4,20 @@ import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.web.app.front.HomePage;
+import dk.eazyit.eazyregnskab.web.app.front.LoginPage;
 import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
 import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
 import dk.eazyit.eazyregnskab.web.components.markupfilter.HeaderHandler;
 import org.apache.wicket.Application;
-import org.apache.wicket.Session;
+import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.MarkupFactory;
 import org.apache.wicket.markup.MarkupParser;
 import org.apache.wicket.markup.MarkupResourceStream;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.https.HttpsConfig;
 import org.apache.wicket.protocol.https.HttpsMapper;
-import org.apache.wicket.request.Request;
-import org.apache.wicket.request.Response;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +33,7 @@ import java.util.Locale;
  *
  */
 @Component
-public class WicketApplication extends WebApplication implements ApplicationContextAware {
+public class WicketApplication extends AuthenticatedWebApplication implements ApplicationContextAware {
     /**
      * @see org.apache.wicket.Application#getHomePage()
      */
@@ -93,9 +92,12 @@ public class WicketApplication extends WebApplication implements ApplicationCont
     }
 
     @Override
-    public Session newSession(Request request, Response response) {
-        return new EazyregnskabSesssion(request);
+    protected Class<? extends AbstractAuthenticatedWebSession> getWebSessionClass() {
+        return EazyregnskabSesssion.class;
     }
 
-
+    @Override
+    protected Class<? extends WebPage> getSignInPageClass() {
+        return LoginPage.class;
+    }
 }
