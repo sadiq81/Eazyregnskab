@@ -6,11 +6,13 @@ import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.protocol.https.RequireHttps;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@RequireHttps
 public class LoginPage extends AppBasePage {
     private static final long serialVersionUID = 1L;
 

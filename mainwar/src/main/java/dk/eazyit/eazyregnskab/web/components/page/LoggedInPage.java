@@ -16,6 +16,7 @@ import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
 import org.apache.wicket.Session;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.protocol.https.RequireHttps;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * @author EazyIT
  */
+@RequireHttps
 public abstract class LoggedInPage extends AppBasePage implements SessionAware {
 
     public static final String PARAM_LEGAL_ENTITY = "legalEntity";

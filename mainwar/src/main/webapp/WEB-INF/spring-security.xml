@@ -9,16 +9,13 @@
           http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 
-
     <beans:bean id="loggerListener"
-                    class="dk.eazyit.eazyregnskab.services.LoggerListener"/>
+                class="dk.eazyit.eazyregnskab.services.LoggerListener"/>
 
 
     <http auto-config="true">
-        <intercept-url pattern="/app/front/LoginPage*" requires-channel='https' access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/app/front/ConfirmPage*" requires-channel='https' access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/app/front/**" requires-channel='any' access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/app/secure/**" requires-channel='https' access="ROLE_USER"/>
+        <intercept-url pattern="/app/front/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/app/secure/**" access="ROLE_USER"/>
         <form-login
                 authentication-failure-url="/app/front/LoginPage?error=true"
                 login-page="/app/front/LoginPage"
@@ -26,7 +23,8 @@
                 />
 
         <logout logout-success-url="/app/front/HomePage"/>
-        <remember-me key="eazyRegnskab-rm-key-juGuMnil55sHop80comps" token-validity-seconds="3600" data-source-ref="dataSource"/>
+        <remember-me key="eazyRegnskab-rm-key-juGuMnil55sHop80comps" token-validity-seconds="3600"
+                     data-source-ref="dataSource"/>
         <session-management>
             <concurrency-control max-sessions="1"/>
         </session-management>
@@ -39,7 +37,6 @@
             </password-encoder>
         </authentication-provider>
     </authentication-manager>
-
 
 
 </beans:beans>
