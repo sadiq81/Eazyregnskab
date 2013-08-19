@@ -47,4 +47,9 @@
         <constructor-arg type="boolean" value="false"></constructor-arg>
     </bean>
 
+    <!--<bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+            <!--<property name="exposeSchedulerInRepository" value="true" />-->
+    <!--</bean>-->
+
+
 </beans>
