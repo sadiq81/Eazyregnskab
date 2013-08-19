@@ -91,4 +91,13 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
     public void setCurrentDailyLedger(DailyLedger dailyLedger) {
         Session.get().setAttribute(DailyLedger.ATTRIBUTE_NAME, dailyLedger);
     }
+
+    @Override
+    public void invalidate() {
+        getApplication().getSecuritySettings().getAuthenticationStrategy().remove();
+        Session.get().removeAttribute(AppUser.ATTRIBUTE_NAME);
+        Session.get().removeAttribute(LegalEntity.ATTRIBUTE_NAME);
+        Session.get().removeAttribute(DailyLedger.ATTRIBUTE_NAME);
+        super.invalidate();
+    }
 }

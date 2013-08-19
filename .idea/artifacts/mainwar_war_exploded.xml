@@ -82,6 +82,9 @@
           <element id="library" level="project" name="Maven: hsqldb:hsqldb:1.8.0.7" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: net.bull.javamelody:javamelody-core:1.45.0" />
+          <element id="library" level="project" name="Maven: org.jrobin:jrobin:1.5.9" />
+          <element id="library" level="project" name="Maven: com.lowagie:itext:2.1.7" />
         </element>
       </element>
     </root>

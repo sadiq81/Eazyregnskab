@@ -3,15 +3,17 @@ package dk.eazyit.eazyregnskab.web.components.page;
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarAjaxLink;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
+import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.web.app.front.*;
 import dk.eazyit.eazyregnskab.web.components.button.LoggedOutNavButton;
-import dk.eazyit.eazyregnskab.web.components.button.LogoutNavbarButton;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuSetup;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.TopMenuNavBarDropDownButton;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -87,7 +89,19 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
 
         //Logged in menu buttons
         topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.RIGHT,
-                new LogoutNavbarButton(LogoutPage.class, new ResourceModel("logout"))
+                new NavbarAjaxLink(new ResourceModel("logout")) {
+                    @Override
+                    public void onClick(AjaxRequestTarget target) {
+                        getSession().invalidate();
+                        getRequestCycle().setResponsePage(HomePage.class);
+                    }
+
+                    @Override
+                    protected void onConfigure() {
+                        super.onConfigure();
+                        setVisibilityAllowed(((EazyregnskabSesssion) getSession()).isSignedIn());
+                    }
+                }
         ));
 
         add(topMenu);
@@ -116,10 +130,6 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
         component.add(AttributeModifier.append("data-placement", "top"));
         component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
         return component;
-    }
-
-    private boolean isDevelopmentSystem() {
-        return System.getProperty("development") != null;
     }
 
 }

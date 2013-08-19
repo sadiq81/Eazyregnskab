@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 @RequireHttps
 public class LoginPage extends AppBasePage {
-    private static final long serialVersionUID = 1L;
 
     private final static int DURATION = 5;
 
@@ -46,6 +45,7 @@ public class LoginPage extends AppBasePage {
         }
 
         add(new SignInForm("signIn"));
+
 
 
     }
