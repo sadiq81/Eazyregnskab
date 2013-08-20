@@ -12,6 +12,7 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -46,7 +47,6 @@ public class LoginService {
         appUserRoleDAO.create(new AppUserRole(appUser, "USER"));
         log.info("Created account for " + username);
 
-
     }
 
     @Transactional
@@ -65,7 +65,7 @@ public class LoginService {
     }
 
     @Transactional
-    public String getUserRoles(AppUser appUser) {
+    public String getUserRolesAsString(AppUser appUser) {
 
         StringBuilder roles = new StringBuilder();
         for (AppUserRole role : appUserRoleDAO.findByNamedQuery(AppUserRole.QUERY_FIND_BY_USER, appUser)) {
@@ -75,6 +75,11 @@ public class LoginService {
             roles.append(role.getRole());
         }
         return roles.toString();
+    }
+
+    @Transactional
+    public List<AppUserRole> getUserRoles(AppUser appUser) {
+        return appUserRoleDAO.findByNamedQuery(AppUserRole.QUERY_FIND_BY_USER, appUser);
     }
 
 

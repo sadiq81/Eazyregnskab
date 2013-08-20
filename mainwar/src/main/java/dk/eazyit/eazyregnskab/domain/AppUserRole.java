@@ -28,6 +28,9 @@ public class AppUserRole extends BaseEntity {
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 
+    @Column(unique = true, nullable = false, length = 25)
+    private String username;
+
     @Column(unique = false, nullable = false, length = 25)
     private String role;
 
@@ -36,6 +39,7 @@ public class AppUserRole extends BaseEntity {
 
     public AppUserRole(AppUser appUser, String role) {
         this.appUser = appUser;
+        this.username = appUser.getUsername();
         this.role = role;
     }
 
@@ -53,6 +57,7 @@ public class AppUserRole extends BaseEntity {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+        this.username = appUser.getUsername();
     }
 
     public String getRole() {

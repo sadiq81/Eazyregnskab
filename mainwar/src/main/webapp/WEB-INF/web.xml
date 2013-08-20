@@ -46,19 +46,26 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <login-config>
+         <auth-method>BASIC
+         </auth-method>
+         <realm-name>Monitoring</realm-name>
+     </login-config>
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>MONITOR</role-name>
+    </security-role>
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Monitoring</web-resource-name>
             <url-pattern>/monitoring</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>USER</role-name>
+            <role-name>MONITOR</role-name>
         </auth-constraint>
-        <!-- if SSL enabled (SSL and certificate must then be configured in the server)
-        <user-data-constraint>
-                <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-        -->
     </security-constraint>
+
 
 </web-app>

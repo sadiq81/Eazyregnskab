@@ -31,7 +31,7 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
     ShaPasswordEncoder shaPasswordEncoder;
 
 
-    private static final Logger LOG = LoggerFactory.getLogger(EazyregnskabSesssion.class);
+    private static final Logger log = LoggerFactory.getLogger(EazyregnskabSesssion.class);
 
     public EazyregnskabSesssion(Request request) {
         super(request);
@@ -50,6 +50,7 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
         } else if (!appUser.isActive()) {
             return false;
         } else if (shaPasswordEncoder.encodePassword(password, username).equals(appUser.getPassword())) {
+            log.info("appUser logged in: " + username);
             setCurrentUser(appUser);
             return true;
         } else {
@@ -59,8 +60,7 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
 
     @Override
     public Roles getRoles() {
-        Roles roles = new Roles(loginService.getUserRoles(getCurrentUser()));
-        return roles;
+        return new Roles(loginService.getUserRolesAsString(getCurrentUser()));
     }
 
     public void setCurrentUser(AppUser appUser) {
