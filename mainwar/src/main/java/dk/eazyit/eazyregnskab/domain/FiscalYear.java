@@ -15,10 +15,10 @@ import java.util.Date;
                 "WHERE fy.legalEntity = ?1 ORDER BY start DESC "),
 
         @NamedQuery(name = FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY, query = "select fy from FiscalYear fy " +
-                        "WHERE fy.legalEntity = ?1 and fy.fiscalYearStatus =?2 ORDER BY start DESC "),
+                "WHERE fy.legalEntity = ?1 and fy.fiscalYearStatus =?2 ORDER BY start DESC "),
 
         @NamedQuery(name = FiscalYear.QUERY_FIND_NEXT_OPEN_BY_LEGAL_ENTITY, query = "select fy from FiscalYear fy " +
-                                "WHERE fy.legalEntity = ?1 and fy.start = ?2 and fy.fiscalYearStatus =?3 "),
+                "WHERE fy.legalEntity = ?1 and fy.start = ?2 and fy.fiscalYearStatus =?3 "),
 
         @NamedQuery(name = FiscalYear.QUERY_FIND_LOCKED_BY_LEGAL_ENTITY_AFTER_DATE, query = "select fy from FiscalYear fy " +
                 "WHERE fy.legalEntity = ?1 and fy.start > ?2 and fy.fiscalYearStatus = ?3"),
@@ -27,8 +27,7 @@ import java.util.Date;
                 "WHERE fy.legalEntity = ?1 and fy.end < ?2 and fy.fiscalYearStatus = ?3"),
 
         @NamedQuery(name = FiscalYear.QUERY_FIND_LAST_BY_LEGAL_ENTITY, query = "select fy from FiscalYear fy " +
-                        "WHERE fy.start = (select MAX(fy2.start) from FiscalYear fy2 where fy2.legalEntity = ?1 ) and fy.legalEntity = ?1"),
-
+                "WHERE fy.start = (select MAX(fy2.start) from FiscalYear fy2 where fy2.legalEntity = ?1 ) and fy.legalEntity = ?1"),
 
 
 })
@@ -68,6 +67,13 @@ public class FiscalYear extends BaseEntity {
     public FiscalYear(Date start, Date end) {
         this.start = start;
         this.end = end;
+    }
+
+    public FiscalYear(Date start, Date end, LegalEntity legalEntity) {
+        this.start = start;
+        this.end = end;
+        this.legalEntity = legalEntity;
+        this.fiscalYearStatus = FiscalYearStatus.OPEN;
     }
 
     @Override

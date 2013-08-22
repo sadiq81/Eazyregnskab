@@ -25,6 +25,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>shared</module>
+        <module>jetty</module>
         <module>mainwar</module>
         <module>awsupload</module>
     </modules>
@@ -43,12 +45,14 @@
         <slf4j.version>1.7.2</slf4j.version>
         <wicket.bootstrap.version>0.8.4</wicket.bootstrap.version>
         <logback.version>0.9.26</logback.version>
+        <jetty.version>8.1.12.v20130726</jetty.version>
 
         <source.encoding>UTF-8</source.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     </properties>
+
 
     <build>
         <plugins>
@@ -62,6 +66,7 @@
                     <encoding>${source.encoding}</encoding>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>

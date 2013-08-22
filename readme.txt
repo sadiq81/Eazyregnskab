@@ -3,7 +3,7 @@ cd .ssh
 rm known_hosts
 
 #Login command to instance
-ssh -i IdeaProjects/eazyregnskab/awsupload/eazyit.pem ubuntu@eazyregnskab.dk
+ssh -p 23 -i IdeaProjects/eazyregnskab/awsupload/eazyit.pem ubuntu@eazyregnskab.dk
 
 #install Oracle JDK http://www.blogs.digitalworlds.net/softwarenotes/?p=41
 sudo add-apt-repository ppa:webupd8team/java
@@ -15,28 +15,4 @@ sudo nano /etc/environment
 #Append to the end of the file:
 JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
-#install tomcat
-sudo apt-get install tomcat7 && sudo /etc/init.d/tomcat7 stop
-
-#change port to 80
-sudo nano /etc/default/tomcat7
-#change end of file to
-AUTHBIND=yes
-
-sudo nano /var/lib/tomcat7/conf/server.xml
-#set port to 80
-
-#allow ubuntu user to upload to tomcat owned folders
-sudo usermod -a -G tomcat7 ubuntu
-
-#change context for webapp
-<Host name="localhost"  appBase="webapps"
-    unpackWARs="true" autoDeploy="false"
-    deployOnStartup="false">
-    <Context docBase="eazyregnskab" path="" />
-    .....
-</Host>
 #Upload webapp wia Deploy class
-
-#Buy SLL certificate
-http://www.digicert.com/tomcat-ssl.htm

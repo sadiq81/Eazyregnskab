@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/awsupload/awsupload.iml" filepath="$PROJECT_DIR$/awsupload/awsupload.iml" />
       <module fileurl="file://$PROJECT_DIR$/eazyregnskab.iml" filepath="$PROJECT_DIR$/eazyregnskab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jetty/jetty.iml" filepath="$PROJECT_DIR$/jetty/jetty.iml" />
       <module fileurl="file://$PROJECT_DIR$/mainwar/mainwar.iml" filepath="$PROJECT_DIR$/mainwar/mainwar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
     </modules>
   </component>
 </project>

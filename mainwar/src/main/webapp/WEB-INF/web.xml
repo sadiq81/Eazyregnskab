@@ -47,16 +47,23 @@
     </filter-mapping>
 
     <login-config>
-         <auth-method>BASIC
-         </auth-method>
-         <realm-name>Monitoring</realm-name>
-     </login-config>
+        <auth-method>BASIC
+        </auth-method>
+        <realm-name>Monitoring</realm-name>
+    </login-config>
+
     <security-role>
         <role-name>USER</role-name>
     </security-role>
+
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+
     <security-role>
         <role-name>MONITOR</role-name>
     </security-role>
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Monitoring</web-resource-name>

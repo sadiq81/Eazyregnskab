@@ -10,7 +10,7 @@ public class Deploy {
     public static void main(String[] arg) throws Exception {
 
         System.out.println("Uploading new version in: ");
-        for (int i = 10; i > 0 ; i--){
+        for (int i = 10; i > 0; i--) {
             if (i != 1) System.out.println(i + " seconds");
             if (i == 1) System.out.println(i + " second");
             Thread.sleep(1000);
@@ -19,11 +19,9 @@ public class Deploy {
         String username = arg[0];
         String pathToKey = arg[1];
         String hostname = arg[2];
-        String localFile = arg[3];
-        String remoteFile = arg[4];
 
         SshClient ssh = new SshClient();
-        ssh.connect(hostname,22);
+        ssh.connect(hostname, 23);
 
         PublicKeyAuthenticationClient pk = new PublicKeyAuthenticationClient();
         pk.setUsername(username);
@@ -31,30 +29,39 @@ public class Deploy {
         ssh.authenticate(pk);
 
         SessionChannelClient session = ssh.openSessionChannel();
-        if (session.executeCommand("sudo /etc/init.d/tomcat7 stop")) {
-            System.out.println("Tomcat server has been stopped");
+        if (session.executeCommand("sudo pkill -9 -f jetty")) {
+            System.out.println("Jetty server has been stopped");
         } else {
-            throw new NullPointerException("Tomcat server has NOT been stopped");
+            throw new NullPointerException("Jetty server has NOT been stopped");
         }
         session.close();
 
         session = ssh.openSessionChannel();
-        if (session.executeCommand("sudo rm -rf /var/lib/tomcat7/webapps/ROOT/")) {
-            System.out.println("Old version of eazyregnskab has been deleted");
+        if (session.executeCommand("rm -rf /home/ubuntu/*")) {
+            System.out.println("Old version of Jetty has been deleted");
         } else {
-            throw new NullPointerException("Old version of eazyregnskab has NOT been deleted");
+            throw new NullPointerException("Old version of Jetty has NOT been deleted");
         }
         session.close();
 
-        SftpClient sftp = ssh.openSftpClient();
-        sftp.put(System.getProperty("user.dir") + "/mainwar/target/eazyregnskab.war", "/var/lib/tomcat7/webapps/");
-        sftp.quit();
+        SftpClient jar = ssh.openSftpClient();
+        jar.put(System.getProperty("user.dir") + "/jetty/target/jetty-1.0-SNAPSHOT.jar", "/home/ubuntu/");
+        jar.quit();
+
+        SftpClient properties = ssh.openSftpClient();
+        properties.put(System.getProperty("user.dir") + "/jetty/target/classes/jetty-realm.properties", "/home/ubuntu/");
+        properties.quit();
+
+        SftpClient war = ssh.openSftpClient();
+        war.put(System.getProperty("user.dir") + "/mainwar/target/eazyregnskab.war", "/home/ubuntu/");
+        war.quit();
+
 
         session = ssh.openSessionChannel();
-        if (session.executeCommand("sudo /etc/init.d/tomcat7 start")) {
-            System.out.println("Tomcat server has been started");
+        if (session.executeCommand("sudo java -jar /home/ubuntu/jetty-1.0-SNAPSHOT.jar &")) {
+            System.out.println("Jetty server has been started");
         } else {
-            throw new NullPointerException("Tomcat server has NOT!!! been started");
+            throw new NullPointerException("Jetty server has NOT!!! been started");
         }
         session.close();
 

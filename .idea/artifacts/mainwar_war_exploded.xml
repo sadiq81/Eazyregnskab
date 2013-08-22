@@ -79,12 +79,24 @@
           <element id="library" level="project" name="Maven: org.hsqldb:hsqldb:2.2.9" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
-          <element id="library" level="project" name="Maven: hsqldb:hsqldb:1.8.0.7" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: net.bull.javamelody:javamelody-core:1.45.0" />
           <element id="library" level="project" name="Maven: org.jrobin:jrobin:1.5.9" />
           <element id="library" level="project" name="Maven: com.lowagie:itext:2.1.7" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-webapp:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-xml:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-servlet:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-security:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-server:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-continuation:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-http:8.1.12.v20130726" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:8.1.12.v20130726" />
+          <element id="archive" name="shared-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="shared" />
+          </element>
         </element>
       </element>
     </root>

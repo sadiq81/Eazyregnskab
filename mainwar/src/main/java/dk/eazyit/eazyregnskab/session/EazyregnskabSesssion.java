@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.session;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
+import dk.eazyit.eazyregnskab.security.PasswordEncoder;
 import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
 import dk.eazyit.eazyregnskab.services.LoginService;
@@ -14,7 +15,6 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 /**
  * @author
@@ -27,9 +27,6 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
     DailyLedgerService dailyLedgerService;
     @SpringBean
     private LoginService loginService;
-    @SpringBean
-    ShaPasswordEncoder shaPasswordEncoder;
-
 
     private static final Logger log = LoggerFactory.getLogger(EazyregnskabSesssion.class);
 
@@ -49,7 +46,7 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
             return false;
         } else if (!appUser.isActive()) {
             return false;
-        } else if (shaPasswordEncoder.encodePassword(password, username).equals(appUser.getPassword())) {
+        } else if (PasswordEncoder.getInstance().encode(password, username).equals(appUser.getPassword())) {
             log.info("appUser logged in: " + username);
             setCurrentUser(appUser);
             return true;

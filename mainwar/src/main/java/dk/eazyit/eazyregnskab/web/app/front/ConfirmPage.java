@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.protocol.https.RequireHttps;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author
  */
+@RequireHttps
 public class ConfirmPage extends AppBasePage {
 
     @SpringBean(name = "loginService")
@@ -52,7 +54,7 @@ public class ConfirmPage extends AppBasePage {
 
         add(signUpForm = (SignUpForm) new SignUpForm("confirm_account", new CompoundPropertyModel<ConfirmAppUserInfo>(confirmAppUserInfo = new ConfirmAppUserInfo(pageParameters.get("id").toString()))).setOutputMarkupId(true));
 
-        add(login = (BookmarkablePageLink) ((BookmarkablePageLink)new BookmarkablePageLink<LoginPage>("loginLink", LoginPage.class).setOutputMarkupPlaceholderTag(true).setVisibilityAllowed(false)).add(new Label("login.label", new ResourceModel("login.link.text"))));
+        add(login = (BookmarkablePageLink) ((BookmarkablePageLink) new BookmarkablePageLink<LoginPage>("loginLink", LoginPage.class).setOutputMarkupPlaceholderTag(true).setVisibilityAllowed(false)).add(new Label("login.label", new ResourceModel("login.link.text"))));
 
     }
 

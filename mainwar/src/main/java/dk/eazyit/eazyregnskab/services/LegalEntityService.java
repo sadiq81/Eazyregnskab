@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.dao.interfaces.*;
 import dk.eazyit.eazyregnskab.domain.*;
+import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import org.apache.wicket.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,8 @@ public class LegalEntityService {
 
     private Logger log = LoggerFactory.getLogger(LegalEntityService.class);
 
+    @Autowired
+    FiscalYearService fiscalYearService;
     @Autowired
     private LegalEntityDAO legalEntityDAO;
     @Autowired
@@ -190,6 +193,10 @@ public class LegalEntityService {
         DailyLedger dailyLedger = new DailyLedger(bundle.getString("start.ledger.name"), legalEntity);
         dailyLedgerDAO.create(dailyLedger);
         legalEntity.getDailyLedgers().add(dailyLedger);
+
+        FiscalYear fiscalYear = new FiscalYear(CalendarUtil.getFirstDayInYear(), CalendarUtil.getLastDayInYear(), legalEntity);
+        fiscalYearService.save(fiscalYear);
+
         return legalEntity;
     }
 
