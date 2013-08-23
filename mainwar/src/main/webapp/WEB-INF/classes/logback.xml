@@ -11,10 +11,7 @@
     <logger name="dk.eazyit.eazyregnskab" level="DEBUG">
     </logger>
 
-    <!--<logger name="org.eclipse.jetty.security" level="TRACE">-->
-    <!--</logger>-->
-
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
 

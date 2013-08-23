@@ -24,12 +24,12 @@ public abstract class TestLoggedInPage extends TestBaseCase {
     protected DailyLedger dailyLedger;
 
     @Before
-    public void LoggedInPageSetUp()  {
+    public void LoggedInPageSetUp() {
 
-        appUser = new AppUser("test", "test", true, "test","test");
+        appUser = new AppUser("test", "test", true, "test", "test");
         appUser = appUserDAO.save(appUser);
         HashSet<AppUserRole> appUserRoles = new HashSet<AppUserRole>();
-        AppUserRole appUserRole = new AppUserRole(appUser, "USER");
+        AppUserRole appUserRole = new AppUserRole(appUser, Role.USER);
         appUserRole = appUserRoleDAO.save(appUserRole);
         appUserRoles.add(appUserRole);
         appUser.setAppUserRoles(appUserRoles);

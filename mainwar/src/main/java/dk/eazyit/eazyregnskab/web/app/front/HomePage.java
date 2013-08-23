@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.app.front;
 import dk.eazyit.eazyregnskab.web.components.carousel.LinkCarousel;
 import dk.eazyit.eazyregnskab.web.components.carousel.LinkCarouselImage;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
+import org.apache.wicket.markup.html.image.ContextImage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -47,7 +48,9 @@ public class HomePage extends AppBasePage {
         list.add(new LinkCarouselImage("carousel.reports", "carousel.reports.explanation", "/pictures/carousel/reports" + language + ".png", "http://www.eazyregnskab.dk/app/front/SignUpPage"));
         add(new LinkCarousel("carousel", list));
 
-        add(new BookmarkablePageLink("signUp",SignUpPage.class));
+        add(new ContextImage("logo", "/pictures/logo/Logo470px.png"));
+
+        add(new BookmarkablePageLink("signUp", SignUpPage.class));
         add(new BookmarkablePageLink("whatYouGet", WhatYouGetPage.class));
         add(new BookmarkablePageLink("forAdministrators", ForAdministratorsPage.class));
         add(new BookmarkablePageLink("pricing", PricingPage.class));
