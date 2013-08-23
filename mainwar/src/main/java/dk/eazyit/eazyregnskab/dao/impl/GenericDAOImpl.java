@@ -427,18 +427,27 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
      */
     @Override
     public T save(T entity) {
-        if (entity.getCreated() == null) entity.setCreated(new Date());
+        if (entity.getCreated() == null) {
+            entity.setCreated(new Date());
+            logger.info("Created" + entity.toString() + " to database");
+        } else {
+            logger.debug("Saving " + entity.toString() + " to database");
+        }
         entity.setLastChanged(new Date());
-        logger.debug("Saving " + entity.toString() + " to database");
         return getEntityManager().merge(entity);
     }
 
 
     @Override
     public void create(T entity) {
-        if (entity.getCreated() == null) entity.setCreated(new Date());
+        if (entity.getCreated() == null) {
+            entity.setCreated(new Date());
+            logger.info("Creating " + entity.toString() + " in database");
+        } else {
+            logger.debug("Saving " + entity.toString() + " to database");
+        }
         entity.setLastChanged(new Date());
-        logger.debug("Creating " + entity.toString() + " in database");
+        logger.info("Creating " + entity.toString() + " in database");
         getEntityManager().persist(entity);
     }
 

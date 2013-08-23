@@ -6,6 +6,7 @@ import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.security.PasswordEncoder;
 import dk.eazyit.eazyregnskab.services.DailyLedgerService;
 import dk.eazyit.eazyregnskab.services.FinanceAccountService;
+import dk.eazyit.eazyregnskab.services.LegalEntityService;
 import dk.eazyit.eazyregnskab.services.LoginService;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -27,6 +28,8 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
     DailyLedgerService dailyLedgerService;
     @SpringBean
     private LoginService loginService;
+    @SpringBean
+    private LegalEntityService legalEntityService;
 
     private static final Logger log = LoggerFactory.getLogger(EazyregnskabSesssion.class);
 
@@ -48,7 +51,17 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
             return false;
         } else if (PasswordEncoder.getInstance().encode(password, username).equals(appUser.getPassword())) {
             log.info("appUser logged in: " + username);
+            log.debug("Setting Current User");
             setCurrentUser(appUser);
+
+            LegalEntity currentLegalEntity = legalEntityService.findLegalEntityByUser(getCurrentUser()).get(0);
+            log.debug("Setting CurrentLegalEntity");
+            setAttribute(LegalEntity.ATTRIBUTE_NAME, currentLegalEntity);
+
+            DailyLedger currentDailyLedger = dailyLedgerService.findDailyLedgerByLegalEntity(currentLegalEntity).get(0);
+            log.debug("Setting CurrentDailyLedger");
+            setAttribute(DailyLedger.ATTRIBUTE_NAME, currentDailyLedger);
+
             return true;
         } else {
             return false;

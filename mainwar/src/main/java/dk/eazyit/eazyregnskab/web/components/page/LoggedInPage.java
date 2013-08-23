@@ -22,8 +22,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * @author EazyIT
@@ -79,43 +77,14 @@ public abstract class LoggedInPage extends AppBasePage implements SessionAware {
 
     protected void ensureUserInfo(PageParameters parameters) {
 
-        Session session = getSession();
-
-        AppUser currentUser = getCurrentUser();
-        if (currentUser == null) {
-            currentUser = getAppUser();
-            LOG.debug("Setting CurrentUser");
-            session.setAttribute(AppUser.ATTRIBUTE_NAME, currentUser);
-        }
-
-        LegalEntity currentLegalEntity = getCurrentLegalEntity();
-        if (currentLegalEntity == null) {
-            currentLegalEntity = legalEntityService.findLegalEntityByUser(currentUser).get(0);
-            LOG.debug("Setting CurrentLegalEntity");
-            session.setAttribute(LegalEntity.ATTRIBUTE_NAME, currentLegalEntity);
-        }
-
-        DailyLedger currentDailyLedger = getCurrentDailyLedger();
-        if (currentDailyLedger == null) {
-            currentDailyLedger = dailyLedgerService.findDailyLedgerByLegalEntity(currentLegalEntity).get(0);
-            LOG.debug("Setting CurrentDailyLedger");
-            session.setAttribute(DailyLedger.ATTRIBUTE_NAME, currentDailyLedger);
-        }
-
-        if (currentUser == null || currentLegalEntity == null || currentDailyLedger == null) {
-            LOG.warn("EnsureUserInfo Failed with AppUser: " + currentUser + " LegalEntity: " + currentLegalEntity + " DailyLedger: " + currentDailyLedger);
+        if (getCurrentUser() == null || getCurrentLegalEntity() == null || getCurrentDailyLedger() == null) {
+            LOG.warn("EnsureUserInfo Failed");
             throw new NullPointerException("EnsureUserInfo Failed");
         }
     }
 
     public void changeLegalEntity() {
         addOrReplace(legalEntityChooser, legalEntityChooser = new LegalEntityChooser("legalEntityChooser"));
-    }
-
-    private AppUser getAppUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        return loginService.findAppUserByUsername(name);
     }
 
     public AppUser getCurrentUser() {

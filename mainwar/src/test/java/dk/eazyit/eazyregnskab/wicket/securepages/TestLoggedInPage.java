@@ -4,14 +4,9 @@ import dk.eazyit.eazyregnskab.TestBaseCase;
 import dk.eazyit.eazyregnskab.domain.*;
 import org.apache.wicket.Session;
 import org.junit.Before;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * @author
@@ -49,9 +44,10 @@ public abstract class TestLoggedInPage extends TestBaseCase {
         LegalEntityAccess legalEntityAccess = new LegalEntityAccess(appUser, legalEntity);
         legalEntityAccess = legalEntityAccessDAO.save(legalEntityAccess);
 
-        List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
-        simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("test", "test", simpleGrantedAuthorities));
+        //TODO login wicket user
+//        List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
+//        simpleGrantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+//        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("test", "test", simpleGrantedAuthorities));
 
     }
 

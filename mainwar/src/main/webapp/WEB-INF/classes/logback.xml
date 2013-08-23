@@ -8,26 +8,8 @@
         </encoder>
     </appender>
 
-    <logger name="dk.eazyit.eazyregnskab.web" level="DEBUG">
-    </logger>
 
-    <logger name="dk.eazyit.eazyregnskab.dao" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.services" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.session" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.web" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.security" level="INFO">
-    </logger>
-
-
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
 
