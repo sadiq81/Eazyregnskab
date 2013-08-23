@@ -31,6 +31,7 @@ public class AppUserRole extends BaseEntity {
     private String username;
 
     @Column(unique = false, nullable = false, length = 25)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public AppUserRole() {

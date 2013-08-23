@@ -5,10 +5,10 @@ import org.eclipse.jetty.security.JDBCLoginService;
 import org.eclipse.jetty.security.MappedLoginService;
 import org.eclipse.jetty.server.UserIdentity;
 import org.eclipse.jetty.util.Loader;
-import org.eclipse.jetty.util.log.Log;
-import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.security.Credential;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.*;
@@ -21,7 +21,7 @@ import java.util.Properties;
  */
 public class EazyRegnskabLoginService extends MappedLoginService {
 
-    private static final Logger LOG = Log.getLogger(JDBCLoginService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JDBCLoginService.class);
 
     private String _config;
     private String _jdbcDriver;
@@ -177,7 +177,7 @@ public class EazyRegnskabLoginService extends MappedLoginService {
             try {
                 _con.close();
             } catch (Exception e) {
-                LOG.ignore(e);
+                LOG.trace(e.toString());
             }
         }
         _con = null;
