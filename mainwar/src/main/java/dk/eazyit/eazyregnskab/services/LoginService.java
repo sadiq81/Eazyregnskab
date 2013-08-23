@@ -4,6 +4,7 @@ import dk.eazyit.eazyregnskab.dao.interfaces.AppUserDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.AppUserRoleDAO;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.AppUserRole;
+import dk.eazyit.eazyregnskab.domain.Role;
 import dk.eazyit.eazyregnskab.security.PasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,7 @@ public class LoginService {
         AppUser appUser = new AppUser(username, PasswordEncoder.getInstance().encode(password, username), false, email, UUID.randomUUID().toString());
         mailService.SendConfirmationEmail(appUser.getEmail(), appUser.getVerificationUUID());
         appUserDAO.create(appUser);
-        appUserRoleDAO.create(new AppUserRole(appUser, "USER"));
+        appUserRoleDAO.create(new AppUserRole(appUser, Role.USER));
         log.info("Created account for " + username);
 
     }

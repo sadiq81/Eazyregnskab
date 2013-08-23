@@ -32,26 +32,25 @@ public class Start {
         SslSocketConnector https = new SslSocketConnector(factory);
         https.setPort(isLocal() ? 8443 : 443);
         https.setAcceptors(4);
-        server.addConnector(https);
+
+        server.setConnectors(new Connector[]{http, https});
 
         WebAppContext webappcontext = new WebAppContext();
-        //webappcontext.setConfigurationClasses(configurations);
-
         webappcontext.setContextPath("/");
         webappcontext.setWar(isLocal() ? "mainwar/target/eazyregnskab.war" : "eazyregnskab.war");
         webappcontext.setParentLoaderPriority(true);
+
         HandlerCollection handlers = new HandlerCollection();
         handlers.setHandlers(new Handler[]{webappcontext});
+
+        server.setHandler(handlers);
 
         EazyRegnskabLoginService loginService = new EazyRegnskabLoginService();
         loginService.setConfig(isLocal() ? "jetty/src/main/resources/jetty-realm.properties" : "jetty-realm.properties");
         loginService.setName("Monitoring");
         server.addBean(loginService);
 
-        server.setHandler(handlers);
-
-        server.setConnectors(new Connector[]{http, https});
-
+//        server.setDumpAfterStart(true);
         server.setGracefulShutdown(1000);
         server.setStopAtShutdown(true);
 

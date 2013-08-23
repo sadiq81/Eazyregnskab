@@ -5,7 +5,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * @author Trifork
@@ -32,12 +31,12 @@ public class AppUserRole extends BaseEntity {
     private String username;
 
     @Column(unique = false, nullable = false, length = 25)
-    private String role;
+    private Role role;
 
     public AppUserRole() {
     }
 
-    public AppUserRole(AppUser appUser, String role) {
+    public AppUserRole(AppUser appUser, Role role) {
         this.appUser = appUser;
         this.username = appUser.getUsername();
         this.role = role;
@@ -60,11 +59,11 @@ public class AppUserRole extends BaseEntity {
         this.username = appUser.getUsername();
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

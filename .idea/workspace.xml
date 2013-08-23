@@ -7,100 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/resources/www.eazyregnskab.dk.keystore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/java/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dk_eazyit_shared_1_0_SNAPSHOT.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_26.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_continuation_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_http_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_io_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_security_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_server_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_servlet_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_util_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_webapp_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_xml_8_1_12_v20130726.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_orbit_javax_servlet_3_0_0_v201112011016.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shared/src/main/java/dk/eazyit/eazyregnskab/security/PasswordEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/SessionAwareForm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/Start.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-stop.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/resources/jetty-realm.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/resources/logback.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shared/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jetty/src/main/resources/server.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/eazyregnskab_war.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/eazyregnskab_war_exploded.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__hsqldb_hsqldb_1_8_0_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_annotations_api_7_0_35.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_api_7_0_35.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_catalina_7_0_35.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_juli_7_0_35.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_servlet_api_7_0_35.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_tomcat_util_7_0_35.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/atlassian-ide-plugin.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/system/EazyregnskabRealm.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/system/PlainRolePrincipal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/resources/rebel.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sql-statements/clear-data.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT.war" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/services/newEntityFinanceAccounts_da.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/front/ConfirmPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/front/PricingPage.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/front/PricingPage_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/front/SignUpPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/settings/DailyLedgerPage_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/modal/PostingsModal$Page.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/modal/PostingsModal$Page_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/page/AppBasePage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/panels/BalancePanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/panels/ReportPanel_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/panels/action/ActionPanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/panels/action/FiscalYearActionPanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/popup/PostingPopUp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/popup/PostingPopUp_da.utf8.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/popup/SessionAwarePopUp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/eazyregnskab-1.0-SNAPSHOT/WEB-INF/classes/dk/eazyit/eazyregnskab/web/components/tables/toolbar/ItemsPerPageToolBar.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/awsupload/src/main/resources/test" afterPath="$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-start.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/front/ConfirmPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/front/ConfirmPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/awsupload/src/main/java/Deploy.java" afterPath="$PROJECT_DIR$/awsupload/src/main/java/Deploy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/session/EazyregnskabSesssion.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/session/EazyregnskabSesssion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/Role.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-start.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-stop.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jetty/src/main/resources/logback.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jetty/src/main/resources/server.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/Authority.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/AppUserRole.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/AppUserRole.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java" afterPath="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/test/resources/applicationContext-test.xml" afterPath="$PROJECT_DIR$/mainwar/src/test/resources/applicationContext-test.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/awsupload/awsupload.iml" afterPath="$PROJECT_DIR$/awsupload/awsupload.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eazyregnskab.iml" afterPath="$PROJECT_DIR$/eazyregnskab.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/mainwar.iml" afterPath="$PROJECT_DIR$/mainwar/mainwar.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/mainwar_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/mainwar_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/pom.xml" afterPath="$PROJECT_DIR$/mainwar/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.txt" afterPath="$PROJECT_DIR$/readme.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/Start.java" afterPath="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/Start.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jetty/src/main/resources/jetty-realm.properties" afterPath="$PROJECT_DIR$/jetty/src/main/resources/jetty-realm.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/classes/logback.xml" afterPath="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/classes/logback.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eazyregnskab.iws" />
@@ -111,12 +29,12 @@
     <ignored path="jetty/src/main/resources/secondary_inter.cer" />
     <ignored path="jetty/src/main/resources/ssl_cert.cer" />
     <ignored path="shared/shared.iml" />
-    <file path="/fragment.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377193351681" ignored="false" />
+    <file path="/fragment.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254088294" ignored="false" />
     <file path="/AppBasePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376576449827" ignored="false" />
     <file path="/AppBasePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376906337677" ignored="false" />
     <file path="/HomePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376422380018" ignored="false" />
     <file path="/HomePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376423896286" ignored="false" />
-    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377203274949" ignored="false" />
+    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377207037050" ignored="false" />
     <file path="/MenuSetup.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375809275767" ignored="false" />
     <file path="/MenuTab.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310019187" ignored="false" />
     <file path="/SubMenuPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310042082" ignored="false" />
@@ -136,7 +54,7 @@
     <file path="/PlaceholderTextField.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366897725540" ignored="false" />
     <file path="/PlaceholderPasswordField.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359398210509" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/pengeplan.iws" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359476616306" ignored="false" />
-    <file path="/a.dummy" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377072774843" ignored="false" />
+    <file path="/a.dummy" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377250409126" ignored="false" />
     <file path="/EazyRegnskabSession.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365350690442" ignored="false" />
     <file path="/WicketApplication.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376841862237" ignored="false" />
     <file path="/ContactPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376480346082" ignored="false" />
@@ -149,7 +67,7 @@
     <file path="/securityContext.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359834087774" ignored="false" />
     <file path="/spring-security.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376385689423" ignored="false" />
     <file path="/web.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377201736982" ignored="false" />
-    <file path="/AppUserRole.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376916047232" ignored="false" />
+    <file path="/AppUserRole.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377252847884" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/atlassian-ide-plugin.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360663543367" ignored="false" />
     <file path="/LoginNavBarForm.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360352482427" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/session/CurrentUser.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360165120930" ignored="false" />
@@ -199,7 +117,7 @@
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/FinancePostingService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364973325970" ignored="false" />
     <file path="$USER_HOME$/untitled/src/Main.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1361213235573" ignored="false" />
     <file path="/Main.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376921706713" ignored="false" />
-    <file path="/logback.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1369992005090" ignored="false" />
+    <file path="/logback.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377250292239" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/util/DateUtil.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1361270494204" ignored="false" />
     <file path="/DateUtil.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1361270480781" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/FinancePosting.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1361271301862" ignored="false" />
@@ -216,7 +134,7 @@
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/CreateAccountPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1361735128804" ignored="false" />
     <file path="/InfoPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364904446722" ignored="false" />
     <file path="/SignUpPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375610248642" ignored="false" />
-    <file path="/LoginService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377159564003" ignored="false" />
+    <file path="/LoginService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377252866085" ignored="false" />
     <file path="/Role.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364844858866" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/GenericDao.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364973325970" ignored="false" />
     <file path="/AppUserDAO.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365344487542" ignored="false" />
@@ -224,7 +142,7 @@
     <file path="/AppUserStatus.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364891397924" ignored="false" />
     <file path="/UserServiceImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366634263034" ignored="false" />
     <file path="/UserDetailsImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364896486782" ignored="false" />
-    <file path="/Authority.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364893021412" ignored="false" />
+    <file path="/Authority.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377252770417" ignored="false" />
     <file path="/Assembler.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366634202230" ignored="false" />
     <file path="/AbstractHibernateDAO.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364894258111" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/AppUser.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365157223973" ignored="false" />
@@ -992,8 +910,8 @@
     <file path="/FiscalYearsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377009415184" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/accounts/FiscalYearsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377010771419" ignored="false" />
     <file path="/FiscalYearsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377010771419" ignored="false" />
-    <file path="/Start.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377201001090" ignored="false" />
-    <file path="/jetty-realm.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377113668578" ignored="false" />
+    <file path="/Start.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377250719149" ignored="false" />
+    <file path="/jetty-realm.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377253906117" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/AssetType.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377073167701" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/AccountTransactionType.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377073167701" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/sorter/completeOwnedAccount/CompleteOwnedAccountTypeSorter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377073167701" ignored="false" />
@@ -1015,7 +933,7 @@
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/obselete/SubscriptionPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377075559473" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/store/SupportTicketMessage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377076161875" ignored="false" />
     <file path="/StockSellPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377077170657" ignored="false" />
-    <file path="/EazyRegnskabLoginService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377159333163" ignored="false" />
+    <file path="/EazyRegnskabLoginService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377253833982" ignored="false" />
     <file path="/PasswordEncoder.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377194897562" ignored="false" />
     <file path="$PROJECT_DIR$/shared/src/PasswordEncoder.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377159900174" ignored="false" />
     <file path="/eazyregnskab-stop.sh" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377182672228" ignored="false" />
@@ -1038,7 +956,42 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+    </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="jar://$M2_REPO$/org/hibernate/hibernate-core/4.1.10.Final/hibernate-core-4.1.10.Final-sources.jar!/org/hibernate/internal/SessionImpl.java" line="1077" class="org.hibernate.internal.SessionImpl" package="org.hibernate.internal">
         <option name="ENABLED" value="false" />
@@ -1220,7 +1173,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" line="53" class="dk.eazyit.eazyregnskab.services.LoginService" package="dk.eazyit.eazyregnskab.services">
+      <breakpoint url="jar://$M2_REPO$/org/eclipse/jetty/jetty-security/8.1.12.v20130726/jetty-security-8.1.12.v20130726-sources.jar!/org/eclipse/jetty/security/JDBCLoginService.java" line="162" class="org.eclipse.jetty.security.JDBCLoginService" package="org.eclipse.jetty.security">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -1235,7 +1188,37 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" line="42" class="dk.eazyit.eazyregnskab.services.LoginService" package="dk.eazyit.eazyregnskab.services">
+      <breakpoint url="file://$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java" line="161" class="dk.eazyit.eazyregnskab.jetty.EazyRegnskabLoginService" package="dk.eazyit.eazyregnskab.jetty">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java" line="90" class="dk.eazyit.eazyregnskab.jetty.EazyRegnskabLoginService" package="dk.eazyit.eazyregnskab.jetty">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java" line="157" class="dk.eazyit.eazyregnskab.jetty.EazyRegnskabLoginService" package="dk.eazyit.eazyregnskab.jetty">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -1251,42 +1234,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-    </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -1295,66 +1243,7 @@
     <favorites_list name="eazyregnskab" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="EazyRegnskabLoginService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eazyregnskab-stop.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-stop.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Start.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/Start.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="67" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Deploy.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/awsupload/src/main/java/Deploy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="737" selection-end="737" vertical-scroll-proportion="0.329429">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/web.xml">
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-            <state />
-          </provider>
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="4" selection-start="1799" selection-end="1799" vertical-scroll-proportion="-9.592592">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
-            <state />
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -1373,22 +1262,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mainwar/src/test/resources/applicationContext-test.xml" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/front/ConfirmPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java" />
-        <option value="$PROJECT_DIR$/readme.txt" />
-        <option value="$PROJECT_DIR$/jetty/src/main/java/Start.java" />
-        <option value="$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-start.sh" />
-        <option value="$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-stop.sh" />
-        <option value="$PROJECT_DIR$/shared/src/main/java/dk/eazyit/eazyregnskab/security/PasswordEncoder.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/shared/pom.xml" />
         <option value="$PROJECT_DIR$/mainwar/pom.xml" />
         <option value="$PROJECT_DIR$/jetty/pom.xml" />
         <option value="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/Start.java" />
         <option value="$PROJECT_DIR$/awsupload/src/main/java/Deploy.java" />
+        <option value="$PROJECT_DIR$/jetty/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/Authority.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ROLE.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ROLES.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/AppUserRole.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" />
+        <option value="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/Start.java" />
+        <option value="$PROJECT_DIR$/jetty/src/main/resources/jetty-realm.properties" />
+        <option value="$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/classes/logback.xml" />
       </list>
     </option>
   </component>
@@ -1532,7 +1421,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="2" />
+    <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -1547,12 +1436,83 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="eazyregnskab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.eclipse.jetty:jetty-security:8.1.12.v20130726" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jetty-security-8.1.12.v20130726.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.eclipse.jetty:jetty-security:8.1.12.v20130726" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jetty-security-8.1.12.v20130726.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="security" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.eclipse.jetty:jetty-security:8.1.12.v20130726" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jetty-security-8.1.12.v20130726.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="security" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="authentication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1905,6 +1865,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="jetty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2074,23 +2068,22 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3675" />
     <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/shared/target/shared-1.0-SNAPSHOT.jar!/" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
@@ -2126,6 +2119,11 @@
       <recent name="dk.eazyit.eazyregnskab.dao.interfaces" />
       <recent name="dk.eazyit.eazyregnskab.web.components.tables" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dk.eazyit.eazyregnskab.services" />
+      <recent name="dk.eazyit.eazyregnskab" />
+      <recent name="dk.eazyit.eazyregnskab.domain" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/mainwar/src/main/resources" />
       <recent name="$PROJECT_DIR$/jetty/src/main/resources" />
@@ -2133,16 +2131,11 @@
       <recent name="$PROJECT_DIR$/awsupload/src/main/resources" />
       <recent name="$PROJECT_DIR$/awsupload/src/main/resources/tomcat7/conf" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="dk.eazyit.eazyregnskab.services" />
-      <recent name="dk.eazyit.eazyregnskab" />
-      <recent name="dk.eazyit.eazyregnskab.domain" />
-    </key>
     <key name="wicketforge.CreatePanelDialog.RECENT_EXTENDCLASS_KEY">
       <recent name="org.apache.wicket.markup.html.panel.Panel" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Deploy without build">
+  <component name="RunManager" selected="Application.Start">
     <configuration default="false" name="TestConfirmPage" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" />
       <module name="mainwar" />
@@ -2258,6 +2251,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -2283,19 +2289,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2324,6 +2317,13 @@
       </RunnerSettings>
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" />
       <module name="" />
@@ -2345,23 +2345,16 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
+      <deployment />
+      <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
       <method />
     </configuration>
     <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
       <option name="VM_PARAMETERS" value="" />
       <option name="USER_CFG_CLASS" />
       <option name="CONTEXT_PROVIDER" />
-      <method />
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
-      <deployment />
-      <server-settings />
-      <predefined_log_file id="Tomcat" enabled="true" />
       <method />
     </configuration>
     <configuration default="false" name="Deploy" type="Application" factoryName="Application" singleton="true">
@@ -2423,7 +2416,9 @@
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
-      <method />
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="install" />
+      </method>
     </configuration>
     <configuration default="false" name="Deploy without build" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" />
@@ -3721,7 +3716,11 @@
       <created>1376987423911</created>
       <updated>1376987423911</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="#37 Server configuration files should be uploaded each time so ssh login is not necassary">
+      <created>1377206195273</created>
+      <updated>1377206195273</updated>
+    </task>
+    <option name="localTasksCounter" value="227" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -3745,13 +3744,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="69" y="22" width="1851" height="1178" extended-state="6" />
+    <frame x="69" y="22" width="1851" height="1178" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33024976" sideWeight="0.49839914" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3293247" sideWeight="0.49839914" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23285398" sideWeight="0.18223867" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32910696" sideWeight="0.73038673" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30157262" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290859" sideWeight="0.621422" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4014801" sideWeight="0.5135734" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2599445" sideWeight="0.4365651" order="15" side_tool="true" content_ui="tabs" />
@@ -3760,17 +3760,16 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25901943" sideWeight="0.5634349" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265495" sideWeight="0.49861497" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26537398" sideWeight="0.621422" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25706372" sideWeight="0.6697502" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19722992" sideWeight="0.59851986" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25706372" sideWeight="0.59851986" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32839963" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27590027" sideWeight="0.6697502" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27590027" sideWeight="0.6706753" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3783534" sideWeight="0.91790634" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Atlassian " active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30157262" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hibernate Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293247" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -3820,11 +3819,11 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="#38 Imply to users this is a beta test" />
+    <option name="LAST_COMMIT_MESSAGE" value="#37 Server configuration files should be uploaded each time so ssh login is not necassary" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
     <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
     <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
@@ -3834,7 +3833,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="#161: Finance account page should show feedback when no accounts found" />
     <MESSAGE value="#169: Some accounts not shown even if they have sum" />
     <MESSAGE value="#168: write countdown for deploy script" />
     <MESSAGE value="#157: Watch postings in modal window" />
@@ -3859,6 +3857,7 @@
     <MESSAGE value="#35 Use wicket for login, authorization and authentication." />
     <MESSAGE value="#33 Setup JavaMelody" />
     <MESSAGE value="#38 Imply to users this is a beta test" />
+    <MESSAGE value="#37 Server configuration files should be uploaded each time so ssh login is not necassary" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -3922,133 +3921,118 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$M2_REPO$/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2-sources.jar!/org/slf4j/Logger.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/dataSource.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="20" selection-start="2573" selection-end="2574" vertical-scroll-proportion="-7.769231">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$M2_REPO$/org/eclipse/jetty/jetty-security/8.1.12.v20130726/jetty-security-8.1.12.v20130726-sources.jar!/org/eclipse/jetty/security/authentication/BasicAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="0" selection-start="3566" selection-end="3566" vertical-scroll-proportion="0.33214286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$M2_REPO$/org/eclipse/jetty/jetty-security/8.1.12.v20130726/jetty-security-8.1.12.v20130726-sources.jar!/org/eclipse/jetty/security/authentication/LoginAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="0" selection-start="1895" selection-end="1895" vertical-scroll-proportion="0.31903946">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/src/main/java/dk/eazyit/eazyregnskab/security/PasswordEncoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="51" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0">
+        <state line="13" column="13" selection-start="275" selection-end="275" vertical-scroll-proportion="-1.7530017">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/AppUserRole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="19" selection-start="1404" selection-end="1404" vertical-scroll-proportion="1.1066235">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#getRole#0;class#AppUserRole#0" expanded="true" />
+            <element signature="method#setRole#0;class#AppUserRole#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jetty/jetty.iml">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="45" column="64" selection-start="1598" selection-end="1598" vertical-scroll-proportion="0.25577557">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/pom.xml">
+    <entry file="jar://$M2_REPO$/org/eclipse/jetty/jetty-security/8.1.12.v20130726/jetty-security-8.1.12.v20130726-sources.jar!/org/eclipse/jetty/security/ConstraintSecurityHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="375" selection-end="387" vertical-scroll-proportion="0.0">
+        <state line="781" column="12" selection-start="29132" selection-end="29132" vertical-scroll-proportion="0.33285093">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/pom.xml">
+    <entry file="jar://$M2_REPO$/org/eclipse/jetty/jetty-security/8.1.12.v20130726/jetty-security-8.1.12.v20130726-sources.jar!/org/eclipse/jetty/security/MappedLoginService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="319" column="21" selection-start="10553" selection-end="10553" vertical-scroll-proportion="0.95253164">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/session/EazyregnskabSesssion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="25" selection-start="1657" selection-end="1657" vertical-scroll-proportion="0.11867089">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jetty/src/main/java/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="840" selection-end="840" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$M2_REPO$/org/apache/maven/plugins/maven-assembly-plugin/2.2.1/maven-assembly-plugin-2.2.1.jar!/META-INF/maven/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="421" column="44" selection-start="21257" selection-end="21257" vertical-scroll-proportion="0.47943038">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jetty/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="37" selection-start="3448" selection-end="3448" vertical-scroll-proportion="0.6677215">
+        <state line="44" column="22" selection-start="1527" selection-end="1527" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$M2_REPO$/org/eclipse/jetty/jetty-security/8.1.12.v20130726/jetty-security-8.1.12.v20130726-sources.jar!/org/eclipse/jetty/security/JDBCLoginService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="4" selection-start="6325" selection-end="6325" vertical-scroll-proportion="2.7516448">
+        <state line="133" column="8" selection-start="4976" selection-end="5053" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="method#getConfig#0;class#JDBCLoginService#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/web.xml">
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/jetty/src/main/resources/jetty-realm.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="4" selection-start="1799" selection-end="1799" vertical-scroll-proportion="-9.592592">
+        <state line="12" column="27" selection-start="354" selection-end="354" vertical-scroll-proportion="0.24759285">
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
-        <state />
+    </entry>
+    <entry file="jar://$M2_REPO$/org/eclipse/jetty/jetty-security/8.1.12.v20130726/jetty-security-8.1.12.v20130726-sources.jar!/org/eclipse/jetty/security/SecurityHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="512" column="0" selection-start="18275" selection-end="18275" vertical-scroll-proportion="0.3327616">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/EazyRegnskabLoginService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0">
+        <state line="161" column="0" selection-start="5806" selection-end="5806" vertical-scroll-proportion="0.32013202">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getConfig#0;class#EazyRegnskabLoginService#0" expanded="true" />
+            <element signature="e#5661#5669#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jetty/src/main/resources/eazyregnskab-stop.sh">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/Role.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="5" column="12" selection-start="79" selection-end="79" vertical-scroll-proportion="0.12116317">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jetty/src/main/java/dk/eazyit/eazyregnskab/jetty/Start.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="67" selection-start="1304" selection-end="1304" vertical-scroll-proportion="0.0">
+        <state line="53" column="41" selection-start="2228" selection-end="2228" vertical-scroll-proportion="0.97415185">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/awsupload/src/main/java/Deploy.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/webapp/WEB-INF/classes/logback.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="737" selection-end="737" vertical-scroll-proportion="0.329429">
+        <state line="18" column="11" selection-start="519" selection-end="519" vertical-scroll-proportion="0.4361874">
           <folding />
         </state>
       </provider>
