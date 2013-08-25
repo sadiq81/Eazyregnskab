@@ -56,7 +56,7 @@ public class ItemsPerPageToolBar extends SessionAwareToolbar {
         @Override
         public void setObject(Integer object) {
             getTable().setItemsPerPage(object);
-            if (object != getCurrentUser().getItemsPerPage()){
+            if (object != getCurrentUser().getItemsPerPage()) {
                 getCurrentUser().setItemsPerPage(object);
                 loginService.saveUser(getCurrentUser());
             }
@@ -65,5 +65,10 @@ public class ItemsPerPageToolBar extends SessionAwareToolbar {
         @Override
         public void detach() {
         }
+    }
+
+    @Override
+    public boolean isVisible() {
+        return getTable().getRowCount() > 20;
     }
 }

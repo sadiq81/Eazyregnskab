@@ -13,19 +13,11 @@ import org.apache.wicket.model.Model;
  */
 public class CustomExportToolbar extends ExportToolbar {
 
-    public CustomExportToolbar(DataTable<?, ?> table) {
-        this(table, null);
-    }
-
-    public CustomExportToolbar(DataTable<?, ?> table, IModel<String> fileNameModel) {
-        this(table, fileNameModel, null);
-    }
-
-    public CustomExportToolbar(DataTable<?, ?> table, IModel<String> messageModel, IModel<String> fileNameModel) {
+    public CustomExportToolbar(DataTable<?, ?> table, IModel<String> messageModel, IModel<String> fileNameModel, float[] columnWidths) {
         super(table, messageModel, fileNameModel);
         addDataExporter(new CSVDataExporter().setCharacterSet("UTF-8").setDataFormatNameModel(Model.of("CSV ")));
         addDataExporter(new XLSDataExporter());
-        addDataExporter(new PDFDataExporter(new float[]{150, 110, 105, 100, 80}));
+        addDataExporter(new PDFDataExporter(columnWidths));
     }
 
     @Override

@@ -38,7 +38,7 @@ public class PDFDataExporter extends SessionAwareDataExporter {
         float totalWidth = 0;
         for (float width : columnWidths) {
             totalWidth += width;
-            if (totalWidth > 595) throw new NullPointerException("coloumns are wider than page");
+            if (totalWidth > 545) throw new NullPointerException("coloumns are wider than page");
         }
         this.columnWidths = columnWidths;
     }

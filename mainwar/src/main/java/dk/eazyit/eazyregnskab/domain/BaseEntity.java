@@ -10,8 +10,8 @@ import java.util.Date;
  * @author Eazy IT
  */
 @MappedSuperclass
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-public abstract class BaseEntity  implements EntityWithLongId {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class BaseEntity implements EntityWithLongId {
 
     @Column(nullable = false)
     protected Date created;
@@ -50,4 +50,5 @@ public abstract class BaseEntity  implements EntityWithLongId {
     public void setLastChanged(Date lastChanged) {
         this.lastChanged = lastChanged;
     }
+
 }

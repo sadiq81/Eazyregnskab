@@ -43,9 +43,9 @@ public class BaseDataPage extends LoggedInPage {
     }
 
     @Override
-        protected void configureComponents() {
+    protected void configureComponents() {
 
-        }
+    }
 
     @Override
     protected void onBeforeRender() {

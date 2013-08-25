@@ -37,7 +37,7 @@ import java.util.List;
                 "WHERE fa.legalEntity = ?1 and fa.accountNumber >= ?2 and fa.accountNumber <= ?3 ORDER BY accountNumber ASC")
 })
 @Table(name = "financeaccount")
-public class FinanceAccount extends BaseEntity {
+public class FinanceAccount extends BaseEntity implements DataTableCssClass {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "FinanceAccount::findByLegalEntity";
     public static final String QUERY_FIND_SYSTEM_ACCOUNT_BY_LEGAL_ENTITY = "FinanceAccount::findSystemAccountByLegalEntity";
@@ -242,6 +242,24 @@ public class FinanceAccount extends BaseEntity {
 
     public void setBookedFinancePostingList(List<BookedFinancePosting> bookedFinancePostingList) {
         this.bookedFinancePostingList = bookedFinancePostingList;
+    }
+
+    @Override
+    public String getCssClassForDataTable() {
+        switch (financeAccountType) {
+            case CATEGORY: {
+                return "category";
+            }
+            case HEADLINE: {
+                return "headline";
+            }
+            case SUM: {
+                return "sumfrom";
+            }
+            default: {
+                return "";
+            }
+        }
     }
 
     @Override

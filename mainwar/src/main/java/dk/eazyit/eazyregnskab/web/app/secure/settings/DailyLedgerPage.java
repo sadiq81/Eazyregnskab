@@ -7,7 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForDailyLedgerPage;
-import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableAjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class DailyLedgerPage extends LoggedInPage {
 
     DailyLedgerForm form;
-    AjaxFallbackDefaultDataTable dataTable;
+    ExportableAjaxFallbackDefaultDataTable dataTable;
 
     private static final Logger LOG = LoggerFactory.getLogger(DailyLedgerPage.class);
 
@@ -46,11 +46,16 @@ public class DailyLedgerPage extends LoggedInPage {
 
         add(form = new DailyLedgerForm("dailyLedgerEdit", new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(new DailyLedger()))));
 
-        add(dataTable = new AjaxFallbackDefaultDataTable("chartOfDailyLedgers", new ColumnsForDailyLedgerPage(form), new DailyLedgerDataProvider(), 20));
+        add(dataTable = new ExportableAjaxFallbackDefaultDataTable("chartOfDailyLedgers",
+                new ColumnsForDailyLedgerPage(form),
+                new DailyLedgerDataProvider(),
+                20,
+                "DailyLedgerPage.datatable.export-file-name",
+                new float[]{545}));
     }
 
     @Override
-        protected void configureComponents() {
+    protected void configureComponents() {
 
-        }
+    }
 }

@@ -9,7 +9,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePosting
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForBookkeepingPage;
-import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableAjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -48,8 +48,13 @@ public class BookkeepingPage extends LoggedInPage {
         super.addToPage(parameters);
 
         add(dailyLedgerChoice = new DailyLedgerChooser("dailyLedgerList"));
-        add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<DraftFinancePosting>(new DraftFinancePostingModel(new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber())))));
-        add(new AjaxFallbackDefaultDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), financePostingDataProvider = new FinancePostingDataProvider(), 20));
+        add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<>(new DraftFinancePostingModel(new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber())))));
+        add(new ExportableAjaxFallbackDefaultDataTable("chartOfFinancePostings",
+                new ColumnsForBookkeepingPage(form),
+                financePostingDataProvider = new FinancePostingDataProvider(),
+                20,
+                "BookkeepingPage.datatable.export-file-name",
+                new float[]{70, 60, 100, 65, 65, 50, 65, 50}));
         add(new SaveDailyLedgerForm("book"));
     }
 

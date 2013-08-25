@@ -7,7 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForChartsOfAccountsPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.FinanceAccountAjaxFallbackDefaultDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableAjaxFallbackDefaultDataTable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public class ChartOfAccountsPage extends LoggedInPage {
 
     FinanceAccountForm form;
-    FinanceAccountAjaxFallbackDefaultDataTable dataTable;
+    ExportableAjaxFallbackDefaultDataTable dataTable;
 
     private static final Logger LOG = LoggerFactory.getLogger(ChartOfAccountsPage.class);
 
@@ -44,7 +44,12 @@ public class ChartOfAccountsPage extends LoggedInPage {
         super.addToPage(parameters);
 
         add(form = new FinanceAccountForm("financeAccountEdit", new FinanceAccountModel(new FinanceAccount())));
-        add(dataTable = new FinanceAccountAjaxFallbackDefaultDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), getCurrentUser().getItemsPerPage()));
+        add(dataTable = new ExportableAjaxFallbackDefaultDataTable("chartOfAccounts",
+                new ColumnsForChartsOfAccountsPage(form),
+                new FinanceAccountDataProvider(),
+                getCurrentUser().getItemsPerPage(),
+                "ChartOfAccountsPage.datatable.export-file-name",
+                new float[]{150, 110, 105, 100, 80}));
 
     }
 
