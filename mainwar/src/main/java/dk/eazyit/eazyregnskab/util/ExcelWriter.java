@@ -20,9 +20,9 @@ public class ExcelWriter {
         sheet.addCell(label);
     }
 
-    public static void addNumber(WritableSheet sheet, int column, int row, Integer integer) throws WriteException, RowsExceededException {
+    public static void addNumber(WritableSheet sheet, int column, int row, Double amount) throws WriteException, RowsExceededException {
         Number number;
-        number = new Number(column, row, integer, normal);
+        number = new Number(column, row, amount, normal);
         sheet.addCell(number);
     }
 

@@ -54,7 +54,7 @@ public class BookkeepingPage extends LoggedInPage {
                 financePostingDataProvider = new FinancePostingDataProvider(),
                 20,
                 "BookkeepingPage.datatable.export-file-name",
-                new float[]{70, 60, 100, 65, 65, 50, 65, 50}));
+                new float[]{70, 70, 90, 65, 65, 50, 65, 50}));
         add(new SaveDailyLedgerForm("book"));
     }
 

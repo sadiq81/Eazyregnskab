@@ -25,8 +25,8 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
-        add(new PlaceholderNumberTextField<Double>("percentage").setMinimum(new Double(0)).setMaximum(new Double(100)).setRequired(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name", "VatTypesPage").setRequired(true));
+        add(new PlaceholderNumberTextField<Double>("percentage", "VatTypesPage").setMinimum(new Double(0)).setMaximum(new Double(100)).setRequired(true));
         add(new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount").setRequired(true));
         add(new FinanceAccountSelect2ChoiceBookableAccounts("financeAccountReverse").setRequired(true));
         add(new VatTypeFormValidator(name));
@@ -41,13 +41,13 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     public void deleteEntity(VatType vatType) {
         if (vatType.getId() != 0) {
             if (vatTypeService.deleteVatType(vatType)) {
-                getSession().success(new NotificationMessage(new ResourceModel("vat.type.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+                getSession().success(new NotificationMessage(new ResourceModel("VatTypesPage.vat.type.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 insertNewEntityInModel(vatType);
             } else {
-                getSession().error(new NotificationMessage(new ResourceModel("vat.type.is.in.use")).hideAfter(Duration.seconds(DURATION)));
+                getSession().error(new NotificationMessage(new ResourceModel("VatTypesPage.vat.type.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
         } else {
-            getSession().error(new NotificationMessage(new ResourceModel("vat.type.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
+            getSession().error(new NotificationMessage(new ResourceModel("VatTypesPage.vat.type.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
         }
     }
 
@@ -59,7 +59,7 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     @Override
     public void saveForm(VatType vatType) {
         vatTypeService.saveVatType(vatType, getCurrentLegalEntity());
-        getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+        getSession().success(new NotificationMessage(new ResourceModel("VatTypesPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel(vatType);
     }
 

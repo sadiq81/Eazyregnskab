@@ -27,10 +27,10 @@ public class DailyLedgerFormValidator extends BaseFormValidator {
 
         if (dailyLedger.getId() == 0 && dailyLedgerService.findDailyLedgerByLegalEntityAndName(getCurrentLegalEntity(),
                 formComponent1.getInput()) != null) {
-            error(formComponent1, "name.all.ready.exists");
+            error(formComponent1, "DailyLedgerPage.name.all.ready.exists");
         }
         if (formComponent1.getInput().length() > 20) {
-            error(formComponent1, "name.to.long");
+            error(formComponent1, "DailyLedgerPage.name.to.long");
         }
     }
 }

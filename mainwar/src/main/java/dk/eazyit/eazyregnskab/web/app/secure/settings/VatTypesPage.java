@@ -51,7 +51,7 @@ public class VatTypesPage extends LoggedInPage {
                 new VatTypeDataProvider(),
                 20,
                 "VatTypesPage.datatable.export-file-name",
-                new float[]{160, 1760, 160, 65}));
+                new float[]{160, 160, 160, 65}));
     }
 
     @Override

@@ -47,11 +47,11 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
                 List after = fiscalYearService.findLockedFiscalYearByLegalEntityAfterDateSubList(fiscalYear.getLegalEntity(), fiscalYear.getEnd(), 0, 1);
 
                 if (after.size() > 0) {
-                    getSession().error(new NotificationMessage(new ResourceModel("can.only.open.if.next.open")).hideAfter(Duration.seconds(DURATION)));
+                    getSession().error(new NotificationMessage(new ResourceModel("FiscalYearPage.can.only.open.if.next.open")).hideAfter(Duration.seconds(DURATION)));
                 } else {
 
                     fiscalYearService.openFiscalYear(fiscalYear);
-                    getSession().success(new NotificationMessage(new ResourceModel("year.opened")).hideAfter(Duration.seconds(DURATION)));
+                    getSession().success(new NotificationMessage(new ResourceModel("FiscalYearPage.year.opened")).hideAfter(Duration.seconds(DURATION)));
                 }
                 target.add(getPage());
             }
@@ -75,12 +75,12 @@ public class FiscalYearActionPanel extends ActionPanel<FiscalYear> {
                 FiscalYear next;
 
                 if (after.size() > 0) {
-                    getSession().error(new NotificationMessage(new ResourceModel("can.only.close.if.previous.closed")).hideAfter(Duration.seconds(DURATION)));
+                    getSession().error(new NotificationMessage(new ResourceModel("FiscalYearPage.can.only.close.if.previous.closed")).hideAfter(Duration.seconds(DURATION)));
                 } else if ((next = fiscalYearService.findNextFiscalYearByLegalEntity(fiscalYear.getLegalEntity(), CalendarUtil.add(fiscalYear.getEnd(), 0, 0, 1))) == null) {
-                    getSession().error(new NotificationMessage(new ResourceModel("next.fiscal.year.not.found")).hideAfter(Duration.seconds(DURATION)));
+                    getSession().error(new NotificationMessage(new ResourceModel("FiscalYearPage.next.fiscal.year.not.found")).hideAfter(Duration.seconds(DURATION)));
                 } else {
                     fiscalYearService.closeFiscalYear(fiscalYear, next.getStart());
-                    getSession().success(new NotificationMessage(new ResourceModel("year.closed")).hideAfter(Duration.seconds(DURATION)));
+                    getSession().success(new NotificationMessage(new ResourceModel("FiscalYearPage.year.closed")).hideAfter(Duration.seconds(DURATION)));
                 }
                 target.add(getPage());
             }

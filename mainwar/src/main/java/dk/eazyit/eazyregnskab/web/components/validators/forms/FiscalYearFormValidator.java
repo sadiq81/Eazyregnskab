@@ -31,7 +31,7 @@ public class FiscalYearFormValidator extends BaseFormValidator {
         FiscalYear current = new FiscalYear(start, end);
 
         if (end.before(start)) {
-            error(formComponent1, "start.date.must.be.before.end.date");
+            error(formComponent1, "FiscalYearPage.start.date.must.be.before.end.date");
         }
         List<FiscalYear> list = new ArrayList<FiscalYear>(fiscalYearService.findFiscalYearByLegalEntity(getCurrentLegalEntity()));
         list.remove(form.getModelObject());
@@ -40,12 +40,12 @@ public class FiscalYearFormValidator extends BaseFormValidator {
 
             //Test dates in new year to see if they are between another finance year
             if (CalendarUtil.betweenDates(start, fiscalYear) || CalendarUtil.betweenDates(end, fiscalYear)) {
-                error(formComponent1, "dates.cross.another.fiscal.year");
+                error(formComponent1, "FiscalYearPage.dates.cross.another.fiscal.year");
                 break;
             }
             //Test dates in new year to see if old years are between new year
             if (CalendarUtil.betweenDates(fiscalYear.getStart(), current) || CalendarUtil.betweenDates(fiscalYear.getEnd(), current)) {
-                error(formComponent1, "dates.cross.another.fiscal.year");
+                error(formComponent1, "FiscalYearPage.dates.cross.another.fiscal.year");
                 break;
             }
         }

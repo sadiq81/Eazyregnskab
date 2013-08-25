@@ -64,7 +64,7 @@ public class XLSDataExporter extends SessionAwareDataExporter {
                     if (o != null) {
 
                         if (o instanceof Number) {
-                            ExcelWriter.addNumber(sheet, column, row + 1, new Integer(o.toString()));
+                            ExcelWriter.addNumber(sheet, column, row + 1, new Double(o.toString()));
                         } else if (o instanceof Date) {
                             ExcelWriter.addDate(sheet, column, row + 1, (Date) o);
                         } else if (o instanceof Enum) {

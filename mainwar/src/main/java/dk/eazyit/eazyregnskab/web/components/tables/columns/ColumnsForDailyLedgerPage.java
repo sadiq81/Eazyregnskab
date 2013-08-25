@@ -20,8 +20,8 @@ public class ColumnsForDailyLedgerPage extends ArrayList<IColumn<DailyLedger, St
 
 
     public ColumnsForDailyLedgerPage(final BaseCreateEditForm<DailyLedger> form) {
-        add(new PropertyColumn<DailyLedger, String>(new ResourceModel("name"), "name", "name"));
-        add(new AbstractColumn<DailyLedger, String>(new ResourceModel("action")) {
+        add(new PropertyColumn<DailyLedger, String>(new ResourceModel("DailyLedgerPage.name"), "name", "name"));
+        add(new AbstractColumn<DailyLedger, String>(new ResourceModel("DailyLedgerPage.action")) {
             @Override
             public void populateItem(Item<ICellPopulator<DailyLedger>> cellItem, String componentId, IModel<DailyLedger> rowModel) {
                 cellItem.add(new DailyLedgerActionPanel(componentId, rowModel, form));

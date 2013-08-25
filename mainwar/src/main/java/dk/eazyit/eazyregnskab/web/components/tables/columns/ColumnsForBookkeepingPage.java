@@ -23,16 +23,16 @@ public class ColumnsForBookkeepingPage extends ArrayList<IColumn<DraftFinancePos
 
     public ColumnsForBookkeepingPage(final BaseCreateEditForm<DraftFinancePosting> form) {
 
-        add(new DatePropertyColumn<DraftFinancePosting>(new ResourceModel("date"), "date", "date"));
-        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("bookingNumber"), "bookingNumber", "bookingNumber"));
-        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("text"), "text", "text"));
-        add(new NumberPropertyColumn<DraftFinancePosting>(new ResourceModel("amount"), "amount", "amount", 2, 2));
-        add(new ToolTipPropertyColumn<DraftFinancePosting>(new ResourceModel("financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber", "financeAccount.name"));
-        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("vatType"), "vatType.name", "vatType.name"));
-        add(new ToolTipPropertyColumn<DraftFinancePosting>(new ResourceModel("finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.name"));
-        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("reverseVatType"), "reverseVatType.name", "reverseVatType.name"));
+        add(new DatePropertyColumn<DraftFinancePosting>(new ResourceModel("BookkeepingPage.date"), "date", "date"));
+        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("BookkeepingPage.bookingNumber"), "bookingNumber", "bookingNumber"));
+        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("BookkeepingPage.text"), "text", "text"));
+        add(new NumberPropertyColumn<DraftFinancePosting>(new ResourceModel("BookkeepingPage.amount"), "amount", "amount", 2, 2));
+        add(new ToolTipPropertyColumn<DraftFinancePosting>(new ResourceModel("BookkeepingPage.financeAccount"), "financeAccount.accountNumber", "financeAccount.accountNumber", "financeAccount.name"));
+        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("BookkeepingPage.vatType"), "vatType.name", "vatType.name"));
+        add(new ToolTipPropertyColumn<DraftFinancePosting>(new ResourceModel("BookkeepingPage.finance.account.reverse"), "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.accountNumber", "reverseFinanceAccount.name"));
+        add(new PropertyColumn<DraftFinancePosting, String>(new ResourceModel("BookkeepingPage.reverseVatType"), "reverseVatType.name", "reverseVatType.name"));
 //        add(new CheckboxPropertyColumn<DraftFinancePosting>(new ResourceModel("chose"),"chosen"));
-        add(new AbstractColumn<DraftFinancePosting, String>(new ResourceModel("action")) {
+        add(new AbstractColumn<DraftFinancePosting, String>(new ResourceModel("BookkeepingPage.action")) {
             @Override
             public void populateItem(Item<ICellPopulator<DraftFinancePosting>> cellItem, String componentId, IModel<DraftFinancePosting> rowModel) {
                 cellItem.add(new BookkeepingActionPanel(componentId, rowModel, form));

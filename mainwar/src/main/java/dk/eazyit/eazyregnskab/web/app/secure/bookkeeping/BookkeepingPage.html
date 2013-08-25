@@ -8,7 +8,7 @@
     <div class="row">
         <div class="span10">
             <h6>
-                <wicket:message key="daily.ledger"></wicket:message>
+                <wicket:message key="BookkeepingPage.daily.ledger"></wicket:message>
             </h6>
             <select wicket:id="dailyLedgerList"></select>
         </div>
@@ -22,16 +22,16 @@
                 <table class="table table-condensed">
                     <tr>
                         <td>
-                            <wicket:message key="date"></wicket:message>
+                            <wicket:message key="BookkeepingPage.date"></wicket:message>
                         </td>
                         <td>
-                            <wicket:message key="financeAccount"></wicket:message>
+                            <wicket:message key="BookkeepingPage.financeAccount"></wicket:message>
                         </td>
                         <td>
-                            <wicket:message key="vatType"></wicket:message>
+                            <wicket:message key="BookkeepingPage.vatType"></wicket:message>
                         </td>
                         <td>
-                            <wicket:message key="amount"></wicket:message>
+                            <wicket:message key="BookkeepingPage.amount"></wicket:message>
                         </td>
 
                     </tr>
@@ -44,14 +44,16 @@
 
                     <tr>
                         <td>
-                            <wicket:message key="bookingNumber"></wicket:message>
+                            <wicket:message key="BookkeepingPage.bookingNumber"></wicket:message>
                         </td>
                         <td>
-                            <wicket:message key="finance.account.reverse"></wicket:message>
+                            <wicket:message key="BookkeepingPage.finance.account.reverse"></wicket:message>
                         </td>
-                        <td><wicket:message key="vatType"></wicket:message></td>
                         <td>
-                            <wicket:message key="text"></wicket:message>
+                            <wicket:message key="BookkeepingPage.vatType"></wicket:message>
+                        </td>
+                        <td>
+                            <wicket:message key="BookkeepingPage.text"></wicket:message>
                         </td>
                     </tr>
                     <tr>
@@ -84,7 +86,8 @@
                             <input wicket:id="bookAll" class="btn btn-success" type="submit" value="bookAll"/>
 
 
-                            <input wicket:id="clear.daily.ledger" class="btn btn-danger" type="submit" value="clear.daily.ledger"/>
+                            <input wicket:id="clear.daily.ledger" class="btn btn-danger" type="submit"
+                                   value="clear.daily.ledger"/>
 
                             <div wicket:id="are.you.sure"></div>
 

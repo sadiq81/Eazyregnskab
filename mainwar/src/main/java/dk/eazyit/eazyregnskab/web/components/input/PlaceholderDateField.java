@@ -16,13 +16,20 @@ public class PlaceholderDateField extends DateTextField {
 
     static final Logger LOG = LoggerFactory.getLogger(PlaceholderDateField.class);
 
-    public PlaceholderDateField(String markupId, DateTextFieldConfig config) {
+    String localizerPage = "";
+
+    public PlaceholderDateField(String id, DateTextFieldConfig config) {
+        this(id, "", config);
+    }
+
+    public PlaceholderDateField(String markupId, String localizerPage, DateTextFieldConfig config) {
         super(markupId, config);
         setOutputMarkupPlaceholderTag(true);
+        this.localizerPage = localizerPage.length() > 0 ? localizerPage + "." : localizerPage;
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
-    public PlaceholderDateField(String markupId, IModel<Date> model, DateTextFieldConfig config) {
+    public PlaceholderDateField(String markupId, String localizerPage, IModel<Date> model, DateTextFieldConfig config) {
         super(markupId, model, config);
         setOutputMarkupPlaceholderTag(true);
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
@@ -31,7 +38,7 @@ public class PlaceholderDateField extends DateTextField {
     @Override
     protected void onComponentTag(ComponentTag tag) {
         super.onComponentTag(tag);
-        String placeholder = getLocalizer().getString(this.getId(), this.getPage());
+        String placeholder = getLocalizer().getString(localizerPage + this.getId(), this.getPage());
         tag.put("placeholder", placeholder);
     }
 }

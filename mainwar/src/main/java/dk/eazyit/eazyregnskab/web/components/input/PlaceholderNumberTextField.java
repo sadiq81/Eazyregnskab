@@ -14,28 +14,32 @@ public class PlaceholderNumberTextField<T extends Number & Comparable<T>> extend
 
     static final Logger LOG = LoggerFactory.getLogger(PlaceholderNumberTextField.class);
 
+    String localizerPage = "";
+
     public PlaceholderNumberTextField(String id) {
+        this(id, "");
+        setOutputMarkupPlaceholderTag(true);
+        LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
+    }
+
+    public PlaceholderNumberTextField(String id, String localizerPage) {
         super(id);
         setOutputMarkupPlaceholderTag(true);
+        this.localizerPage = localizerPage.length() > 0 ? localizerPage + "." : localizerPage;
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
-    public PlaceholderNumberTextField(String id, IModel model) {
+    public PlaceholderNumberTextField(String id, String localizerPage, IModel model) {
         super(id, model);
         setOutputMarkupPlaceholderTag(true);
-        LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
-    }
-
-    public PlaceholderNumberTextField(String id, IModel model, Class type) {
-        super(id, model, type);
-        setOutputMarkupPlaceholderTag(true);
+        this.localizerPage = localizerPage.length() > 0 ? localizerPage + "." : localizerPage;
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     @Override
     protected void onComponentTag(ComponentTag tag) {
         super.onComponentTag(tag);
-        String placeholder = getLocalizer().getString(this.getId(), this.getPage());
+        String placeholder = getLocalizer().getString(localizerPage + this.getId(), this.getPage());
         tag.put("placeholder", placeholder);
         tag.put("step", "any");
     }

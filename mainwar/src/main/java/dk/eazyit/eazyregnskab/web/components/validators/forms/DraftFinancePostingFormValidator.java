@@ -32,22 +32,22 @@ public class DraftFinancePostingFormValidator extends BaseFormValidator {
 
         //TODO Check date within accounting year
         if (text.getInput().length() > 50) {
-            error(text, "text.to.long");
+            error(text, "BookkeepingPage.text.to.long");
         }
         if (financeAccount.getConvertedInput() == null && reverseFinanceAccount.getConvertedInput() == null) {
-            error(financeAccount, "must.chose.one.finance.account");
+            error(financeAccount, "BookkeepingPage.must.chose.one.finance.account");
         }
         if (financeAccount.getConvertedInput() == null && vat.getConvertedInput() != null) {
-            error(financeAccount, "must.choose.account.for.vat");
+            error(financeAccount, "BookkeepingPage.must.choose.account.for.vat");
         }
         if (reverseFinanceAccount.getConvertedInput() == null && reverseVat.getConvertedInput() != null) {
-            error(reverseFinanceAccount, "must.choose.account.for.vat");
+            error(reverseFinanceAccount, "BookkeepingPage.must.choose.account.for.vat");
         }
         if (account != null && account.isLocked()) {
-            error(reverseFinanceAccount, "account.is.locked");
+            error(reverseFinanceAccount, "BookkeepingPage.account.is.locked");
         }
         if (reverseAccount != null && reverseAccount.isLocked()) {
-            error(reverseFinanceAccount, "reverse.account.is.locked");
+            error(reverseFinanceAccount, "BookkeepingPage.reverse.account.is.locked");
         }
 
     }

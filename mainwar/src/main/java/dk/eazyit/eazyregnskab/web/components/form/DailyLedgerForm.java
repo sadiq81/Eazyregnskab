@@ -31,8 +31,8 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
-        add(nextBookingNumber = new PlaceholderTextField<Integer>("nextBookingNumber"));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name", "DailyLedgerPage").setRequired(true));
+        add(nextBookingNumber = new PlaceholderTextField<Integer>("nextBookingNumber", "DailyLedgerPage"));
         add(new DropDownChoice<FinanceAccount>("financeAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")));
         add(new DailyLedgerFormValidator(name));
     }
@@ -46,15 +46,15 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
         if (dailyLedger.getId() != 0) {
             if (dailyLedgerService.deleteDailyLedger(dailyLedger)) {
                 setCurrentDailyLedger(dailyLedgerService.findDailyLedgerByLegalEntity(getCurrentLegalEntity()).get(0));
-                getSession().success(new NotificationMessage(new ResourceModel("daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+                getSession().success(new NotificationMessage(new ResourceModel("DailyLedgerPage.daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 LOG.info("Deleting Dailyledger " + getModelObject().toString());
                 insertNewEntityInModel(dailyLedger);
             } else {
-                getSession().error(new NotificationMessage(new ResourceModel("daily.ledger.is.in.use")).hideAfter(Duration.seconds(DURATION)));
+                getSession().error(new NotificationMessage(new ResourceModel("DailyLedgerPage.daily.ledger.is.in.use")).hideAfter(Duration.seconds(DURATION)));
                 LOG.info("Not able to delete Dailyledger since its in use " + dailyLedger.toString());
             }
         } else {
-            getSession().error(new NotificationMessage(new ResourceModel("daily.ledger.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
+            getSession().error(new NotificationMessage(new ResourceModel("DailyLedgerPage.daily.ledger.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
         }
     }
 
@@ -66,7 +66,7 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
     @Override
     public void saveForm(DailyLedger dailyLedger) {
         dailyLedgerService.saveDailyLedger(dailyLedger, getCurrentLegalEntity());
-        getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+        getSession().success(new NotificationMessage(new ResourceModel("DailyLedgerPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel(dailyLedger);
     }
 

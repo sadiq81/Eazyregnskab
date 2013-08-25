@@ -21,11 +21,11 @@ import java.util.ArrayList;
 public class ColumnsForFiscalYearsPage extends ArrayList<IColumn<FiscalYear, String>> {
 
     public ColumnsForFiscalYearsPage(final BaseCreateEditForm<FiscalYear> form) {
-        add(new DatePropertyColumn<FiscalYear>(new ResourceModel("start"), "start"));
-        add(new DatePropertyColumn<FiscalYear>(new ResourceModel("end"), "end"));
-        add(new PropertyColumn<FiscalYear, String>(new ResourceModel("daysBetween"), "daysBetween"));
-        add(new EnumPropertyColumn<FiscalYear>(new ResourceModel("FiscalYearStatus"),"fiscalYearStatus"));
-        add(new AbstractColumn<FiscalYear, String>(new ResourceModel("action")) {
+        add(new DatePropertyColumn<FiscalYear>(new ResourceModel("FiscalYearPage.start"), "start"));
+        add(new DatePropertyColumn<FiscalYear>(new ResourceModel("FiscalYearPage.end"), "end"));
+        add(new PropertyColumn<FiscalYear, String>(new ResourceModel("FiscalYearPage.daysBetween"), "daysBetween"));
+        add(new EnumPropertyColumn<FiscalYear>(new ResourceModel("FiscalYearStatus"), "fiscalYearStatus"));
+        add(new AbstractColumn<FiscalYear, String>(new ResourceModel("FiscalYearPage.action")) {
             @Override
             public void populateItem(Item<ICellPopulator<FiscalYear>> cellItem, String componentId, IModel<FiscalYear> rowModel) {
                 cellItem.add(new FiscalYearActionPanel(componentId, rowModel, form));

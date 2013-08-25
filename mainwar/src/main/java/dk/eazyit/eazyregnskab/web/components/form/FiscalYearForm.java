@@ -31,8 +31,8 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(start = (PlaceholderDateField) new PlaceholderDateField("start", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
-        add(end = (PlaceholderDateField) new PlaceholderDateField("end", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
+        add(start = (PlaceholderDateField) new PlaceholderDateField("start", "FiscalYearPage", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
+        add(end = (PlaceholderDateField) new PlaceholderDateField("end", "FiscalYearPage", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(new FiscalYearFormValidator(start, end));
     }
 
@@ -71,13 +71,13 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     public void deleteEntity(FiscalYear fiscalYear) {
         if (fiscalYear.getId() != 0) {
             if (fiscalYearService.deleteFiscalYear(fiscalYear)) {
-                getSession().success(new NotificationMessage(new ResourceModel("fiscal.year.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+                getSession().success(new NotificationMessage(new ResourceModel("FiscalYearPage.fiscal.year.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 insertNewEntityInModel(fiscalYear);
             } else {
-                getSession().error(new NotificationMessage(new ResourceModel("fiscal.year.is.in.use")).hideAfter(Duration.seconds(DURATION)));
+                getSession().error(new NotificationMessage(new ResourceModel("FiscalYearPage.fiscal.year.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
         } else {
-            getSession().error(new NotificationMessage(new ResourceModel("fiscal.year.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
+            getSession().error(new NotificationMessage(new ResourceModel("FiscalYearPage.fiscal.year.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
         }
     }
 
@@ -92,10 +92,10 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     @Override
     public void saveForm(FiscalYear fiscalYear) {
         if (fiscalYearService.save(fiscalYear.setLegalEntity(getCurrentLegalEntity()))) {
-            getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+            getSession().success(new NotificationMessage(new ResourceModel("FiscalYearPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
             insertNewEntityInModel(fiscalYear);
         } else {
-            getSession().error(new NotificationMessage(new ResourceModel("fiscal.year.dates.are.in.use")).hideAfter(Duration.seconds(DURATION)));
+            getSession().error(new NotificationMessage(new ResourceModel("FiscalYearPage.fiscal.year.dates.are.in.use")).hideAfter(Duration.seconds(DURATION)));
         }
     }
 

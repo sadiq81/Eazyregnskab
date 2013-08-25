@@ -52,8 +52,9 @@ public class PDFDataExporter extends SessionAwareDataExporter {
 
 
             Font headerFont = new Font(pdf, CoreFont.TIMES_BOLD);
-            headerFont.setSize(16F);
+            headerFont.setSize(10F);
             Font normalFont = new Font(pdf, CoreFont.TIMES_ROMAN);
+            normalFont.setSize(8F);
 
             TextLine legalEntity = new TextLine(headerFont, getCurrentLegalEntity().getName());
             legalEntity.setLocation(25F, 15F);

@@ -43,14 +43,14 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     public void addToForm() {
         super.addToForm();
 
-        add(date = (PlaceholderDateField) new PlaceholderDateField("date", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true).setOutputMarkupId(true));
+        add(date = (PlaceholderDateField) new PlaceholderDateField("date", "BookkeepingPage", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true).setOutputMarkupId(true));
         add(reverseFinanceAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("reverseFinanceAccount"));
         add(vatTypeChoice = (VatTypeDropDownChoice) new VatTypeDropDownChoice("vatType").setNullValid(true));
-        add(new PlaceholderNumberTextField<Double>("amount").setMaximum(new Double(1000000)).setRequired(true));
-        add(new PlaceholderNumberTextField<Integer>("bookingNumber").setMaximum(Integer.MAX_VALUE).setRequired(true));
+        add(new PlaceholderNumberTextField<Double>("amount", "BookkeepingPage").setMaximum(new Double(1000000)).setRequired(true));
+        add(new PlaceholderNumberTextField<Integer>("bookingNumber", "BookkeepingPage").setMaximum(Integer.MAX_VALUE).setRequired(true));
         add(financeAccountChoice = new FinanceAccountSelect2ChoiceBookableAccounts("financeAccount"));
         add(reverseVatTypeChoice = (VatTypeDropDownChoice) new VatTypeDropDownChoice("reverseVatType").setNullValid(true));
-        add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text").setRequired(true));
+        add(text = (PlaceholderTextField) new PlaceholderTextField<String>("text", "BookkeepingPage").setRequired(true));
         add(new DraftFinancePostingFormValidator(text, financeAccountChoice, reverseFinanceAccountChoice, vatTypeChoice, reverseVatTypeChoice));
     }
 
@@ -64,7 +64,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     @Override
     public void deleteEntity(DraftFinancePosting draftFinancePosting) {
         postingService.deleteFinancePosting(draftFinancePosting);
-        getSession().success(new NotificationMessage(new ResourceModel("finance.posting.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+        getSession().success(new NotificationMessage(new ResourceModel("BookkeepingPage.finance.posting.was.deleted")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel(draftFinancePosting);
     }
 

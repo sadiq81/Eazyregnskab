@@ -46,7 +46,7 @@ public class SaveDailyLedgerForm extends Form {
         //                target.add(getPage());
         //            }
         //        });
-        add(bookAll = new AjaxLoadingButton("bookAll", new ResourceModel("button.book.all")) {
+        add(bookAll = new AjaxLoadingButton("bookAll", new ResourceModel("BookkeepingPage.button.book.all")) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
@@ -55,7 +55,7 @@ public class SaveDailyLedgerForm extends Form {
             }
         });
 
-        add(clear = new AjaxLoadingButton("clear.daily.ledger", new ResourceModel("button.clear.daily.ledger")) {
+        add(clear = new AjaxLoadingButton("clear.daily.ledger", new ResourceModel("BookkeepingPage.button.clear.daily.ledger")) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
@@ -63,7 +63,7 @@ public class SaveDailyLedgerForm extends Form {
             }
         });
 
-        add(areYouSureModal = new AreYouSureModal("are.you.sure", new StringResourceModel("do.you.want.clear.daily.ledger",getPage(), null).getObject()) {
+        add(areYouSureModal = new AreYouSureModal("are.you.sure", new StringResourceModel("BookkeepingPage.do.you.want.clear.daily.ledger", getPage(), null).getObject()) {
             @Override
             protected void onConfirm(AjaxRequestTarget target) {
                 postingService.clearDailyLedger(getCurrentDailyLedger());
@@ -87,18 +87,18 @@ public class SaveDailyLedgerForm extends Form {
 
             if (bookingResult.getNotInBalance().size() > 0) {
                 getSession().error(new NotificationMessage(
-                        new StringResourceModel("following.postings.did.not.balance", this, null, "", bookingResult.getListOfNotInBalance()))
+                        new StringResourceModel("BookkeepingPage.following.postings.did.not.balance", this, null, "", bookingResult.getListOfNotInBalance()))
                         .hideAfter(Duration.seconds(DURATION)));
             }
 
             if (bookingResult.getNotInOpenFiscalYear().size() > 0) {
                 getSession().error(new NotificationMessage(
-                        new StringResourceModel("following.postings.where.not.in.open.fiscal.year", this, null, "", bookingResult.getListOfNotInFiscalYear()))
+                        new StringResourceModel("BookkeepingPage.following.postings.where.not.in.open.fiscal.year", this, null, "", bookingResult.getListOfNotInFiscalYear()))
                         .hideAfter(Duration.seconds(DURATION)));
             }
         } else {
             getSession().success(new NotificationMessage(
-                    new StringResourceModel("finance.postings.where.booked", this, null, ""))
+                    new StringResourceModel("BookkeepingPage.finance.postings.where.booked", this, null, ""))
                     .hideAfter(Duration.seconds(DURATION)));
         }
     }
