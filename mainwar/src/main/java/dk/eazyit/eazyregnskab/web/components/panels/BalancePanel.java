@@ -24,7 +24,7 @@ public class BalancePanel extends ReportPanel {
 
     @Override
     protected void addToPage() {
-        super.addToPage();
+
         setOutputMarkupPlaceholderTag(true);
 
         add(new FinanceAccountListView("financeAccounts", new FinanceAccountListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
@@ -32,6 +32,8 @@ public class BalancePanel extends ReportPanel {
         add(new Label("datesCompare", new PropertyModel<ReportObject>(getDefaultModel(), "datesCompare")));
 
         add(new Label("compareType", new StringResourceModel("ReportCompareType.${reportCompareType}", this, getDefaultModel())));
+
+        super.addToPage();
 
     }
 

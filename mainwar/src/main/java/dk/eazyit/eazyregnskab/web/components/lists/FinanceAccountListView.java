@@ -14,18 +14,8 @@ import java.util.List;
  */
 public class FinanceAccountListView extends ListView<FinanceAccount> {
 
-    public FinanceAccountListView(String id) {
-        super(id);
-        init();
-    }
-
     public FinanceAccountListView(String id, IModel<? extends List<? extends FinanceAccount>> model) {
         super(id, model);
-        init();
-    }
-
-    public FinanceAccountListView(String id, List<? extends FinanceAccount> list) {
-        super(id, list);
         init();
     }
 
@@ -71,7 +61,7 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
                 itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
                 break;
             }
-            default:{
+            default: {
                 throw new NullPointerException("Forgot to add account type to markup");
             }
         }

@@ -143,6 +143,8 @@ public class ReportService {
 
         if (financeAccountsList.size() == 0) {
             model.getObject().setEmptyReport(true);
+        } else {
+            model.getObject().setEmptyReport(false);
         }
 
         return financeAccountsList;
@@ -213,6 +215,8 @@ public class ReportService {
 
         if (financeAccountsList.size() == 0) {
             cpm.getObject().setEmptyReport(true);
+        } else {
+            cpm.getObject().setEmptyReport(false);
         }
 
         return financeAccountsList;

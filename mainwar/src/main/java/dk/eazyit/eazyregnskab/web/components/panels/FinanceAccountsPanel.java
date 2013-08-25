@@ -23,16 +23,12 @@ public class FinanceAccountsPanel extends ReportPanel {
 
     @Override
     protected void addToPage() {
-        super.addToPage();
+
         setOutputMarkupPlaceholderTag(true);
 
         add(postings = new BookedFinancePostingListView("postings", new BookedFinancePostingListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
-    }
 
-    @Override
-    protected void onConfigure() {
-        super.onConfigure();
-        setVisibilityAllowed(getModelObject().isSubmitHasBeenPressed());
+        super.addToPage();
     }
 
 

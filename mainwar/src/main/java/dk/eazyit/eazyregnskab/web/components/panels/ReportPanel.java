@@ -20,7 +20,13 @@ public class ReportPanel extends SessionAwarePanel<ReportObject> {
 
     @Override
     protected void addToPage() {
-        add(new Label("nothing.found.with.arguments", new StringResourceModel("nothing.found.with.arguments.${emptyReport}", this, getModel())).setOutputMarkupPlaceholderTag(true));
+        add(new Label("nothing.found.with.arguments", new StringResourceModel("nothing.found.with.arguments.${emptyReport}", this, getModel())) {
+            @Override
+            protected void onConfigure() {
+                super.onConfigure();
+                setVisibilityAllowed(getModelObject().isEmptyReport());
+            }
+        }.setOutputMarkupPlaceholderTag(true));
     }
 
     @Override
@@ -28,4 +34,6 @@ public class ReportPanel extends SessionAwarePanel<ReportObject> {
         super.onConfigure();
         setVisibilityAllowed(getModelObject().isSubmitHasBeenPressed());
     }
+
+
 }
