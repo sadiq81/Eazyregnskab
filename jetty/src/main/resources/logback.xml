@@ -8,11 +8,11 @@
         </encoder>
     </appender>
 
-    <!--<appender name="simpledb" class="com.kikini.logging.simpledb.SimpleDBAppender">-->
-    <!--<domainName>Logging</domainName>-->
-    <!--<accessId>AKIAIOD3ZYDZ7BQY4ZBA</accessId>-->
-    <!--<secretKey>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</secretKey>-->
-    <!--</appender>-->
+    <appender name="simpledb" class="com.kikini.logging.simpledb.SimpleDBAppender">
+        <domainName>Logging</domainName>
+        <accessId>AKIAIOD3ZYDZ7BQY4ZBA</accessId>
+        <secretKey>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</secretKey>
+    </appender>
 
     <logger name="dk.eazyit.eazyregnskab.web" level="DEBUG">
     </logger>
@@ -38,7 +38,7 @@
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
-        <!--<appender-ref ref="simpledb"/>-->
+        <appender-ref ref="simpledb"/>
     </root>
 
 </configuration>

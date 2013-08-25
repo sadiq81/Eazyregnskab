@@ -225,7 +225,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
 
     // http://stackoverflow.com/questions/4120388/hibernate-named-query-order-by-partameter
     @Override
-    public List<T> findByNamedQuery(String name, Integer firstResult, Integer maxResults, String SortProperty, boolean ascending, Object... params) {
+    public List<T> findByNamedQuerySorted(String name, Integer firstResult, Integer maxResults, String SortProperty, boolean ascending, Object... params) {
         logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name + " sorted by " + SortProperty);
 
 

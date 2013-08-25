@@ -31,13 +31,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="awsupload" target="1.6" />
-      <module name="eazyregnskab" target="1.6" />
+      <module name="awsupload" target="1.7" />
+      <module name="eazyregnskab" target="1.7" />
       <module name="helpers" target="1.6" />
-      <module name="jetty" target="1.6" />
-      <module name="mainwar" target="1.6" />
+      <module name="jetty" target="1.7" />
+      <module name="mainwar" target="1.7" />
       <module name="server" target="1.6" />
-      <module name="shared" target="1.6" />
+      <module name="shared" target="1.7" />
       <module name="wicket-quickview" target="1.6" />
     </bytecodeTargetLevel>
   </component>

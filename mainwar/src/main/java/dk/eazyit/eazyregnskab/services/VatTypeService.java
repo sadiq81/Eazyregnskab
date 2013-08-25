@@ -43,7 +43,7 @@ public class VatTypeService {
     @Transactional
     public List<VatType> findVatTypeByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
         LOG.debug("Finding all VatType from legalEntity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<VatType> list = vatTypeDAO.findByNamedQuery(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
+        List<VatType> list = vatTypeDAO.findByNamedQuerySorted(VatType.QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
         return list;
     }
 

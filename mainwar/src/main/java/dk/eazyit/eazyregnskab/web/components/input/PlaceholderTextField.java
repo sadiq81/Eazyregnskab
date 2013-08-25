@@ -13,9 +13,16 @@ public class PlaceholderTextField<T> extends TextField<T> {
 
     static final Logger LOG = LoggerFactory.getLogger(PlaceholderTextField.class);
 
+    String localizerPage = "";
+
     public PlaceholderTextField(String id) {
+        this(id, "");
+    }
+
+    public PlaceholderTextField(String id, String localizerPage) {
         super(id);
         setOutputMarkupPlaceholderTag(true);
+        this.localizerPage = localizerPage.length() > 0 ? localizerPage + "." : localizerPage;
         LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
@@ -40,7 +47,7 @@ public class PlaceholderTextField<T> extends TextField<T> {
     @Override
     protected void onComponentTag(ComponentTag tag) {
         super.onComponentTag(tag);
-        String placeholder = getLocalizer().getString(this.getId(), this.getPage());
+        String placeholder = getLocalizer().getString(localizerPage + this.getId(), this.getPage());
         tag.put("placeholder", placeholder);
     }
 }

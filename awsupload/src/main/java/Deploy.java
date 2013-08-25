@@ -53,7 +53,7 @@ public class Deploy {
         properties.quit();
 
         SftpClient war = ssh.openSftpClient();
-        war.put(System.getProperty("user.dir") + "/mainwar/target/eazyregnskab.war", "/home/ubuntu/");
+        war.put(System.getProperty("user.dir") + "/mainwar/war/eazyregnskab.war", "/home/ubuntu/");
         war.quit();
 
 

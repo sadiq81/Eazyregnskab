@@ -59,7 +59,7 @@ public class PostingService {
     @Transactional
     public List<DraftFinancePosting> findDraftPostingByDailyLedgerSubListSortBy(DailyLedger dailyLedger, int first, int count, String sortProperty, boolean Ascending) {
         LOG.debug("Finding all DraftFinancePosting from DailyLedger starting with " + first + " to  " + count + " from " + dailyLedger.toString());
-        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), sortProperty, Ascending, dailyLedger);
+        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuerySorted(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), sortProperty, Ascending, dailyLedger);
         return list;
     }
 

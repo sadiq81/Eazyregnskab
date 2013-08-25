@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class FinanceAccountDataProvider extends EazyregnskabSortableDataProvider<FinanceAccount> {
 
+
     @SpringBean
     FinanceAccountService financeAccountService;
 
@@ -29,7 +30,6 @@ public class FinanceAccountDataProvider extends EazyregnskabSortableDataProvider
         LOG.trace("creating " + this.getClass().getSimpleName());
     }
 
-
     @Override
     public Iterator<FinanceAccount> iterator(long first, long count) {
 
@@ -38,9 +38,9 @@ public class FinanceAccountDataProvider extends EazyregnskabSortableDataProvider
         if (sortParam != null) {
             LOG.debug(" and sorting after " + sortParam.getProperty());
             LegalEntity legalEntity = getCurrentLegalEntity();
-                        List<FinanceAccount> list = financeAccountService.findFinanceAccountByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
-                        Iterator<FinanceAccount> iterator = list.iterator();
-                        return iterator;
+            List<FinanceAccount> list = financeAccountService.findFinanceAccountByLegalEntitySubListSortBy(legalEntity, (int) first, (int) count, sortParam.getProperty().toString(), sortParam.isAscending());
+            Iterator<FinanceAccount> iterator = list.iterator();
+            return iterator;
         } else {
             Iterator<FinanceAccount> iterator = financeAccountService.findFinanceAccountByLegalEntitySubList(
                     getCurrentLegalEntity(),

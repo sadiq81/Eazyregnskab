@@ -285,6 +285,14 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--Export-->
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>${jexcelapi.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -316,6 +324,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <inherited>true</inherited>
                 <configuration>
+                    <outputDirectory>mainwar/war</outputDirectory>
                     <warName>eazyregnskab</warName>
                 </configuration>
             </plugin>

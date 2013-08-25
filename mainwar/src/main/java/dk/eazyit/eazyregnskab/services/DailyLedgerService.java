@@ -48,7 +48,7 @@ public class DailyLedgerService {
     @Transactional
     public List<DailyLedger> findDailyLedgerByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
         LOG.debug("Finding all DailyLedger from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuery(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
+        List<DailyLedger> list = dailyLedgerDAO.findByNamedQuerySorted(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
         return list;
     }
 

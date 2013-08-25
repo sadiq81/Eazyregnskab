@@ -91,6 +91,7 @@
           <element id="archive" name="shared-1.0-SNAPSHOT.jar">
             <element id="module-output" name="shared" />
           </element>
+          <element id="library" level="project" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" />
         </element>
       </element>
     </root>

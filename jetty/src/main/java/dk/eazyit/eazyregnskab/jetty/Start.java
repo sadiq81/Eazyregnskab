@@ -8,6 +8,7 @@ import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.server.ssl.SslSocketConnector;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 /**
@@ -16,7 +17,13 @@ import org.eclipse.jetty.webapp.WebAppContext;
 public class Start {
 
     public static void main(String[] arg) throws Exception {
+
+
         Server server = new Server();
+
+        QueuedThreadPool threadPool = new QueuedThreadPool();
+        threadPool.setMaxThreads(50);
+        server.setThreadPool(threadPool);
 
         SelectChannelConnector http = new SelectChannelConnector();
         http.setPort(isLocal() ? 8080 : 80);
@@ -37,7 +44,7 @@ public class Start {
 
         WebAppContext webappcontext = new WebAppContext();
         webappcontext.setContextPath("/");
-        webappcontext.setWar(isLocal() ? "mainwar/target/eazyregnskab.war" : "eazyregnskab.war");
+        webappcontext.setWar(isLocal() ? "mainwar/war/eazyregnskab.war" : "eazyregnskab.war");
         webappcontext.setParentLoaderPriority(true);
 
         HandlerCollection handlers = new HandlerCollection();
@@ -45,12 +52,12 @@ public class Start {
 
         server.setHandler(handlers);
 
+
         EazyRegnskabLoginService loginService = new EazyRegnskabLoginService();
         loginService.setConfig(isLocal() ? "jetty/src/main/resources/jetty-realm.properties" : "jetty-realm.properties");
         loginService.setName("Monitoring");
         server.addBean(loginService);
 
-//        server.setDumpAfterStart(true);
         server.setGracefulShutdown(1000);
         server.setStopAtShutdown(true);
 

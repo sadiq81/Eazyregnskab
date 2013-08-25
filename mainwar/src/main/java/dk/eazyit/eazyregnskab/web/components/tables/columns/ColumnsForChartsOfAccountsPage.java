@@ -21,11 +21,11 @@ public class ColumnsForChartsOfAccountsPage extends ArrayList<IColumn<FinanceAcc
 
     public ColumnsForChartsOfAccountsPage(final BaseCreateEditForm<FinanceAccount> form) {
 
-        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("name"), "name", "name"));
-        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("accountNumber"), "accountNumber", "accountNumber"));
-        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("vatType"), "vatType.percentage", "vatType.name"));
-        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("sum.from.to"), "sumFromTo"));
-        add(new EnumPropertyColumn<FinanceAccount>(new ResourceModel("financeAccountType"), "financeAccountType", "financeAccountType"));
+        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("ChartOfAccountsPage.name"), "name", "name"));
+        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("ChartOfAccountsPage.accountNumber"), "accountNumber", "accountNumber"));
+        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("ChartOfAccountsPage.vatType"), "vatType.percentage", "vatType.name"));
+        add(new FinanceAccountPropertyColumn<String>(new ResourceModel("ChartOfAccountsPage.sum.from.to"), "sumFromTo"));
+        add(new EnumPropertyColumn<FinanceAccount>(new ResourceModel("ChartOfAccountsPage.financeAccountType"), "financeAccountType", "financeAccountType"));
         add(new AbstractColumn<FinanceAccount, String>(new ResourceModel("action")) {
             @Override
             public void populateItem(Item<ICellPopulator<FinanceAccount>> cellItem, String componentId, IModel<FinanceAccount> rowModel) {

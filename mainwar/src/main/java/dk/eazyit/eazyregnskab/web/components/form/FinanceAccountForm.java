@@ -48,15 +48,15 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
-        add(accountNumber = new PlaceholderTextField<Integer>("accountNumber").setRequired(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name", "ChartOfAccountsPage").setRequired(true));
+        add(accountNumber = new PlaceholderTextField<Integer>("accountNumber", "ChartOfAccountsPage").setRequired(true));
         add(vatType = (DropDownChoice<VatType>) new DropDownChoice<VatType>("vatType", vatTypeService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(financeAccountType = (FinanceAccountTypeDropDownChoice) new FinanceAccountTypeDropDownChoice("financeAccountType", FinanceAccountType.getNonSystemAccounts()).setRequired(true));
         add(standardReverseFinanceAccount = (DropDownChoice<FinanceAccount>) new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumFrom = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
-        add(sumFromLabel = (SumLabel) new SumLabel("sumFromLabel", new ResourceModel("sum.from")).setOutputMarkupPlaceholderTag(true));
+        add(sumFromLabel = (SumLabel) new SumLabel("sumFromLabel", new ResourceModel("ChartOfAccountsPage.sum.from")).setOutputMarkupPlaceholderTag(true));
         add(sumTo = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumTo", financeAccountService.findFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
-        add(sumToLabel = (SumLabel) new SumLabel("sumToLabel", new ResourceModel("sum.to")).setOutputMarkupPlaceholderTag(true));
+        add(sumToLabel = (SumLabel) new SumLabel("sumToLabel", new ResourceModel("ChartOfAccountsPage.sum.to")).setOutputMarkupPlaceholderTag(true));
         add(locked = new CheckBox("locked"));
         add(new FinanceAccountFormValidator(accountNumber));
     }
@@ -65,13 +65,13 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     public void deleteEntity(FinanceAccount financeAccount) {
         if (financeAccount.getId() != 0) {
             if (financeAccountService.deleteFinanceAccount(financeAccount)) {
-                getSession().success(new NotificationMessage(new ResourceModel("finance.account.was.deleted")).hideAfter(Duration.seconds(DURATION)));
+                getSession().success(new NotificationMessage(new ResourceModel("ChartOfAccountsPage.finance.account.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 insertNewEntityInModel(financeAccount);
             } else {
-                getSession().error(new NotificationMessage(new ResourceModel("finance.account.is.in.use")).hideAfter(Duration.seconds(DURATION)));
+                getSession().error(new NotificationMessage(new ResourceModel("ChartOfAccountsPage.finance.account.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }
         } else {
-            getSession().error(new NotificationMessage(new ResourceModel("finance.account.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
+            getSession().error(new NotificationMessage(new ResourceModel("ChartOfAccountsPage.finance.account.was.never.saved")).hideAfter(Duration.seconds(DURATION)));
         }
     }
 
@@ -83,7 +83,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     @Override
     public void saveForm(FinanceAccount financeAccount) {
         financeAccountService.saveFinanceAccount(financeAccount, getCurrentLegalEntity());
-        getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+        getSession().success(new NotificationMessage(new ResourceModel("ChartOfAccountsPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel(financeAccount);
     }
 

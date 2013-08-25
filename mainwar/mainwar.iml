@@ -48,7 +48,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -58,7 +58,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="shared" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:4.2.4.Final" level="project" />
@@ -146,6 +146,7 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-http:8.1.12.v20130726" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-io:8.1.12.v20130726" level="project" />
     <orderEntry type="library" name="Maven: dk.eazyit:shared:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" level="project" />
   </component>
 </module>
 

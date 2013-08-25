@@ -28,11 +28,11 @@ public class FinanceAccountFormValidator extends BaseFormValidator {
         FinanceAccount number = financeAccountService.findFinanceAccountByLegalEntityAndName(getCurrentLegalEntity(), accountNumber);
 
         if (number != null && !account.getId().equals(number.getId())) {
-            error(formComponent1, "number.all.ready.exists");
+            error(formComponent1, "ChartOfAccountsPage.number.all.ready.exists");
         }
 
         if (formComponent1.getInput().length() > 20) {
-            error(formComponent1, "number.to.long");
+            error(formComponent1, "ChartOfAccountsPage.number.to.long");
         }
     }
 }

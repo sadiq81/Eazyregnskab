@@ -85,7 +85,7 @@ public class FinanceAccountService {
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
         LOG.debug("Finding all FinanceAccount from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
+        List<FinanceAccount> list = financeAccountDAO.findByNamedQuerySorted(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
         return list;
     }
 
