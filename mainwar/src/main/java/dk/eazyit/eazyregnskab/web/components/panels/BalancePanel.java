@@ -28,8 +28,8 @@ public class BalancePanel extends ReportPanel {
         setOutputMarkupPlaceholderTag(true);
 
         add(new FinanceAccountListView("financeAccounts", new FinanceAccountListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
-        add(new Label("dates", new PropertyModel<ReportObject>(getDefaultModel(), "dates")));
-        add(new Label("datesCompare", new PropertyModel<ReportObject>(getDefaultModel(), "datesCompare")));
+        add(new Label("dates", new PropertyModel<ReportObject>(getDefaultModel(), "BalancePage.dates")));
+        add(new Label("datesCompare", new PropertyModel<ReportObject>(getDefaultModel(), "BalancePage.datesCompare")));
 
         add(new Label("compareType", new StringResourceModel("ReportCompareType.${reportCompareType}", this, getDefaultModel())));
 

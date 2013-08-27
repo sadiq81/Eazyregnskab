@@ -256,6 +256,9 @@ public class FinanceAccount extends BaseEntity implements DataTableCssClass {
             case SUM: {
                 return "sumfrom";
             }
+            case BALANCE_CHECK: {
+                return "category";
+            }
             default: {
                 return "";
             }

@@ -18,9 +18,9 @@ import java.util.List;
 /**
  * @author
  */
-public class ExportableAjaxFallbackDefaultDataTable extends DataTable {
+public class ExportableSortableDataTable extends DataTable {
 
-    public ExportableAjaxFallbackDefaultDataTable(String id, List<? extends IColumn> iColumns, ISortableDataProvider dataProvider, int rowsPerPage, String filenameResourceText, float[] columnWidths) {
+    public ExportableSortableDataTable(String id, List<? extends IColumn> iColumns, ISortableDataProvider dataProvider, int rowsPerPage, String filenameResourceText, float[] columnWidths) {
         super(id, iColumns, dataProvider, rowsPerPage);
         setOutputMarkupId(true);
         setVersioned(false);

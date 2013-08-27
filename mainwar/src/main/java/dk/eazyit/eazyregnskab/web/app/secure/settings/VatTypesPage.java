@@ -7,7 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.VatTypeModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForVatTypesPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableAjaxFallbackDefaultDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableSortableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class VatTypesPage extends LoggedInPage {
 
     VatTypeForm form;
-    ExportableAjaxFallbackDefaultDataTable dataTable;
+    ExportableSortableDataTable dataTable;
 
     private static final Logger LOG = LoggerFactory.getLogger(VatTypesPage.class);
 
@@ -46,7 +46,7 @@ public class VatTypesPage extends LoggedInPage {
 
         add(form = new VatTypeForm("vatTypeEdit", new CompoundPropertyModel<VatType>(new VatTypeModel(new VatType()))));
 
-        add(dataTable = new ExportableAjaxFallbackDefaultDataTable("chartOfVatTypes",
+        add(dataTable = new ExportableSortableDataTable("chartOfVatTypes",
                 new ColumnsForVatTypesPage(form),
                 new VatTypeDataProvider(),
                 20,

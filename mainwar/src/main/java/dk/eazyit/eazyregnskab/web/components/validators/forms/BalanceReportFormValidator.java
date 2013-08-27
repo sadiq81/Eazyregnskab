@@ -34,7 +34,7 @@ public class BalanceReportFormValidator extends BaseFormValidator {
             }
         }
         if (!withIn) {
-            error((FormComponent<?>) form.get("dateFrom"), "dates.not.within.same.fiscal.year");
+            error((FormComponent<?>) form.get("dateFrom"), "BalancePage.dates.not.within.same.fiscal.year");
         }
 
     }

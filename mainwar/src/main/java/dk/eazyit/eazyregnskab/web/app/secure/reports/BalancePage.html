@@ -11,15 +11,15 @@
         <table class="table">
             <tr>
                 <td>
-                    <wicket:message key="dateFrom"></wicket:message>
+                    <wicket:message key="BalancePage.dateFrom"></wicket:message>
                     <button class="btn btn-mini" wicket:id="minusOneYear"><i class="icon-step-backward"></i></button>
                     <button class="btn btn-mini" wicket:id="plusOneYear"><i class="icon-step-forward"></i></button>
                 </td>
                 <td>
-                    <wicket:message key="dateTo"></wicket:message>
+                    <wicket:message key="BalancePage.dateTo"></wicket:message>
                 </td>
                 <td>
-                    <wicket:message key="compare.to"></wicket:message>
+                    <wicket:message key="BalancePage.compare.to"></wicket:message>
                 </td>
                 <td class="span3"></td>
             </tr>
@@ -31,13 +31,13 @@
             </tr>
             <tr>
                 <td>
-                    <wicket:message key="accountFrom"></wicket:message>
+                    <wicket:message key="BalancePage.accountFrom"></wicket:message>
                 </td>
                 <td>
-                    <wicket:message key="accountTo"></wicket:message>
+                    <wicket:message key="BalancePage.accountTo"></wicket:message>
                 </td>
                 <td>
-                    <wicket:message key="hide.accounts.without.sum"></wicket:message>
+                    <wicket:message key="BalancePage.hide.accounts.without.sum"></wicket:message>
                 </td>
                 <td class="span3"></td>
             </tr>
@@ -59,7 +59,10 @@
 
     </form>
 
+    <table class="table table-condensed table-bordered" cellspacing="0" wicket:id="balanceDataTable">[table]</table>
+
     <div wicket:id="balancePanel"></div>
+
 
 </wicket:extend>
 

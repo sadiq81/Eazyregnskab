@@ -8,7 +8,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.FiscalYearModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForFiscalYearsPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableAjaxFallbackDefaultDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableSortableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public class FiscalYearPage extends LoggedInPage {
 
     FiscalYearForm form;
-    ExportableAjaxFallbackDefaultDataTable dataTable;
+    ExportableSortableDataTable dataTable;
 
     private static final Logger LOG = LoggerFactory.getLogger(FiscalYearPage.class);
 
@@ -47,7 +47,7 @@ public class FiscalYearPage extends LoggedInPage {
 
         add(form = new FiscalYearForm("fiscalYearEdit", new CompoundPropertyModel<FiscalYear>(new FiscalYearModel(new FiscalYear().setFiscalYearStatus(FiscalYearStatus.OPEN).setLegalEntity(getCurrentLegalEntity())))));
 
-        add(dataTable = new ExportableAjaxFallbackDefaultDataTable("chartOfFiscalYears",
+        add(dataTable = new ExportableSortableDataTable("chartOfFiscalYears",
                 new ColumnsForFiscalYearsPage(form),
                 new FiscalYearDataProvider(),
                 20,

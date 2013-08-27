@@ -9,7 +9,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePosting
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForBookkeepingPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableAjaxFallbackDefaultDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableSortableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -49,7 +49,7 @@ public class BookkeepingPage extends LoggedInPage {
 
         add(dailyLedgerChoice = new DailyLedgerChooser("dailyLedgerList"));
         add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<>(new DraftFinancePostingModel(new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber())))));
-        add(new ExportableAjaxFallbackDefaultDataTable("chartOfFinancePostings",
+        add(new ExportableSortableDataTable("chartOfFinancePostings",
                 new ColumnsForBookkeepingPage(form),
                 financePostingDataProvider = new FinancePostingDataProvider(),
                 20,
