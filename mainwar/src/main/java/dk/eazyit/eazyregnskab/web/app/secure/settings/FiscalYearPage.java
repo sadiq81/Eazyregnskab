@@ -8,9 +8,11 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.FiscalYearModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForFiscalYearsPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableSortableDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,7 @@ import org.slf4j.LoggerFactory;
 public class FiscalYearPage extends LoggedInPage {
 
     FiscalYearForm form;
-    ExportableSortableDataTable dataTable;
+    ExportableDataTable dataTable;
 
     private static final Logger LOG = LoggerFactory.getLogger(FiscalYearPage.class);
 
@@ -47,12 +49,12 @@ public class FiscalYearPage extends LoggedInPage {
 
         add(form = new FiscalYearForm("fiscalYearEdit", new CompoundPropertyModel<FiscalYear>(new FiscalYearModel(new FiscalYear().setFiscalYearStatus(FiscalYearStatus.OPEN).setLegalEntity(getCurrentLegalEntity())))));
 
-        add(dataTable = new ExportableSortableDataTable("chartOfFiscalYears",
-                new ColumnsForFiscalYearsPage(form),
-                new FiscalYearDataProvider(),
-                20,
-                "FiscalYearPage.datatable.export-file-name",
-                new float[]{135, 135, 135, 135}));
+        add(dataTable = new ExportableDataTable("chartOfFiscalYears", new ColumnsForFiscalYearsPage(form), new FiscalYearDataProvider(), 20, "FiscalYearPage.datatable.export-file-name", new float[]{135, 135, 135, 135}) {
+            @Override
+            public String getTitle() {
+                return new StringResourceModel("FiscalYearPage.report.title", this, new Model<>(getCurrentLegalEntity())).getString();
+            }
+        });
     }
 
     @Override

@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.tables.toolbar;
 
 import com.google.common.collect.Lists;
 import dk.eazyit.eazyregnskab.util.ExcelWriter;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import jxl.Workbook;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
@@ -29,6 +30,7 @@ public class XLSDataExporter extends SessionAwareDataExporter {
 
     private static final Logger LOG = LoggerFactory.getLogger(XLSDataExporter.class);
 
+    ExportableDataTable table;
 
     /**
      * Creates a new instance with the data format name model, content type and file name extensions provided.
@@ -37,8 +39,9 @@ public class XLSDataExporter extends SessionAwareDataExporter {
      * @param contentType         The MIME content type of the exported data type.
      * @param fileNameExtension   The file name extensions to use in the file name for the exported data.
      */
-    public XLSDataExporter() {
+    public XLSDataExporter(ExportableDataTable table) {
         super(Model.of("XLS "), "application/vnd.ms-excel", "xls");
+        this.table = table;
     }
 
     @Override
@@ -49,9 +52,10 @@ public class XLSDataExporter extends SessionAwareDataExporter {
 
 
         try {
+            ExcelWriter.addCaption(sheet, 0, 0, table.getTitle());
 
             for (int i = 0; i < columns.size(); i++) {
-                ExcelWriter.addCaption(sheet, i, 0, columns.get(i).getDisplayModel().getObject());
+                ExcelWriter.addCaption(sheet, i, 1, columns.get(i).getDisplayModel().getObject());
             }
 
             List<T> rows = Lists.newArrayList(dataProvider.iterator(0, dataProvider.size()));
@@ -64,11 +68,11 @@ public class XLSDataExporter extends SessionAwareDataExporter {
                     if (o != null) {
 
                         if (o instanceof Number) {
-                            ExcelWriter.addNumber(sheet, column, row + 1, new Double(o.toString()));
+                            ExcelWriter.addNumber(sheet, column, row + 2, new Double(o.toString()));
                         } else if (o instanceof Date) {
-                            ExcelWriter.addDate(sheet, column, row + 1, (Date) o);
+                            ExcelWriter.addDate(sheet, column, row + 2, (Date) o);
                         } else if (o instanceof Enum) {
-                            ExcelWriter.addLabel(sheet, column, row + 1, new ResourceModel(resourceKey((Enum) o)).getObject());
+                            ExcelWriter.addLabel(sheet, column, row + 2, new ResourceModel(resourceKey((Enum) o)).getObject());
                         } else {
                             Class<?> c = o.getClass();
                             String s;
@@ -78,7 +82,7 @@ public class XLSDataExporter extends SessionAwareDataExporter {
                             } else {
                                 s = converter.convertToString(o, Session.get().getLocale());
                             }
-                            ExcelWriter.addLabel(sheet, column, row + 1, s);
+                            ExcelWriter.addLabel(sheet, column, row + 2, s);
 
                         }
                     }

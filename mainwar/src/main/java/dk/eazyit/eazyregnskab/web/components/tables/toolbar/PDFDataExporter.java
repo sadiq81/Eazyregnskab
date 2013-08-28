@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.tables.toolbar;
 
 import com.google.common.collect.Lists;
 import com.pdfjet.*;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.Application;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.export.IExportableColumn;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +27,8 @@ public class PDFDataExporter extends SessionAwareDataExporter {
 
     private static final Logger LOG = LoggerFactory.getLogger(PDFDataExporter.class);
     float[] columnWidths;
+    ExportableDataTable table;
+
 
     /**
      * Creates a new instance with the data format name model, content type and file name extensions provided.
@@ -33,7 +37,7 @@ public class PDFDataExporter extends SessionAwareDataExporter {
      * @param contentType         The MIME content type of the exported data type.
      * @param fileNameExtension   The file name extensions to use in the file name for the exported data.
      */
-    public PDFDataExporter(float[] columnWidths) {
+    public PDFDataExporter(float[] columnWidths, ExportableDataTable table) {
         super(Model.of("PDF "), "application/pdf", "pdf");
         float totalWidth = 0;
         for (float width : columnWidths) {
@@ -41,6 +45,7 @@ public class PDFDataExporter extends SessionAwareDataExporter {
             if (totalWidth > 545) throw new NullPointerException("coloumns are wider than page");
         }
         this.columnWidths = columnWidths;
+        this.table = table;
     }
 
     @Override
@@ -56,7 +61,7 @@ public class PDFDataExporter extends SessionAwareDataExporter {
             Font normalFont = new Font(pdf, CoreFont.TIMES_ROMAN);
             normalFont.setSize(8F);
 
-            TextLine legalEntity = new TextLine(headerFont, getCurrentLegalEntity().getName());
+            TextLine legalEntity = new TextLine(headerFont, table.getTitle());
             legalEntity.setLocation(25F, 15F);
             legalEntity.drawOn(page);
 
@@ -80,6 +85,11 @@ public class PDFDataExporter extends SessionAwareDataExporter {
 
                         if (o instanceof Enum) {
                             rowDate.add(new Cell(normalFont, new ResourceModel(resourceKey((Enum) o)).getObject()));
+
+                        } else if (o instanceof Date) {
+                            IConverter converter = Application.get().getConverterLocator().getConverter(Date.class);
+                            String s = converter.convertToString(o, Session.get().getLocale());
+                            rowDate.add(new Cell(normalFont, s));
                         } else {
                             Class<?> c = o.getClass();
                             String s;

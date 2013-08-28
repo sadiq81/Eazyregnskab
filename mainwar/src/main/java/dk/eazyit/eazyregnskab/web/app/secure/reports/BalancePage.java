@@ -10,6 +10,7 @@ import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForBalancePag
 import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,12 +45,12 @@ public class BalancePage extends BaseReportPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(dataTable = new ExportableDataTable("balanceDataTable",
-                new ColumnsForBalancePage(),
-                new BalanceDataProvider(new CompoundPropertyModel(getDefaultModel())),
-                getCurrentUser().getItemsPerPage(),
-                "BalancePage.datatable.export-file-name",
-                new float[]{95, 150, 150, 150}));
+        add(dataTable = new ExportableDataTable("balanceDataTable", new ColumnsForBalancePage(), new BalanceDataProvider(new CompoundPropertyModel(getDefaultModel())), getCurrentUser().getItemsPerPage(), "BalancePage.datatable.export-file-name", new float[]{95, 150, 150, 150}) {
+            @Override
+            public String getTitle() {
+                return getCurrentLegalEntity().getName() + " " + new StringResourceModel("BalancePage.report.title", this, getPage().getDefaultModel()).getString();
+            }
+        });
         add(balancePanel = new BalancePanel("balancePanel", new CompoundPropertyModel(getDefaultModel())));
         add(new BalanceReportForm("filters", new CompoundPropertyModel(getDefaultModel()), balancePanel));
     }
