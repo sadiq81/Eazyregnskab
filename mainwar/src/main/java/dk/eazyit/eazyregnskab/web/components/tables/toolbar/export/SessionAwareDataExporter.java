@@ -8,6 +8,7 @@ import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.export.AbstractDataExporter;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.lang.Classes;
 
 /**
  * @author
@@ -27,6 +28,10 @@ public abstract class SessionAwareDataExporter extends AbstractDataExporter {
     public SessionAwareDataExporter(IModel<String> dataFormatNameModel, String contentType, String fileNameExtension, Page page) {
         super(dataFormatNameModel, contentType, fileNameExtension);
         this.page = page;
+    }
+
+    protected String resourceKey(Enum value) {
+        return Classes.simpleName(value.getDeclaringClass()) + '.' + value.name();
     }
 
     public AppUser getCurrentUser() {

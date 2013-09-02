@@ -2,10 +2,12 @@ package dk.eazyit.eazyregnskab.web.app.secure.settings;
 
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
+import dk.eazyit.eazyregnskab.web.components.dataprovider.FiscalYearDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.FiscalYearForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.FiscalYearModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
+import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForFiscalYearsPage;
 import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -45,12 +47,7 @@ public class FiscalYearPage extends LoggedInPage {
 
         add(form = new FiscalYearForm("fiscalYearEdit", new CompoundPropertyModel<FiscalYear>(new FiscalYearModel(new FiscalYear().setFiscalYearStatus(FiscalYearStatus.OPEN).setLegalEntity(getCurrentLegalEntity())))));
 
-//        add(dataTable = new ExportableDataTable("chartOfFiscalYears", new ColumnsForFiscalYearsPage(form), new FiscalYearDataProvider(), 20, "FiscalYearPage.datatable.export-file-name", new float[]{135, 135, 135, 135}) {
-//            @Override
-//            public String getTitle() {
-//                return new StringResourceModel("FiscalYearPage.report.title", this, new Model<>(getCurrentLegalEntity())).getString();
-//            }
-//        });
+        add(dataTable = new ExportableDataTable("chartOfFiscalYears", new ColumnsForFiscalYearsPage(form), new FiscalYearDataProvider(), "FiscalYearPage.datatable.export-file-name", this));
     }
 
     @Override

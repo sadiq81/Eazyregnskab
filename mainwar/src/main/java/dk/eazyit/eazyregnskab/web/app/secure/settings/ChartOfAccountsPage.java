@@ -1,10 +1,12 @@
 package dk.eazyit.eazyregnskab.web.app.secure.settings;
 
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
+import dk.eazyit.eazyregnskab.web.components.dataprovider.FinanceAccountDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.FinanceAccountForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
+import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForChartsOfAccountsPage;
 import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -42,12 +44,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
         super.addToPage(parameters);
 
         add(form = new FinanceAccountForm("financeAccountEdit", new FinanceAccountModel(new FinanceAccount())));
-//        add(dataTable = new ExportableDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), getCurrentUser().getItemsPerPage(), "ChartOfAccountsPage.datatable.export-file-name", new float[]{150, 110, 105, 100, 80}) {
-//            @Override
-//            public String getTitle() {
-//                return new StringResourceModel("ChartOfAccountsPage.report.title", this, new Model<>(getCurrentLegalEntity())).getString();
-//            }
-//        });
+        add(dataTable = new ExportableDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), "ChartOfAccountsPage.datatable.export-file-name", this));
 
     }
 

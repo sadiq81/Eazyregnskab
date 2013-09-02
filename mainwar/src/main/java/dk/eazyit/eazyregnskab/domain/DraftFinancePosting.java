@@ -1,11 +1,16 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
+import com.pdfjet.A4;
+import com.pdfjet.CoreFont;
+import com.pdfjet.Font;
+import com.pdfjet.PDF;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -26,7 +31,7 @@ import java.util.Date;
                 "WHERE (fp.financeAccount.legalEntity = ?1 or fp.reverseFinanceAccount.legalEntity =?1) and fp.date >= ?2 and fp.date <= ?3 ")
 })
 @Table(name = "draftfinanceposting")
-public class DraftFinancePosting extends BaseEntity {
+public class DraftFinancePosting extends BaseEntity implements ExportTableRow<DraftFinancePosting> {
 
     public static final String QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT = "DraftFinancePosting::findDraftFinancePostingByFinanceAccount";
     public static final String QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER = "DraftFinancePosting::findDraftFinancePostingByDailyLedger";
@@ -219,6 +224,33 @@ public class DraftFinancePosting extends BaseEntity {
     public DraftFinancePosting reverseAmount() {
         amount = -amount;
         return this;
+    }
+
+    @Override
+    public String getCssClassForDataTable() {
+        return "";
+    }
+
+    @Override
+    public Font getFont(PDF pdf) throws Exception {
+        Font normalFont = new Font(pdf, CoreFont.TIMES_ROMAN);
+        normalFont.setSize(8F);
+        return normalFont;
+    }
+
+    @Override
+    public WritableCellFormat getCellFormat() {
+        return new WritableCellFormat(new WritableFont(WritableFont.TIMES, 8));
+    }
+
+    @Override
+    public boolean insertSpaceAfterRowInTables() {
+        return false;
+    }
+
+    @Override
+    public float[] getPageSize() {
+        return A4.LANDSCAPE;
     }
 
     @Override

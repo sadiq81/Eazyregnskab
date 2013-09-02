@@ -16,4 +16,6 @@ public interface ExportTableRow<T> {
     public WritableCellFormat getCellFormat();
 
     public boolean insertSpaceAfterRowInTables();
+
+    public float[] getPageSize();
 }

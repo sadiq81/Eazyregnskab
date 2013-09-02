@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
+import com.pdfjet.A4;
 import com.pdfjet.CoreFont;
 import com.pdfjet.Font;
 import com.pdfjet.PDF;
@@ -321,6 +322,11 @@ public class FinanceAccount extends BaseEntity implements ExportTableRow<Finance
                 return false;
             }
         }
+    }
+
+    @Override
+    public float[] getPageSize() {
+        return A4.PORTRAIT;
     }
 
     @Override

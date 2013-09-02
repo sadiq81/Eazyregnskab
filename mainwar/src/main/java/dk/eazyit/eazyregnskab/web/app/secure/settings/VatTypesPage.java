@@ -1,10 +1,12 @@
 package dk.eazyit.eazyregnskab.web.app.secure.settings;
 
 import dk.eazyit.eazyregnskab.domain.VatType;
+import dk.eazyit.eazyregnskab.web.components.dataprovider.VatTypeDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.VatTypeForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.VatTypeModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
+import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForVatTypesPage;
 import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -44,12 +46,7 @@ public class VatTypesPage extends LoggedInPage {
 
         add(form = new VatTypeForm("vatTypeEdit", new CompoundPropertyModel<VatType>(new VatTypeModel(new VatType()))));
 
-//        add(dataTable = new ExportableDataTable("chartOfVatTypes", new ColumnsForVatTypesPage(form), new VatTypeDataProvider(), 20, "VatTypesPage.datatable.export-file-name", new float[]{160, 160, 160, 65}) {
-//            @Override
-//            public String getTitle() {
-//                return new StringResourceModel("VatTypesPage.report.title", this, new Model<>(getCurrentLegalEntity())).getString();
-//            }
-//        });
+        add(dataTable = new ExportableDataTable("chartOfVatTypes", new ColumnsForVatTypesPage(form), new VatTypeDataProvider(), "VatTypesPage.datatable.export-file-name", this));
     }
 
     @Override

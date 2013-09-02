@@ -12,7 +12,11 @@ import org.apache.wicket.model.IModel;
 public class ReportExportToolbar<E extends ExportTableRow> extends CustomExportToolbar {
 
     public ReportExportToolbar(ExportableDataTable<E, ?> table, IModel<String> messageModel, IModel<String> fileNameModel, Page page) {
-        super(table, messageModel, fileNameModel);
+        super(table, messageModel, fileNameModel, page);
+    }
+
+    @Override
+    protected void addDataExporters(Page page) {
         addDataExporter(new ReportXLSDataExporter(page));
         addDataExporter(new ReportPDFDataExporter(page));
     }

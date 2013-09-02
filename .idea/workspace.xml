@@ -7,50 +7,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/converter/EazyConverterLocator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/converter/EazyDoubleConverter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ReportDataTable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportExportToolbar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportPDFDataExporter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/PDFDataExporter.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DataTableCssClass.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ExportTableRow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/BigDecimalRangeValidator.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/BigDecimalRangeValidator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/BookedFinancePostingDateComparator.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/comparetors/BookedFinancePostingDateComparator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/FinanceAccountNumberComparator.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/comparetors/FinanceAccountNumberComparator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/CustomExportToolbar.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/CustomExportToolbar.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/SessionAwareDataExporter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/SessionAwareDataExporter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/XLSDataExporter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/XLSDataExporter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/dataprovider/BalanceDataProvider.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/dataprovider/BalanceDataProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Cell.java" afterPath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Cell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DailyLedger.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DailyLedger.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/DailyLedgerPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/DailyLedgerPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/DailyLedgerPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/DailyLedgerPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/ExcelWriter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/ExcelWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DraftFinancePosting.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DraftFinancePosting.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ExportTableRow.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ExportTableRow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ExportableDataTable.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ExportableDataTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/item/ExportableRowItem.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/item/ExportableRowItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/ItemsPerPageToolBar.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/ItemsPerPageToolBar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/ReportObject.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/ReportObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/ReportService.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/ReportService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/test/java/dk/eazyit/eazyregnskab/util/TestBookedFinancePostingsSorter.java" afterPath="$PROJECT_DIR$/mainwar/src/test/java/dk/eazyit/eazyregnskab/util/TestBookedFinancePostingsSorter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportExportToolbar.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportExportToolbar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportPDFDataExporter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportPDFDataExporter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/SessionAwareDataExporter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/SessionAwareDataExporter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/VatType.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/VatType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/XLSDataExporter.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/XLSDataExporter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eazyregnskab.iws" />
@@ -67,7 +49,7 @@
     <file path="/AppBasePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254695322" ignored="false" />
     <file path="/HomePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254730144" ignored="false" />
     <file path="/HomePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377256542368" ignored="false" />
-    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378132079685" ignored="false" />
+    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378150963571" ignored="false" />
     <file path="/MenuSetup.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375809275767" ignored="false" />
     <file path="/MenuTab.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310019187" ignored="false" />
     <file path="/SubMenuPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310042082" ignored="false" />
@@ -109,7 +91,7 @@
     <file path="/InvestmentItemModalPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376990189704" ignored="false" />
     <file path="/LoginModalPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360408843018" ignored="false" />
     <file path="/WicketApplication.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377674467841" ignored="false" />
-    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378140783102" ignored="false" />
+    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378152239407" ignored="false" />
     <file path="/LoginPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376858658026" ignored="false" />
     <file path="/LoginNavBarButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360410548526" ignored="false" />
     <file path="/dataSource.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374944047829" ignored="false" />
@@ -263,7 +245,7 @@
     <file path="/LoggedInButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365251403391" ignored="false" />
     <file path="/LogoutNavbarButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366630551056" ignored="false" />
     <file path="/LoggedOutNavButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376844703649" ignored="false" />
-    <file path="/BookkeepingPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377633522367" ignored="false" />
+    <file path="/BookkeepingPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378145610808" ignored="false" />
     <file path="/MenuPosition.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377388614132" ignored="false" />
     <file path="/BookkeepingPage.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377450841907" ignored="false" />
     <file path="/BookkeepingPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377450826057" ignored="false" />
@@ -276,7 +258,7 @@
     <file path="/LabelelLinkList.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365279814347" ignored="false" />
     <file path="/ChartOfAccountsPage.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377338370767" ignored="false" />
     <file path="/ChartOfAccountsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377338380550" ignored="false" />
-    <file path="/ChartOfAccountsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377634919474" ignored="false" />
+    <file path="/ChartOfAccountsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378145733820" ignored="false" />
     <file path="/LoginPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376904135716" ignored="false" />
     <file path="/LegalEntity.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374848153988" ignored="false" />
     <file path="/LegalEntityDAO.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365341131954" ignored="false" />
@@ -322,7 +304,7 @@
     <file path="/TestBaseDataPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365702403203" ignored="false" />
     <file path="/TestLoggedInPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377255216578" ignored="false" />
     <file path="/FinanceAccount.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378140098327" ignored="false" />
-    <file path="/VatType.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374529834156" ignored="false" />
+    <file path="/VatType.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378146738142" ignored="false" />
     <file path="/FinanceAccountType.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377806818737" ignored="false" />
     <file path="/FinancePosting.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366410028399" ignored="false" />
     <file path="/FinancePostingStatus.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365704256549" ignored="false" />
@@ -377,12 +359,12 @@
     <file path="/VatTypeDAOImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366017843821" ignored="false" />
     <file path="$PROJECT_DIR$/../01410-Kryptologi/src/Main3.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366033115240" ignored="false" />
     <file path="/Main3.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366033107976" ignored="false" />
-    <file path="/DailyLedger.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374514734588" ignored="false" />
+    <file path="/DailyLedger.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378151447135" ignored="false" />
     <file path="/DailyLedgerDAO.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366055406698" ignored="false" />
     <file path="/DailyLedgerDAOImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366111234181" ignored="false" />
     <file path="/DailyLedgerPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374919883851" ignored="false" />
     <file path="/DailyLedgerPage.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374919876441" ignored="false" />
-    <file path="/DailyLedgerPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377635033372" ignored="false" />
+    <file path="/DailyLedgerPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378145753994" ignored="false" />
     <file path="/DailyLedgerModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373650330972" ignored="false" />
     <file path="/DailyLedgerDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373649428934" ignored="false" />
     <file path="/FinancePostingDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375029311148" ignored="false" />
@@ -433,8 +415,8 @@
     <file path="/VatTypesPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374919929126" ignored="false" />
     <file path="/VatTypeDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375026702758" ignored="false" />
     <file path="/VatTypeModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373650364598" ignored="false" />
-    <file path="/VatTypesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377635200633" ignored="false" />
-    <file path="/DraftFinancePosting.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376252207952" ignored="false" />
+    <file path="/VatTypesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378145792506" ignored="false" />
+    <file path="/DraftFinancePosting.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378147538777" ignored="false" />
     <file path="/VatTypesPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374174136869" ignored="false" />
     <file path="/NumberPropertyColumn.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366639638633" ignored="false" />
     <file path="$PROJECT_DIR$/.idea/libraries/Maven__com_vaynberg_wicket_select2_wicket_select2_examples_1_0.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366629333206" ignored="false" />
@@ -658,7 +640,7 @@
     <file path="/FinanceAccountDropDownChoice.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374701588255" ignored="false" />
     <file path="/SumLabel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374705899228" ignored="false" />
     <file path="/SessionAwareToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374709178941" ignored="false" />
-    <file path="/FiscalYear.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377161602138" ignored="false" />
+    <file path="/FiscalYear.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378146756623" ignored="false" />
     <file path="/FiscalYearDAOImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374847689274" ignored="false" />
     <file path="/FiscalYearDAO.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374847718358" ignored="false" />
     <file path="/FiscalYearStatus.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374847839601" ignored="false" />
@@ -667,7 +649,7 @@
     <file path="/FiscalYearForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376251944421" ignored="false" />
     <file path="/FiscalYearPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377299117343" ignored="false" />
     <file path="/FiscalYearService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376149525077" ignored="false" />
-    <file path="/FiscalYearPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377635120027" ignored="false" />
+    <file path="/FiscalYearPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378145772331" ignored="false" />
     <file path="/FiscalYearModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374850106169" ignored="false" />
     <file path="/FiscalYearFormValidator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374930277014" ignored="false" />
     <file path="/ColumnsForFiscalYearsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374867805448" ignored="false" />
@@ -977,12 +959,12 @@
     <file path="/CSDateVExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377334265930" ignored="false" />
     <file path="/ColumnsForChartsOfAccountsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377334754421" ignored="false" />
     <file path="/FinanceAccountPropertyColumn_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377335038526" ignored="false" />
-    <file path="/XLSDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378139653808" ignored="false" />
+    <file path="/XLSDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378145202243" ignored="false" />
     <file path="/ExcelWriter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378137111734" ignored="false" />
     <file path="/InlineExportToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377356768279" ignored="false" />
-    <file path="/CustomExportToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377803555935" ignored="false" />
+    <file path="/CustomExportToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378146371335" ignored="false" />
     <file path="/CustomExportToolbar.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377358342982" ignored="false" />
-    <file path="/PDFDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378139627634" ignored="false" />
+    <file path="/PDFDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378152541823" ignored="false" />
     <file path="/SessionAwareDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378139618586" ignored="false" />
     <file path="/ExportableAjaxFallbackDefaultDataTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377431264733" ignored="false" />
     <file path="/ExportableRowItem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377446911573" ignored="false" />
@@ -1037,7 +1019,7 @@
     <file path="/BalanceDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377794924102" ignored="false" />
     <file path="/BaseReportForm.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377590951735" ignored="false" />
     <file path="/BaseReportForm_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377590915708" ignored="false" />
-    <file path="/ExportableDataTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378143579872" ignored="false" />
+    <file path="/ExportableDataTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378146255805" ignored="false" />
     <file path="/ExportableSortableDataTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377619640115" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/itemreporting/ValueReport.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377676196922" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/itemreporting/ItemReportingService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377682801686" ignored="false" />
@@ -1110,10 +1092,10 @@
     <file path="/BalanceExcelDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378136232544" ignored="false" />
     <file path="/BalanceXLSDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378140519195" ignored="false" />
     <file path="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/ReportExportToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378139242637" ignored="false" />
-    <file path="/ReportExportToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378139465733" ignored="false" />
+    <file path="/ReportExportToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378146312374" ignored="false" />
     <file path="/ReportDataTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378143618762" ignored="false" />
     <file path="/ReportPDFDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378141228704" ignored="false" />
-    <file path="/ExportTableRow.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378140433762" ignored="false" />
+    <file path="/ExportTableRow.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378151525160" ignored="false" />
     <file path="/ReportXLSDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378143891037" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -1397,7 +1379,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportPDFDataExporter.java" line="128" class="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.report.ReportPDFDataExporter" package="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.report">
+      <breakpoint url="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java" line="39" class="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.report.ReportXLSDataExporter" package="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.report">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -1412,7 +1394,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java" line="95" class="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.report.ReportXLSDataExporter" package="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.report">
+      <breakpoint url="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java" line="166" class="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.PDFDataExporter" package="dk.eazyit.eazyregnskab.web.components.tables.toolbar.export">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -1437,85 +1419,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReportDataTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ReportDataTable.java">
+      <file leaf-file-name="PDFDataExporter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="1" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomExportToolbar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="22" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportExportToolbar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportExportToolbar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportXLSDataExporter.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="110" selection-start="3171" selection-end="3171" vertical-scroll-proportion="0.86445785">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExcelWriter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/ExcelWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="48" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BalancePage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="62" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExportableDataTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ExportableDataTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="82" selection-start="2041" selection-end="2041" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportPDFDataExporter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportPDFDataExporter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1443" selection-end="1443" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EazyDoubleConverter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/converter/EazyDoubleConverter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="5" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
+            <state line="31" column="53" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.52724075">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SessionAwareDataExporter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/SessionAwareDataExporter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="63" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractDataExporter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-extensions/6.9.1/wicket-extensions-6.9.1-sources.jar!/org/apache/wicket/extensions/markup/html/repeater/data/table/export/AbstractDataExporter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="22" selection-start="1039" selection-end="1039" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1539,22 +1467,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/DailyLedgerPage.html" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.html" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.html" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/XLSDataExporter.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DataTableFormatRowClass.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ExportTableRow.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportPDFDataExporter.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/BigDecimalRangeValidator.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/comparetors/FinanceAccountNumberComparator.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/converter/EazyDoubleConverter.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ExportableDataTable.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ReportDataTable.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportExportToolbar.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/VatType.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DraftFinancePosting.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DailyLedger.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ExportTableRow.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java" />
       </list>
     </option>
   </component>
@@ -1653,7 +1581,7 @@
     <option name="x" value="66" />
     <option name="y" value="22" />
     <option name="width" value="1854" />
-    <option name="height" value="1178" />
+    <option name="height" value="1002" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -4855,7 +4783,11 @@
       <created>1377674688092</created>
       <updated>1377674688092</updated>
     </task>
-    <option name="localTasksCounter" value="239" />
+    <task id="LOCAL-00239" summary="#49 Add header title to datatable exports">
+      <created>1378144318254</created>
+      <updated>1378144318254</updated>
+    </task>
+    <option name="localTasksCounter" value="240" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -4879,33 +4811,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="22" width="1854" height="1178" extended-state="0" />
+    <frame x="66" y="22" width="1854" height="1002" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3265495" sideWeight="0.49806094" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32596686" sideWeight="0.49806094" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23285398" sideWeight="0.18223867" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32910696" sideWeight="0.73038673" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29834256" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290859" sideWeight="0.621422" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40980574" sideWeight="0.51849806" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4088398" sideWeight="0.51849806" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34597594" sideWeight="0.48150194" order="15" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22007722" sideWeight="0.5457064" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265495" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2506938" sideWeight="0.5634349" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2994475" sideWeight="0.5634349" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265495" sideWeight="0.49861497" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19722992" sideWeight="0.59851986" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15320796" sideWeight="0.6734505" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15320796" sideWeight="0.67403316" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32839963" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2715708" sideWeight="0.6734505" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3916591" sideWeight="0.91790634" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2715708" sideWeight="0.67403316" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39116022" sideWeight="0.91790634" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DSM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="169" y="122" width="1651" height="978" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Atlassian " active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29916897" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hibernate Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293247" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -5058,119 +4990,165 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/BigDecimalRangeValidator.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/comparetors/BookedFinancePostingDateComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/FileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/comparetors/FinanceAccountNumberComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportPDFDataExporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1443" selection-end="1443" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/converter/EazyDoubleConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="5" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
+        <state line="154" column="0" selection-start="4796" selection-end="4796" vertical-scroll-proportion="0.58196723">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#getPageSize#0;class#FiscalYear#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-core/6.9.1/wicket-core-6.9.1-sources.jar!/org/apache/wicket/markup/html/WebMarkupContainer.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/VatType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="25" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.33271718">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="62" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-extensions/6.9.1/wicket-extensions-6.9.1-sources.jar!/org/apache/wicket/extensions/markup/html/repeater/data/table/DataTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="11" selection-start="4401" selection-end="4401" vertical-scroll-proportion="0.3321976">
+        <state line="173" column="5" selection-start="4863" selection-end="4941" vertical-scroll-proportion="0.63484085">
           <folding>
-            <element signature="method#getRepeatingView#0;class#ToolbarsContainer#0;class#DataTable#0" expanded="true" />
+            <element signature="method#getPageSize#0;class#VatType#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ExportableDataTable.java">
+    <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-core/6.9.1/wicket-core-6.9.1-sources.jar!/org/apache/wicket/markup/repeater/data/IDataProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="82" selection-start="2041" selection-end="2041" vertical-scroll-proportion="0.0">
+        <state line="63" column="26" selection-start="1873" selection-end="1873" vertical-scroll-proportion="0.036303632">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/ReportDataTable.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DailyLedger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="1" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="131" column="15" selection-start="3416" selection-end="3416" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#getId#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#setId#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#getName#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#setName#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#getLegalEntity#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#setLegalEntity#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#getNextBookingNumber#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#setNextBookingNumber#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#getDraftFinancePosting#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#setDraftFinancePosting#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#getFinanceAccount#0;class#DailyLedger#0" expanded="true" />
+            <element signature="method#setFinanceAccount#0;class#DailyLedger#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/CustomExportToolbar.java">
+    <entry file="file://$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Page.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="22" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportExportToolbar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$M2_REPO$/net/sourceforge/jexcelapi/jxl/2.6.12/jxl-2.6.12-sources.jar!/jxl/format/CellFormat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="11" selection-start="920" selection-end="923" vertical-scroll-proportion="0.051107325">
+        <state line="47" column="13" selection-start="1729" selection-end="1729" vertical-scroll-proportion="-9.666667">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/ExcelWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="48" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
+        <state line="34" column="23" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.6964587">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/report/ReportXLSDataExporter.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/XLSDataExporter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="110" selection-start="3171" selection-end="3171" vertical-scroll-proportion="0.86445785">
+        <state line="69" column="153" selection-start="3045" selection-end="3097" vertical-scroll-proportion="0.2951096">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage_da.utf8.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/ExportTableRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="16" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="274" column="16" selection-start="8596" selection-end="8596" vertical-scroll-proportion="0.51754385">
+          <folding>
+            <element signature="method#getId#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setId#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getName#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setName#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getAccountNumber#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setAccountNumber#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getVatType#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setVatType#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getFinanceAccountType#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setFinanceAccountType#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getStandardReverseFinanceAccount#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setStandardReverseFinanceAccount#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getSumFrom#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setSumFrom#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getSumTo#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setSumTo#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getLegalEntity#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setLegalEntity#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setSum#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getSumCompare#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setSumCompare#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#isLocked#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setLocked#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#isInUse#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setInUse#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setSumFromTo#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#setBookedFinancePostingList#0;class#FinanceAccount#0" expanded="true" />
+            <element signature="method#getPageSize#0;class#FinanceAccount#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/src/main/java/com/pdfjet/A4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="69" selection-start="1628" selection-end="1642" vertical-scroll-proportion="0.24752475">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="324" column="0" selection-start="10934" selection-end="10989" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="330" column="53" selection-start="11091" selection-end="11091" vertical-scroll-proportion="0.757085">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/SessionAwareDataExporter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="63" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-extensions/6.9.1/wicket-extensions-6.9.1-sources.jar!/org/apache/wicket/extensions/markup/html/repeater/data/table/export/AbstractDataExporter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="22" selection-start="1039" selection-end="1039" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/PDFDataExporter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="53" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.52724075">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

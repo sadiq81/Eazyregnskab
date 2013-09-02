@@ -6,6 +6,7 @@ import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.web.components.tables.item.ExportableRowItem;
 import dk.eazyit.eazyregnskab.web.components.tables.toolbar.ItemsPerPageToolBar;
+import dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.CustomExportToolbar;
 import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackHeadersToolbar;
@@ -15,13 +16,14 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 
 import java.util.List;
 
 /**
  * @author
  */
-public abstract class ExportableDataTable<T, S> extends DataTable<T, S> {
+public class ExportableDataTable<T, S> extends DataTable<T, S> {
 
     public ExportableDataTable(String id, List<? extends IColumn<T, S>> iColumns, IDataProvider dataProvider, String filenameResourceText, Page page) {
         super(id, iColumns, dataProvider, 20);
@@ -43,7 +45,9 @@ public abstract class ExportableDataTable<T, S> extends DataTable<T, S> {
         setItemReuseStrategy(new ReuseIfModelsEqualStrategy());
     }
 
-    protected abstract void addFirstToolBar(String filenameResourceText, Page page);
+    protected void addFirstToolBar(String filenameResourceText, Page page) {
+        addTopToolbar(new CustomExportToolbar(this, new ResourceModel("datatable.export-to"), new ResourceModel(filenameResourceText), page));
+    }
 
     @Override
     protected Item newRowItem(final String id, final int index, final IModel model) {
