@@ -1,8 +1,8 @@
 package dk.eazyit.eazyregnskab.services;
 
 import dk.eazyit.eazyregnskab.domain.*;
-import dk.eazyit.eazyregnskab.util.BookedFinancePostingDateComparator;
 import dk.eazyit.eazyregnskab.util.ReportObject;
+import dk.eazyit.eazyregnskab.util.comparetors.BookedFinancePostingDateComparator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

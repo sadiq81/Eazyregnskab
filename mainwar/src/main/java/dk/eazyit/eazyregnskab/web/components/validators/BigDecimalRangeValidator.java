@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.util;
+package dk.eazyit.eazyregnskab.web.components.validators;
 
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.ValidationError;

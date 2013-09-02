@@ -34,4 +34,5 @@ public abstract class BaseReportPage extends LoggedInPage {
                 financeAccountService.findLowestFinanceAccountByLegalEntity(getCurrentLegalEntity()),
                 financeAccountService.findHighestFinanceAccountByLegalEntity(getCurrentLegalEntity()))));
     }
+
 }

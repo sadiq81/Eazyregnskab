@@ -11,6 +11,8 @@ import java.util.Date;
  */
 public class ReportObject implements Serializable {
 
+    public static final String ATTRIBUTE_NAME = ReportObject.class.getName();
+
     //TODO all date calculations expect accounting year follows normal year
     protected Date dateFrom;
     protected Date dateTo;

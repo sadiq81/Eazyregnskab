@@ -8,12 +8,8 @@ import dk.eazyit.eazyregnskab.web.components.form.SaveDailyLedgerForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePostingModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForBookkeepingPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,12 +47,12 @@ public class BookkeepingPage extends LoggedInPage {
 
         add(dailyLedgerChoice = new DailyLedgerChooser("dailyLedgerList"));
         add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<>(new DraftFinancePostingModel(new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber())))));
-        add(new ExportableDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), financePostingDataProvider = new FinancePostingDataProvider(), 20, "BookkeepingPage.datatable.export-file-name", new float[]{70, 70, 90, 50, 65, 65, 50, 65}) {
-            @Override
-            public String getTitle() {
-                return new StringResourceModel("BookkeepingPage.report.title", this, new Model<>(getCurrentLegalEntity())).getString();
-            }
-        });
+//        add(new ExportableDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), financePostingDataProvider = new FinancePostingDataProvider(), 20, "BookkeepingPage.datatable.export-file-name", new float[]{70, 70, 90, 50, 65, 65, 50, 65}) {
+//            @Override
+//            public String getTitle() {
+//                return new StringResourceModel("BookkeepingPage.report.title", this, new Model<>(getCurrentLegalEntity())).getString();
+//            }
+//        });
         add(new SaveDailyLedgerForm("book"));
     }
 

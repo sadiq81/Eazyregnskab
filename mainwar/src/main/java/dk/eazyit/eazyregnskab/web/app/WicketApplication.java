@@ -8,8 +8,10 @@ import dk.eazyit.eazyregnskab.web.app.front.LoginPage;
 import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
 import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
+import dk.eazyit.eazyregnskab.web.components.converter.EazyConverterLocator;
 import dk.eazyit.eazyregnskab.web.components.markupfilter.HeaderHandler;
 import org.apache.wicket.Application;
+import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.MarkupFactory;
@@ -99,5 +101,10 @@ public class WicketApplication extends AuthenticatedWebApplication implements Ap
     @Override
     protected Class<? extends WebPage> getSignInPageClass() {
         return LoginPage.class;
+    }
+
+    @Override
+    protected IConverterLocator newConverterLocator() {
+        return new EazyConverterLocator();
     }
 }

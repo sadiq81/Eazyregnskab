@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.util;
+package dk.eazyit.eazyregnskab.util.comparetors;
 
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePostingType;

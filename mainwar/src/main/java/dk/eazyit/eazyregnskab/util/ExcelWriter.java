@@ -12,7 +12,7 @@ import java.util.Date;
 public class ExcelWriter {
 
     private static final WritableCellFormat header = new WritableCellFormat(new WritableFont(WritableFont.TIMES, 14, WritableFont.BOLD));
-    private static final WritableCellFormat normal = new WritableCellFormat(new WritableFont(WritableFont.TIMES, 12));
+
 
     public static void addCaption(WritableSheet sheet, int column, int row, String s) throws RowsExceededException, WriteException {
         Label label;
@@ -20,21 +20,21 @@ public class ExcelWriter {
         sheet.addCell(label);
     }
 
-    public static void addNumber(WritableSheet sheet, int column, int row, Double amount) throws WriteException, RowsExceededException {
+    public static void addNumber(WritableSheet sheet, WritableCellFormat format, int column, int row, Double amount) throws WriteException, RowsExceededException {
         Number number;
-        number = new Number(column, row, amount, normal);
+        number = new Number(column, row, amount, format);
         sheet.addCell(number);
     }
 
-    public static void addLabel(WritableSheet sheet, int column, int row, String s) throws WriteException, RowsExceededException {
+    public static void addLabel(WritableSheet sheet, WritableCellFormat format, int column, int row, String s) throws WriteException, RowsExceededException {
         Label label;
-        label = new Label(column, row, s, normal);
+        label = new Label(column, row, s, format);
         sheet.addCell(label);
     }
 
-    public static void addDate(WritableSheet sheet, int column, int row, Date date) throws WriteException, RowsExceededException {
+    public static void addDate(WritableSheet sheet, WritableCellFormat format, int column, int row, Date date) throws WriteException, RowsExceededException {
         DateTime dateTime;
-        dateTime = new DateTime(column, row, date);
+        dateTime = new DateTime(column, row, date, format);
         sheet.addCell(dateTime);
     }
 }

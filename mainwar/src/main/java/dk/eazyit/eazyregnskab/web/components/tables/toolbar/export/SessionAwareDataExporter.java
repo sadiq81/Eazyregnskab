@@ -1,9 +1,10 @@
-package dk.eazyit.eazyregnskab.web.components.tables.toolbar;
+package dk.eazyit.eazyregnskab.web.components.tables.toolbar.export;
 
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
+import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.export.AbstractDataExporter;
 import org.apache.wicket.model.IModel;
@@ -14,6 +15,8 @@ import org.apache.wicket.model.IModel;
 public abstract class SessionAwareDataExporter extends AbstractDataExporter {
 
 
+    protected Page page;
+
     /**
      * Creates a new instance with the data format name model, content type and file name extensions provided.
      *
@@ -21,8 +24,9 @@ public abstract class SessionAwareDataExporter extends AbstractDataExporter {
      * @param contentType         The MIME content type of the exported data type.
      * @param fileNameExtension   The file name extensions to use in the file name for the exported data.
      */
-    public SessionAwareDataExporter(IModel<String> dataFormatNameModel, String contentType, String fileNameExtension) {
+    public SessionAwareDataExporter(IModel<String> dataFormatNameModel, String contentType, String fileNameExtension, Page page) {
         super(dataFormatNameModel, contentType, fileNameExtension);
+        this.page = page;
     }
 
     public AppUser getCurrentUser() {

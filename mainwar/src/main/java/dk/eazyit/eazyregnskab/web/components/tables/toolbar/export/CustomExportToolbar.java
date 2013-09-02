@@ -1,5 +1,6 @@
-package dk.eazyit.eazyregnskab.web.components.tables.toolbar;
+package dk.eazyit.eazyregnskab.web.components.tables.toolbar.export;
 
+import dk.eazyit.eazyregnskab.domain.ExportTableRow;
 import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.export.CSVDataExporter;
@@ -11,16 +12,13 @@ import org.apache.wicket.model.Model;
 /**
  * @author
  */
-public class CustomExportToolbar extends ExportToolbar {
+public abstract class CustomExportToolbar<E extends ExportTableRow> extends ExportToolbar {
 
 
-    public CustomExportToolbar(ExportableDataTable table, IModel<String> messageModel, IModel<String> fileNameModel, float[] columnWidths) {
+    public CustomExportToolbar(ExportableDataTable<E, ?> table, IModel<String> messageModel, IModel<String> fileNameModel) {
         super(table, messageModel, fileNameModel);
         addDataExporter(new CSVDataExporter().setCharacterSet("UTF-8").setDataFormatNameModel(Model.of("CSV ")));
-        addDataExporter(new XLSDataExporter(table));
-        addDataExporter(new PDFDataExporter(columnWidths, table));
     }
-
 
     @Override
     protected void onInitialize() {

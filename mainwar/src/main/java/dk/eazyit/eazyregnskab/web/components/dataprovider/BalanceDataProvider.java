@@ -32,7 +32,8 @@ public class BalanceDataProvider extends EazyregnskabListDataProvider<FinanceAcc
 
     @Override
     protected List<FinanceAccount> getData() {
-        return list = reportService.getFinanceAccountsWithSum(getCurrentLegalEntity(), model);
+        if (list == null) list = reportService.getFinanceAccountsWithSum(getCurrentLegalEntity(), model);
+        return list;
     }
 
     @Override

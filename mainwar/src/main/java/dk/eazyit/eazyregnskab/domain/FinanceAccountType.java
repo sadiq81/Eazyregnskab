@@ -8,21 +8,22 @@ import java.util.List;
  */
 public enum FinanceAccountType {
 
-    PROFIT(false, true, false),
-    EXPENSE(false, true, false),
-    ASSET(false, false, true),
-    LIABILITY(false, false, true),
-    YEAR_END(true, false, true),
-    CURRENT_RESULT(true, false, false),
-    CATEGORY(false, false, false),
-    HEADLINE(false, false, false),
-    SUM(false, false, false),
-    BALANCE_CHECK(true, false, false);
+    PROFIT(false, true, false, true),
+    EXPENSE(false, true, false, true),
+    ASSET(false, false, true, true),
+    LIABILITY(false, false, true, true),
+    YEAR_END(true, false, true, true),
+    CURRENT_RESULT(true, false, false, true),
+    CATEGORY(false, false, false, false),
+    HEADLINE(false, false, false, false),
+    SUM(false, false, false, true),
+    BALANCE_CHECK(true, false, false, true);
 
-    private FinanceAccountType(boolean system_account, boolean operating_account, boolean balance_account) {
+    private FinanceAccountType(boolean system_account, boolean operating_account, boolean balance_account, boolean has_sum) {
         this.system_account = system_account;
         this.operating_account = operating_account;
         this.balance_account = balance_account;
+        this.has_sum = has_sum;
     }
 
     public static List<FinanceAccountType> getNonSystemAccounts() {
@@ -53,9 +54,14 @@ public enum FinanceAccountType {
         return balance_account;
     }
 
+    public boolean isHas_sum() {
+        return has_sum;
+    }
+
     private boolean system_account;
     private boolean operating_account;
     private boolean balance_account;
+    private boolean has_sum;
 
     public boolean includeInOnlyWithSum() {
         return this == CATEGORY || this == HEADLINE || this == BALANCE_CHECK || this == SUM;

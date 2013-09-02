@@ -5,12 +5,10 @@ import dk.eazyit.eazyregnskab.web.components.dataprovider.BalanceDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.BalanceReportForm;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
-import dk.eazyit.eazyregnskab.web.components.panels.BalancePanel;
-import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForBalancePage;
 import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.ReportDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +21,6 @@ public class BalancePage extends BaseReportPage {
 
     private static final Logger LOG = LoggerFactory.getLogger(BalancePage.class);
 
-    BalancePanel balancePanel;
     ExportableDataTable dataTable;
 
     public BalancePage() {
@@ -45,14 +42,11 @@ public class BalancePage extends BaseReportPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(dataTable = new ExportableDataTable("balanceDataTable", new ColumnsForBalancePage(), new BalanceDataProvider(new CompoundPropertyModel(getDefaultModel())), getCurrentUser().getItemsPerPage(), "BalancePage.datatable.export-file-name", new float[]{95, 150, 150, 150}) {
-            @Override
-            public String getTitle() {
-                return getCurrentLegalEntity().getName() + " " + new StringResourceModel("BalancePage.report.title", this, getPage().getDefaultModel()).getString();
-            }
-        });
-        add(balancePanel = new BalancePanel("balancePanel", new CompoundPropertyModel(getDefaultModel())));
-        add(new BalanceReportForm("filters", new CompoundPropertyModel(getDefaultModel()), balancePanel));
+        add(dataTable = new ReportDataTable("balanceDataTable",
+                new BalanceDataProvider(new CompoundPropertyModel(getDefaultModel())),
+                "BalancePage.datatable.export-file-name", this));
+
+        add(new BalanceReportForm("filters", new CompoundPropertyModel(getDefaultModel()), dataTable));
     }
 
     @Override

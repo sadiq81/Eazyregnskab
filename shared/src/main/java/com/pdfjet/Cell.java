@@ -388,7 +388,8 @@ public class Cell {
      */
     public void setBorder(int border, boolean visible) {
         if (visible) {
-            this.properties |= border;
+            this.properties = properties | border;
+//            this.properties |= border;
         } else {
             this.properties &= (~border & 0x00FFFFFF);
         }

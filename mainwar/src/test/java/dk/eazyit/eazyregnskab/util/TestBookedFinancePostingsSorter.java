@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.util;
 
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePostingType;
+import dk.eazyit.eazyregnskab.util.comparetors.BookedFinancePostingDateComparator;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ public class TestBookedFinancePostingsSorter extends TestCase {
         Collections.sort(list, new BookedFinancePostingDateComparator());
 
         assertEquals(BookedFinancePostingType.PRIMO, list.get(0).getBookedFinancePostingType());
-
 
 
     }

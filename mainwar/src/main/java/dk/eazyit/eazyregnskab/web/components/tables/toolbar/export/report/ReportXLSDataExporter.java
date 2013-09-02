@@ -1,17 +1,21 @@
-package dk.eazyit.eazyregnskab.web.components.tables.toolbar;
+package dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.report;
 
 import com.google.common.collect.Lists;
+import dk.eazyit.eazyregnskab.domain.ExportTableRow;
 import dk.eazyit.eazyregnskab.util.ExcelWriter;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
+import dk.eazyit.eazyregnskab.util.ReportObject;
+import dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.XLSDataExporter;
 import jxl.Workbook;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import org.apache.wicket.Application;
+import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.export.IExportableColumn;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.util.convert.IConverter;
 import org.apache.wicket.util.lang.Classes;
 import org.slf4j.Logger;
@@ -25,64 +29,61 @@ import java.util.List;
 /**
  * @author
  */
-public class XLSDataExporter extends SessionAwareDataExporter {
-
+public class ReportXLSDataExporter extends XLSDataExporter {
 
     private static final Logger LOG = LoggerFactory.getLogger(XLSDataExporter.class);
 
-    ExportableDataTable table;
+    public ReportXLSDataExporter(Page page) {
+        super(page);
+    }
 
-    /**
-     * Creates a new instance with the data format name model, content type and file name extensions provided.
-     *
-     * @param dataFormatNameModel The model of the exported data format name.
-     * @param contentType         The MIME content type of the exported data type.
-     * @param fileNameExtension   The file name extensions to use in the file name for the exported data.
-     */
-    public XLSDataExporter(ExportableDataTable table) {
-        super(Model.of("XLS "), "application/vnd.ms-excel", "xls");
-        this.table = table;
+    @Override
+    protected String getTitle() {
+        ReportObject reportObject = (ReportObject) Session.get().getAttribute(ReportObject.ATTRIBUTE_NAME);
+        return getCurrentLegalEntity().getName() + " " + new StringResourceModel(page.getClass().getSimpleName() + ".report.title", new Model(reportObject)).getObject();
     }
 
     @Override
     public <T> void exportData(IDataProvider<T> dataProvider, List<IExportableColumn<T, ?, ?>> columns, OutputStream outputStream) throws IOException {
 
+
         WritableWorkbook workbook = Workbook.createWorkbook(outputStream);
-        WritableSheet sheet = workbook.createSheet(new ResourceModel("ChartOfAccountsPage.datatable.export-file-name").getObject(), 0);
+        WritableSheet sheet = workbook.createSheet(new ResourceModel(page.getClass().getSimpleName() + ".datatable.export-file-name").getObject(), 0);
 
 
         try {
-            ExcelWriter.addCaption(sheet, 0, 0, table.getTitle());
+            ExcelWriter.addCaption(sheet, 0, 0, getTitle());
 
             for (int i = 0; i < columns.size(); i++) {
                 ExcelWriter.addCaption(sheet, i, 1, columns.get(i).getDisplayModel().getObject());
+                sheet.mergeCells(0, 0, columns.size() - 1, 0);
             }
 
             List<T> rows = Lists.newArrayList(dataProvider.iterator(0, dataProvider.size()));
             for (int row = 0; row < rows.size(); row++) {
-                T currentRow = rows.get(row);
+
+                ExportTableRow<T> currentRow = (ExportTableRow<T>) rows.get(row);
+
                 for (int column = 0; column < columns.size(); column++) {
 
-                    Object o = columns.get(column).getDataModel(dataProvider.model(currentRow)).getObject();
+                    Object o = columns.get(column).getDataModel(dataProvider.model((T) currentRow)).getObject();
 
                     if (o != null) {
-
                         if (o instanceof Number) {
-                            ExcelWriter.addNumber(sheet, column, row + 2, new Double(o.toString()));
+                            ExcelWriter.addNumber(sheet, currentRow.getCellFormat(), column, row + 2, new Double(o.toString()));
                         } else if (o instanceof Date) {
-                            ExcelWriter.addDate(sheet, column, row + 2, (Date) o);
+                            ExcelWriter.addDate(sheet, currentRow.getCellFormat(), column, row + 2, (Date) o);
                         } else if (o instanceof Enum) {
-                            ExcelWriter.addLabel(sheet, column, row + 2, new ResourceModel(resourceKey((Enum) o)).getObject());
+                            ExcelWriter.addLabel(sheet, currentRow.getCellFormat(), column, row + 2, new ResourceModel(resourceKey((Enum) o)).getObject());
                         } else {
-                            Class<?> c = o.getClass();
                             String s;
-                            IConverter converter = Application.get().getConverterLocator().getConverter(c);
+                            IConverter converter = Application.get().getConverterLocator().getConverter(o.getClass());
                             if (converter == null) {
                                 s = o.toString();
                             } else {
                                 s = converter.convertToString(o, Session.get().getLocale());
                             }
-                            ExcelWriter.addLabel(sheet, column, row + 2, s);
+                            ExcelWriter.addLabel(sheet, currentRow.getCellFormat(), column, row + 2, s);
 
                         }
                     }
@@ -92,7 +93,7 @@ public class XLSDataExporter extends SessionAwareDataExporter {
             workbook.close();
 
         } catch (Exception e) {
-            LOG.warn("Something went wrong with export to xls" + e.toString());
+            LOG.warn("Something went wrong with export to xls" + getTitle());
         } finally {
             outputStream.close();
         }

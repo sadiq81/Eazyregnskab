@@ -1,6 +1,11 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
+import com.pdfjet.CoreFont;
+import com.pdfjet.Font;
+import com.pdfjet.PDF;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -37,7 +42,7 @@ import java.util.List;
                 "WHERE fa.legalEntity = ?1 and fa.accountNumber >= ?2 and fa.accountNumber <= ?3 ORDER BY accountNumber ASC")
 })
 @Table(name = "financeaccount")
-public class FinanceAccount extends BaseEntity implements DataTableCssClass {
+public class FinanceAccount extends BaseEntity implements ExportTableRow<FinanceAccount> {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "FinanceAccount::findByLegalEntity";
     public static final String QUERY_FIND_SYSTEM_ACCOUNT_BY_LEGAL_ENTITY = "FinanceAccount::findSystemAccountByLegalEntity";
@@ -261,6 +266,59 @@ public class FinanceAccount extends BaseEntity implements DataTableCssClass {
             }
             default: {
                 return "";
+            }
+        }
+    }
+
+    @Override
+    public Font getFont(PDF pdf) throws Exception {
+        switch (financeAccountType) {
+            case BALANCE_CHECK:
+            case CATEGORY: {
+                Font category = new Font(pdf, CoreFont.TIMES_BOLD);
+                category.setSize(12F);
+                return category;
+            }
+            case HEADLINE:
+            case SUM: {
+                Font headline_sum = new Font(pdf, CoreFont.TIMES_BOLD);
+                headline_sum.setSize(10);
+                return headline_sum;
+            }
+            default: {
+                Font normalFont = new Font(pdf, CoreFont.TIMES_ROMAN);
+                normalFont.setSize(8F);
+                return normalFont;
+            }
+        }
+    }
+
+    @Override
+    public WritableCellFormat getCellFormat() {
+
+        switch (financeAccountType) {
+            case BALANCE_CHECK:
+            case CATEGORY: {
+                return new WritableCellFormat(new WritableFont(WritableFont.TIMES, 12, WritableFont.BOLD));
+            }
+            case HEADLINE:
+            case SUM: {
+                return new WritableCellFormat(new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD));
+            }
+            default: {
+                return new WritableCellFormat(new WritableFont(WritableFont.TIMES, 8));
+            }
+        }
+    }
+
+    public boolean insertSpaceAfterRowInTables() {
+        switch (financeAccountType) {
+            case CATEGORY:
+            case SUM: {
+                return true;
+            }
+            default: {
+                return false;
             }
         }
     }

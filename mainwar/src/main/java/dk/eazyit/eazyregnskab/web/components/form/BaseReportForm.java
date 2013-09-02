@@ -42,6 +42,8 @@ public abstract class BaseReportForm extends Form<ReportObject> {
 
     protected void addToForm() {
 
+        getSession().setAttribute(ReportObject.ATTRIBUTE_NAME, self.getModelObject());
+
         add(new PlaceholderDateField("dateFrom", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(new PlaceholderDateField("dateTo", new DateTextFieldConfig().autoClose(true).withFormat("dd-MM-yy").allowKeyboardNavigation(true).showTodayButton(true)).setRequired(true));
         add(new FinanceAccountSelect2ChoiceAllAccounts("accountFrom").setRequired(true));
@@ -58,6 +60,7 @@ public abstract class BaseReportForm extends Form<ReportObject> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
+                getSession().setAttribute(ReportObject.ATTRIBUTE_NAME, self.getModelObject());
                 target.add(this);
                 self.getModelObject().setSubmitHasBeenPressed(true);
                 if (refreshOnSubmit != null) target.add(refreshOnSubmit);
