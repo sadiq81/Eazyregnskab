@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ItemsPerPageToolBar extends SessionAwareToolbar {
 
-    static List<Integer> itemsPerPage = new ArrayList<Integer>(Arrays.asList(20, 50, 100, 500));
+    static List<Integer> itemsPerPage = new ArrayList<Integer>(Arrays.asList(20, 50, 100, 500, Integer.MAX_VALUE));
 
     public ItemsPerPageToolBar(DataTable<?, ?> table) {
         super(table);
@@ -38,7 +38,7 @@ public class ItemsPerPageToolBar extends SessionAwareToolbar {
         }));
 
         td.add(new Label("itemsPerPageLabel", new ResourceModel("items.per.page")));
-        td.add(new DropDownChoice<Integer>("itemsPerPage", new ItemsPerPageModel(), itemsPerPage).add(new AjaxFormComponentUpdatingBehavior("onchange") {
+        td.add(new DropDownChoice<>("itemsPerPage", new ItemsPerPageModel(), itemsPerPage).add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
                 target.add(getTable());

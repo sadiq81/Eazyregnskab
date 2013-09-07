@@ -1,11 +1,5 @@
 package dk.eazyit.eazyregnskab.domain;
 
-import com.pdfjet.A4;
-import com.pdfjet.CoreFont;
-import com.pdfjet.Font;
-import com.pdfjet.PDF;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableFont;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
@@ -38,7 +32,7 @@ import java.util.Date;
 
 })
 @Table(name = "fiscalyear")
-public class FiscalYear extends BaseEntity implements ExportTableRow<FiscalYear> {
+public class FiscalYear extends BaseEntity {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "FiscalYear::findByLegalEntity";
     public static final String QUERY_FIND_OPEN_BY_LEGAL_ENTITY = "FiscalYear::findOpenByLegalEntity";
@@ -139,32 +133,5 @@ public class FiscalYear extends BaseEntity implements ExportTableRow<FiscalYear>
 
     public boolean isOpen() {
         return fiscalYearStatus == FiscalYearStatus.OPEN;
-    }
-
-    @Override
-    public String getCssClassForDataTable() {
-        return "";
-    }
-
-    @Override
-    public Font getFont(PDF pdf) throws Exception {
-        Font normalFont = new Font(pdf, CoreFont.TIMES_ROMAN);
-        normalFont.setSize(8F);
-        return normalFont;
-    }
-
-    @Override
-    public WritableCellFormat getCellFormat() {
-        return new WritableCellFormat(new WritableFont(WritableFont.TIMES, 8));
-    }
-
-    @Override
-    public float[] getPageSize() {
-        return A4.PORTRAIT;
-    }
-
-    @Override
-    public boolean insertSpaceAfterRowInTables() {
-        return false;
     }
 }

@@ -7,7 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.DailyLedgerModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForDailyLedgerPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.EazyDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 public class DailyLedgerPage extends LoggedInPage {
 
     DailyLedgerForm form;
-    ExportableDataTable dataTable;
 
     private static final Logger LOG = LoggerFactory.getLogger(DailyLedgerPage.class);
 
@@ -46,7 +45,7 @@ public class DailyLedgerPage extends LoggedInPage {
 
         add(form = new DailyLedgerForm("dailyLedgerEdit", new CompoundPropertyModel<DailyLedger>(new DailyLedgerModel(new DailyLedger()))));
 
-        add(dataTable = new ExportableDataTable("chartOfDailyLedgers", new ColumnsForDailyLedgerPage(form), new DailyLedgerDataProvider(), "DailyLedgerPage.datatable.export-file-name", this));
+        add(new EazyDataTable("chartOfDailyLedgers", new ColumnsForDailyLedgerPage(form), new DailyLedgerDataProvider()));
     }
 
     @Override

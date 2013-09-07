@@ -7,73 +7,64 @@
 <body>
 
 <wicket:extend>
-    <!--<wicket:panel>-->
 
     <table class="table table-condensed table-bordered">
-        <span wicket:id="postings">
-            <!--<tr class="success">-->
-            <!--<td>-->
-            <!--<wicket:message key="accountNumber"></wicket:message>-->
-            <!--</td>-->
-            <!--<td>-->
-            <!--<wicket:message key="accountName"></wicket:message>-->
-            <!--</td>-->
-            <!--<td colspan="4"></td>-->
-            <!--</tr>-->
+        <span wicket:id="FinanceAccountsPage.postings">
+
             <tr class="headline">
                 <th>
 
-                        <span wicket:id="accountNumber"></span>
+                    <span wicket:id="FinanceAccountsPage.accountNumber"></span>
                 </th>
                 <th colspan="6">
-                        <span wicket:id="accountName"></span>
+                    <span wicket:id="FinanceAccountsPage.accountName"></span>
                 </th>
             </tr>
             <tr>
                 <th>
-                    <wicket:message key="date"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.date"></wicket:message>
                 </th>
                 <th>
-                    <wicket:message key="bookingNumber"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.bookingNumber"></wicket:message>
                 </th>
                 <th>
-                    <wicket:message key="text"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.text"></wicket:message>
                 </th>
                 <th>
-                    <wicket:message key="vatType.name"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.vatType.name"></wicket:message>
                 </th>
                 <th style="text-align: right">
-                    <wicket:message key="amount"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.amount"></wicket:message>
                 </th>
                 <th style="text-align: right">
-                    <wicket:message key="sum"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.sum"></wicket:message>
                 </th>
                 <th style="text-align: right">
                     <wicket:message key="popup.postings"></wicket:message>
                 </th>
             </tr>
             <span>
-                <tr wicket:id="postings">
+                <tr wicket:id="FinanceAccountsPage.postings">
                     <td>
-                        <span wicket:id="date"></span>
+                        <span wicket:id="FinanceAccountsPage.date"></span>
                     </td>
                     <td>
-                        <span wicket:id="bookingNumber"></span>
+                        <span wicket:id="FinanceAccountsPage.bookingNumber"></span>
                     </td>
                     <td>
-                        <span wicket:id="text"></span>
+                        <span wicket:id="FinanceAccountsPage.text"></span>
                     </td>
                     <td>
-                        <span wicket:id="vatType.name"></span>
+                        <span wicket:id="FinanceAccountsPage.vatType.name"></span>
                     </td>
                     <td style="text-align: right">
-                        <span wicket:id="amount"></span>
+                        <span wicket:id="FinanceAccountsPage.amount"></span>
                     </td>
                     <td style="text-align: right">
-                        <span wicket:id="sum"></span>
+                        <span wicket:id="FinanceAccountsPage.sum"></span>
                     </td>
                     <td style="text-align: right">
-                        <a href="#" wicket:id="postings"><i class="icon-list"></i></a>
+                        <a href="#" wicket:id="FinanceAccountsPage.postings"><i class="icon-list"></i></a>
                     </td>
                 </tr>
             </span>
@@ -85,7 +76,6 @@
             </tr>
         </span>
     </table>
-    <!--</wicket:panel>-->
 </wicket:extend>
 </body>
 </html>

@@ -42,22 +42,22 @@ public class BookedFinancePostingListView extends ListView<FinanceAccount> {
     protected void populateItem(ListItem<FinanceAccount> itemOuter) {
 
         FinanceAccount fa = itemOuter.getModelObject();
-        itemOuter.add(new Label("accountNumber", fa.getAccountNumber()));
-        itemOuter.add(new Label("accountName", fa.getName()));
+        itemOuter.add(new Label("FinanceAccountsPage.accountNumber", fa.getAccountNumber()));
+        itemOuter.add(new Label("FinanceAccountsPage.accountName", fa.getName()));
 
-        itemOuter.add(new ListView<BookedFinancePosting>("postings", fa.getBookedFinancePostingList()) {
+        itemOuter.add(new ListView<BookedFinancePosting>("FinanceAccountsPage.postings", fa.getBookedFinancePostingList()) {
 
             @Override
             protected void populateItem(final ListItem<BookedFinancePosting> itemInner) {
 
                 final BookedFinancePosting bfp = itemInner.getModelObject();
-                itemInner.add(new DateLabel("date", bfp.getDate()));
-                itemInner.add(new Label("bookingNumber", bfp.getBookingNumber()));
-                itemInner.add(new Label("text", bfp.getText()));
-                itemInner.add(new Label("vatType.name", bfp.getVatType() != null ? bfp.getVatType().getName() : ""));
-                itemInner.add(new Label("amount", bfp.getAmount()));
-                itemInner.add(new Label("sum", bfp.getSum()));
-                itemInner.add(new AjaxToolTipLink("postings", "tooltip.postings") {
+                itemInner.add(new DateLabel("FinanceAccountsPage.date", bfp.getDate()));
+                itemInner.add(new Label("FinanceAccountsPage.bookingNumber", bfp.getBookingNumber()));
+                itemInner.add(new Label("FinanceAccountsPage.text", bfp.getText()));
+                itemInner.add(new Label("FinanceAccountsPage.vatType.name", bfp.getVatType() != null ? bfp.getVatType().getName() : ""));
+                itemInner.add(new Label("FinanceAccountsPage.amount", bfp.getAmount()));
+                itemInner.add(new Label("FinanceAccountsPage.sum", bfp.getSum()));
+                itemInner.add(new AjaxToolTipLink("FinanceAccountsPage.postings", "tooltip.postings") {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
 

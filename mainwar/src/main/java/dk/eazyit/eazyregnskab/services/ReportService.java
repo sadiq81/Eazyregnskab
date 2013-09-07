@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.services;
 import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.util.comparetors.BookedFinancePostingDateComparator;
+import dk.eazyit.eazyregnskab.util.comparetors.FinanceAccountNumberComparator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -150,6 +151,67 @@ public class ReportService {
         return financeAccountsList;
     }
 
+    public List<BookedFinancePosting> getBookedFinancePostingsWithSum(LegalEntity id, CompoundPropertyModel<ReportObject> cpm) {
+
+        Date fromDate = cpm.getObject().getDateFrom();
+        Date toDate = cpm.getObject().getDateTo();
+
+        FinanceAccount fromAccount = cpm.getObject().getAccountFrom();
+        FinanceAccount toAccount = cpm.getObject().getAccountTo();
+
+        List<FinanceAccount> financeAccountsList = financeAccountService.findBookableFinanceAccountByLegalEntityFromAccountToAccount(id, fromAccount, toAccount);
+        List<BookedFinancePosting> financePostingList = postingService.findBookedPostingsFromLegalEntityByIntervalFromDateToDate(financeAccountsList, fromDate, toDate);
+
+        Collections.sort(financePostingList, new BookedFinancePostingDateComparator());
+
+        HashMap<Integer, FinanceAccount> financeAccountHashMap = new HashMap<Integer, FinanceAccount>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            financeAccountHashMap.put(financeAccount.getAccountNumber(), financeAccount);
+        }
+
+        for (BookedFinancePosting bookedFinancePosting : financePostingList) {
+            financeAccountHashMap.get(bookedFinancePosting.getFinanceAccount().getAccountNumber()).getBookedFinancePostingList().add(bookedFinancePosting);
+        }
+
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            BookedFinancePosting previous = null;
+            for (BookedFinancePosting bookedFinancePosting : financeAccount.getBookedFinancePostingList()) {
+                if (previous == null) {
+                    bookedFinancePosting.setSum(bookedFinancePosting.getAmount());
+                } else {
+                    bookedFinancePosting.setSum(previous.getSum() + bookedFinancePosting.getAmount());
+                }
+                previous = bookedFinancePosting;
+            }
+        }
+
+        if (cpm.getObject().isHideAccountsWithOutSum()) {
+            List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
+            for (FinanceAccount financeAccount : financeAccountsList) {
+
+                if (financeAccount.getBookedFinancePostingList().size() > 0 &&
+                        !ZERO.equals(financeAccount.getBookedFinancePostingList().get(financeAccount.getBookedFinancePostingList().size() - 1).getSum())) {
+                    onlyWithSum.add(financeAccount);
+                }
+            }
+            financeAccountsList = onlyWithSum;
+        }
+
+        if (financeAccountsList.size() == 0) {
+            cpm.getObject().setEmptyReport(true);
+        } else {
+            cpm.getObject().setEmptyReport(false);
+        }
+
+        Collections.sort(financeAccountsList, new FinanceAccountNumberComparator());
+
+        List<BookedFinancePosting> bookedFinancePostings = new ArrayList<>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            bookedFinancePostings.addAll(financeAccount.getBookedFinancePostingList());
+        }
+        return bookedFinancePostings;
+    }
+
 
     public List<FinanceAccount> getFinanceAccountsWithBookedFinancePostings(LegalEntity id, CompoundPropertyModel<ReportObject> cpm) {
 
@@ -222,4 +284,6 @@ public class ReportService {
         return financeAccountsList;
 
     }
+
+
 }

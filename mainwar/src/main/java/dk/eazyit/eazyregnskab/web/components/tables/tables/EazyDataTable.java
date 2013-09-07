@@ -4,10 +4,8 @@ import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
-import dk.eazyit.eazyregnskab.web.components.tables.item.ExportableRowItem;
+import dk.eazyit.eazyregnskab.web.components.tables.item.EazyRowItem;
 import dk.eazyit.eazyregnskab.web.components.tables.toolbar.ItemsPerPageToolBar;
-import dk.eazyit.eazyregnskab.web.components.tables.toolbar.export.CustomExportToolbar;
-import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackHeadersToolbar;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxNavigationToolbar;
@@ -16,23 +14,19 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.ReuseIfModelsEqualStrategy;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.ResourceModel;
 
 import java.util.List;
 
 /**
  * @author
  */
-public class ExportableDataTable<T, S> extends DataTable<T, S> {
+public class EazyDataTable<T, S> extends DataTable<T, S> {
 
-    public ExportableDataTable(String id, List<? extends IColumn<T, S>> iColumns, IDataProvider dataProvider, String filenameResourceText, Page page) {
-        super(id, iColumns, dataProvider, 20);
-        setItemsPerPage(getCurrentUser().getItemsPerPage());
+    public EazyDataTable(String id, List<? extends IColumn<T, S>> iColumns, IDataProvider dataProvider) {
+        super(id, iColumns, dataProvider, Integer.MAX_VALUE);
         setOutputMarkupId(true);
         setVersioned(false);
         addBottomToolbar(new ItemsPerPageToolBar(this));
-
-        addFirstToolBar(filenameResourceText, page);
 
         if (dataProvider instanceof ISortableDataProvider) {
             addTopToolbar(new AjaxFallbackHeadersToolbar(this, (ISortableDataProvider) dataProvider));
@@ -45,13 +39,14 @@ public class ExportableDataTable<T, S> extends DataTable<T, S> {
         setItemReuseStrategy(new ReuseIfModelsEqualStrategy());
     }
 
-    protected void addFirstToolBar(String filenameResourceText, Page page) {
-        addTopToolbar(new CustomExportToolbar(this, new ResourceModel("datatable.export-to"), new ResourceModel(filenameResourceText), page));
+
+    protected void addHeadersToolbar(IDataProvider dataProvider) {
+
     }
 
     @Override
     protected Item newRowItem(final String id, final int index, final IModel model) {
-        return new ExportableRowItem(id, index, model);
+        return new EazyRowItem(id, index, model);
     }
 
     public AppUser getCurrentUser() {

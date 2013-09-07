@@ -26,7 +26,7 @@ public class FinanceAccountsPanel extends ReportPanel {
 
         setOutputMarkupPlaceholderTag(true);
 
-        add(postings = new BookedFinancePostingListView("postings", new BookedFinancePostingListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
+        add(postings = new BookedFinancePostingListView("FinanceAccountsPage.postings", new BookedFinancePostingListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
 
         super.addToPage();
     }

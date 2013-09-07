@@ -62,6 +62,13 @@ public class FinanceAccountService {
         return list;
     }
 
+    public List<FinanceAccount> findBookableFinanceAccountByLegalEntityFromAccountToAccount(LegalEntity legalEntity, FinanceAccount fromAccount, FinanceAccount toAccount) {
+        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
+        List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BOOKABLE_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT,
+                legalEntity, fromAccount.getAccountNumber(), toAccount.getAccountNumber());
+        return list;
+    }
+
     @Transactional
     public List<FinanceAccount> findBookableFinanceAccountByLegalEntity(LegalEntity legalEntity) {
         LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());

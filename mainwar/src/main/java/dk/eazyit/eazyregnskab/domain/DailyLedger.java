@@ -1,12 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
-import com.pdfjet.A4;
-import com.pdfjet.CoreFont;
-import com.pdfjet.Font;
-import com.pdfjet.PDF;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableFont;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -20,7 +14,7 @@ import java.util.Set;
         @NamedQuery(name = DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY, query = "select dl from DailyLedger dl where dl.name =?1 AND dl.legalEntity= ?2 ")
 })
 @Table(name = "dailyledger")
-public class DailyLedger extends BaseEntity implements ExportTableRow<DailyLedger> {
+public class DailyLedger extends BaseEntity {
 
     public static final String QUERY_FIND_BY_LEGAL_ENTITY = "DailyLedger::findByLegalEntity";
     public static final String QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY = "DailyLedger::findByNameAndLegalEntity";
@@ -102,34 +96,6 @@ public class DailyLedger extends BaseEntity implements ExportTableRow<DailyLedge
 
     public void setFinanceAccount(FinanceAccount financeAccount) {
         this.financeAccount = financeAccount;
-    }
-
-    @Override
-    public String getCssClassForDataTable() {
-        return "";
-    }
-
-    @Override
-    public Font getFont(PDF pdf) throws Exception {
-        Font normalFont = new Font(pdf, CoreFont.TIMES_ROMAN);
-        normalFont.setSize(8F);
-        return normalFont;
-    }
-
-    @Override
-    public WritableCellFormat getCellFormat() {
-        return new WritableCellFormat(new WritableFont(WritableFont.TIMES, 8));
-    }
-
-    @Override
-    public boolean insertSpaceAfterRowInTables() {
-        return false;
-    }
-
-
-    @Override
-    public float[] getPageSize() {
-        return A4.PORTRAIT;
     }
 
     @Override

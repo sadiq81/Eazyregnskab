@@ -6,6 +6,7 @@ import dk.eazyit.eazyregnskab.web.components.modal.PostingsModal;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
 import dk.eazyit.eazyregnskab.web.components.panels.FinanceAccountsPanel;
+import org.apache.wicket.extensions.markup.html.repeater.tree.TableTree;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -22,6 +23,7 @@ public class FinanceAccountsPage extends BaseReportPage {
 
     FinanceAccountsPanel financeAccountsPanel;
     public PostingsModal postingsModal;
+    TableTree tree;
 
     public FinanceAccountsPage() {
         super();
@@ -42,16 +44,17 @@ public class FinanceAccountsPage extends BaseReportPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(postingsModal = new PostingsModal("postingsModal"));
-        add(financeAccountsPanel = new FinanceAccountsPanel("financeAccounts", new CompoundPropertyModel(getDefaultModel())));
-        add(new FinanceAccountsReportForm("filters", new CompoundPropertyModel(getDefaultModel()), financeAccountsPanel));
+        add(postingsModal = new PostingsModal("FinanceAccountsPage.postingsModal"));
+        add(financeAccountsPanel = new FinanceAccountsPanel("FinanceAccountsPage.financeAccounts", new CompoundPropertyModel(getDefaultModel())));
+        add(new FinanceAccountsReportForm("FinanceAccountsPage.filters", new CompoundPropertyModel(getDefaultModel()), financeAccountsPanel));
+
+
     }
 
     @Override
     protected void configureComponents() {
 
     }
-
 
 
 }

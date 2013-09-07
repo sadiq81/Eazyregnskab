@@ -5,19 +5,19 @@
 
 <wicket:extend>
 
-    <div wicket:id="postingsModal"></div>
+    <div wicket:id="FinanceAccountsPage.postingsModal"></div>
 
-    <form wicket:id="filters">
+    <form wicket:id="FinanceAccountsPage.filters">
 
         <table class="table">
             <tr>
                 <td>
-                    <wicket:message key="dateFrom"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.dateFrom"></wicket:message>
                     <button class="btn btn-mini" wicket:id="minusOneYear"><i class="icon-step-backward"></i></button>
                     <button class="btn btn-mini" wicket:id="plusOneYear"><i class="icon-step-forward"></i></button>
                 </td>
                 <td>
-                    <wicket:message key="dateTo"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.dateTo"></wicket:message>
                 </td>
                 <td class="span3"></td>
                 <td class="span3"></td>
@@ -30,24 +30,25 @@
             </tr>
             <tr>
                 <td>
-                    <wicket:message key="accountFrom"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.accountFrom"></wicket:message>
                 </td>
                 <td>
-                    <wicket:message key="accountTo"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.accountTo"></wicket:message>
                 </td>
 
                 <td class="span3">
-                    <wicket:message key="hide.accounts.without.transactions"></wicket:message>
                 </td>
                 <td class="span3">
-                    <wicket:message key="hide.accounts.without.sum"></wicket:message>
+                    <wicket:message key="FinanceAccountsPage.hide.accounts.without.sum"></wicket:message>
                 </td>
             </tr>
             <tr>
                 <td><input class="span2" wicket:id="accountFrom" id="accountFrom" type="hidden"/></td>
                 <td><input class="span2" wicket:id="accountTo" id="accountTo" type="hidden"/></td>
 
-                <td class="span3"><input wicket:id="hideAccountsWithOutTransactions" type="checkbox"/></td>
+                <td class="span3">
+                    <!--<input wicket:id="hideAccountsWithOutTransactions" type="checkbox"/>-->
+                </td>
                 <td class="span3"><input wicket:id="hideAccountsWithOutSum" type="checkbox"/></td>
             </tr>
             <tr>
@@ -61,8 +62,6 @@
         </table>
 
     </form>
-
-    <div wicket:id="financeAccounts"></div>
 
 </wicket:extend>
 

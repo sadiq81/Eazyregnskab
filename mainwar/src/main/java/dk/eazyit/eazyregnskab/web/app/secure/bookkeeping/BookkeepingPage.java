@@ -9,7 +9,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.DraftFinancePosting
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForBookkeepingPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.EazyDataTable;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -22,11 +22,8 @@ public class BookkeepingPage extends LoggedInPage {
     private static final long serialVersionUID = 1L;
 
     private static final Logger LOG = LoggerFactory.getLogger(BookkeepingPage.class);
-    boolean selected = false;
 
-    private DailyLedgerChooser dailyLedgerChoice;
     private DraftFinancePostingForm form;
-    private FinancePostingDataProvider financePostingDataProvider;
 
     public BookkeepingPage() {
         super();
@@ -47,9 +44,9 @@ public class BookkeepingPage extends LoggedInPage {
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
 
-        add(dailyLedgerChoice = new DailyLedgerChooser("dailyLedgerList"));
+        add(new DailyLedgerChooser("dailyLedgerList"));
         add(form = new DraftFinancePostingForm("financePostingEdit", new CompoundPropertyModel<>(new DraftFinancePostingModel(new DraftFinancePosting(getCurrentDailyLedger().getNextBookingNumber())))));
-        add(new ExportableDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), financePostingDataProvider = new FinancePostingDataProvider(), "BookkeepingPage.datatable.export-file-name", this));
+        add(new EazyDataTable("chartOfFinancePostings", new ColumnsForBookkeepingPage(form), new FinancePostingDataProvider()));
         add(new SaveDailyLedgerForm("book"));
     }
 

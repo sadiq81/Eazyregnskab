@@ -14,29 +14,14 @@
         <secretKey>CWpXOz2Ld6gzjxM+51zQgjv+CuKJSYeoqnLHc4fQ</secretKey>
     </appender>
 
-    <logger name="dk.eazyit.eazyregnskab.web" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.dao" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.services" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.session" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.web" level="DEBUG">
-    </logger>
-
-    <logger name="dk.eazyit.eazyregnskab.security" level="WARN">
+    <logger name="dk.eazyit.eazyregnskab" level="WARN">
     </logger>
 
     <logger name="org.reflections" level="WARN"></logger>
 
     <logger name="org.apache.wicket" level="WARN"></logger>
 
-    <root level="INFO">
+    <root level="ERROR">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="simpledb"/>
     </root>

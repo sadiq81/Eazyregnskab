@@ -7,7 +7,7 @@ import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
 import dk.eazyit.eazyregnskab.web.components.tables.columns.ColumnsForChartsOfAccountsPage;
-import dk.eazyit.eazyregnskab.web.components.tables.tables.ExportableDataTable;
+import dk.eazyit.eazyregnskab.web.components.tables.tables.EazyDataTable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 public class ChartOfAccountsPage extends LoggedInPage {
 
     FinanceAccountForm form;
-    ExportableDataTable dataTable;
 
     private static final Logger LOG = LoggerFactory.getLogger(ChartOfAccountsPage.class);
 
@@ -44,7 +43,7 @@ public class ChartOfAccountsPage extends LoggedInPage {
         super.addToPage(parameters);
 
         add(form = new FinanceAccountForm("financeAccountEdit", new FinanceAccountModel(new FinanceAccount())));
-        add(dataTable = new ExportableDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider(), "ChartOfAccountsPage.datatable.export-file-name", this));
+        add(new EazyDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider()));
 
     }
 

@@ -2,8 +2,6 @@ package dk.eazyit.eazyregnskab.web.components.navigation;
 
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
-import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -42,10 +40,6 @@ public class LinkList extends RepeatingView {
         }
     }
 
-    @Override
-    public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
-        super.onComponentTagBody(markupStream, openTag);
-    }
 }
 
 

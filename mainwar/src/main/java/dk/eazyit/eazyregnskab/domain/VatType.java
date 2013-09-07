@@ -1,12 +1,6 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
-import com.pdfjet.A4;
-import com.pdfjet.CoreFont;
-import com.pdfjet.Font;
-import com.pdfjet.PDF;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableFont;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -23,7 +17,7 @@ import javax.persistence.*;
                 "WHERE vt.name = ?1 AND vt.legalEntity = ?2")
 })
 @Table(name = "vattype")
-public class VatType extends BaseEntity implements ExportTableRow<VatType> {
+public class VatType extends BaseEntity {
 
     public static final String QUERY_FIND_VATTYPE_BY_LEGAL_ENTITY = "VatType::findVatTypeByLegalEntity";
     public static final String QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY = "VatType::FindVatTypeByNameAndLegalEntity";
@@ -143,33 +137,6 @@ public class VatType extends BaseEntity implements ExportTableRow<VatType> {
 
     public void setInUse(boolean inUse) {
         this.inUse = inUse;
-    }
-
-    @Override
-    public String getCssClassForDataTable() {
-        return "";
-    }
-
-    @Override
-    public Font getFont(PDF pdf) throws Exception {
-        Font normalFont = new Font(pdf, CoreFont.TIMES_ROMAN);
-        normalFont.setSize(8F);
-        return normalFont;
-    }
-
-    @Override
-    public WritableCellFormat getCellFormat() {
-        return new WritableCellFormat(new WritableFont(WritableFont.TIMES, 8));
-    }
-
-    @Override
-    public boolean insertSpaceAfterRowInTables() {
-        return false;
-    }
-
-    @Override
-    public float[] getPageSize() {
-        return A4.PORTRAIT;
     }
 
     @Override

@@ -32,9 +32,12 @@ public class ExcelWriter {
         sheet.addCell(label);
     }
 
-    public static void addDate(WritableSheet sheet, WritableCellFormat format, int column, int row, Date date) throws WriteException, RowsExceededException {
+    public static void addDate(WritableSheet sheet, WritableCellFormat format, int column, int row, Date date, String pattern) throws WriteException, RowsExceededException {
         DateTime dateTime;
-        dateTime = new DateTime(column, row, date, format);
+        WritableFont font = new WritableFont(format.getFont());
+        DateFormat customDateFormat = new DateFormat(pattern);
+        WritableCellFormat cellFormat = new WritableCellFormat(font, customDateFormat);
+        dateTime = new DateTime(column, row, date, cellFormat);
         sheet.addCell(dateTime);
     }
 }
