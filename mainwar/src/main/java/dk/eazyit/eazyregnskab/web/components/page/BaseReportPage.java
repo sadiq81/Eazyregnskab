@@ -23,6 +23,7 @@ public abstract class BaseReportPage extends LoggedInPage {
     public static final String start_date = "QUERY_START_DATE";
     public static final String end_date = "QUERY_END_DATE";
     public static final String appuser = "QUERY_APPUSER";
+    public static final String locale = "REPORT_LOCALE";
 
     protected ReportObject reportObject;
 
@@ -67,6 +68,7 @@ public abstract class BaseReportPage extends LoggedInPage {
         parameters.put(start_date, reportObject.getDateFrom());
         parameters.put(end_date, reportObject.getDateTo());
         parameters.put(appuser, getCurrentUser().getUsername());
+        parameters.put(locale, getSession().getLocale());
         return parameters;
     }
 
