@@ -48,8 +48,6 @@ public class FinanceAccountsPage extends BaseReportPage {
         add(new FinanceAccountsReportForm("FinanceAccountsPage.filters", new CompoundPropertyModel(getDefaultModel()), financeAccountsPanel));
 
 
-        add(getJasperPdfResourceLink("exportPdf", "financeAccounts.jasper", getString("FinanceAccountsPage.file.name.pdf")));
-        add(getJasperXlsResourceLink("exportXls", "financeAccounts.jasper", getString("FinanceAccountsPage.file.name.xls")));
     }
 
 

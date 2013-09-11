@@ -59,15 +59,13 @@
                 <td colspan="3">
                     <input wicket:id="refresh" class="btn btn-success" type="submit" value="save"/>
                 </td>
-                <td>
-
+                <td style="text-align: right">
+                    <a href="#" class="btn" wicket:id="exportPdf"><i class="icon-download"></i></a>
+                    <a href="#" class="btn" wicket:id="exportXls"><i class="icon-download"></i></a>
                 </td>
             </tr>
         </table>
     </form>
-    <a href="#" class="btn" wicket:id="exportPdf">LINK</a><br>
-    <a href="#" class="btn" wicket:id="exportXls">LINK</a><br>
-
     <div wicket:id="FinanceAccountsPage.financeAccounts"></div>
 
 </wicket:extend>

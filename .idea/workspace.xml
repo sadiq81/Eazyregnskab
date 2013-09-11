@@ -7,19 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sourceforge_jexcelapi_jxl_2_6_12.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_9.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPDFReportsResource.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPdfReportsResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/action/ActionPanel.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/action/ActionPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BalanceReportForm.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BalanceReportForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountsReportForm.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountsReportForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/mainwar.iml" afterPath="$PROJECT_DIR$/mainwar/mainwar.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/mainwar_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/mainwar_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/pom.xml" afterPath="$PROJECT_DIR$/mainwar/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eazyregnskab.iws" />
@@ -36,7 +31,7 @@
     <file path="/AppBasePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254695322" ignored="false" />
     <file path="/HomePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254730144" ignored="false" />
     <file path="/HomePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377256542368" ignored="false" />
-    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378911758536" ignored="false" />
+    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378935103192" ignored="false" />
     <file path="/MenuSetup.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375809275767" ignored="false" />
     <file path="/MenuTab.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310019187" ignored="false" />
     <file path="/SubMenuPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310042082" ignored="false" />
@@ -77,8 +72,8 @@
     <file path="/LoginNavBarForm.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360352625524" ignored="false" />
     <file path="/InvestmentItemModalPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376990189704" ignored="false" />
     <file path="/LoginModalPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360408843018" ignored="false" />
-    <file path="/WicketApplication.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378766522058" ignored="false" />
-    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378925108398" ignored="false" />
+    <file path="/WicketApplication.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378934201428" ignored="false" />
+    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378934391679" ignored="false" />
     <file path="/LoginPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376858658026" ignored="false" />
     <file path="/LoginNavBarButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360410548526" ignored="false" />
     <file path="/dataSource.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374944047829" ignored="false" />
@@ -593,10 +588,10 @@
     <file path="/DailyLedgerChooser.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373648883414" ignored="false" />
     <file path="/SessionAware.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373649178599" ignored="false" />
     <file path="/FinanceAccountListModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373649765753" ignored="false" />
-    <file path="/BaseReportForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378134244856" ignored="false" />
+    <file path="/BaseReportForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378934366440" ignored="false" />
     <file path="/FinanceAccountProviderAllAcccounts.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373737508510" ignored="false" />
     <file path="/FinanceAccountSelect2ChoiceAllAccounts.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373737582651" ignored="false" />
-    <file path="/BalanceReportForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373742417220" ignored="false" />
+    <file path="/BalanceReportForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378934438872" ignored="false" />
     <file path="/FinanceAccountListView.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376060619662" ignored="false" />
     <file path="/BalancePanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376063880920" ignored="false" />
     <file path="/SessionAwarePanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374444940946" ignored="false" />
@@ -681,7 +676,7 @@
     <file path="/FinanceAccountsPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376241641626" ignored="false" />
     <file path="/FinanceAccountsPage.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376062889496" ignored="false" />
     <file path="/FinanceAccountsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376062903381" ignored="false" />
-    <file path="/FinanceAccountsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378925928906" ignored="false" />
+    <file path="/FinanceAccountsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378934638926" ignored="false" />
     <file path="/DateLabel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375824898158" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/market/data/UserInvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377002595759" ignored="false" />
     <file path="/UserInvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375893399136" ignored="false" />
@@ -1639,40 +1634,94 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="LoggedInPage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="107" column="5" selection-start="3161" selection-end="3852" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="FinanceAccountsPanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="47" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FinanceAccountsPage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="0" selection-start="2175" selection-end="2175" vertical-scroll-proportion="0.0">
+            <state line="11" column="13" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JasperXlsReportsResource.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java">
+      <file leaf-file-name="FinanceAccountsPanel.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="10" selection-start="71" selection-end="71" vertical-scroll-proportion="0.057251908">
+            <state line="64" column="25" selection-start="2602" selection-end="2602" vertical-scroll-proportion="-15.458333">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FinanceAccountsPage.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="FinanceAccountsReportForm.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountsReportForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="0" selection-start="964" selection-end="964" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseReportForm.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="136" column="0" selection-start="6164" selection-end="6164" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BalancePage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="27" selection-start="1969" selection-end="1969" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BalanceReportForm.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BalanceReportForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="5" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WicketApplication_da.utf8.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="14" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WicketApplication.utf8.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="14" selection-start="538" selection-end="538" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FinanceAccountsPage.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="16" selection-start="1295" selection-end="1295" vertical-scroll-proportion="-10.666667">
-              <folding />
+            <state line="30" column="17" selection-start="1278" selection-end="1278" vertical-scroll-proportion="0.34641406">
+              <folding>
+                <element signature="n#style#0;n#td#1;n#tr#5;n#table#0;n#form#0;n#wicket:extend#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1696,22 +1745,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/BookedFinancePostingListView.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/link/PdfGenerateLink.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperReportsResource.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPDFReportsResource.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/JasperService.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/action/ActionPanel.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPdfReportsResource.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperExcelReportsResource.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" />
         <option value="$PROJECT_DIR$/mainwar/pom.xml" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountsReportForm.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BalanceReportForm.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" />
       </list>
     </option>
   </component>
@@ -2152,6 +2201,86 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="panels" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2377,7 +2506,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.applicationServers" />
+    <property name="options.lastSelected" value="Web Contexts" />
     <property name="project.structure.side.proportion" value="0.5156431" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -4228,7 +4357,11 @@
       <created>1378887574585</created>
       <updated>1378887574586</updated>
     </task>
-    <option name="localTasksCounter" value="245" />
+    <task id="LOCAL-00245" summary="#14 Export financepostings to excel">
+      <created>1378933473536</created>
+      <updated>1378933473536</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -4329,7 +4462,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="#56 Export financepostings to PDF" />
+    <option name="LAST_COMMIT_MESSAGE" value="#14 Export financepostings to excel" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -4343,7 +4476,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Ticket #27" />
     <MESSAGE value="#178: ChartOfAccountsPage - When Choosing account type, vat type is cleared bug" />
     <MESSAGE value="#28 Scroll slowly to top when selecting items" />
     <MESSAGE value="#2 Create generic &quot;Are you sure&quot; modal dialog" />
@@ -4368,6 +4500,7 @@
     <MESSAGE value="#49 Add header title to datatable exports" />
     <MESSAGE value="#54 Move export functions to use JasperReport instead" />
     <MESSAGE value="#56 Export financepostings to PDF" />
+    <MESSAGE value="#14 Export financepostings to excel" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -4431,94 +4564,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPdfReportsResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="32" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="24" selection-start="2457" selection-end="2457" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="287" column="21" selection-start="9770" selection-end="9770" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage_da.utf8.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="404" column="33" selection-start="13645" selection-end="13645" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/ReportPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="47" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0.jar!/jasperreports_messages.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0.jar!/jasperreports_extension.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="21" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0.jar!/default.jasperreports.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="25" selection-start="10457" selection-end="10461" vertical-scroll-proportion="0.35479257">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="2175" selection-end="2175" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="16" selection-start="1295" selection-end="1295" vertical-scroll-proportion="-10.666667">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/export/JRXlsExporterParameter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="13" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.28965518">
@@ -4542,8 +4587,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="10" selection-start="71" selection-end="71" vertical-scroll-proportion="0.057251908">
+        <state line="3" column="10" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="51" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="33" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="5" selection-start="3161" selection-end="3852" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountsReportForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="964" selection-end="964" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="14" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="14" selection-start="538" selection-end="538" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="0" selection-start="6164" selection-end="6164" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="27" selection-start="1969" selection-end="1969" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BalanceReportForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="5" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="25" selection-start="2602" selection-end="2602" vertical-scroll-proportion="-15.458333">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="17" selection-start="1278" selection-end="1278" vertical-scroll-proportion="0.34641406">
+          <folding>
+            <element signature="n#style#0;n#td#1;n#tr#5;n#table#0;n#form#0;n#wicket:extend#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

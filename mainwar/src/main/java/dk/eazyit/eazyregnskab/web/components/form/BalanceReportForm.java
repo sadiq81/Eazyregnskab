@@ -31,6 +31,11 @@ public class BalanceReportForm extends BaseReportForm {
     }
 
     @Override
+    protected String getJasperReportName() {
+        return "BalancePage";
+    }
+
+    @Override
     protected void submit(AjaxRequestTarget target) {
 
     }
