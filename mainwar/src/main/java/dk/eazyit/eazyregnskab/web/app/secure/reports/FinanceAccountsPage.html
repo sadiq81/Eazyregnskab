@@ -7,7 +7,6 @@
 
     <div wicket:id="FinanceAccountsPage.postingsModal"></div>
 
-    <a href="#" wicket:id="export">LINK</a><br>
 
     <form wicket:id="FinanceAccountsPage.filters">
 
@@ -57,13 +56,17 @@
                 <td colspan="4"><br></td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="3">
                     <input wicket:id="refresh" class="btn btn-success" type="submit" value="save"/>
+                </td>
+                <td>
+
                 </td>
             </tr>
         </table>
-
     </form>
+    <a href="#" class="btn" wicket:id="exportPdf">LINK</a><br>
+    <a href="#" class="btn" wicket:id="exportXls">LINK</a><br>
 
     <div wicket:id="FinanceAccountsPage.financeAccounts"></div>
 

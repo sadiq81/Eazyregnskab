@@ -58,6 +58,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/jasperreports" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/mainwar" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/war" />
     </content>
@@ -159,6 +160,9 @@
     <orderEntry type="library" name="Maven: eclipse:jdtcore:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.castor:castor:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.wicketstuff:wicketstuff-jasperreports:6.10.0" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.9" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.5" level="project" />
   </component>
 </module>
 

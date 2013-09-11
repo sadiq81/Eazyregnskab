@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.page;
 import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.web.components.resource.JasperPdfReportsResource;
+import dk.eazyit.eazyregnskab.web.components.resource.JasperXlsReportsResource;
 import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -51,6 +52,17 @@ public abstract class BaseReportPage extends LoggedInPage {
     public ResourceLink getJasperPdfResourceLink(String id, String reportName, String filename) {
 
         JasperPdfReportsResource jr = new JasperPdfReportsResource(reportName, filename) {
+            @Override
+            protected HashMap<String, Object> getParameters() {
+                return getParametersForReport();
+            }
+        };
+        return new ResourceLink(id, jr);
+    }
+
+    public ResourceLink getJasperXlsResourceLink(String id, String reportName, String filename) {
+
+        JasperXlsReportsResource jr = new JasperXlsReportsResource(reportName, filename) {
             @Override
             protected HashMap<String, Object> getParameters() {
                 return getParametersForReport();

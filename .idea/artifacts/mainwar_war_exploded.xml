@@ -101,6 +101,9 @@
           <element id="library" level="project" name="Maven: eclipse:jdtcore:3.1.0" />
           <element id="library" level="project" name="Maven: org.codehaus.castor:castor:1.2" />
           <element id="library" level="project" name="Maven: org.wicketstuff:wicketstuff-jasperreports:6.10.0" />
+          <element id="library" level="project" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi:3.9" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.5" />
         </element>
       </element>
     </root>
