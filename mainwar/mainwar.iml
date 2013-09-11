@@ -12,6 +12,7 @@
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/jasperreports" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -54,6 +55,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/jasperreports" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
@@ -89,7 +91,7 @@
     <orderEntry type="library" name="Maven: org.webjars:modernizr:2.6.2-1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.0.5" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.2" level="project" />
     <orderEntry type="library" name="Maven: de.agilecoders.wicket:wicket-bootstrap-extensions:0.8.4" level="project" />
     <orderEntry type="library" name="Maven: com.google.javascript:closure-compiler:v20130603" level="project" />
@@ -147,7 +149,16 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-http:8.1.12.v20130726" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-io:8.1.12.v20130726" level="project" />
     <orderEntry type="library" name="Maven: dk.eazyit:shared:1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.12" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.jasperreports:jasperreports:5.2.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-collections:commons-collections:2.1" level="project" />
+    <orderEntry type="library" name="Maven: commons-digester:commons-digester:2.1" level="project" />
+    <orderEntry type="library" name="Maven: jfree:jcommon:1.0.15" level="project" />
+    <orderEntry type="library" name="Maven: jfree:jfreechart:1.0.12" level="project" />
+    <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.3.02" level="project" />
+    <orderEntry type="library" name="Maven: eclipse:jdtcore:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.castor:castor:1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.wicketstuff:wicketstuff-jasperreports:6.10.0" level="project" />
   </component>
 </module>
 

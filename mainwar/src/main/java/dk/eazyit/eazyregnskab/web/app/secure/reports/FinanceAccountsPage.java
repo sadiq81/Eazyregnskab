@@ -6,7 +6,6 @@ import dk.eazyit.eazyregnskab.web.components.modal.PostingsModal;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
 import dk.eazyit.eazyregnskab.web.components.panels.FinanceAccountsPanel;
-import org.apache.wicket.extensions.markup.html.repeater.tree.TableTree;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -19,11 +18,11 @@ import org.slf4j.LoggerFactory;
 @MenuPosition(name = "reports.finance.accounts", parentPage = BalancePage.class, subLevel = 1, topLevelPage = false, topLevel = 0)
 public class FinanceAccountsPage extends BaseReportPage {
 
+
     private static final Logger LOG = LoggerFactory.getLogger(FinanceAccountsPage.class);
 
     FinanceAccountsPanel financeAccountsPanel;
     public PostingsModal postingsModal;
-    TableTree tree;
 
     public FinanceAccountsPage() {
         super();
@@ -48,8 +47,10 @@ public class FinanceAccountsPage extends BaseReportPage {
         add(financeAccountsPanel = new FinanceAccountsPanel("FinanceAccountsPage.financeAccounts", new CompoundPropertyModel(getDefaultModel())));
         add(new FinanceAccountsReportForm("FinanceAccountsPage.filters", new CompoundPropertyModel(getDefaultModel()), financeAccountsPanel));
 
+        add(getJasperPdfResourceLink("export", "/classes/financeAccounts.jasper", getString("FinanceAccountsPage.file.name")));
 
     }
+
 
     @Override
     protected void configureComponents() {

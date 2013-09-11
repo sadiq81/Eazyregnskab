@@ -287,11 +287,15 @@
 
         <!--Export-->
         <dependency>
-            <groupId>net.sourceforge.jexcelapi</groupId>
-            <artifactId>jxl</artifactId>
-            <version>${jexcelapi.version}</version>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>${jasperreports.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.wicketstuff</groupId>
+            <artifactId>wicketstuff-jasperreports</artifactId>
+            <version>6.10.0</version>
+        </dependency>
 
     </dependencies>
 
@@ -316,6 +320,16 @@
                     <include>**/*.properties</include>
                 </includes>
             </resource>
+
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/jasperreports</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.jrxml</include>
+                    <include>**/*.jasper</include>
+                </includes>
+            </resource>
         </resources>
 
         <plugins>
@@ -328,7 +342,26 @@
                     <warName>eazyregnskab</warName>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jasperreports-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile-reports</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <!--note this must be repeated here to pick up correct xml validation -->
+                    <dependency>
+                        <groupId>net.sf.jasperreports</groupId>
+                        <artifactId>jasperreports</artifactId>
+                        <version>${jasperreports.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
-
 </project>

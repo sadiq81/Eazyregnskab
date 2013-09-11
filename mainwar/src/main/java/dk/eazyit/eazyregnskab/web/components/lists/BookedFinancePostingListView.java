@@ -54,7 +54,7 @@ public class BookedFinancePostingListView extends ListView<FinanceAccount> {
                 itemInner.add(new DateLabel("FinanceAccountsPage.date", bfp.getDate()));
                 itemInner.add(new Label("FinanceAccountsPage.bookingNumber", bfp.getBookingNumber()));
                 itemInner.add(new Label("FinanceAccountsPage.text", bfp.getText()));
-                itemInner.add(new Label("FinanceAccountsPage.vatType.name", bfp.getVatType() != null ? bfp.getVatType().getName() : ""));
+                itemInner.add(new Label("FinanceAccountsPage.vatType.name", bfp.getVatPosting() != null ? bfp.getVatPosting().getVatType().getName() : ""));
                 itemInner.add(new Label("FinanceAccountsPage.amount", bfp.getAmount()));
                 itemInner.add(new Label("FinanceAccountsPage.sum", bfp.getSum()));
                 itemInner.add(new AjaxToolTipLink("FinanceAccountsPage.postings", "tooltip.postings") {

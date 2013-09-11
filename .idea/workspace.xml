@@ -7,102 +7,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/PDFjet.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/A3.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/A4.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/A5.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/AbstractCell.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Align.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/AndroidFontsCopyright.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Annotation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/B5.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/BMPImage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Bidi.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/BitBuffer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Border.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Box.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CP1250.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CP1251.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CP1252.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CP1253.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CP1254.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CP1257.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Cap.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Cell.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CheckBox.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Chunk.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CodePage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Color.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Compliance.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CompositeTextLine.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Compressor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/CoreFont.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Courier.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Courier_Bold.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Courier_BoldOblique.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Courier_Oblique.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Decompressor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Destination.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Dimension.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Drawable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Effect.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Embed.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/ErrorCorrectLevel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Executive.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/FlexTable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Font.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/FontTable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Glyph.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Helvetica.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Helvetica_Bold.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Helvetica_BoldOblique.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Helvetica_Oblique.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/ICCBlackScaled.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Image.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/ImageCell.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/ImageType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/IoStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/JPGImage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Join.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Legal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Letter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Line.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/MaskPattern.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Missing.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Operation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/OptionalContentGroup.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/PDF.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/PDFImage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/PDFobj.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/PNGImage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Page.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Path.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Point.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Polynomial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/QRCode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/QRMath.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/QRUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/RGB.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/RSBlock.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Round.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Salsa20.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Segment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Standard.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Symbol.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Table.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Tabloid.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/TextAlign.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/TextBox.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/TextCell.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/TextLine.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Times_Bold.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Times_BoldItalic.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Times_Italic.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/Times_Roman.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/shared/src/main/java/com/pdfjet/ZapfDingbats.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_digester_commons_digester_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eclipse_jdtcore_3_1_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jfree_jcommon_1_0_15.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jfree_jfreechart_1_0_12.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_jasperreports_jasperreports_5_2_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_castor_castor_1_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_wicketstuff_wicketstuff_jasperreports_6_10_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_3_02.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/jasperreports/financeAccounts.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainwar/src/main/jasperreports/financeAccounts_da.properties" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sourceforge_jexcelapi_jxl_2_6_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/util/ExcelWriter.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_0_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/BookedFinancePostingListView.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/BookedFinancePostingListView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/mainwar.iml" afterPath="$PROJECT_DIR$/mainwar/mainwar.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/mainwar_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/mainwar_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/pom.xml" afterPath="$PROJECT_DIR$/mainwar/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eazyregnskab.iws" />
@@ -114,19 +44,19 @@
     <ignored path="jetty/src/main/resources/ssl_cert.cer" />
     <ignored path="shared/shared.iml" />
     <ignored path="mainwar/mainwar/war/eazyregnskab.war" />
-    <file path="/fragment.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378583766981" ignored="false" />
+    <file path="/fragment.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378885995436" ignored="false" />
     <file path="/AppBasePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376576449827" ignored="false" />
     <file path="/AppBasePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254695322" ignored="false" />
     <file path="/HomePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254730144" ignored="false" />
     <file path="/HomePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377256542368" ignored="false" />
-    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378585372109" ignored="false" />
+    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378823989478" ignored="false" />
     <file path="/MenuSetup.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375809275767" ignored="false" />
     <file path="/MenuTab.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310019187" ignored="false" />
     <file path="/SubMenuPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310042082" ignored="false" />
     <file path="/SubMenuPanel.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310071219" ignored="false" />
-    <file path="/LoggedInPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377693453318" ignored="false" />
+    <file path="/LoggedInPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378766612216" ignored="false" />
     <file path="/LoggedInPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376247207227" ignored="false" />
-    <file path="/pom.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377512558649" ignored="false" />
+    <file path="/pom.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378846900844" ignored="false" />
     <file path="/AppBasePage.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376573513955" ignored="false" />
     <file path="/AppBasePage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376573523730" ignored="false" />
     <file path="/LoginNavBarForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360407447502" ignored="false" />
@@ -138,8 +68,8 @@
     <file path="/EntityModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365356891411" ignored="false" />
     <file path="/PlaceholderTextField.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377338161919" ignored="false" />
     <file path="/PlaceholderPasswordField.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359398210509" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/pengeplan.iws" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378464155417" ignored="false" />
-    <file path="/a.dummy" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378378838301" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/pengeplan.iws" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378845866113" ignored="false" />
+    <file path="/a.dummy" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378764061003" ignored="false" />
     <file path="/EazyRegnskabSession.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365350690442" ignored="false" />
     <file path="/WicketApplication.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377960258434" ignored="false" />
     <file path="/ContactPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376480346082" ignored="false" />
@@ -151,7 +81,7 @@
     <file path="/applicationContext.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377121541165" ignored="false" />
     <file path="/securityContext.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359834087774" ignored="false" />
     <file path="/spring-security.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376385689423" ignored="false" />
-    <file path="/web.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377292432631" ignored="false" />
+    <file path="/web.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753251494" ignored="false" />
     <file path="/AppUserRole.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377252847884" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/atlassian-ide-plugin.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360663543367" ignored="false" />
     <file path="/LoginNavBarForm.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360352482427" ignored="false" />
@@ -160,8 +90,8 @@
     <file path="/LoginNavBarForm.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360352625524" ignored="false" />
     <file path="/InvestmentItemModalPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376990189704" ignored="false" />
     <file path="/LoginModalPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360408843018" ignored="false" />
-    <file path="/WicketApplication.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378560372351" ignored="false" />
-    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378566716928" ignored="false" />
+    <file path="/WicketApplication.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378766522058" ignored="false" />
+    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378849054736" ignored="false" />
     <file path="/LoginPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376858658026" ignored="false" />
     <file path="/LoginNavBarButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360410548526" ignored="false" />
     <file path="/dataSource.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374944047829" ignored="false" />
@@ -244,7 +174,7 @@
     <file path="/MockWicketApplication.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366653560351" ignored="false" />
     <file path="/LoginNavbarButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364926532108" ignored="false" />
     <file path="/UnSecurePagesTester.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364926907725" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/LegalEntityService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364973771530" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/LegalEntityService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378886140651" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/LoginService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378296103056" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/OwnedAccount.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365153941417" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/OwnedAccountService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364973325970" ignored="false" />
@@ -259,7 +189,7 @@
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/itemreporting/ItemReportingService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364973325970" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/dataextract/NordnetTransactionsCsvExtracter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364973325970" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/dataextract/BaseExtracter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365154899533" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/api/JerseyApi.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378299315018" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/api/JerseyApi.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378799763136" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/financereporting/FinanceReportingService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378300573854" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/dataextract/SaxoPrivatbankTransactionsCsvExtracter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1364973325970" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/dataextract/ManuelTransactionsCsvExtracter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365154992025" ignored="false" />
@@ -664,7 +594,7 @@
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/transactions/AddTransactionsPageComponents/panel/ManuelTransactionPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1372849737560" ignored="false" />
     <file path="/ManuelTransactionPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377505926493" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/AppWebApplication.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1372847221273" ignored="false" />
-    <file path="/AppWebApplication.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376479680284" ignored="false" />
+    <file path="/AppWebApplication.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378804172546" ignored="false" />
     <file path="$PROJECT_DIR$/../test/select2/src/main/java/test/test/TestPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1372850394938" ignored="false" />
     <file path="$PROJECT_DIR$/../test/select2/.idea/misc.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1372850426268" ignored="false" />
     <file path="$PROJECT_DIR$/../test/select2/.idea/compiler.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1372850426268" ignored="false" />
@@ -687,7 +617,7 @@
     <file path="/SessionAwareTextChoiceProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373740319797" ignored="false" />
     <file path="/ReportObject.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378134119851" ignored="false" />
     <file path="/ReportPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373741359085" ignored="false" />
-    <file path="/BaseReportPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378133371916" ignored="false" />
+    <file path="/BaseReportPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378886514402" ignored="false" />
     <file path="/CalenderUtil.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375035901055" ignored="false" />
     <file path="/TestBalancePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374271751321" ignored="false" />
     <file path="/TestBookingService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374933353247" ignored="false" />
@@ -748,7 +678,7 @@
     <file path="/ErrorReportingScanner.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375192198467" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/CompleteInvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375192991157" ignored="false" />
     <file path="/CompleteInvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375192982544" ignored="false" />
-    <file path="/InvestmentItemService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378462219478" ignored="false" />
+    <file path="/InvestmentItemService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378824325768" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/InvestmentItemService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375193209951" ignored="false" />
     <file path="/FinanceAccountTypeDropDownChoice.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375549426554" ignored="false" />
     <file path="/LimitedLabel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375550171309" ignored="false" />
@@ -757,14 +687,14 @@
     <file path="/punit" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375620006771" ignored="false" />
     <file path="$USER_HOME$/Google Drive/E-bøger/Programmering/Java/wicket/Igor Vaynberg - Apache Wicket Cookbook + Code - 2011/Code/1605_06_code_final/recipe0606/src/test/java/cookbook/Start.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375632134938" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/util/DateUtil.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377001436066" ignored="false" />
-    <file path="/FinanceAccountsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378556406926" ignored="false" />
-    <file path="/BookedFinancePostingListView.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376167900288" ignored="false" />
+    <file path="/FinanceAccountsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378766626639" ignored="false" />
+    <file path="/BookedFinancePostingListView.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378646308907" ignored="false" />
     <file path="/FinanceAccountPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375809927448" ignored="false" />
     <file path="/BookedFinancePostingListModelWithSum.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375812573744" ignored="false" />
     <file path="/FinanceAccountsPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376241641626" ignored="false" />
     <file path="/FinanceAccountsPage.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376062889496" ignored="false" />
     <file path="/FinanceAccountsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376062903381" ignored="false" />
-    <file path="/FinanceAccountsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378491593552" ignored="false" />
+    <file path="/FinanceAccountsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378766785374" ignored="false" />
     <file path="/DateLabel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375824898158" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/market/data/UserInvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377002595759" ignored="false" />
     <file path="/UserInvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375893399136" ignored="false" />
@@ -955,7 +885,7 @@
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/transactions/addtransactionpage/panel/transactions/AddTransactionPanelBuy$ModalPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376996910125" ignored="false" />
     <file path="/BondBuyPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377077128041" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/store/CompleteInvestmentItem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376993487536" ignored="false" />
-    <file path="/CompleteInvestmentItem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378294587534" ignored="false" />
+    <file path="/CompleteInvestmentItem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378813606541" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/transactions/addtransactionpage/panel/transactions/BondSellPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377077154850" ignored="false" />
     <file path="/BondSellPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376993628188" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/SortableAccountTransactionDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376996910125" ignored="false" />
@@ -1008,7 +938,7 @@
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/accounts/AssetsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377073167701" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/accounts/AssetsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377073167701" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/unsecure/AppWebApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377074833997" ignored="false" />
-    <file path="/AppWebApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377074833997" ignored="false" />
+    <file path="/AppWebApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378820999719" ignored="false" />
     <file path="/AssetType.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377072820570" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/FinanceAccountType.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377073664842" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/test/java/com/trifork/pengeplan/BaseSpringTestCase.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377074698131" ignored="false" />
@@ -1094,9 +1024,9 @@
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/itemreporting/ValueReport.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377676196922" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/itemreporting/ItemReportingService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377682801686" ignored="false" />
     <file path="/ItemReportingService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377676347789" ignored="false" />
-    <file path="/AccountTransactionService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377676454658" ignored="false" />
+    <file path="/AccountTransactionService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378821539701" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/simpledb/AccountTransactionDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377683040303" ignored="false" />
-    <file path="/AccountTransactionDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377680628796" ignored="false" />
+    <file path="/AccountTransactionDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378821580059" ignored="false" />
     <file path="$USER_HOME$/pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/itemreporting/ValueReportLine.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377682660321" ignored="false" />
     <file path="/ValueReportLine.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377677659505" ignored="false" />
     <file path="/MutableMinimumValidator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377679498707" ignored="false" />
@@ -1144,11 +1074,11 @@
     <file path="/BalanceExportToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378135849247" ignored="false" />
     <file path="/BalanceExportableDataTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377808830656" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/lists/PengeplanRefreshingView.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378293073773" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/SysAdminInvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378462755825" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/SysAdminInvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378801029695" ignored="false" />
     <file path="/PengeplanRefreshingView.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377861156278" ignored="false" />
     <file path="/EnterInvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377867878434" ignored="false" />
-    <file path="/SysAdminInvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378462755071" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/InvestmentItemService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378462342507" ignored="false" />
+    <file path="/SysAdminInvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378801025535" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/InvestmentItemService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378824325768" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/CompleteValuationDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377863352699" ignored="false" />
     <file path="/CompleteValuationDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377863299061" ignored="false" />
     <file path="/SysAdminInvestmentItemRatesPage$ValuationFormPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377864397492" ignored="false" />
@@ -1172,7 +1102,7 @@
     <file path="/Category.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378158918676" ignored="false" />
     <file path="/ICategoryProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378196676197" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/label/TruncatedLabel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378215791040" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/store/CompleteInvestmentItem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378460392214" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/store/CompleteInvestmentItem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378813609281" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/accounts/AccessRightsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378296408732" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/accounts/AccessRightsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378296117441" ignored="false" />
     <file path="/AccessRightsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378296113777" ignored="false" />
@@ -1186,18 +1116,18 @@
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/market/data/UserInvestmentItemsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378298724856" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/home/MyDashBoardPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378298881226" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/DatabaseManagementService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378299315018" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/CompleteInvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378299315018" ignored="false" />
-    <file path="/InvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378461002452" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/simpledb/InvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378461121269" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/CompleteInvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378799763136" ignored="false" />
+    <file path="/InvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378814099548" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/simpledb/InvestmentItemDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378886140651" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/select2provider/investmentitem/FindAllOrderByNameItemProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378459274251" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/obselete/InvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378459274251" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/obselete/InvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378804896141" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/models/list/CompleteInvestmentItemListModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378302120597" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/GenericSimpleDbDao.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378304090157" ignored="false" />
-    <file path="/GenericSimpleDbDao.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378303942800" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/GenericSimpleDbDao.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378824294697" ignored="false" />
+    <file path="/GenericSimpleDbDao.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378824278101" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/transactions/addtransactionpage/panel/transactions/StockBuyPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378461084312" ignored="false" />
     <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/transactions/addtransactionpage/panel/transactions/BondBuyPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378459266199" ignored="false" />
-    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/SimpleDbQuery.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378461067428" ignored="false" />
-    <file path="/SimpleDbQuery.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378461057921" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/dynamo/impl/SimpleDbQuery.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378822767716" ignored="false" />
+    <file path="/SimpleDbQuery.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378822707382" ignored="false" />
     <file path="/SessionAwareTreeProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378379938969" ignored="false" />
     <file path="/DetailsTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378382388605" ignored="false" />
     <file path="/AbstractDetailsColumn.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378464666694" ignored="false" />
@@ -1242,6 +1172,96 @@
     <file path="/HeaderCSVDataExporter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378560013785" ignored="false" />
     <file path="/IExportTableRow.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378562505369" ignored="false" />
     <file path="/EazyRowItem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378584433373" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/src/dk/dtu/ws/exercise1/Calculator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378717832520" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/test/dk/dtu/ws/exercise1/CalculateResponse.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716211717" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/test/dk/dtu/ws/exercise1/CalculatorService_Service.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716211717" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/test/dk/dtu/ws/exercise1/Calculate.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716211717" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/test/dk/dtu/ws/exercise1/ObjectFactory.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716211717" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/test/dk/dtu/ws/exercise1/TestCalculatorService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378718559482" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/test/dk/dtu/ws/exercise1/package-info.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716211718" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/test/dk/dtu/ws/exercise1/CalculatorService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716211718" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/src/dk/dtu/ws/exercise1/Calculator.wsdl" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378717930485" ignored="false" />
+    <file path="/Calculator.wsdl" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716515411" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/src/dk/dtu/ws/exercise1/CalculatorPortType.wsdl" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378717930485" ignored="false" />
+    <file path="/CalculatorPortType.wsdl" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716538768" ignored="false" />
+    <file path="/TestCalculatorService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378716587411" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/.idea/workspace.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378718594039" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/web/WEB-INF/web.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378717930485" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/src/dk/dtu/ws/exercise1/CalculatorPortType_schema1.xsd" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378717930485" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/web/WEB-INF/sun-jaxws.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378717930485" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercise_1_idea/web/index.jsp" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378717930485" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/web/WEB-INF/web.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720343255" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/workspace.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720598346" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/encodings.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720341478" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/modules.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720343246" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/compiler.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720480991" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/misc.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720480991" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/uiDesigner.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720341477" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/scopes/scope_settings.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720341477" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/vcs.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720341477" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/libraries/JAX_WS_Glassfish___JAX_WS_2_2_RI___Metro_1_X___JWSDP_2_2.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720343246" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/.idea/artifacts/exercises_war_exploded.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720343246" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/web/WEB-INF/sun-jaxws.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720347985" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/src/dk/dtu/ws/exercise1/Calculator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378720437324" ignored="false" />
+    <file path="$USER_HOME$/Google Drive/DTU/7. Semester/02267 Software-udvikling af Webtjenester/exercises/exercises/test/dk/dtu/ws/exercise1/TestCalculatorService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378718864801" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/pom.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378751933677" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/webservices/pom.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378752970120" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/clients/pom.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378748793897" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/webservices/src/main/java/dk/dtu/ws/exercise1/webservice/Calculator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378752760832" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/clients/src/test/java/dk/dtu/exercise1/client/TestCalculatorService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378748936239" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/clients/src/test/java/dk/dtu/ws/exercise1/client/TestCalculatorService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378749655977" ignored="false" />
+    <file path="/Calculator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378752756652" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/webservices/src/main/resources/Calculator.wsdl" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753619760" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/webservices/src/main/resources/Calculator_schema1.xsd" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753619760" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/webservices/src/main/resources/sun-jaxws.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753483432" ignored="false" />
+    <file path="/sun-jaxws.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753480729" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/webservices/src/main/resources/web.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753325109" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/webservices/web/WEB-INF/web.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753342364" ignored="false" />
+    <file path="$PROJECT_DIR$/../exercises/.idea/artifacts/webservices_Web_exploded.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378753343495" ignored="false" />
+    <file path="/JasperReportsResource.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378764924184" ignored="false" />
+    <file path="/JasperPdfReportsResource.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378886251368" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/select2provider/investmentitem/BaseInvestmentItemProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378799763135" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/ExchangeRateService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378799763136" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/InvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378822866189" ignored="false" />
+    <file path="/InvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378822860110" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/security/AuthenticationStrategu.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378802656129" ignored="false" />
+    <file path="/AuthenticationStrategu.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378803143981" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/security/AuthenticationStrategy.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378804652831" ignored="false" />
+    <file path="/AuthenticationStrategy.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378803995250" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/unsecure/AppWebApplication.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378804210102" ignored="false" />
+    <file path="/InvestmentItemRatesPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378804892006" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/InvestmentItemsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378817396958" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/InvestmentItemsPage$InvestmentItemDataTableActionPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378805515508" ignored="false" />
+    <file path="/InvestmentItemsPage$InvestmentItemDataTableActionPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378805512198" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/unsecure/AppWebApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378823169548" ignored="false" />
+    <file path="/InvestmentItemsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378817396958" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/lists/SortableGenericListDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378806777368" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/components/converter/LegalEntityNameConverter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378886140651" ignored="false" />
+    <file path="/LegalEntityNameConverter.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378812261928" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/DataImportSource.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378812581217" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/InvestmentItemsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378823161510" ignored="false" />
+    <file path="/InvestmentItemsPage_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378814785431" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/ColumnsForInvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378821029075" ignored="false" />
+    <file path="/ColumnsForInvestmentItemsPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378821023133" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/InvestmentItemDataTableActionPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378824049845" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/InvestmentForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378816159868" ignored="false" />
+    <file path="/InvestmentForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378815898488" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/ItemTypeChooser.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378815573070" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/CompleteInvestmentItemDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378815781398" ignored="false" />
+    <file path="/CompleteInvestmentItemDataProvider.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378815771221" ignored="false" />
+    <file path="/InvestmentItemDataTableActionPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378823506171" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/InvestmentItemDataTableActionPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378817917578" ignored="false" />
+    <file path="/InvestmentItemDataTableActionPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378817917578" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/services/AccountTransactionService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378821541042" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/dao/simpledb/AccountTransactionDaoImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378821587692" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/InvestmentItemDataTableDetailsPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378822449431" ignored="false" />
+    <file path="/InvestmentItemDataTableDetailsPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378820981770" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/secure/sysadmin/investmentitemspage/InvestmentItemDataTableDetailsPanel.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378820982474" ignored="false" />
+    <file path="/InvestmentItemDataTableDetailsPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378822448753" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/unsecure/IntroductionPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378823169548" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/web/app/unsecure/FaqPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378823169548" ignored="false" />
+    <file path="/JasperService.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378847233658" ignored="false" />
+    <file path="$PROJECT_DIR$/../pengeplan/mainwar/src/main/java/com/trifork/pengeplan/domain/store/CompleteExchangeRate.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1378886140651" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1261,6 +1281,7 @@
     <sortChildren value="false" />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="jar://$M2_REPO$/org/hibernate/hibernate-core/4.1.10.Final/hibernate-core-4.1.10.Final-sources.jar!/org/hibernate/internal/SessionImpl.java" line="1077" class="org.hibernate.internal.SessionImpl" package="org.hibernate.internal">
         <option name="ENABLED" value="false" />
@@ -1532,8 +1553,22 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="jar://$M2_REPO$/org/wicketstuff/jasper-reports-examples/1.4.9.1/jasper-reports-examples-1.4.9.1-sources.jar!/wicket/contrib/jasperreports/examples/ReportLinksPage.java" line="19" class="ReportLinksPage.java" package="">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -1579,10 +1614,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="LoggedInPage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="109" column="0" selection-start="3854" selection-end="3854" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="FinanceAccountsPage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="8" selection-start="1984" selection-end="1984" vertical-scroll-proportion="0.0">
+            <state line="50" column="49" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1590,86 +1634,57 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FinanceAccountsPanel.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.html">
+      <file leaf-file-name="BaseReportPage.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="24.833334">
+            <state line="69" column="0" selection-start="2839" selection-end="2839" vertical-scroll-proportion="1.1564102">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FinanceAccountsPanel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java">
+      <file leaf-file-name="RequestCycle.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-core/6.10.0/wicket-core-6.10.0-sources.jar!/org/apache/wicket/request/cycle/RequestCycle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="34" selection-start="684" selection-end="685" vertical-scroll-proportion="0.0">
+            <state line="864" column="0" selection-start="22763" selection-end="22763" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookedFinancePostingListView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/BookedFinancePostingListView.java">
+      <file leaf-file-name="FiscalYearService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/FiscalYearService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="11" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
+            <state line="20" column="13" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FinanceAccountsPage.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FinanceAccountsPage.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="0" selection-start="2577" selection-end="2577" vertical-scroll-proportion="0.9593496">
+            <state line="10" column="0" selection-start="332" selection-end="332" vertical-scroll-proportion="-6.25">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DraftFinancePosting.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DraftFinancePosting.java">
+      <file leaf-file-name="JasperPdfReportsResource.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPdfReportsResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="221" column="0" selection-start="6604" selection-end="6604" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FiscalYear.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="5" selection-start="4311" selection-end="4311" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DailyLedger.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DailyLedger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="4" selection-start="2627" selection-end="2627" vertical-scroll-proportion="0.0">
+            <state line="60" column="91" selection-start="2330" selection-end="2330" vertical-scroll-proportion="-8.363636">
               <folding>
-                <element signature="imports" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookedFinancePosting.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/BookedFinancePosting.java">
+      <file leaf-file-name="ServletContext.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$M2_REPO$/org/eclipse/jetty/orbit/javax.servlet/3.0.0.v201112011016/javax.servlet-3.0.0.v201112011016-sources.jar!/javax/servlet/ServletContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="5" selection-start="8321" selection-end="8321" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="method#getFinanceAccount#0;class#BookedFinancePosting#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VatType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/VatType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="139" column="5" selection-start="4104" selection-end="4104" vertical-scroll-proportion="0.0">
+            <state line="351" column="39" selection-start="14429" selection-end="14429" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1694,22 +1709,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/DailyLedgerPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/FiscalYearPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/item/EazyRowItem.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/VatType.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/BookedFinancePosting.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DailyLedger.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DraftFinancePosting.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/BookedFinancePostingListView.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/link/PdfGenerateLink.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperReportsResource.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPDFReportsResource.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
+        <option value="$PROJECT_DIR$/mainwar/pom.xml" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/JasperService.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPdfReportsResource.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java" />
       </list>
     </option>
   </component>
@@ -1748,6 +1763,20 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="mainwar" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="mainwar" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -1805,10 +1834,9 @@
     <option name="skipTests" value="true" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="61" />
-    <option name="y" value="22" />
-    <option name="width" value="1859" />
-    <option name="height" value="1178" />
+    <option name="y" value="-1200" />
+    <option name="width" value="1920" />
+    <option name="height" value="1200" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -1884,6 +1912,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1931,6 +1961,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2037,6 +2071,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2180,7 +2248,91 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="resource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="panels" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="link" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2339,18 +2491,8 @@
               <option name="myItemId" value="eazyregnskab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="eazyregnskab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eazyregnskab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jetty" />
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2364,25 +2506,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jetty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eazyregnskab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eazyregnskab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jetty" />
+              <option name="myItemId" value="mainwar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2394,7 +2518,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2408,7 +2536,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jetty" />
+              <option name="myItemId" value="mainwar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2417,41 +2545,123 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jasperreports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resource Bundle 'financeAccounts'" />
+              <option name="myItemType" value="com.intellij.lang.properties.projectView.ResourceBundleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jasperreports" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="230" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="246" />
     <property name="options.splitter.main.proportions" value="0.3675" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="241" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/PDFjet-Open-Source/PDFjet.jar!/" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="250" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1040" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1044" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="246" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="243" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/front" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="preferences.applicationServers" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="project.structure.side.proportion" value="0.5156431" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -2478,18 +2688,18 @@
       <recent name="dk.eazyit.eazyregnskab.web.components.label" />
       <recent name="dk.eazyit.eazyregnskab.dao.interfaces" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/detailsTable/header/export" />
-      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/header" />
-      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/DetailsTable/below" />
-      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/DetailsTable/above" />
-      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/DetailsTable" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dk.eazyit.eazyregnskab.web.components.validators" />
       <recent name="dk.eazyit.eazyregnskab.services" />
       <recent name="dk.eazyit.eazyregnskab" />
       <recent name="dk.eazyit.eazyregnskab.domain" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mainwar/src/main" />
+      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/detailsTable/header/export" />
+      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/toolbar/export/header" />
+      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/DetailsTable/below" />
+      <recent name="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/DetailsTable/above" />
     </key>
     <key name="wicketforge.CreatePanelDialog.RECENT_EXTENDCLASS_KEY">
       <recent name="org.apache.wicket.markup.html.panel.Panel" />
@@ -4284,7 +4494,11 @@
       <created>1378584660503</created>
       <updated>1378584660503</updated>
     </task>
-    <option name="localTasksCounter" value="242" />
+    <task id="LOCAL-00242" summary="#54 Move export functions to use JasperReport instead">
+      <created>1378585385815</created>
+      <updated>1378585385815</updated>
+    </task>
+    <option name="localTasksCounter" value="243" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -4308,26 +4522,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="22" width="1859" height="1178" extended-state="6" />
+    <frame x="0" y="-1200" width="1920" height="1200" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24791859" sideWeight="0.49806094" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24660018" sideWeight="0.49806094" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27022564" sideWeight="0.37372804" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32910696" sideWeight="0.73038673" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30619797" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32856357" sideWeight="0.621422" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28862163" sideWeight="0.51849806" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28286493" sideWeight="0.51849806" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34597594" sideWeight="0.48150194" order="15" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22007722" sideWeight="0.5457064" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265495" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2987974" sideWeight="0.5634349" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28531855" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29737082" sideWeight="0.5634349" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3265495" sideWeight="0.49861497" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19722992" sideWeight="0.59851986" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12134583" sideWeight="0.7520814" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.117395945" sideWeight="0.7533998" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32839963" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.268064" sideWeight="0.7520814" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19690502" sideWeight="0.7533998" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39037928" sideWeight="0.91790634" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DSM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="169" y="122" width="1651" height="978" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -4335,6 +4548,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Atlassian " active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3056325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hibernate Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293247" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -4374,7 +4588,7 @@
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
     <option name="LIMIT_HISTORY" value="true" />
@@ -4487,149 +4701,118 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/bookkeeping/BookkeepingPage.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/io/ByteArrayOutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="84" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.0">
+        <state line="60" column="11" selection-start="1152" selection-end="1152" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/columns/ColumnsForBalancePage.java">
+    <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/JasperFillManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="34" selection-start="426" selection-end="447" vertical-scroll-proportion="0.0">
+        <state line="842" column="30" selection-start="25802" selection-end="25802" vertical-scroll-proportion="1.3356546">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/BalancePage.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/maven-4.0.0.xsd">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="2046" selection-end="2046" vertical-scroll-proportion="0.0">
+        <state line="1371" column="49" selection-start="66837" selection-end="66837" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="58" selection-start="3003" selection-end="3003" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getId#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setId#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getName#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setName#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getAccountNumber#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setAccountNumber#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getVatType#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setVatType#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getFinanceAccountType#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setFinanceAccountType#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getStandardReverseFinanceAccount#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setStandardReverseFinanceAccount#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getSumFrom#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setSumFrom#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getSumTo#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setSumTo#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getLegalEntity#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setLegalEntity#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setSum#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#getSumCompare#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setSumCompare#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#isLocked#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setLocked#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#isInUse#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setInUse#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setSumFromTo#0;class#FinanceAccount#0" expanded="true" />
-            <element signature="method#setBookedFinancePostingList#0;class#FinanceAccount#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/tables/EazyDataTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="994" selection-end="994" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/tables/item/EazyRowItem.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="44" selection-start="680" selection-end="680" vertical-scroll-proportion="0.0">
+        <state line="327" column="24" selection-start="11014" selection-end="11014" vertical-scroll-proportion="-11.692307">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/VatType.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/FiscalYearService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="5" selection-start="4104" selection-end="4104" vertical-scroll-proportion="0.0">
+        <state line="20" column="13" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/BookedFinancePosting.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="241" column="5" selection-start="8321" selection-end="8321" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#getFinanceAccount#0;class#BookedFinancePosting#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DailyLedger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="4" selection-start="2627" selection-end="2627" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FiscalYear.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="5" selection-start="4311" selection-end="4311" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/DraftFinancePosting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="0" selection-start="6604" selection-end="6604" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/BookedFinancePostingListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="11" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="34" selection-start="684" selection-end="685" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="8" selection-start="1984" selection-end="1984" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/panels/FinanceAccountsPanel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="24.833334">
+        <state line="403" column="45" selection-start="13607" selection-end="13607" vertical-scroll-proportion="0.87234044">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="2577" selection-end="2577" vertical-scroll-proportion="0.9593496">
+        <state line="10" column="0" selection-start="332" selection-end="332" vertical-scroll-proportion="-6.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-core/6.10.0/wicket-core-6.10.0-sources.jar!/org/apache/wicket/request/cycle/RequestCycle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="864" column="0" selection-start="22763" selection-end="22763" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$M2_REPO$/org/eclipse/jetty/orbit/javax.servlet/3.0.0.v201112011016/javax.servlet-3.0.0.v201112011016.jar!/javax/servlet/ServletContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="24" selection-start="794" selection-end="794" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$M2_REPO$/org/eclipse/jetty/orbit/javax.servlet/3.0.0.v201112011016/javax.servlet-3.0.0.v201112011016-sources.jar!/javax/servlet/ServletContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="351" column="39" selection-start="14429" selection-end="14429" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-core/6.10.0/wicket-core-6.10.0-sources.jar!/org/apache/wicket/RequestListenerInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="261" column="0" selection-start="7474" selection-end="7474" vertical-scroll-proportion="0.33286908">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/LoggedInPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="0" selection-start="3854" selection-end="3854" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/reports/FinanceAccountsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="49" selection-start="2225" selection-end="2225" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPdfReportsResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="91" selection-start="2330" selection-end="2330" vertical-scroll-proportion="-8.363636">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/page/BaseReportPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="0" selection-start="2839" selection-end="2839" vertical-scroll-proportion="1.1564102">
           <folding />
         </state>
       </provider>
