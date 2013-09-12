@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.panels;
+package dk.eazyit.eazyregnskab.web.components.panels.modal;
 
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.web.components.link.AjaxToolTipLink;

@@ -131,13 +131,18 @@ public abstract class BaseReportForm extends Form<ReportObject> {
             }
         });
         addToolTipToComponent(minus, "minus.one.year");
-
-        add(addToolTipToComponent(getJasperPdfResourceLink("exportPdf", getJasperReportName(), getString(getJasperReportName() + ".pdf")), "button.pdf"));
-        add(addToolTipToComponent(getJasperXlsResourceLink("exportXls", getJasperReportName(), getString(getJasperReportName() + ".xls")), "button.xls"));
-
     }
 
-    protected abstract String getJasperReportName();
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+        add(getJasperPdfResourceLink("exportPdf", getJasperReportName(), getString(getJasperReportName() + ".pdf")));
+        add(getJasperXlsResourceLink("exportXls", getJasperReportName(), getString(getJasperReportName() + ".xls")));
+    }
+
+    protected String getJasperReportName() {
+        return getPage().getPageClass().getSimpleName() + ".jasper";
+    }
 
     public ResourceLink getJasperPdfResourceLink(String id, String reportName, String filename) {
 

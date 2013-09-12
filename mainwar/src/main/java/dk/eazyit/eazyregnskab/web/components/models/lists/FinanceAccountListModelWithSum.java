@@ -58,4 +58,8 @@ public class FinanceAccountListModelWithSum extends AbstractEntityListModel<Fina
         }
     }
 
+    @Override
+    public void detach() {
+        super.detach();
+    }
 }

@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.panels;
+package dk.eazyit.eazyregnskab.web.components.panels.report;
 
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.web.components.lists.FinanceAccountListView;
@@ -27,11 +27,11 @@ public class BalancePanel extends ReportPanel {
 
         setOutputMarkupPlaceholderTag(true);
 
-        add(new FinanceAccountListView("financeAccounts", new FinanceAccountListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
-        add(new Label("dates", new PropertyModel<ReportObject>(getDefaultModel(), "BalancePage.dates")));
-        add(new Label("datesCompare", new PropertyModel<ReportObject>(getDefaultModel(), "BalancePage.datesCompare")));
+        add(new FinanceAccountListView("BalancePage.financeAccounts", new FinanceAccountListModelWithSum(new CompoundPropertyModel(getDefaultModel()))));
+        add(new Label("BalancePage.dates", new PropertyModel<ReportObject>(getModelObject(), "dates")));
+        add(new Label("BalancePage.datesCompare", new PropertyModel<ReportObject>(getModelObject(), "datesCompare")));
 
-        add(new Label("compareType", new StringResourceModel("ReportCompareType.${reportCompareType}", this, getDefaultModel())));
+        add(new Label("BalancePage.compareType", new StringResourceModel("ReportCompareType.${reportCompareType}", this, getDefaultModel())));
 
         super.addToPage();
 

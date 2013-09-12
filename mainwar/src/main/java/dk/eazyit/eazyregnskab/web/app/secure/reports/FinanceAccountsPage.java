@@ -5,7 +5,7 @@ import dk.eazyit.eazyregnskab.web.components.form.FinanceAccountsReportForm;
 import dk.eazyit.eazyregnskab.web.components.modal.PostingsModal;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.BaseReportPage;
-import dk.eazyit.eazyregnskab.web.components.panels.FinanceAccountsPanel;
+import dk.eazyit.eazyregnskab.web.components.panels.report.FinanceAccountsPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

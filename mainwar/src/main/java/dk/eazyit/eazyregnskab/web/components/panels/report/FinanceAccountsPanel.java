@@ -1,4 +1,4 @@
-package dk.eazyit.eazyregnskab.web.components.panels;
+package dk.eazyit.eazyregnskab.web.components.panels.report;
 
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.web.components.lists.BookedFinancePostingListView;

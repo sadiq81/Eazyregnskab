@@ -52,9 +52,8 @@ public abstract class JasperXlsReportsResource extends ByteArrayResource {
             JasperPrint jasperPrint = JasperFillManager.fillReport(inputStream2, getParameters(), dateSource.getConnection());
             JRXlsExporter exporterXLS = new JRXlsExporter();
 
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_IGNORE_CELL_BORDER, false);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
+//            exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
+//            exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
             exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_COLUMNS, Boolean.TRUE);
             exporterXLS.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
             exporterXLS.setParameter(JRExporterParameter.OUTPUT_STREAM, os);

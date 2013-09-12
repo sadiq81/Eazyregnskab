@@ -25,11 +25,6 @@ public class FinanceAccountsReportForm extends BaseReportForm {
     }
 
     @Override
-    protected String getJasperReportName() {
-        return "financeAccounts.jasper";
-    }
-
-    @Override
     protected void submit(AjaxRequestTarget target) {
 
     }

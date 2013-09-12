@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/">
+<head>
+    <title></title>
+</head>
+<body>
+
+<wicket:extend>
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                <wicket:message key="BalancePage.account.number"></wicket:message>
+            </th>
+            <th>
+                <wicket:message key="BalancePage.account.name"></wicket:message>
+            </th>
+            <th style="text-align: right">
+                <wicket:message key="BalancePage.account.sum"></wicket:message>
+                <br>
+                <span wicket:id="BalancePage.dates"></span>
+            </th>
+            <th style="text-align: right">
+                <span wicket:id="BalancePage.compareType"></span>
+                <br>
+                <span wicket:id="BalancePage.datesCompare"></span>
+            </th>
+        </tr>
+        <span>
+            <tr wicket:id="BalancePage.financeAccounts">
+                <td>
+                    <span wicket:id="BalancePage.accountNumber"></span>
+                </td>
+                <td>
+                    <span wicket:id="BalancePage.accountName"></span>
+                </td>
+                <td style="text-align: right">
+                    <span wicket:id="BalancePage.sum"></span>
+                </td>
+                <td style="text-align: right">
+                    <span wicket:id="BalancePage.sumCompare"></span>
+                </td>
+            </tr>
+        </span>
+    </table>
+</wicket:extend>
+</body>
+</html>

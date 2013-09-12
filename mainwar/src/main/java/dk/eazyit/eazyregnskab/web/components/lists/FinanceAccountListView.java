@@ -26,8 +26,8 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
     @Override
     protected void populateItem(ListItem<FinanceAccount> itemOuter) {
         FinanceAccount fa = itemOuter.getModelObject();
-        itemOuter.add(new Label("accountNumber", fa.getAccountNumber()));
-        itemOuter.add(new Label("accountName", fa.getName()));
+        itemOuter.add(new Label("BalancePage.accountNumber", fa.getAccountNumber()));
+        itemOuter.add(new Label("BalancePage.accountName", fa.getName()));
 
         switch (fa.getFinanceAccountType()) {
             case PROFIT:
@@ -36,29 +36,29 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
             case YEAR_END:
             case CURRENT_RESULT:
             case LIABILITY: {
-                itemOuter.add(new Label("sum", fa.getSum()));
-                itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
+                itemOuter.add(new Label("BalancePage.sum", fa.getSum()));
+                itemOuter.add(new Label("BalancePage.sumCompare", fa.getSumCompare()));
                 break;
             }
             case CATEGORY: {
                 itemOuter.add(new AttributeAppender("class", "category"));
-                itemOuter.add(new Label("sum", ""));
-                itemOuter.add(new Label("sumCompare", ""));
+                itemOuter.add(new Label("BalancePage.sum", ""));
+                itemOuter.add(new Label("BalancePage.sumCompare", ""));
                 break;
             }
 
             case HEADLINE: {
                 itemOuter.add(new AttributeAppender("class", "headline"));
-                itemOuter.add(new Label("sum", ""));
-                itemOuter.add(new Label("sumCompare", ""));
+                itemOuter.add(new Label("BalancePage.sum", ""));
+                itemOuter.add(new Label("BalancePage.sumCompare", ""));
                 break;
             }
             case BALANCE_CHECK:
             case SUM: {
                 //TODO calculate sum
                 itemOuter.add(new AttributeAppender("class", "sumfrom"));
-                itemOuter.add(new Label("sum", fa.getSum()));
-                itemOuter.add(new Label("sumCompare", fa.getSumCompare()));
+                itemOuter.add(new Label("BalancePage.sum", fa.getSum()));
+                itemOuter.add(new Label("BalancePage.sumCompare", fa.getSumCompare()));
                 break;
             }
             default: {

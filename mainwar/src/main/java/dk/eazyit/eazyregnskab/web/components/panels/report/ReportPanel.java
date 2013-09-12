@@ -1,6 +1,7 @@
-package dk.eazyit.eazyregnskab.web.components.panels;
+package dk.eazyit.eazyregnskab.web.components.panels.report;
 
 import dk.eazyit.eazyregnskab.util.ReportObject;
+import dk.eazyit.eazyregnskab.web.components.panels.SessionAwarePanel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
