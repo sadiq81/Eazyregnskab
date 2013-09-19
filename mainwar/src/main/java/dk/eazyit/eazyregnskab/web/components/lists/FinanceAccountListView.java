@@ -54,6 +54,7 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
                 break;
             }
             case BALANCE_CHECK:
+            case CATEGORY_SUM:
             case SUM: {
                 //TODO calculate sum
                 itemOuter.add(new AttributeAppender("class", "sumfrom"));

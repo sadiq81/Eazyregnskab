@@ -24,7 +24,7 @@ public class ReportService {
 
     private static Double ZERO = new Double(0);
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<FinanceAccount> getFinanceAccountsWithSum(FiscalYear fiscalYear) {
 
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntity(fiscalYear.getLegalEntity());
@@ -46,7 +46,14 @@ public class ReportService {
         return financeAccountsList;
     }
 
-    @Transactional
+    /**
+     * Used for balance report
+     *
+     * @param legalEntity current legal entity
+     * @param model       report model object
+     * @return financeaccounts with sums
+     */
+    @Transactional(readOnly = true)
     public List<FinanceAccount> getFinanceAccountsWithSum(LegalEntity legalEntity, CompoundPropertyModel<ReportObject> model) {
 
         Date fromDate = model.getObject().getDateFrom();
@@ -58,7 +65,6 @@ public class ReportService {
         FinanceAccount fromAccount = model.getObject().getAccountFrom();
         FinanceAccount toAccount = model.getObject().getAccountTo();
 
-        FinanceAccount current_result;
         Double year_result = new Double(0);
         Double year_result_compare = new Double(0);
 
@@ -101,14 +107,6 @@ public class ReportService {
                 year_result_compare += bookedFinancePostingCompare.getAmount();
         }
 
-        if (model.getObject().isHideAccountsWithOutSum()) {
-            List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
-            for (FinanceAccount financeAccount : financeAccountsList) {
-                if ((!financeAccount.getSum().equals(new Double(0)) || !financeAccount.getSumCompare().equals(new Double(0))) || financeAccount.getFinanceAccountType().includeInOnlyWithSum())
-                    onlyWithSum.add(financeAccount);
-            }
-            financeAccountsList = onlyWithSum;
-        }
 
         //Set sum for current result
         for (FinanceAccount financeAccount : financeAccountsList) {
@@ -120,7 +118,7 @@ public class ReportService {
 
         //Calculate sum of sum accounts
         for (FinanceAccount financeAccount : financeAccountsList) {
-            if (financeAccount.getFinanceAccountType() == FinanceAccountType.SUM) {
+            if (financeAccount.getFinanceAccountType() == FinanceAccountType.SUM || financeAccount.getFinanceAccountType() == FinanceAccountType.CATEGORY_SUM) {
 
                 int sumFrom = financeAccount.getSumFrom().getAccountNumber();
                 int sumTo = financeAccount.getSumTo().getAccountNumber();
@@ -142,6 +140,16 @@ public class ReportService {
             }
         }
 
+        //TODO create better way to hide accounts without sum, taking account for headers, categories and sum accounts
+        if (model.getObject().isHideAccountsWithOutSum()) {
+            List<FinanceAccount> onlyWithSum = new ArrayList<FinanceAccount>();
+            for (FinanceAccount financeAccount : financeAccountsList) {
+                if ((!financeAccount.getSum().equals(new Double(0)) || !financeAccount.getSumCompare().equals(new Double(0))) || financeAccount.getFinanceAccountType().includeInOnlyWithSum())
+                    onlyWithSum.add(financeAccount);
+            }
+            financeAccountsList = onlyWithSum;
+        }
+
         if (financeAccountsList.size() == 0) {
             model.getObject().setEmptyReport(true);
         } else {
@@ -151,6 +159,7 @@ public class ReportService {
         return financeAccountsList;
     }
 
+    @Transactional(readOnly = true)
     public List<BookedFinancePosting> getBookedFinancePostingsWithSum(LegalEntity id, CompoundPropertyModel<ReportObject> cpm) {
 
         Date fromDate = cpm.getObject().getDateFrom();
@@ -212,7 +221,7 @@ public class ReportService {
         return bookedFinancePostings;
     }
 
-
+    @Transactional(readOnly = true)
     public List<FinanceAccount> getFinanceAccountsWithBookedFinancePostings(LegalEntity id, CompoundPropertyModel<ReportObject> cpm) {
 
         Date fromDate = cpm.getObject().getDateFrom();
