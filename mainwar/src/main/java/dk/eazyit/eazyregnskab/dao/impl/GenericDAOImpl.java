@@ -439,7 +439,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
 
 
     @Override
-    public void create(T entity) {
+    public T create(T entity) {
         if (entity.getCreated() == null) {
             entity.setCreated(new Date());
             logger.info("Creating " + entity.toString() + " in database");
@@ -449,6 +449,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
         entity.setLastChanged(new Date());
         logger.info("Creating " + entity.toString() + " in database");
         getEntityManager().persist(entity);
+        return entity;
     }
 
     @Override

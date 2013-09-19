@@ -112,14 +112,19 @@ public class FinanceAccount extends BaseEntity implements IEazyTableRow<FinanceA
     }
 
     public FinanceAccount(String name, Integer accountNumber) {
-        this.name = name;
-        this.accountNumber = accountNumber;
+        this(name, accountNumber, null, null);
     }
 
     public FinanceAccount(String name, Integer accountNumber, FinanceAccountType financeAccountType, LegalEntity legalEntity) {
+        this(name, accountNumber, financeAccountType, null, null, legalEntity);
+    }
+
+    public FinanceAccount(String name, Integer accountNumber, FinanceAccountType financeAccountType, VatType vatType, FinanceAccount sumFrom, LegalEntity legalEntity) {
         this.name = name;
         this.accountNumber = accountNumber;
         this.financeAccountType = financeAccountType;
+        this.vatType = vatType;
+        this.sumFrom = sumFrom;
         this.legalEntity = legalEntity;
     }
 

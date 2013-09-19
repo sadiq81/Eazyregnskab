@@ -164,7 +164,7 @@ public interface GenericDAO<T extends BaseEntity, ID extends Serializable> {
     /**
      * @param entity the entity to create
      */
-    void create(final T entity);
+    T create(final T entity);
 
     /**
      * delete an entity from the database

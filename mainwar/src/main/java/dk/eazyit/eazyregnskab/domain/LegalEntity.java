@@ -5,7 +5,6 @@ import com.google.common.base.Objects;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -52,6 +51,9 @@ public class LegalEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
     private List<DailyLedger> dailyLedgers;
+
+    @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
+    private List<VatType> vatTypes;
 
     @OneToMany(mappedBy = "legalEntity", fetch = FetchType.LAZY)
     private List<FiscalYear> fiscalYears;
@@ -141,6 +143,14 @@ public class LegalEntity extends BaseEntity {
 
     public void setDailyLedgers(List<DailyLedger> dailyLedgers) {
         this.dailyLedgers = dailyLedgers;
+    }
+
+    public List<VatType> getVatTypes() {
+        return vatTypes;
+    }
+
+    public void setVatTypes(List<VatType> vatTypes) {
+        this.vatTypes = vatTypes;
     }
 
     public List<FiscalYear> getFiscalYears() {
