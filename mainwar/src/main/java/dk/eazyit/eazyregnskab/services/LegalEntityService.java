@@ -46,14 +46,12 @@ public class LegalEntityService {
 
         Map<Integer, FinanceAccount> accountMap = new HashMap<>();
 
-        accountMap.put(25000, financeAccountDAO.create(createFinanceAccount("vat", 25000, FinanceAccountType.HEADLINE, null, null, legalEntity)));
         accountMap.put(25100, financeAccountDAO.create(createFinanceAccount("vat.dk.incoming", 25100, FinanceAccountType.LIABILITY, null, null, legalEntity)));
         accountMap.put(25200, financeAccountDAO.create(createFinanceAccount("vat.dk.outgoing", 25200, FinanceAccountType.LIABILITY, null, null, legalEntity)));
         accountMap.put(25300, financeAccountDAO.create(createFinanceAccount("vat.dk.representation", 25300, FinanceAccountType.LIABILITY, null, null, legalEntity)));
         accountMap.put(25400, financeAccountDAO.create(createFinanceAccount("vat.eur.incoming", 25400, FinanceAccountType.LIABILITY, null, null, legalEntity)));
         accountMap.put(25500, financeAccountDAO.create(createFinanceAccount("vat.eur.outgoing", 25500, FinanceAccountType.LIABILITY, null, null, legalEntity)));
         accountMap.put(25600, financeAccountDAO.create(createFinanceAccount("vat.reconciliation", 25600, FinanceAccountType.LIABILITY, null, null, legalEntity)));
-        accountMap.put(25999, financeAccountDAO.create(createFinanceAccount("vat.total", 25999, FinanceAccountType.SUM, null, accountMap.get(25000), legalEntity)));
 
         Map<String, VatType> vatTypeMap = new HashMap<>();
 
@@ -218,12 +216,6 @@ public class LegalEntityService {
         accountMap.put(24999, financeAccountDAO.create(createFinanceAccount("short.term.debt.total", 24999, FinanceAccountType.SUM, null, accountMap.get(24000), legalEntity)));
 
         accountMap.put(25000, financeAccountDAO.create(createFinanceAccount("vat", 25000, FinanceAccountType.HEADLINE, null, null, legalEntity)));
-        accountMap.put(25100, financeAccountDAO.create(createFinanceAccount("vat.dk.incoming", 25100, FinanceAccountType.LIABILITY, null, null, legalEntity)));
-        accountMap.put(25200, financeAccountDAO.create(createFinanceAccount("vat.dk.outgoing", 25200, FinanceAccountType.LIABILITY, null, null, legalEntity)));
-        accountMap.put(25300, financeAccountDAO.create(createFinanceAccount("vat.dk.representation", 25300, FinanceAccountType.LIABILITY, null, null, legalEntity)));
-        accountMap.put(25400, financeAccountDAO.create(createFinanceAccount("vat.eur.incoming", 25400, FinanceAccountType.LIABILITY, null, null, legalEntity)));
-        accountMap.put(25500, financeAccountDAO.create(createFinanceAccount("vat.eur.outgoing", 25500, FinanceAccountType.LIABILITY, null, null, legalEntity)));
-        accountMap.put(25600, financeAccountDAO.create(createFinanceAccount("vat.reconciliation", 25600, FinanceAccountType.LIABILITY, null, null, legalEntity)));
         accountMap.put(25999, financeAccountDAO.create(createFinanceAccount("vat.total", 25999, FinanceAccountType.SUM, null, accountMap.get(25000), legalEntity)));
 
         accountMap.put(26000, financeAccountDAO.create(createFinanceAccount("other.debt", 26000, FinanceAccountType.HEADLINE, null, null, legalEntity)));

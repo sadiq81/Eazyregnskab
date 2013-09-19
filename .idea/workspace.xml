@@ -7,22 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntity.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntityDailyLedger.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntityDailyLedger_da.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntityFinanceAccounts.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntityFinanceAccounts_da.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntityVatTypes.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntityVatTypes_da.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/newEntity_da.properties" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/interfaces/GenericDAO.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/interfaces/GenericDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/impl/GenericDAOImpl.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/impl/GenericDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/LegalEntity.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/LegalEntity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eazyregnskab.iws" />
@@ -39,7 +24,7 @@
     <file path="/AppBasePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254695322" ignored="false" />
     <file path="/HomePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254730144" ignored="false" />
     <file path="/HomePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377256542368" ignored="false" />
-    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379590580608" ignored="false" />
+    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379601609902" ignored="false" />
     <file path="/MenuSetup.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375809275767" ignored="false" />
     <file path="/MenuTab.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310019187" ignored="false" />
     <file path="/SubMenuPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310042082" ignored="false" />
@@ -1771,67 +1756,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginService.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="43" selection-start="1699" selection-end="1699" vertical-scroll-proportion="0.17557251">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LegalEntityService.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LegalEntityService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="243" column="127" selection-start="28178" selection-end="28178" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#33054#33070#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GenericDAO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/interfaces/GenericDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="166" column="6" selection-start="0" selection-end="4945" vertical-scroll-proportion="0.0">
+            <state line="217" column="77" selection-start="24706" selection-end="24706" vertical-scroll-proportion="2.8137128">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericDAOImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/impl/GenericDAOImpl.java">
+      <file leaf-file-name="LoginService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="451" column="22" selection-start="15848" selection-end="15848" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FinanceAccountType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="35" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WicketApplication.utf8.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="8" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WicketApplication_da.utf8.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="866" selection-end="866" vertical-scroll-proportion="0.0">
+            <state line="48" column="43" selection-start="1699" selection-end="1699" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1870,8 +1807,8 @@
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java" />
       </list>
     </option>
   </component>
@@ -2342,6 +2279,142 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wicket" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testsetup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mainwar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="eazyregnskab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -5075,7 +5148,11 @@
       <created>1379590584623</created>
       <updated>1379590584623</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="#67 Move creation of start finance accounts into static array">
+      <created>1379601643365</created>
+      <updated>1379601643365</updated>
+    </task>
+    <option name="localTasksCounter" value="251" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -5177,7 +5254,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="#57 Export balance" />
+    <option name="LAST_COMMIT_MESSAGE" value="#67 Move creation of start finance accounts into static array" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -5191,7 +5268,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="#28 Scroll slowly to top when selecting items" />
     <MESSAGE value="#2 Create generic &quot;Are you sure&quot; modal dialog" />
     <MESSAGE value="#29 Add modal confirmation dialog to clear daily ledger" />
     <MESSAGE value="#6 Create tags for SEO optimazation" />
@@ -5216,6 +5292,7 @@
     <MESSAGE value="#56 Export financepostings to PDF" />
     <MESSAGE value="#14 Export financepostings to excel" />
     <MESSAGE value="#57 Export balance" />
+    <MESSAGE value="#67 Move creation of start finance accounts into static array" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -5335,7 +5412,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="35" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
+        <state line="18" column="35" selection-start="504" selection-end="504" vertical-scroll-proportion="0.045801528">
           <folding />
         </state>
       </provider>
@@ -5349,14 +5426,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/interfaces/GenericDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="6" selection-start="0" selection-end="4945" vertical-scroll-proportion="0.0">
+        <state line="166" column="6" selection-start="0" selection-end="4945" vertical-scroll-proportion="0.63740456">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/dao/impl/GenericDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="451" column="22" selection-start="15848" selection-end="15848" vertical-scroll-proportion="0.0">
+        <state line="451" column="22" selection-start="15848" selection-end="15848" vertical-scroll-proportion="0.44656488">
           <folding />
         </state>
       </provider>
@@ -5372,31 +5449,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="866" selection-end="866" vertical-scroll-proportion="0.0">
+        <state line="32" column="0" selection-start="866" selection-end="866" vertical-scroll-proportion="-0.8778626">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="8" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
+        <state line="15" column="8" selection-start="463" selection-end="463" vertical-scroll-proportion="0.28625953">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/test/java/dk/eazyit/eazyregnskab/services/TestBookingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="383" selection-end="383" vertical-scroll-proportion="0.13358779">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="43" selection-start="1699" selection-end="1699" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LegalEntityService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="243" column="127" selection-start="28178" selection-end="28178" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#33054#33070#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/LoginService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="43" selection-start="1699" selection-end="1699" vertical-scroll-proportion="0.17557251">
+        <state line="217" column="77" selection-start="24706" selection-end="24706" vertical-scroll-proportion="2.8137128">
           <folding />
         </state>
       </provider>
