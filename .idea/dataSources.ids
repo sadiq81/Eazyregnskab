@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="PersistenceUnit" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="f30ad36e-3bf0-43a4-bba6-03ac8f07b1d1">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://ppdb.cxvfolncz19i.eu-west-1.rds.amazonaws.com/ppdb&amp;slowQueryThresholdMillis=100</jdbc-url>
+    <user-name>ppdbuser</user-name>
+    <user-password>dfdadfd2dfc0df98df9ddf99df9cdf93</user-password>
+    <libraries>
+      <library>
+        <url>jar://$M2_REPO$/mysql/mysql-connector-java/5.1.19/mysql-connector-java-5.1.19.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="dataSource" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="18681453-408f-4323-b783-9ac74e4e05af">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://eazyregnskab.c4ov8s0nyu42.eu-west-1.rds.amazonaws.com:3306/eazyregnskab</jdbc-url>
+    <user-name>awsuser</user-name>
+    <user-password>dfe5dfd9dfdedfcfdfc1dfcbdfcddfcfdf92df99</user-password>
+    <libraries>
+      <library>
+        <url>jar://$M2_REPO$/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Data Source" product="MySQL" version="5.5.27" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )" uuid="f77b97ac-a747-4f24-9b28-260d2b784c45">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <synchronize>true</synchronize>
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://eazyregnskab.c4ov8s0nyu42.eu-west-1.rds.amazonaws.com:3306/eazyregnskab</jdbc-url>
+    <user-name>awsuser</user-name>
+    <user-password>dfe5dfd9dfdedfcfdfc1dfcbdfcddfcfdf92df99</user-password>
+    <schema-pattern>eazyregnskab.*</schema-pattern>
+    <default-schemas>eazyregnskab.*</default-schemas>
+    <default-dialect>MySQL</default-dialect>
+    <libraries>
+      <library>
+        <url>jar://$M2_REPO$/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar!/</url>
+      </library>
+    </libraries>
+    <schema name="" catalog="eazyregnskab"/>
+    <table name="bookedfinanceposting" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="amount" sqlType="DOUBLE" length="22" precision="0" nullable="false" jdbcType="8"/>
+      <column name="bookedFinancePostingType" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="bookingNumber" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="isReverse" sqlType="BIT" length="0" precision="0" nullable="true" jdbcType="-7"/>
+      <column name="text" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="user_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="financeaccount_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="reversePosting_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="reverseVatPosting_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="vatPosting_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="vatType_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKA0FB157049B2A79C" columns="vatPosting_id" ref-table="bookedfinanceposting" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKA0FB15705811320F" columns="vatType_id" ref-table="vattype" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKA0FB15706AD28AB0" columns="user_id" ref-table="users" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKA0FB1570C663A005" columns="financeaccount_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKA0FB1570D292A015" columns="reversePosting_id" ref-table="bookedfinanceposting" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKA0FB1570EF4593FA" columns="reverseVatPosting_id" ref-table="bookedfinanceposting" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKA0FB157049B2A79C" table="bookedfinanceposting" schema="" catalog="eazyregnskab" columns="vatPosting_id"/>
+      <exported-key name="FKA0FB1570D292A015" table="bookedfinanceposting" schema="" catalog="eazyregnskab" columns="reversePosting_id"/>
+      <exported-key name="FKA0FB1570EF4593FA" table="bookedfinanceposting" schema="" catalog="eazyregnskab" columns="reverseVatPosting_id"/>
+    </table>
+    <table name="dailyledger" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="name" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="nextBookingNumber" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="financeAccount_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="legalEntity_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK1B15D4C21E6B28EF" columns="legalEntity_id" ref-table="legalentity" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK1B15D4C2C663A005" columns="financeAccount_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKC5104E0928BA372F" table="draftfinanceposting" schema="" catalog="eazyregnskab" columns="dailyledger_id"/>
+    </table>
+    <table name="draftfinanceposting" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="amount" sqlType="DOUBLE" length="22" precision="0" nullable="false" jdbcType="8"/>
+      <column name="bookingNumber" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="text" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="dailyledger_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="financeaccount_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="reversefinanceaccount_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="reverseVatType_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="vatType_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKC5104E0928BA372F" columns="dailyledger_id" ref-table="dailyledger" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKC5104E093346D271" columns="reverseVatType_id" ref-table="vattype" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKC5104E0955CD2D63" columns="reversefinanceaccount_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKC5104E095811320F" columns="vatType_id" ref-table="vattype" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKC5104E09C663A005" columns="financeaccount_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="financeaccount" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="accountNumber" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="financeAccountType" sqlType="VARCHAR" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <column name="inUse" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="locked" sqlType="BIT" length="0" precision="0" nullable="true" jdbcType="-7"/>
+      <column name="name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="legalentity_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="standardReverseFinanceAccount_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="sumFrom_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="sumTo_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="vatType_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK8EC891131E6B28EF" columns="legalentity_id" ref-table="legalentity" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK8EC891133DB92520" columns="standardReverseFinanceAccount_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK8EC891135811320F" columns="vatType_id" ref-table="vattype" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK8EC891137FEFA563" columns="sumFrom_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK8EC89113802EC232" columns="sumTo_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKA0FB1570C663A005" table="bookedfinanceposting" schema="" catalog="eazyregnskab" columns="financeaccount_id"/>
+      <exported-key name="FK1B15D4C2C663A005" table="dailyledger" schema="" catalog="eazyregnskab" columns="financeAccount_id"/>
+      <exported-key name="FKC5104E0955CD2D63" table="draftfinanceposting" schema="" catalog="eazyregnskab" columns="reversefinanceaccount_id"/>
+      <exported-key name="FKC5104E09C663A005" table="draftfinanceposting" schema="" catalog="eazyregnskab" columns="financeaccount_id"/>
+      <exported-key name="FK8EC891133DB92520" table="financeaccount" schema="" catalog="eazyregnskab" columns="standardReverseFinanceAccount_id"/>
+      <exported-key name="FK8EC891137FEFA563" table="financeaccount" schema="" catalog="eazyregnskab" columns="sumFrom_id"/>
+      <exported-key name="FK8EC89113802EC232" table="financeaccount" schema="" catalog="eazyregnskab" columns="sumTo_id"/>
+      <exported-key name="FKE3E99E3C663A005" table="vattype" schema="" catalog="eazyregnskab" columns="financeAccount_id"/>
+      <exported-key name="FKE3E99E3F88C282" table="vattype" schema="" catalog="eazyregnskab" columns="financeAccount_reverse_id"/>
+    </table>
+    <table name="fiscalyear" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="end" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="fiscalYearStatus" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="start" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="legalEntity_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKF03532FB1E6B28EF" columns="legalEntity_id" ref-table="legalentity" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="legalentity" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="address" sqlType="VARCHAR" length="200" precision="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="legalIdentification" sqlType="VARCHAR" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="moneyCurrency" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="postalCode" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK1B15D4C21E6B28EF" table="dailyledger" schema="" catalog="eazyregnskab" columns="legalEntity_id"/>
+      <exported-key name="FK8EC891131E6B28EF" table="financeaccount" schema="" catalog="eazyregnskab" columns="legalentity_id"/>
+      <exported-key name="FKF03532FB1E6B28EF" table="fiscalyear" schema="" catalog="eazyregnskab" columns="legalEntity_id"/>
+      <exported-key name="FKA483F8401E6B28EF" table="legalentityaccess" schema="" catalog="eazyregnskab" columns="legalentity_id"/>
+      <exported-key name="FKE3E99E31E6B28EF" table="vattype" schema="" catalog="eazyregnskab" columns="legalentity_id"/>
+    </table>
+    <table name="legalentityaccess" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="user_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="legalentity_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKA483F8401E6B28EF" columns="legalentity_id" ref-table="legalentity" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKA483F8406AD28AB0" columns="user_id" ref-table="users" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="persistent_logins" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="last_used" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="series" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12"/>
+      <column name="token" sqlType="VARCHAR" length="64" precision="0" nullable="false" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="user_roles" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="role" sqlType="VARCHAR" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <column name="user_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK734299496AD28AB0" columns="user_id" ref-table="users" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="users" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="email" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="enabled" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="itemsPerPage" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="password" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="username" sqlType="VARCHAR" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <column name="verificationUUID" sqlType="VARCHAR" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FKA0FB15706AD28AB0" table="bookedfinanceposting" schema="" catalog="eazyregnskab" columns="user_id"/>
+      <exported-key name="FKA483F8406AD28AB0" table="legalentityaccess" schema="" catalog="eazyregnskab" columns="user_id"/>
+      <exported-key name="FK734299496AD28AB0" table="user_roles" schema="" catalog="eazyregnskab" columns="user_id"/>
+    </table>
+    <table name="vattype" schema="" catalog="eazyregnskab" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="lastChanged" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="inUse" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="name" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="percentage" sqlType="DOUBLE" length="22" precision="0" nullable="false" jdbcType="8"/>
+      <column name="financeAccount_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="financeAccount_reverse_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="legalentity_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FKE3E99E31E6B28EF" columns="legalentity_id" ref-table="legalentity" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKE3E99E3C663A005" columns="financeAccount_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKE3E99E3F88C282" columns="financeAccount_reverse_id" ref-table="financeaccount" ref-schema="" ref-catalog="eazyregnskab" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKA0FB15705811320F" table="bookedfinanceposting" schema="" catalog="eazyregnskab" columns="vatType_id"/>
+      <exported-key name="FKC5104E093346D271" table="draftfinanceposting" schema="" catalog="eazyregnskab" columns="reverseVatType_id"/>
+      <exported-key name="FKC5104E095811320F" table="draftfinanceposting" schema="" catalog="eazyregnskab" columns="vatType_id"/>
+      <exported-key name="FK8EC891135811320F" table="financeaccount" schema="" catalog="eazyregnskab" columns="vatType_id"/>
+    </table>
+  </data-source>
+</component>
