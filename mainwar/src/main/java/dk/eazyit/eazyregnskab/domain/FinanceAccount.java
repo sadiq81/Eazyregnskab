@@ -257,6 +257,8 @@ public class FinanceAccount extends BaseEntity implements IEazyTableRow<FinanceA
     @Override
     public String getCssClassForDataTable() {
         switch (financeAccountType) {
+            case BALANCE_CHECK:
+            case CATEGORY_SUM:
             case CATEGORY: {
                 return "category";
             }
@@ -265,9 +267,6 @@ public class FinanceAccount extends BaseEntity implements IEazyTableRow<FinanceA
             }
             case SUM: {
                 return "sumfrom";
-            }
-            case BALANCE_CHECK: {
-                return "category";
             }
             default: {
                 return "";

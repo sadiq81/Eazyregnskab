@@ -3,6 +3,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import dk.eazyit.eazyregnskab.domain.AppUser;
 import dk.eazyit.eazyregnskab.domain.DailyLedger;
+import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.util.CalendarUtil;
@@ -37,6 +38,9 @@ public abstract class BaseReportForm extends Form<ReportObject> {
     public static final String end_account = "QUERY_END_ACCOUNT_NUMBER";
     public static final String start_date = "QUERY_START_DATE";
     public static final String end_date = "QUERY_END_DATE";
+    public static final String start_date_compare = "QUERY_START_DATE_COMPARE";
+    public static final String end_date_compare = "QUERY_END_DATE_COMPARE";
+    public static final String compare_type = "COMPARE_TYPE";
     public static final String appuser = "QUERY_APPUSER";
     public static final String locale = "REPORT_LOCALE";
 
@@ -47,10 +51,7 @@ public abstract class BaseReportForm extends Form<ReportObject> {
 
 
     public BaseReportForm(String id, WebMarkupContainer refreshOnSubmit) {
-        super(id);
-        this.refreshOnSubmit = refreshOnSubmit;
-        self = this;
-        addToForm();
+        this(id, null, refreshOnSubmit);
     }
 
     public BaseReportForm(String id, IModel model, WebMarkupContainer refreshOnSubmit) {
@@ -146,10 +147,15 @@ public abstract class BaseReportForm extends Form<ReportObject> {
 
     public ResourceLink getJasperPdfResourceLink(String id, String reportName, String filename) {
 
-        JasperPdfReportsResource jr = new JasperPdfReportsResource(reportName, filename) {
+        JasperPdfReportsResource jr = new JasperPdfReportsResource(reportName, filename, exportWithBeans()) {
             @Override
-            protected HashMap<String, Object> getParameters() {
-                return getParametersForReport();
+            protected HashMap<String, Object> getParametersForReport() {
+                return getFormParametersForReport();
+            }
+
+            @Override
+            protected EntityWithLongId[] getBeanArray() {
+                return getCollectionForReport();
             }
         };
         return new ResourceLink(id, jr);
@@ -157,16 +163,22 @@ public abstract class BaseReportForm extends Form<ReportObject> {
 
     public ResourceLink getJasperXlsResourceLink(String id, String reportName, String filename) {
 
-        JasperXlsReportsResource jr = new JasperXlsReportsResource(reportName, filename) {
+        JasperXlsReportsResource jr = new JasperXlsReportsResource(reportName, filename, exportWithBeans()) {
             @Override
-            protected HashMap<String, Object> getParameters() {
-                return getParametersForReport();
+            protected HashMap<String, Object> getParametersForReport() {
+                return getFormParametersForReport();
+            }
+
+            @Override
+            protected EntityWithLongId[] getBeanArray() {
+                return getCollectionForReport();
             }
         };
         return new ResourceLink(id, jr);
     }
 
-    protected HashMap<String, Object> getParametersForReport() {
+
+    protected HashMap<String, Object> getFormParametersForReport() {
         HashMap<String, Object> parameters = new HashMap<>();
         parameters.put(legal_entity_name, getCurrentLegalEntity().getName());
         parameters.put(legal_entity_id, getCurrentLegalEntity().getId());
@@ -174,10 +186,18 @@ public abstract class BaseReportForm extends Form<ReportObject> {
         parameters.put(end_account, getModelObject().getAccountTo().getAccountNumber());
         parameters.put(start_date, getModelObject().getDateFrom());
         parameters.put(end_date, getModelObject().getDateTo());
+        parameters.put(start_date_compare, getModelObject().getDateFromCompare());
+        parameters.put(end_date_compare, getModelObject().getDateToCompare());
+        parameters.put(compare_type, getString("ReportCompareType." + (getModelObject().getReportCompareType().name())));
         parameters.put(appuser, getCurrentUser().getUsername());
         parameters.put(locale, getSession().getLocale());
+
         return parameters;
     }
+
+    protected abstract boolean exportWithBeans();
+
+    protected abstract EntityWithLongId[] getCollectionForReport();
 
     protected abstract void submit(AjaxRequestTarget target);
 

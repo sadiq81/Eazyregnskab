@@ -17,6 +17,7 @@ public enum FinanceAccountType {
     CATEGORY(false, false, false, false),
     HEADLINE(false, false, false, false),
     SUM(false, false, false, true),
+    CATEGORY_SUM(false, false, false, true),
     BALANCE_CHECK(true, false, false, true);
 
     private FinanceAccountType(boolean system_account, boolean operating_account, boolean balance_account, boolean has_sum) {
