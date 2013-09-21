@@ -32,10 +32,10 @@ public class DraftFinancePostingModel extends AbstractEntityModel<DraftFinancePo
     @Override
     protected DraftFinancePosting load(Long id) {
         if (id == 0) {
-            if (entity != null)  LOG.trace("loading empty DraftFinancePosting entity ");
+            if (entity != null) LOG.trace("loading empty DraftFinancePosting entity ");
             return new DraftFinancePosting();
         } else {
-            if (entity != null)   LOG.trace("loading DraftFinancePosting entity " + entity.getId());
+            if (entity != null) LOG.trace("loading DraftFinancePosting entity " + entity.getId());
             return draftFinancePostingDAO.findById(id);
         }
     }
@@ -43,8 +43,10 @@ public class DraftFinancePostingModel extends AbstractEntityModel<DraftFinancePo
     @Override
     public void setObject(DraftFinancePosting object) {
         LOG.trace("setting DraftFinancePosting entity " + object.getId());
+        if (object == null || object.getId() == null) {
+            return;
+        }
         if (object.getId() == 0) {
-            draftFinancePostingDAO.create(object);
             entity = object;
         } else {
             entity = draftFinancePostingDAO.save(object);

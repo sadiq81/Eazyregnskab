@@ -43,8 +43,10 @@ public class VatTypeModel extends AbstractEntityModel<VatType> {
     @Override
     public void setObject(VatType object) {
         LOG.trace("setting VatType entity " + object.getId());
+        if (object == null || object.getId() == null) {
+            return;
+        }
         if (object.getId() == 0) {
-            vatTypeDAO.create(object);
             entity = object;
         } else {
             entity = vatTypeDAO.save(object);

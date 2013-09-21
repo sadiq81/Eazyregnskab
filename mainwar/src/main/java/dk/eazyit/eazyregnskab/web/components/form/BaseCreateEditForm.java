@@ -13,6 +13,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -63,7 +64,10 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 LOG.debug("Saving form " + form.getId() + " with object " + form.getModelObject().toString());
                 saveForm((T) form.getModelObject());
-                target.add(getPage());
+//                target.add(getPage());
+                target.addChildren(getPage(), Form.class);
+                target.addChildren(getPage(), DataTable.class);
+                target.addChildren(getPage(), FeedbackPanel.class);
                 target.focusComponent(focusAfterSave());
             }
 

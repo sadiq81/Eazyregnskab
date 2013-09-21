@@ -32,10 +32,10 @@ public class DailyLedgerModel extends AbstractEntityModel<DailyLedger> {
     @Override
     protected DailyLedger load(Long id) {
         if (id == 0) {
-            if (entity != null)  LOG.trace("Loading empty DailyLedgerModel ");
+            if (entity != null) LOG.trace("Loading empty DailyLedgerModel ");
             return new DailyLedger();
         } else {
-            if (entity != null)  LOG.trace("Loading DailyLedgerModel with id " + entity.getId());
+            if (entity != null) LOG.trace("Loading DailyLedgerModel with id " + entity.getId());
             return dailyLedgerDAO.findById(id);
         }
     }
@@ -43,8 +43,10 @@ public class DailyLedgerModel extends AbstractEntityModel<DailyLedger> {
     @Override
     public void setObject(DailyLedger object) {
         LOG.trace("setting DailyLedger entity " + object.getId());
+        if (object == null || object.getId() == null) {
+            return;
+        }
         if (object.getId() == 0) {
-            dailyLedgerDAO.create(object);
             entity = object;
         } else {
             entity = dailyLedgerDAO.save(object);

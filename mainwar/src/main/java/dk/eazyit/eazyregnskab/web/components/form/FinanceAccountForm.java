@@ -89,7 +89,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     @Override
     public FormComponent focusAfterSave() {
-        return name;
+        return accountNumber;
     }
 
     @Override

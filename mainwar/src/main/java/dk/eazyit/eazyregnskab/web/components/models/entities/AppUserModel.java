@@ -44,8 +44,10 @@ public class AppUserModel extends AbstractEntityModel<AppUser> {
     public void setObject(AppUser object) {
 
         LOG.trace("setting appuser entity " + object.getId());
+        if (object == null || object.getId() == null) {
+            return;
+        }
         if (object.getId() == 0) {
-            appUserDAO.create(object);
             entity = object;
         } else {
             entity = appUserDAO.save(object);

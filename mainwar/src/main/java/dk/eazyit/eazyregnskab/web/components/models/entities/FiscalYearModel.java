@@ -43,8 +43,10 @@ public class FiscalYearModel extends AbstractEntityModel<FiscalYear> {
     @Override
     public void setObject(FiscalYear object) {
         LOG.trace("setting VatType entity " + object.getId());
+        if (object == null || object.getId() == null) {
+            return;
+        }
         if (object.getId() == 0) {
-            fiscalYearDAO.create(object);
             entity = object;
         } else {
             entity = fiscalYearDAO.save(object);

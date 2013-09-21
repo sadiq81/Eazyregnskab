@@ -51,8 +51,10 @@ public class FinanceAccountModel extends AbstractEntityModel<FinanceAccount> {
     @Override
     public void setObject(FinanceAccount object) {
         LOG.trace("setting FinanceAccount entity " + object.getId());
+        if (object == null || object.getId() == null) {
+            return;
+        }
         if (object.getId() == 0) {
-            financeAccountDAO.create(object);
             entity = object;
         } else {
             entity = financeAccountDAO.save(object);
