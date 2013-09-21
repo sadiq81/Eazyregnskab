@@ -70,6 +70,6 @@ public enum FinanceAccountType {
     }
 
     public boolean addExtraRowToBalanceReport() {
-        return this == CATEGORY || this == SUM;
+        return this == CATEGORY || this == SUM || this == CATEGORY_SUM;
     }
 }

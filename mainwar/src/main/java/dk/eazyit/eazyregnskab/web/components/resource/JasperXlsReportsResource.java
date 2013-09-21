@@ -11,6 +11,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.resource.ByteArrayResource;
@@ -59,6 +60,11 @@ public abstract class JasperXlsReportsResource extends ByteArrayResource {
                 jasperPrint = JasperFillManager.fillReport(inputStream2, getParametersForReport(), dateSource.getConnection());
             }
             JRXlsExporter exporterXLS = new JRXlsExporter();
+            exporterXLS.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, false);
+            exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_COLUMNS, true);
+            exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, true);
+            exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, false);
+//            exporterXLS.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, true);
             exporterXLS.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
             exporterXLS.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
             exporterXLS.exportReport();
