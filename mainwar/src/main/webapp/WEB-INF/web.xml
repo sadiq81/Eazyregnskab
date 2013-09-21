@@ -44,12 +44,19 @@
     <filter-mapping>
         <filter-name>wicket.eazyregnskab</filter-name>
         <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
     </filter-mapping>
 
     <!-- TODO REMOVE-->
     <session-config>
         <session-timeout>200</session-timeout>
     </session-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
+    </error-page>
 
     <login-config>
         <auth-method>BASIC

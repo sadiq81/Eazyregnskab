@@ -3,8 +3,10 @@ package dk.eazyit.eazyregnskab.web.app;
 import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.BootstrapSettings;
 import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
+import dk.eazyit.eazyregnskab.web.app.front.ErrorPage;
 import dk.eazyit.eazyregnskab.web.app.front.HomePage;
 import dk.eazyit.eazyregnskab.web.app.front.LoginPage;
+import dk.eazyit.eazyregnskab.web.app.front.NotFoundPage;
 import dk.eazyit.eazyregnskab.web.app.secure.bookkeeping.BookkeepingPage;
 import dk.eazyit.eazyregnskab.web.app.secure.reports.BalancePage;
 import dk.eazyit.eazyregnskab.web.app.secure.settings.BaseDataPage;
@@ -73,12 +75,15 @@ public class WicketApplication extends AuthenticatedWebApplication implements Ap
 //        getDebugSettings().setAjaxDebugModeEnabled(true);
 
         getApplicationSettings().setAccessDeniedPage(HomePage.class);
+        getApplicationSettings().setPageExpiredErrorPage(LoginPage.class);
+        getApplicationSettings().setInternalErrorPage(ErrorPage.class);
 
         Bootstrap.install(Application.get(), new BootstrapSettings());
         mountPackage("/app/front", HomePage.class);
         mountPackage("app/secure/bookkeeping", BookkeepingPage.class);
         mountPackage("app/secure/settings", BaseDataPage.class);
         mountPackage("app/secure/reports", BalancePage.class);
+        mountPage("/404", NotFoundPage.class);
 
         getComponentInstantiationListeners().add(new SpringComponentInjector(this, ctx, true));
 
