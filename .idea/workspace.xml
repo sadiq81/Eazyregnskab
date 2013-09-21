@@ -7,10 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/jasperreports/BalancePage.jasper" afterPath="$PROJECT_DIR$/mainwar/src/main/jasperreports/BalancePage.jasper" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/jasperreports/BalancePage.jrxml" afterPath="$PROJECT_DIR$/mainwar/src/main/jasperreports/BalancePage.jrxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/jasperreports/FinanceAccountsPage.jasper" afterPath="$PROJECT_DIR$/mainwar/src/main/jasperreports/FinanceAccountsPage.jasper" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/jasperreports/FinanceAccountsPage.jrxml" afterPath="$PROJECT_DIR$/mainwar/src/main/jasperreports/FinanceAccountsPage.jrxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/jasperreports/FinanceAccountsPage_da.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/jasperreports/FinanceAccountsPage_da.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eazyregnskab.iws" />
@@ -27,7 +27,7 @@
     <file path="/AppBasePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254695322" ignored="false" />
     <file path="/HomePage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377254730144" ignored="false" />
     <file path="/HomePage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377256542368" ignored="false" />
-    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379727032804" ignored="false" />
+    <file path="/Dummy.txt" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379767331167" ignored="false" />
     <file path="/MenuSetup.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375809275767" ignored="false" />
     <file path="/MenuTab.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310019187" ignored="false" />
     <file path="/SubMenuPanel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1359310042082" ignored="false" />
@@ -1439,95 +1439,7 @@
     <favorites_list name="eazyregnskab" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ReportService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/ReportService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="163" column="73" selection-start="8194" selection-end="8194" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FinanceAccountType.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="5" selection-start="1838" selection-end="1838" vertical-scroll-proportion="0.63113606">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseReportForm.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="167" column="46" selection-start="7360" selection-end="7360" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FinanceAccountListView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/FinanceAccountListView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="24" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JasperXlsReportsResource.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="89" selection-start="2813" selection-end="2813" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JRXlsExporterParameter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/export/JRXlsExporterParameter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="69" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JRXlsAbstractExporterParameter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/export/JRXlsAbstractExporterParameter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="13" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JRFillElementContainer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/fill/JRFillElementContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="744" column="0" selection-start="18593" selection-end="18593" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#18577#18586#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FinanceAccount.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="170" column="20" selection-start="6974" selection-end="6974" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -4853,7 +4765,15 @@
       <created>1379727064136</created>
       <updated>1379727064136</updated>
     </task>
-    <option name="localTasksCounter" value="255" />
+    <task id="LOCAL-00255" summary="#57 Export balance">
+      <created>1379764402870</created>
+      <updated>1379764402870</updated>
+    </task>
+    <task id="LOCAL-00256" summary="#57 Export balance">
+      <created>1379767338485</created>
+      <updated>1379767338485</updated>
+    </task>
+    <option name="localTasksCounter" value="257" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -5057,20 +4977,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/fill/JRBaseFiller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="949" column="0" selection-start="22998" selection-end="22998" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/base/JRBaseStyle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="284" column="0" selection-start="8323" selection-end="8323" vertical-scroll-proportion="0.32027256">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/base/JRBaseConditionalStyle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="95" column="0" selection-start="3104" selection-end="3104" vertical-scroll-proportion="0.32">
@@ -5099,13 +5005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="20" selection-start="6974" selection-end="6974" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/services/ReportService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="163" column="73" selection-start="8194" selection-end="8194" vertical-scroll-proportion="0.0">
@@ -5113,27 +5012,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/FinanceAccountListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="24" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="46" selection-start="7360" selection-end="7360" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/fill/JRFillElementContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="744" column="0" selection-start="18593" selection-end="18593" vertical-scroll-proportion="0.0">
+        <state line="744" column="0" selection-start="18593" selection-end="18593" vertical-scroll-proportion="0.34391534">
           <folding>
             <element signature="e#18577#18586#0" expanded="true" />
           </folding>
@@ -5149,28 +5030,65 @@
     </entry>
     <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/export/JRXlsExporterParameter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="69" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.0">
+        <state line="36" column="69" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.37037036">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$M2_REPO$/net/sf/jasperreports/jasperreports/5.2.0/jasperreports-5.2.0-sources.jar!/net/sf/jasperreports/engine/export/JRXlsAbstractExporterParameter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="13" selection-start="1604" selection-end="1604" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="89" selection-start="2813" selection-end="2813" vertical-scroll-proportion="0.0">
+        <state line="38" column="13" selection-start="1604" selection-end="1604" vertical-scroll-proportion="-0.36155203">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="5" selection-start="1838" selection-end="1838" vertical-scroll-proportion="0.63113606">
+        <state line="56" column="5" selection-start="1838" selection-end="1838" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/lists/FinanceAccountListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="85" selection-start="554" selection-end="554" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="13" selection-start="2958" selection-end="2958" vertical-scroll-proportion="-3.7319224">
+          <folding>
+            <element signature="method#setFinanceAccountType#0;class#FinanceAccount#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseReportForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="165" column="21" selection-start="7203" selection-end="7203" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperPdfReportsResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1817" selection-end="1817" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/resource/JasperXlsReportsResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1701" selection-end="1701" vertical-scroll-proportion="0.63235295">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_25.jdk/Contents/Home/src.zip!/java/net/PlainSocketImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="16" selection-start="1048" selection-end="1048" vertical-scroll-proportion="0.9450727">
           <folding />
         </state>
       </provider>

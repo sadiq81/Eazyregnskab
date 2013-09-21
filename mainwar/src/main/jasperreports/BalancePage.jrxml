@@ -7,6 +7,7 @@
 	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
 	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="lastPageFooter"/>
 	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
+	<template><![CDATA["/Users/tommysadiqhinrichsen/IdeaProjects/eazyregnskab/mainwar/src/main/jasperreports/EazyStyles.jrtx"]]></template>
 	<style name="FinanceAccountLine" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("CATEGORY")]]></conditionExpression>
@@ -50,9 +51,6 @@
 		</conditionalStyle>
 	</style>
 	<style name="FinanceAccountLine_Number" style="FinanceAccountLine" pattern="#,##0.00"/>
-	<style name="Column Header" fontName="Times New Roman" fontSize="16" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
-	<style name="PageFooter" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
-	<style name="Title" fontName="Times New Roman" fontSize="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 	<parameter name="QUERY_LEGAL_ENTITY_ID" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
 	</parameter>

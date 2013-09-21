@@ -7,8 +7,7 @@
 	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Numbers" hAlign="Right" pattern="#,##0.00" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman" pdfEncoding="Cp1252"/>
-	<subDataset name="dataset1" uuid="c33c45ed-6561-4f9c-ac91-8bd0beef939d"/>
+	<template><![CDATA["/Users/tommysadiqhinrichsen/IdeaProjects/eazyregnskab/mainwar/src/main/jasperreports/EazyStyles.jrtx"]]></template>
 	<parameter name="QUERY_LEGAL_ENTITY_ID" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
 	</parameter>
@@ -81,15 +80,18 @@ ORDER BY
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="VatType" class="java.lang.String"/>
-	<variable name="Amount_2" class="java.lang.Double" resetType="Group" resetGroup="AccountNumber" calculation="Sum">
+	<variable name="summation_of_account" class="java.lang.Double" resetType="Group" resetGroup="AccountNumber" calculation="Sum">
+		<variableExpression><![CDATA[$F{Amount}]]></variableExpression>
+	</variable>
+	<variable name="running_total" class="java.lang.Double" resetType="Group" resetGroup="AccountNumber" calculation="Sum">
 		<variableExpression><![CDATA[$F{Amount}]]></variableExpression>
 	</variable>
 	<group name="AccountNumber">
 		<groupExpression><![CDATA[$F{AccountNumber}]]></groupExpression>
 		<groupHeader>
-			<band height="55">
+			<band height="50">
 				<textField>
-					<reportElement uuid="65dce3ea-918d-4fe3-a8d9-60bdf3709cc0" x="0" y="30" width="100" height="25"/>
+					<reportElement uuid="65dce3ea-918d-4fe3-a8d9-60bdf3709cc0" x="0" y="30" width="65" height="20"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 						<paragraph leftIndent="7" rightIndent="2"/>
@@ -97,7 +99,7 @@ ORDER BY
 					<textFieldExpression><![CDATA[$R{date}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="d362cfc7-7331-4b13-afa6-1893f597350b" x="100" y="30" width="114" height="25"/>
+					<reportElement uuid="d362cfc7-7331-4b13-afa6-1893f597350b" x="65" y="30" width="106" height="20"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 						<paragraph leftIndent="2" rightIndent="2"/>
@@ -105,7 +107,7 @@ ORDER BY
 					<textFieldExpression><![CDATA[$R{booking.number}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="198621e3-c719-413f-a4fe-04553badbfa2" x="214" y="30" width="141" height="25"/>
+					<reportElement uuid="198621e3-c719-413f-a4fe-04553badbfa2" x="171" y="30" width="130" height="20"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 						<paragraph leftIndent="2" rightIndent="2"/>
@@ -113,15 +115,15 @@ ORDER BY
 					<textFieldExpression><![CDATA[$R{text}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="59da1599-8336-4fa3-835e-a3482f5a1aef" x="455" y="30" width="100" height="25"/>
+					<reportElement uuid="59da1599-8336-4fa3-835e-a3482f5a1aef" x="372" y="30" width="100" height="20"/>
 					<textElement textAlignment="Right">
 						<font fontName="Times New Roman" size="12" isBold="true"/>
-						<paragraph leftIndent="2" rightIndent="7"/>
+						<paragraph leftIndent="2"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$R{amount}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="b5425847-34ff-429e-a84f-546f7da4d7e5" x="355" y="30" width="100" height="25"/>
+					<reportElement uuid="b5425847-34ff-429e-a84f-546f7da4d7e5" x="301" y="30" width="71" height="20"/>
 					<textElement>
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 						<paragraph leftIndent="2" rightIndent="2"/>
@@ -129,7 +131,7 @@ ORDER BY
 					<textFieldExpression><![CDATA[$R{vat.type}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="7d17f5ed-e6a2-47f9-89b4-8a4c803b23c8" x="100" y="0" width="455" height="30" printWhenGroupChanges="AccountNumber"/>
+					<reportElement uuid="7d17f5ed-e6a2-47f9-89b4-8a4c803b23c8" x="65" y="0" width="490" height="30" printWhenGroupChanges="AccountNumber"/>
 					<box topPadding="1" rightPadding="1"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="14" isBold="true"/>
@@ -138,7 +140,7 @@ ORDER BY
 					<textFieldExpression><![CDATA[$F{AccountName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="8bf678bf-931c-418e-89c6-0477a324d96d" mode="Transparent" x="0" y="0" width="100" height="30" printWhenGroupChanges="AccountNumber"/>
+					<reportElement uuid="8bf678bf-931c-418e-89c6-0477a324d96d" mode="Transparent" x="0" y="0" width="65" height="30" printWhenGroupChanges="AccountNumber"/>
 					<box topPadding="0" leftPadding="0"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="14" isBold="true"/>
@@ -146,20 +148,31 @@ ORDER BY
 					</textElement>
 					<textFieldExpression><![CDATA[$F{AccountNumber}]]></textFieldExpression>
 				</textField>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band height="30">
-				<textField pattern="#,##0.00">
-					<reportElement uuid="b7e99d79-1fe8-4f90-b82a-fffdaa6aa0a2" x="455" y="0" width="100" height="30" printWhenGroupChanges="AccountNumber"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textField>
+					<reportElement uuid="0c5af3c9-6fb0-43fc-9672-983ef9a71ff7" x="472" y="30" width="83" height="20"/>
+					<textElement textAlignment="Right">
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 						<paragraph leftIndent="2" rightIndent="7"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$V{Amount_2}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$R{sum}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<textField pattern="#,##0.00">
+					<reportElement uuid="b7e99d79-1fe8-4f90-b82a-fffdaa6aa0a2" x="372" y="0" width="100" height="25" printWhenGroupChanges="AccountNumber"/>
+					<box>
+						<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{summation_of_account}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="0399f882-f3e2-4151-9ac6-c16b8ce97854" x="355" y="0" width="100" height="30" printWhenGroupChanges="AccountNumber"/>
+					<reportElement uuid="0399f882-f3e2-4151-9ac6-c16b8ce97854" x="301" y="0" width="71" height="25" printWhenGroupChanges="AccountNumber"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 						<paragraph leftIndent="2" rightIndent="2"/>
@@ -172,7 +185,7 @@ ORDER BY
 	<title>
 		<band height="59" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="5c7c4cab-cbd4-4c0b-8393-c3b5ba3bc856" positionType="Float" x="0" y="0" width="355" height="59"/>
+				<reportElement uuid="5c7c4cab-cbd4-4c0b-8393-c3b5ba3bc856" style="title" positionType="Float" x="0" y="0" width="355" height="59"/>
 				<textElement>
 					<font fontName="Times New Roman" size="16" isBold="true"/>
 					<paragraph leftIndent="7"/>
@@ -180,7 +193,7 @@ ORDER BY
 				<textFieldExpression><![CDATA[msg($R{report.title}, $P{QUERY_LEGAL_ENTITY_NAME})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="d0a5047f-575c-4738-ad66-f22f476fc4e6" x="355" y="0" width="200" height="20"/>
+				<reportElement uuid="d0a5047f-575c-4738-ad66-f22f476fc4e6" style="page_footer" x="355" y="0" width="200" height="20"/>
 				<textElement textAlignment="Right">
 					<font fontName="Times New Roman"/>
 					<paragraph rightIndent="7"/>
@@ -191,7 +204,7 @@ ORDER BY
 )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b6047ae9-298f-4dc4-a13c-0c40ace98302" x="355" y="20" width="200" height="39"/>
+				<reportElement uuid="b6047ae9-298f-4dc4-a13c-0c40ace98302" style="page_footer" x="355" y="20" width="200" height="39"/>
 				<textElement textAlignment="Right">
 					<font fontName="Times New Roman"/>
 					<paragraph rightIndent="7"/>
@@ -204,9 +217,9 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 		</band>
 	</title>
 	<detail>
-		<band height="24" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<textField pattern="dd-MM-yyyy">
-				<reportElement uuid="84844afb-4485-4cd9-9045-bae95a6576d4" x="0" y="0" width="100" height="24"/>
+				<reportElement uuid="84844afb-4485-4cd9-9045-bae95a6576d4" x="0" y="0" width="65" height="15"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 					<paragraph leftIndent="7" rightIndent="2"/>
@@ -214,7 +227,7 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 				<textFieldExpression><![CDATA[$F{Date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e5d6d7a2-336a-4c0b-b8c0-a80bfc9037ee" x="100" y="0" width="114" height="24"/>
+				<reportElement uuid="e5d6d7a2-336a-4c0b-b8c0-a80bfc9037ee" x="65" y="0" width="106" height="15"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 					<paragraph leftIndent="2" rightIndent="2"/>
@@ -222,7 +235,7 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 				<textFieldExpression><![CDATA[$F{BookingNumber}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b2bbb146-b8e4-4e58-ad11-db53b4a443f2" x="214" y="0" width="141" height="24"/>
+				<reportElement uuid="b2bbb146-b8e4-4e58-ad11-db53b4a443f2" x="171" y="0" width="130" height="15"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 					<paragraph leftIndent="2" rightIndent="2"/>
@@ -230,27 +243,35 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 				<textFieldExpression><![CDATA[$F{Text}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement uuid="ca39a20c-ce9b-4538-a7f3-6a31d49083b3" x="455" y="0" width="100" height="24"/>
+				<reportElement uuid="ca39a20c-ce9b-4538-a7f3-6a31d49083b3" x="372" y="0" width="100" height="15"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
-					<paragraph leftIndent="2" rightIndent="7"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="43605540-459f-4d4e-83e5-bd6b420cf8a2" x="355" y="0" width="100" height="24"/>
+				<reportElement uuid="43605540-459f-4d4e-83e5-bd6b420cf8a2" x="301" y="0" width="71" height="15"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 					<paragraph leftIndent="2" rightIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{VatType}]]></textFieldExpression>
 			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="cdc14c6b-0ed5-4735-858d-7906c5045121" x="472" y="0" width="83" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+					<paragraph leftIndent="2" rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{running_total}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="30" splitType="Stretch">
 			<textField pattern="dd-MM-yyyy">
-				<reportElement uuid="591b3167-7080-494f-9ee2-5f8397394ac1" x="0" y="0" width="214" height="30"/>
+				<reportElement uuid="591b3167-7080-494f-9ee2-5f8397394ac1" style="page_footer" x="0" y="0" width="214" height="30"/>
 				<textElement verticalAlignment="Bottom">
 					<font fontName="Times New Roman"/>
 					<paragraph leftIndent="7"/>
@@ -258,21 +279,21 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="5c5e1280-5277-4cff-a123-ed37710482f5" x="214" y="0" width="80" height="30"/>
+				<reportElement uuid="5c5e1280-5277-4cff-a123-ed37710482f5" style="page_footer" x="214" y="0" width="80" height="30"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{page}+ " "+$V{PAGE_NUMBER}+ " " + $R{of}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement uuid="22d8cc55-641e-4a94-8cb0-637bb2f9d398" x="294" y="0" width="61" height="30"/>
+				<reportElement uuid="22d8cc55-641e-4a94-8cb0-637bb2f9d398" style="page_footer" x="294" y="0" width="61" height="30"/>
 				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="48c1cec8-f625-407a-a332-5ed3c534c378" x="355" y="0" width="200" height="30"/>
+				<reportElement uuid="48c1cec8-f625-407a-a332-5ed3c534c378" style="page_footer" x="355" y="0" width="200" height="30"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
 					<font fontName="Times New Roman"/>
 					<paragraph rightIndent="7"/>
