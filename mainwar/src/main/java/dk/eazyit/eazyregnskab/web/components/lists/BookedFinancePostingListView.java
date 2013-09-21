@@ -19,6 +19,8 @@ import java.util.List;
  */
 public class BookedFinancePostingListView extends ListView<FinanceAccount> {
 
+    BookedFinancePosting last = null;
+
     public BookedFinancePostingListView(String id) {
         super(id);
         init();
@@ -45,12 +47,14 @@ public class BookedFinancePostingListView extends ListView<FinanceAccount> {
         itemOuter.add(new Label("FinanceAccountsPage.accountNumber", fa.getAccountNumber()));
         itemOuter.add(new Label("FinanceAccountsPage.accountName", fa.getName()));
 
+
         itemOuter.add(new ListView<BookedFinancePosting>("FinanceAccountsPage.postings", fa.getBookedFinancePostingList()) {
 
             @Override
             protected void populateItem(final ListItem<BookedFinancePosting> itemInner) {
 
                 final BookedFinancePosting bfp = itemInner.getModelObject();
+                last = bfp;
                 itemInner.add(new DateLabel("FinanceAccountsPage.date", bfp.getDate()));
                 itemInner.add(new Label("FinanceAccountsPage.bookingNumber", bfp.getBookingNumber()));
                 itemInner.add(new Label("FinanceAccountsPage.text", bfp.getText()));
@@ -68,6 +72,7 @@ public class BookedFinancePostingListView extends ListView<FinanceAccount> {
             }
         });
 
+        itemOuter.add(new Label("FinanceAccountsPage.sum", last != null ? last.getSum() : ""));
 
     }
 }
