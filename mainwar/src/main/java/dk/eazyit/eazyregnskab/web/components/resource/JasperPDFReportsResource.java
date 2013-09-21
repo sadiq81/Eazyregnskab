@@ -51,7 +51,6 @@ public abstract class JasperPdfReportsResource extends ByteArrayResource {
 
             ServletContext context = WebApplication.get().getServletContext();
             InputStream inputStream2 = context.getResourceAsStream("/WEB-INF/classes/" + reportName);
-
             JasperPrint jasperPrint = null;
             if (exportWithBeans) {
                 jasperPrint = JasperFillManager.fillReport(inputStream2, getParametersForReport(), new JRBeanArrayDataSource(getBeanArray()));

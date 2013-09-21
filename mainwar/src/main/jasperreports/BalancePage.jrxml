@@ -3,6 +3,52 @@
 	<property name="ireport.zoom" value="1.610510000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<style name="FinanceAccountLine" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("CATEGORY")]]></conditionExpression>
+			<style fontSize="14" isBold="true">
+				<box>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("CATEGORY_SUM")]]></conditionExpression>
+			<style fontSize="14" isBold="true">
+				<box>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("HEADLINE")]]></conditionExpression>
+			<style fontSize="12" isBold="true">
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("SUM")]]></conditionExpression>
+			<style fontSize="12" isBold="true">
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("EMPTY_ROW")]]></conditionExpression>
+			<style fontSize="0"/>
+		</conditionalStyle>
+	</style>
+	<style name="FinanceAccountLine_Number" style="FinanceAccountLine" pattern="#,##0.00"/>
+	<style name="Column Header" fontName="Times New Roman" fontSize="16" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="PageFooter" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Title" fontName="Times New Roman" fontSize="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 	<parameter name="QUERY_LEGAL_ENTITY_ID" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
 	</parameter>
@@ -25,61 +71,39 @@
 	<parameter name="QUERY_START_DATE_COMPARE" class="java.util.Date"/>
 	<parameter name="QUERY_END_DATE_COMPARE" class="java.util.Date"/>
 	<parameter name="COMPARE_TYPE" class="java.lang.String"/>
-	<queryString>
-		<![CDATA[SELECT
-     financeaccount_test.`id` AS id,
-     financeaccount_test.`accountNumber` AS accountNumber,
-     financeaccount_test.`financeAccountType` AS financeAccountType,
-     financeaccount_test.`name` AS name,
-     financeaccount_test.`legalentity_id` AS legalentity_id,
-     financeaccount_test.`_sum` AS financeaccount_sum,
-     financeaccount_test.`sumCompare` AS sumCompare
-FROM
-     `financeaccount_test` financeaccount_test
-WHERE
-     legalentity_id = 1
-ORDER BY
-     financeaccount_test.`accountNumber` ASC]]>
-	</queryString>
 	<field name="id" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+		<fieldDescription><![CDATA[id]]></fieldDescription>
 	</field>
 	<field name="accountNumber" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+		<fieldDescription><![CDATA[accountNumber]]></fieldDescription>
 	</field>
-	<field name="financeAccountType" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+	<field name="financeAccountType" class="java.lang.Object">
+		<fieldDescription><![CDATA[financeAccountType]]></fieldDescription>
 	</field>
 	<field name="name" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+		<fieldDescription><![CDATA[name]]></fieldDescription>
 	</field>
-	<field name="legalentity_id" class="java.lang.Long">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+	<field name="sum" class="java.lang.Double">
+		<fieldDescription><![CDATA[sum]]></fieldDescription>
 	</field>
-	<field name="financeaccount_sum" class="java.lang.Double"/>
 	<field name="sumCompare" class="java.lang.Double">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+		<fieldDescription><![CDATA[sumCompare]]></fieldDescription>
 	</field>
-	<group name="legalentity_id">
-		<groupExpression><![CDATA[$F{legalentity_id}]]></groupExpression>
-	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="40" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="3f6c1a4e-40c5-49bb-a253-fc02f615c2c4" positionType="Float" x="0" y="0" width="357" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="3f6c1a4e-40c5-49bb-a253-fc02f615c2c4" style="Title" positionType="Float" x="0" y="0" width="357" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement>
-					<font fontName="Times New Roman" size="16" isBold="true"/>
 					<paragraph leftIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[msg($R{report.title}, $P{QUERY_LEGAL_ENTITY_NAME})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="253e594c-e58f-4296-8b80-52f40a866e4f" x="357" y="0" width="198" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="253e594c-e58f-4296-8b80-52f40a866e4f" style="PageFooter" x="357" y="0" width="198" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right">
-					<font fontName="Times New Roman"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[msg($R{report.accounts}, new Object[]{
@@ -90,44 +114,38 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 		</band>
 	</title>
 	<columnHeader>
-		<band height="60" splitType="Stretch">
+		<band height="70" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="0b6f0027-5abb-4fa6-8e7c-25f759887af4" stretchType="RelativeToBandHeight" x="0" y="0" width="115" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="0b6f0027-5abb-4fa6-8e7c-25f759887af4" style="Column Header" stretchType="RelativeToBandHeight" x="0" y="20" width="80" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Bottom">
-					<font fontName="Times New Roman" size="14" isBold="true"/>
 					<paragraph leftIndent="7" rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{account.number}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="a0a2f91a-a44f-4936-bf56-0b57f4dcd0ae" stretchType="RelativeToBandHeight" x="115" y="0" width="179" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="a0a2f91a-a44f-4936-bf56-0b57f4dcd0ae" style="Column Header" stretchType="RelativeToBandHeight" x="80" y="20" width="214" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Bottom">
-					<font fontName="Times New Roman" size="14" isBold="true"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{account.name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="0e95a46c-d124-4f71-8855-63c9e2d16c97" stretchType="RelativeToBandHeight" x="294" y="0" width="125" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="0e95a46c-d124-4f71-8855-63c9e2d16c97" style="Column Header" stretchType="RelativeToBandHeight" x="294" y="20" width="125" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
-					<font fontName="Times New Roman" size="14" isBold="true"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{sum}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="c6e2c40a-0e60-48f1-a713-97220e1d2a58" stretchType="RelativeToBandHeight" x="419" y="0" width="136" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="c6e2c40a-0e60-48f1-a713-97220e1d2a58" style="Column Header" stretchType="RelativeToBandHeight" x="419" y="20" width="136" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
-					<font fontName="Times New Roman" size="14" isBold="true"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{COMPARE_TYPE}
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{COMPARE_TYPE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="43994893-dc91-406d-a12a-c84409a91db9" stretchType="RelativeToBandHeight" x="419" y="40" width="136" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="43994893-dc91-406d-a12a-c84409a91db9" style="PageFooter" stretchType="RelativeToBandHeight" x="419" y="0" width="136" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" isBold="false"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[msg($R{report.dates}, new Object[]{
@@ -136,9 +154,8 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 )]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="a57f3b07-abfc-4056-8012-d2ce98b09db6" stretchType="RelativeToBandHeight" x="294" y="40" width="125" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="a57f3b07-abfc-4056-8012-d2ce98b09db6" style="PageFooter" stretchType="RelativeToBandHeight" x="294" y="0" width="125" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" isBold="false"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[msg($R{report.dates}, new Object[]{
@@ -151,63 +168,58 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement uuid="54ef4e4b-1888-4be1-95e3-586f10e3c388" stretchType="RelativeToBandHeight" x="0" y="0" width="115" height="20"/>
+				<reportElement uuid="54ef4e4b-1888-4be1-95e3-586f10e3c388" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="0" y="0" width="80" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<paragraph leftIndent="7" rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{accountNumber}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="48ef8ddb-7a75-4ff8-900f-f0f64f039a3e" stretchType="RelativeToBandHeight" x="115" y="0" width="179" height="20"/>
+				<reportElement uuid="48ef8ddb-7a75-4ff8-900f-f0f64f039a3e" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="80" y="0" width="214" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement uuid="bd3f9ed7-64b5-4cf8-a146-5138d1fbe65a" stretchType="RelativeToBandHeight" x="294" y="0" width="125" height="20"/>
+				<reportElement uuid="bd3f9ed7-64b5-4cf8-a146-5138d1fbe65a" style="FinanceAccountLine_Number" stretchType="RelativeToBandHeight" x="294" y="0" width="125" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<paragraph rightIndent="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{financeaccount_sum}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[!($F{financeAccountType}.toString().equals("HEADLINE") || $F{financeAccountType}.toString().equals("CATEGORY")) ? $F{sum} : ""]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement uuid="085aad89-cd1f-4038-8166-82ec5f9740aa" stretchType="RelativeToBandHeight" x="419" y="0" width="136" height="20"/>
+				<reportElement uuid="085aad89-cd1f-4038-8166-82ec5f9740aa" style="FinanceAccountLine_Number" stretchType="RelativeToBandHeight" x="419" y="0" width="136" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{sumCompare}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[!($F{financeAccountType}.toString().equals("HEADLINE") || $F{financeAccountType}.toString().equals("CATEGORY")) ? $F{sumCompare} : ""]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="40" splitType="Stretch">
 			<textField pattern="dd-MM-yyyy">
-				<reportElement uuid="0e76ad79-0162-496a-b623-d01c6dd2044c" x="0" y="0" width="214" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="0e76ad79-0162-496a-b623-d01c6dd2044c" style="PageFooter" x="0" y="0" width="214" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Bottom">
-					<font fontName="Times New Roman"/>
 					<paragraph leftIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="1665fd59-0edb-449e-8e54-be20ed5d5647" x="214" y="0" width="80" height="40"/>
-				<textElement textAlignment="Right" verticalAlignment="Bottom">
-					<font fontName="Times New Roman"/>
-				</textElement>
+				<reportElement uuid="1665fd59-0edb-449e-8e54-be20ed5d5647" style="PageFooter" x="214" y="0" width="80" height="40"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
 				<textFieldExpression><![CDATA[$R{page}+ " "+$V{PAGE_NUMBER}+ " " + $R{of}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement uuid="5e29ed49-4850-4495-bd59-236ee41af2b2" x="294" y="0" width="61" height="40" isPrintWhenDetailOverflows="true"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font fontName="Times New Roman"/>
-				</textElement>
+				<reportElement uuid="5e29ed49-4850-4495-bd59-236ee41af2b2" style="PageFooter" x="294" y="0" width="61" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b6ab6cc3-d7f9-4b71-a447-d05d19dcbe29" x="355" y="0" width="200" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="b6ab6cc3-d7f9-4b71-a447-d05d19dcbe29" style="PageFooter" x="355" y="0" width="200" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
-					<font fontName="Times New Roman"/>
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{QUERY_APPUSER}]]></textFieldExpression>

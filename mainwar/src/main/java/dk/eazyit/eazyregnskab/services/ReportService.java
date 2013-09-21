@@ -156,6 +156,16 @@ public class ReportService {
             model.getObject().setEmptyReport(false);
         }
 
+
+        List<FinanceAccount> withExtraEmptyRows = new ArrayList<>();
+        for (FinanceAccount financeAccount : financeAccountsList) {
+            withExtraEmptyRows.add(financeAccount);
+            if (financeAccount.getFinanceAccountType().addExtraRowToBalanceReport()) {
+                withExtraEmptyRows.add(new FinanceAccount().setFinanceAccountType(FinanceAccountType.EMPTY_ROW));
+            }
+        }
+        financeAccountsList = withExtraEmptyRows;
+
         return financeAccountsList;
     }
 

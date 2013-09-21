@@ -166,8 +166,9 @@ public class FinanceAccount extends BaseEntity implements IEazyTableRow<FinanceA
         return financeAccountType;
     }
 
-    public void setFinanceAccountType(FinanceAccountType financeAccountType) {
+    public FinanceAccount setFinanceAccountType(FinanceAccountType financeAccountType) {
         this.financeAccountType = financeAccountType;
+        return this;
     }
 
     public FinanceAccount getStandardReverseFinanceAccount() {

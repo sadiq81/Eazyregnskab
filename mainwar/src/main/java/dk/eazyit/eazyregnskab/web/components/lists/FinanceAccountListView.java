@@ -40,6 +40,11 @@ public class FinanceAccountListView extends ListView<FinanceAccount> {
                 itemOuter.add(new Label("BalancePage.sumCompare", fa.getSumCompare()));
                 break;
             }
+            case EMPTY_ROW: {
+                itemOuter.add(new Label("BalancePage.sum", " "));
+                itemOuter.add(new Label("BalancePage.sumCompare", " "));
+                break;
+            }
             case CATEGORY: {
                 itemOuter.add(new AttributeAppender("class", "category"));
                 itemOuter.add(new Label("BalancePage.sum", ""));

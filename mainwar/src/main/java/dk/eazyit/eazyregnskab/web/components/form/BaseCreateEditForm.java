@@ -105,7 +105,7 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
     public abstract void deleteEntity(T entity);
 
     public void insertNewEntityInModel(T previous) {
-        setModel(new CompoundPropertyModel<T>(buildNewEntity(previous)));
+        setModelObject(buildNewEntity(previous));
     }
 
     public abstract FormComponent focusAfterSave();

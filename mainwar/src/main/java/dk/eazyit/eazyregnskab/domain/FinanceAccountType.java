@@ -18,7 +18,8 @@ public enum FinanceAccountType {
     HEADLINE(false, false, false, false),
     SUM(false, false, false, true),
     CATEGORY_SUM(false, false, false, true),
-    BALANCE_CHECK(true, false, false, true);
+    BALANCE_CHECK(true, false, false, true),
+    EMPTY_ROW(true, false, false, false);
 
     private FinanceAccountType(boolean system_account, boolean operating_account, boolean balance_account, boolean has_sum) {
         this.system_account = system_account;
@@ -65,6 +66,10 @@ public enum FinanceAccountType {
     private boolean has_sum;
 
     public boolean includeInOnlyWithSum() {
-        return this == CATEGORY || this == HEADLINE || this == BALANCE_CHECK || this == SUM;
+        return this == CATEGORY || this == HEADLINE || this == BALANCE_CHECK || this == SUM || this == CATEGORY_SUM;
+    }
+
+    public boolean addExtraRowToBalanceReport() {
+        return this == CATEGORY || this == SUM;
     }
 }
