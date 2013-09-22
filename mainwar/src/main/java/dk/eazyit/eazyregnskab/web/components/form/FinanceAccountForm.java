@@ -50,7 +50,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         super.addToForm();
         add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name", "ChartOfAccountsPage").setRequired(true));
         add(accountNumber = new PlaceholderTextField<Integer>("accountNumber", "ChartOfAccountsPage").setRequired(true));
-        add(vatType = (DropDownChoice<VatType>) new DropDownChoice<VatType>("vatType", vatTypeService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")).setOutputMarkupPlaceholderTag(true));
+        add(vatType = (DropDownChoice<VatType>) new DropDownChoice<>("vatType", vatTypeService.findAllVatTypesForLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<VatType>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(financeAccountType = (FinanceAccountTypeDropDownChoice) new FinanceAccountTypeDropDownChoice("financeAccountType", FinanceAccountType.getNonSystemAccounts()).setRequired(true));
         add(standardReverseFinanceAccount = (DropDownChoice<FinanceAccount>) new DropDownChoice<FinanceAccount>("standardReverseFinanceAccount", financeAccountService.findBookableFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumFrom = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumFrom", financeAccountService.findFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
@@ -127,14 +127,14 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     }
 
     @Override
-    protected void onConfigure() {
-        super.onConfigure();
-        vatType.setEnabled(!getModelObject().isSystemAccount());
+    protected void onBeforeRender() {
+        vatType.setEnabled(getModelObject().isVatAccount());
         financeAccountType.setEnabled(!getModelObject().isSystemAccount());
-        standardReverseFinanceAccount.setEnabled(!getModelObject().isSystemAccount());
+        standardReverseFinanceAccount.setEnabled(getModelObject().canHaveStandardReverseAccount());
         locked.setEnabled(!getModelObject().isSystemAccount());
         sumFrom.setRequired(FinanceAccountType.SUM.equals(getModelObject().getFinanceAccountType()));
         sumTo.setRequired(FinanceAccountType.SUM.equals(getModelObject().getFinanceAccountType()));
-
+        super.onBeforeRender();
     }
+
 }

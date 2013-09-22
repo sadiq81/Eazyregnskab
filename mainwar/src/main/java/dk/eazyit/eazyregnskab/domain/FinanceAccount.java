@@ -225,6 +225,14 @@ public class FinanceAccount extends BaseEntity implements IEazyTableRow<FinanceA
         return financeAccountType != null && financeAccountType.isSystem_account();
     }
 
+    public boolean isVatAccount() {
+        return financeAccountType != null && financeAccountType.isVatAccount();
+    }
+
+    public boolean canHaveStandardReverseAccount() {
+        return financeAccountType != null && financeAccountType.canHaveStandardReverseAccount();
+    }
+
     public boolean isLocked() {
         return locked;
     }

@@ -15,9 +15,9 @@ public enum FinanceAccountType {
     YEAR_END(true, false, true, true),
     CURRENT_RESULT(true, false, false, true),
     CATEGORY(false, false, false, false),
+    CATEGORY_SUM(false, false, false, true),
     HEADLINE(false, false, false, false),
     SUM(false, false, false, true),
-    CATEGORY_SUM(false, false, false, true),
     BALANCE_CHECK(true, false, false, true),
     EMPTY_ROW(true, false, false, false);
 
@@ -71,5 +71,13 @@ public enum FinanceAccountType {
 
     public boolean addExtraRowToBalanceReport() {
         return this == CATEGORY || this == SUM || this == CATEGORY_SUM;
+    }
+
+    public boolean isVatAccount() {
+        return this.isOperating_account() || this.isBalance_account();
+    }
+
+    public boolean canHaveStandardReverseAccount() {
+        return this.isOperating_account() || this.isBalance_account();
     }
 }
