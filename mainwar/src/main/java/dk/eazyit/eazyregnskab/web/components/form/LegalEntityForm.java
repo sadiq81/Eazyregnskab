@@ -32,35 +32,24 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
     @Override
     public void addToForm() {
         super.addToForm();
-        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name").setRequired(true));
-        add(new PlaceholderTextField<String>("legalIdentification"));
-        add(new PlaceholderTextField<String>("address"));
-        add(new PlaceholderTextField<String>("postalCode"));
-        add(country = (EnumDropDownChoice<Country>) new EnumDropDownChoice<Country>("country", Arrays.asList(Country.values())).setRequired(true));
-        add(moneyCurrency = (EnumDropDownChoice<MoneyCurrency>) new EnumDropDownChoice<MoneyCurrency>("moneyCurrency", Arrays.asList(MoneyCurrency.values())).setRequired(true).setOutputMarkupId(true));
+        add(name = (PlaceholderTextField) new PlaceholderTextField<String>("name", "BaseDataPage").setRequired(true));
+        add(new PlaceholderTextField<String>("legalIdentification", "BaseDataPage"));
+        add(new PlaceholderTextField<String>("address", "BaseDataPage"));
+        add(new PlaceholderTextField<String>("postalCode", "BaseDataPage"));
+        add(country = (EnumDropDownChoice<Country>) new EnumDropDownChoice<>("country", Arrays.asList(Country.values())).setRequired(true));
+        add(moneyCurrency = (EnumDropDownChoice<MoneyCurrency>) new EnumDropDownChoice<>("moneyCurrency", Arrays.asList(MoneyCurrency.values())).setRequired(true).setOutputMarkupId(true));
     }
 
     @Override
     protected void configureComponents() {
+        getFormSettings().setNewVisible(true).setConfirmNew(true);
         configureCountry();
-        addToolTipToComponent(getNev(), "can.not.undo");
     }
 
 
     @Override
     public void deleteEntity(LegalEntity legalEntity) {
         throw new NullPointerException("ILLEGAL FUNCTION");
-        //        if (legalEntityService.deleteLegalEntity(getCurrentUser(), legalEntity)) {
-        //            setCurrentLegalEntity(legalEntityService.findLegalEntityByUser(getCurrentUser()).get(0));
-        //            setDefaultModel(new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity())));
-        //
-        //
-        //            ((LoggedInPage) getPage()).changeLegalEntity();
-        //
-        //            getSession().success(new NotificationMessage(new ResourceModel("legal.entity.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-        //        } else {
-        //            getSession().error(new NotificationMessage(new ResourceModel("must.be.one.legal.entity")).hideAfter(Duration.seconds(DURATION)));
-        //        }
     }
 
     @Override
@@ -72,14 +61,14 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
         //TODO bad design, find another solution without using a reference.
         ((LoggedInPage) getPage()).changeLegalEntity();
 
-        getSession().success(new NotificationMessage(new ResourceModel("created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
+        getSession().success(new NotificationMessage(new ResourceModel("BaseDataPage.created.and.saved.new.entity")).hideAfter(Duration.seconds(DURATION)));
         return newLegalEntity;
     }
 
     @Override
     public void saveForm(LegalEntity legalEntity) {
         legalEntityService.saveLegalEntity(getCurrentUser(), legalEntity);
-        getSession().success(new NotificationMessage(new ResourceModel("changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
+        getSession().success(new NotificationMessage(new ResourceModel("BaseDataPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
     }
 
     @Override
@@ -97,15 +86,5 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
             }
         });
 
-    }
-
-    @Override
-    protected boolean isNewButtonVisible() {
-        return true;
-    }
-
-    @Override
-    protected boolean isDeleteButtonVisible() {
-        return false;
     }
 }

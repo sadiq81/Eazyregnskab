@@ -36,21 +36,18 @@
                 <td>
                     <wicket:message key="FinanceAccountsPage.accountTo"></wicket:message>
                 </td>
-
-                <td class="span3">
-                </td>
                 <td class="span3">
                     <wicket:message key="FinanceAccountsPage.hide.accounts.without.sum"></wicket:message>
+                </td>
+                <td class="span3">
                 </td>
             </tr>
             <tr>
                 <td><input class="span2" wicket:id="accountFrom" id="accountFrom" type="hidden"/></td>
                 <td><input class="span2" wicket:id="accountTo" id="accountTo" type="hidden"/></td>
-
+                <td><input wicket:id="hideAccountsWithOutSum" type="checkbox"/></td>
                 <td class="span3">
-                    <!--<input wicket:id="hideAccountsWithOutTransactions" type="checkbox"/>-->
                 </td>
-                <td class="span3"><input wicket:id="hideAccountsWithOutSum" type="checkbox"/></td>
             </tr>
             <tr>
                 <td colspan="4"><br></td>

@@ -4,16 +4,17 @@
 <body>
 
 
-
 <wicket:extend>
 
 
-
     <form wicket:id="legalEntityEdit" class="form-horizontal">
+        <div wicket:id="saveModalConfirm"></div>
+        <div wicket:id="newModalConfirm"></div>
+        <div wicket:id="deleteModalConfirm"></div>
 
         <div class="control-group">
             <label class="control-label" for="name">
-                <wicket:message key="name"></wicket:message>
+                <wicket:message key="BaseDataPage.name"></wicket:message>
             </label>
 
             <div class="controls">
@@ -22,7 +23,7 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="legalIdentification">
-                <wicket:message key="legalIdentification"></wicket:message>
+                <wicket:message key="BaseDataPage.legalIdentification"></wicket:message>
             </label>
 
             <div class="controls">
@@ -31,7 +32,7 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="address">
-                <wicket:message key="address"></wicket:message>
+                <wicket:message key="BaseDataPage.address"></wicket:message>
             </label>
 
             <div class="controls">
@@ -40,7 +41,7 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="postalCode">
-                <wicket:message key="postalCode"></wicket:message>
+                <wicket:message key="BaseDataPage.postalCode"></wicket:message>
             </label>
 
             <div class="controls">
@@ -49,7 +50,7 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="country">
-                <wicket:message key="country"></wicket:message>
+                <wicket:message key="BaseDataPage.country"></wicket:message>
             </label>
 
             <div class="controls">
@@ -58,7 +59,7 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="moneyCurrency">
-                <wicket:message key="moneyCurrency"></wicket:message>
+                <wicket:message key="BaseDataPage.moneyCurrency"></wicket:message>
             </label>
 
             <div class="controls">
@@ -69,7 +70,8 @@
             <div class="controls">
 
                 <input wicket:id="save" class="btn btn-success" type="submit" value="save"/>
-                <input wicket:id="new" class="btn btn-info" type="submit" value="new"/> <wicket:message key="new.billing.text"></wicket:message>
+                <input wicket:id="new" class="btn btn-info" type="submit" value="new"/>
+                <wicket:message key="BaseDataPage.new.billing.text"></wicket:message>
                 <input wicket:id="delete" class="btn btn-danger" type="submit" value="delete"/>
 
             </div>

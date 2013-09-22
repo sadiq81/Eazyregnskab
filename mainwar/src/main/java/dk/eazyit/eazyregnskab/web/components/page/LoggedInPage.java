@@ -71,7 +71,7 @@ public abstract class LoggedInPage extends AppBasePage implements SessionAware {
 
         add(new LinkList("linkList", MenuSetup.createSubMenuList(this.getClass().getAnnotation(MenuPosition.class).parentPage())));
 
-        add(legalEntityChooser = new LegalEntityChooser("legalEntityChooser"));
+        add(legalEntityChooser = (LegalEntityChooser) new LegalEntityChooser("legalEntityChooser").setOutputMarkupPlaceholderTag(true));
 
     }
 

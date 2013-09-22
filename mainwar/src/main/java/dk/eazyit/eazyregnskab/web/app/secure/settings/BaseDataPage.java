@@ -1,6 +1,5 @@
 package dk.eazyit.eazyregnskab.web.app.secure.settings;
 
-import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.web.components.form.LegalEntityForm;
 import dk.eazyit.eazyregnskab.web.components.models.entities.LegalEntityModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
@@ -39,7 +38,7 @@ public class BaseDataPage extends LoggedInPage {
     @Override
     protected void addToPage(PageParameters parameters) {
         super.addToPage(parameters);
-        add(form = new LegalEntityForm("legalEntityEdit", new CompoundPropertyModel<LegalEntity>(new LegalEntityModel(getCurrentLegalEntity()))));
+        add(form = new LegalEntityForm("legalEntityEdit", new CompoundPropertyModel<>(new LegalEntityModel(getCurrentLegalEntity()))));
     }
 
     @Override
