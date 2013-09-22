@@ -7,9 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseCreateEditForm.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseCreateEditForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountForm.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/forms/FinanceAccountFormValidator.java" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/forms/FinanceAccountFormValidator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" afterPath="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="eazyregnskab.iws" />
@@ -67,8 +70,8 @@
     <file path="/LoginNavBarForm.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360352625524" ignored="false" />
     <file path="/InvestmentItemModalPage.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376990189704" ignored="false" />
     <file path="/LoginModalPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360408843018" ignored="false" />
-    <file path="/WicketApplication.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379597628429" ignored="false" />
-    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379597705191" ignored="false" />
+    <file path="/WicketApplication.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379844870469" ignored="false" />
+    <file path="/WicketApplication_da.utf8.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379844909616" ignored="false" />
     <file path="/LoginPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376858658026" ignored="false" />
     <file path="/LoginNavBarButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1360410548526" ignored="false" />
     <file path="/dataSource.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374944047829" ignored="false" />
@@ -252,7 +255,7 @@
     <file path="/LegalEntityModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373650357799" ignored="false" />
     <file path="/CurrentUser.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366637687381" ignored="false" />
     <file path="/CurrentLegalEntity.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366637712752" ignored="false" />
-    <file path="/BaseCreateEditForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379796679850" ignored="false" />
+    <file path="/BaseCreateEditForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379843673287" ignored="false" />
     <file path="/Settingspage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365411386336" ignored="false" />
     <file path="/SettingsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365417758485" ignored="false" />
     <file path="/EnumDropDownChoice.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379501835885" ignored="false" />
@@ -300,7 +303,7 @@
     <file path="/FinancePostingDAOImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1366057731066" ignored="false" />
     <file path="/FinanceAccountDAOImpl.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365966555548" ignored="false" />
     <file path="/FinanceAccountModel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1373650346943" ignored="false" />
-    <file path="/ChartOfAccountsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1376241794253" ignored="false" />
+    <file path="/ChartOfAccountsPage.html" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379844528156" ignored="false" />
     <file path="$USER_HOME$/quickview/wicket-quickview/src/main/java/com/aplombee/navigator/MoreLabel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365791566596" ignored="false" />
     <file path="$USER_HOME$/quickview/wicket-quickview/src/main/java/com/aplombee/IQuickView.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365791566596" ignored="false" />
     <file path="$USER_HOME$/quickview/wicket-quickview/src/main/java/com/aplombee/RepeaterUtilReference.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1365791566596" ignored="false" />
@@ -562,7 +565,7 @@
     <file path="$PROJECT_DIR$/../01410-Kryptologi/src/ElGamalDigitalSignatureSystem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1367780357567" ignored="false" />
     <file path="/ElGamalDigitalSignatureSystem.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1367780350634" ignored="false" />
     <file path="/logback-test.xml" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1368299238936" ignored="false" />
-    <file path="/FinanceAccountForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379842559271" ignored="false" />
+    <file path="/FinanceAccountForm.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379844627862" ignored="false" />
     <file path="/LoadingButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1368307716766" ignored="false" />
     <file path="/FinanceAccountNumberComparator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1370007001168" ignored="false" />
     <file path="$USER_HOME$/pengeplan/pengeplan.iws" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377767753133" ignored="false" />
@@ -613,7 +616,7 @@
     <file path="/FinanceAccountAjaxFallbackDefaultDataTable.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1377421872469" ignored="false" />
     <file path="/newEntityVatTypes.properties" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374528820057" ignored="false" />
     <file path="/AjaxLoadingButton.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374532018840" ignored="false" />
-    <file path="/FinanceAccountFormValidator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1375123041427" ignored="false" />
+    <file path="/FinanceAccountFormValidator.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1379843146881" ignored="false" />
     <file path="/FinanceAccountDropDownChoice.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374701588255" ignored="false" />
     <file path="/SumLabel.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374705899228" ignored="false" />
     <file path="/SessionAwareToolbar.java" changelist="d13f537f-0e6a-495b-aa90-1bcb69c8d6af" time="1374709178941" ignored="false" />
@@ -1450,6 +1453,21 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/forms/FinanceAccountFormValidator.java" line="33" class="dk.eazyit.eazyregnskab.web.components.validators.forms.FinanceAccountFormValidator" package="dk.eazyit.eazyregnskab.web.components.validators.forms">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
@@ -1479,13 +1497,49 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FinanceAccountForm.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="WicketApplication_da.utf8.properties" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="404" column="84" selection-start="12458" selection-end="12458" vertical-scroll-proportion="0.23364486">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WicketApplication.utf8.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="402" column="92" selection-start="12478" selection-end="12478" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FinanceAccountForm.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="0" selection-start="7122" selection-end="7122" vertical-scroll-proportion="0.9604743">
+            <state line="62" column="91" selection-start="4243" selection-end="4243" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#1485#1505#0" expanded="true" />
+                <element signature="e#1535#1555#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChartOfAccountsPage.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="49" selection-start="1699" selection-end="1699" vertical-scroll-proportion="-13.75">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FinanceAccountFormValidator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/forms/FinanceAccountFormValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="0" selection-start="1389" selection-end="1389" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1500,6 +1554,15 @@
                 <element signature="method#isBalance_account#0;class#FinanceAccountType#0" expanded="true" />
                 <element signature="method#isHas_sum#0;class#FinanceAccountType#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseCreateEditForm.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseCreateEditForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="189" column="5" selection-start="6951" selection-end="6951" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1534,10 +1597,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FiscalYearForm.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/LegalEntityForm.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/behavior/DefaultFocusBehavior.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/VatTypesPage.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/VatTypeForm.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/FiscalYearModel.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/AppUserModel.java" />
@@ -1546,10 +1605,14 @@
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/FinanceAccountModel.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/LegalEntityModel.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/VatTypeModel.java" />
-        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseCreateEditForm.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/forms/FinanceAccountFormValidator.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseCreateEditForm.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html" />
         <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountForm.java" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties" />
+        <option value="$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties" />
       </list>
     </option>
   </component>
@@ -5271,7 +5334,11 @@
       <created>1379795672655</created>
       <updated>1379795672655</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="#74 ChartOfAccountsPage when editing allready persisted accounts, non enabled fields are enabled">
+      <created>1379842924201</created>
+      <updated>1379842924201</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -5298,15 +5365,15 @@
     <frame x="60" y="22" width="1860" height="1158" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24599434" sideWeight="0.49806094" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24599434" sideWeight="0.5325248" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32910696" sideWeight="0.73038673" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27022564" sideWeight="0.37372804" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25824693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855567" sideWeight="0.5730443" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4269557" sideWeight="0.5223387" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2960222" sideWeight="0.436845" order="15" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4269557" sideWeight="0.52205074" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4269557" sideWeight="0.4779493" order="15" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22007722" sideWeight="0.5457064" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
@@ -5475,51 +5542,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/DraftFinancePostingModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="52" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/FiscalYearModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="52" selection-start="1516" selection-end="1516" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/LegalEntityModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="52" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseCreateEditForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="56" selection-start="2928" selection-end="2928" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#getSave#0;class#BaseCreateEditForm#0" expanded="false" />
-            <element signature="method#getNev#0;class#BaseCreateEditForm#0" expanded="false" />
-            <element signature="method#getDelete#0;class#BaseCreateEditForm#0" expanded="false" />
-            <marker date="1379796718000" expanded="true" signature="-1:-1" placeholder="/**...*/" />
-            <marker date="1379796718000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1379796718000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1379796718000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1379796718000" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/FinanceAccountModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="52" selection-start="1777" selection-end="1777" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$M2_REPO$/org/apache/wicket/wicket-core/6.10.0/wicket-core-6.10.0-sources.jar!/org/apache/wicket/markup/html/form/FormComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="59" selection-start="4372" selection-end="4372" vertical-scroll-proportion="0.13464992">
@@ -5562,6 +5584,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="224" column="72" selection-start="8255" selection-end="8255" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#setFinanceAccountType#0;class#FinanceAccount#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/VatTypeModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="86" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccountType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="58" column="31" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0">
@@ -5574,15 +5612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/domain/FinanceAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="72" selection-start="8255" selection-end="8255" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#setFinanceAccountType#0;class#FinanceAccount#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="29" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.0">
@@ -5590,19 +5619,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/models/entities/VatTypeModel.java">
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/validators/forms/FinanceAccountFormValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="86" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0">
+        <state line="36" column="0" selection-start="1389" selection-end="1389" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/BaseCreateEditForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="189" column="5" selection-start="6951" selection-end="6951" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/secure/settings/ChartOfAccountsPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="49" selection-start="1699" selection-end="1699" vertical-scroll-proportion="-13.75">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/components/form/FinanceAccountForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="0" selection-start="7122" selection-end="7122" vertical-scroll-proportion="0.9604743">
+        <state line="62" column="91" selection-start="4243" selection-end="4243" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#1485#1505#0" expanded="true" />
+            <element signature="e#1535#1555#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication.utf8.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="402" column="92" selection-start="12478" selection-end="12478" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainwar/src/main/java/dk/eazyit/eazyregnskab/web/app/WicketApplication_da.utf8.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="404" column="84" selection-start="12458" selection-end="12458" vertical-scroll-proportion="0.23364486">
+          <folding />
         </state>
       </provider>
     </entry>

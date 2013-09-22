@@ -12,6 +12,7 @@ import dk.eazyit.eazyregnskab.web.components.label.financeaccountform.SumLabel;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.FinanceAccountFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -40,6 +41,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     DropDownChoice<FinanceAccount> sumTo;
     SumLabel sumToLabel;
     CheckBox locked;
+    Label lockedInfo;
 
     public FinanceAccountForm(String id, IModel<FinanceAccount> model) {
         super(id, model);
@@ -58,6 +60,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         add(sumTo = (DropDownChoice<FinanceAccount>) new FinanceAccountDropDownChoice<FinanceAccount>("sumTo", financeAccountService.findFinanceAccountByLegalEntity(getCurrentLegalEntity()), new ChoiceRenderer<FinanceAccount>("name", "id")).setOutputMarkupPlaceholderTag(true));
         add(sumToLabel = (SumLabel) new SumLabel("sumToLabel", new ResourceModel("ChartOfAccountsPage.sum.to")).setOutputMarkupPlaceholderTag(true));
         add(locked = new CheckBox("locked"));
+        add(lockedInfo = new Label("lockedInfo", new ResourceModel("cannot.be.changed.in.use")));
         add(new FinanceAccountFormValidator(accountNumber));
     }
 
@@ -97,7 +100,9 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
         configureFinanceAccountType();
     }
 
+
     private void configureFinanceAccountType() {
+
         financeAccountType.setNullValid(false);
         financeAccountType.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
@@ -128,8 +133,11 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     @Override
     protected void onBeforeRender() {
+
+        lockedInfo.setVisibilityAllowed(getModelObject().isInUse());
+        accountNumber.setEnabled(!getModelObject().isInUse());
         vatType.setEnabled(getModelObject().isVatAccount());
-        financeAccountType.setEnabled(!getModelObject().isSystemAccount());
+        financeAccountType.setEnabled(!getModelObject().isSystemAccount() && !getModelObject().isInUse());
         standardReverseFinanceAccount.setEnabled(getModelObject().canHaveStandardReverseAccount());
         locked.setEnabled(!getModelObject().isSystemAccount());
         sumFrom.setRequired(FinanceAccountType.SUM.equals(getModelObject().getFinanceAccountType()));

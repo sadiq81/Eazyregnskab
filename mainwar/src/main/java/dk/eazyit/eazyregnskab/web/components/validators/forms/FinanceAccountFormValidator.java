@@ -31,7 +31,7 @@ public class FinanceAccountFormValidator extends BaseFormValidator {
             error(formComponent1, "ChartOfAccountsPage.number.all.ready.exists");
         }
 
-        if (formComponent1.getInput().length() > 20) {
+        if (formComponent1.isEnabled() && formComponent1.getInput().length() > 20) {
             error(formComponent1, "ChartOfAccountsPage.number.to.long");
         }
     }

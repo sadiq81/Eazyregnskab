@@ -182,4 +182,10 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends Form<T> i
         component.add(AttributeModifier.append("data-placement", "top"));
         component.add(AttributeModifier.append("data-original-title", new ResourceModel(resourceText)));
     }
+
+    protected void removeToolTipToComponent(Component component) {
+        component.add(AttributeModifier.remove("rel"));
+        component.add(AttributeModifier.remove("data-placement"));
+        component.add(AttributeModifier.remove("data-original-title"));
+    }
 }
