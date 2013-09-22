@@ -54,13 +54,13 @@ public class VatTypeService {
     }
 
     @Transactional
-    public boolean deleteVatType(VatType vatType) {
-        if (vatType.isInUse() || postingService.findDraftFinancePostingsByVatTypeSubList(vatType, 0, 1).size() > 0) {
-            return false;
-        } else {
-            vatTypeDAO.delete(vatType);
-            return true;
-        }
+    public boolean isDeleteVatTypeAllowed(VatType vatType) {
+        return !vatType.isInUse() && postingService.findDraftFinancePostingsByVatTypeSubList(vatType, 0, 1).size() == 0;
+    }
+
+    @Transactional
+    public void deleteVatType(VatType vatType) {
+        vatTypeDAO.delete(vatType);
     }
 
     @Transactional

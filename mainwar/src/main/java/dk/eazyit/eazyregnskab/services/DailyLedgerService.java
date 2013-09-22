@@ -59,19 +59,14 @@ public class DailyLedgerService {
     }
 
     @Transactional(readOnly = true)
-    public boolean isDeletingDailyLedgerAllowed(DailyLedger dailyLedger, LegalEntity legalEntity) {
+    public boolean isDeletingDailyLedgerAllowed(DailyLedger dailyLedger) {
         return postingService.findDraftPostingByDailyLedgerSubList(dailyLedger, 0, 1).size() == 0 &&
-                findDailyLedgerByLegalEntitySubList(legalEntity, 0, 2).size() > 1;
+                findDailyLedgerByLegalEntitySubList(dailyLedger.getLegalEntity(), 0, 2).size() > 1;
     }
 
     @Transactional
-    public boolean deleteDailyLedger(DailyLedger dailyLedger) {
-        if (isDeletingDailyLedgerAllowed(dailyLedger, dailyLedger.getLegalEntity())) {
-            dailyLedgerDAO.delete(dailyLedger);
-            return true;
-        } else {
-            return false;
-        }
+    public void deleteDailyLedger(DailyLedger dailyLedger) {
+        dailyLedgerDAO.delete(dailyLedger);
     }
 
     @Transactional

@@ -67,9 +67,10 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
     @Override
     public void deleteEntity(FinanceAccount financeAccount) {
         if (financeAccount.getId() != 0) {
-            if (financeAccountService.deleteFinanceAccount(financeAccount)) {
+            if (financeAccountService.isDeletingFinanceAccountAllowed(financeAccount)) {
                 getSession().success(new NotificationMessage(new ResourceModel("ChartOfAccountsPage.finance.account.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 insertNewEntityInModel(financeAccount);
+                financeAccountService.deleteFinanceAccount(financeAccount);
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("ChartOfAccountsPage.finance.account.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }

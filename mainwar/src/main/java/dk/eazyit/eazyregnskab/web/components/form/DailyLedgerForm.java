@@ -44,11 +44,12 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
     @Override
     public void deleteEntity(DailyLedger dailyLedger) {
         if (dailyLedger.getId() != 0) {
-            if (dailyLedgerService.deleteDailyLedger(dailyLedger)) {
+            if (dailyLedgerService.isDeletingDailyLedgerAllowed(dailyLedger)) {
                 setCurrentDailyLedger(dailyLedgerService.findDailyLedgerByLegalEntity(getCurrentLegalEntity()).get(0));
-                getSession().success(new NotificationMessage(new ResourceModel("DailyLedgerPage.daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
-                LOG.info("Deleting Dailyledger " + getModelObject().toString());
+                LOG.info("Deleting Dailyledger " + dailyLedger.toString());
                 insertNewEntityInModel(dailyLedger);
+                dailyLedgerService.deleteDailyLedger(dailyLedger);
+                getSession().success(new NotificationMessage(new ResourceModel("DailyLedgerPage.daily.ledger.was.deleted")).hideAfter(Duration.seconds(DURATION)));
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("DailyLedgerPage.daily.ledger.is.in.use")).hideAfter(Duration.seconds(DURATION)));
                 LOG.info("Not able to delete Dailyledger since its in use " + dailyLedger.toString());

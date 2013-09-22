@@ -70,9 +70,10 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     @Override
     public void deleteEntity(FiscalYear fiscalYear) {
         if (fiscalYear.getId() != 0) {
-            if (fiscalYearService.deleteFiscalYear(fiscalYear)) {
+            if (fiscalYearService.isDeleteFiscalYearAllowed(fiscalYear)) {
                 getSession().success(new NotificationMessage(new ResourceModel("FiscalYearPage.fiscal.year.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 insertNewEntityInModel(fiscalYear);
+                fiscalYearService.deleteFiscalYear(fiscalYear);
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("FiscalYearPage.fiscal.year.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }

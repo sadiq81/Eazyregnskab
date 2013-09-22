@@ -40,9 +40,10 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     @Override
     public void deleteEntity(VatType vatType) {
         if (vatType.getId() != 0) {
-            if (vatTypeService.deleteVatType(vatType)) {
+            if (vatTypeService.isDeleteVatTypeAllowed(vatType)) {
                 getSession().success(new NotificationMessage(new ResourceModel("VatTypesPage.vat.type.was.deleted")).hideAfter(Duration.seconds(DURATION)));
                 insertNewEntityInModel(vatType);
+                vatTypeService.deleteVatType(vatType);
             } else {
                 getSession().error(new NotificationMessage(new ResourceModel("VatTypesPage.vat.type.is.in.use")).hideAfter(Duration.seconds(DURATION)));
             }

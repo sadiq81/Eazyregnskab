@@ -43,16 +43,16 @@ public class FiscalYearService {
     }
 
     @Transactional
-    public boolean deleteFiscalYear(FiscalYear fiscalYear) {
-        if (!fiscalYear.isOpen() ||
-                postingService.findDraftFinancePostingsByYearSubList(fiscalYear, 0, 1).size() > 0 ||
-                postingService.findBookedFinancePostingsByYearSubList(fiscalYear, 0, 1).size() > 0) {
+    public boolean isDeleteFiscalYearAllowed(FiscalYear fiscalYear) {
+        return !fiscalYear.isOpen() &&
+                postingService.findDraftFinancePostingsByYearSubList(fiscalYear, 0, 1).size() == 0 &&
+                postingService.findBookedFinancePostingsByYearSubList(fiscalYear, 0, 1).size() == 0;
+    }
 
-            return false;
-        } else {
-            fiscalYearDAO.delete(fiscalYear);
-        }
-        return true;
+
+    @Transactional
+    public void deleteFiscalYear(FiscalYear fiscalYear) {
+        fiscalYearDAO.delete(fiscalYear);
     }
 
     @Transactional
