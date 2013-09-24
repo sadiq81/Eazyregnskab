@@ -42,10 +42,11 @@ public class FiscalYearModel extends AbstractEntityModel<FiscalYear> {
 
     @Override
     public void setObject(FiscalYear object) {
-        LOG.trace("setting VatType entity " + object.getId());
+
         if (object == null || object.getId() == null) {
             return;
         }
+        LOG.trace("setting VatType entity " + object.getId());
         if (object.getId() == 0) {
             entity = object;
         } else {

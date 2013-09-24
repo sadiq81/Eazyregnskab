@@ -39,7 +39,7 @@ public class MailService {
 
     private boolean testMode = false;
 
-    public void SendConfirmationEmail(String email, String UUID) {
+    public void sendConfirmationEmail(String email, String UUID) {
 
         LOG.info("Sending confirmation email to " + email + " with UUID " + UUID);
         ResourceBundle bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.MailService", org.apache.wicket.Session.get().getLocale());
@@ -73,14 +73,14 @@ public class MailService {
                 transport.connect();
                 transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
                 transport.close();
-            } catch (Exception e) {
+            } catch (MessagingException e) {
                 LOG.error("Mail to user with email " + email + " was not send due to error");
                 //TODO should be thrown all the way to signup page.
             }
         }
     }
 
-    private class SMTPAuthenticator extends javax.mail.Authenticator {
+    private static class SMTPAuthenticator extends javax.mail.Authenticator {
         public PasswordAuthentication getPasswordAuthentication() {
             String username = SMTP_AUTH_USER;
             String password = SMTP_AUTH_PWD;

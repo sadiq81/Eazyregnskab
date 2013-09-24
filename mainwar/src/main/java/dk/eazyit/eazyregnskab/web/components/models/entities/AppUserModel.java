@@ -43,10 +43,11 @@ public class AppUserModel extends AbstractEntityModel<AppUser> {
     @Override
     public void setObject(AppUser object) {
 
-        LOG.trace("setting appuser entity " + object.getId());
+
         if (object == null || object.getId() == null) {
             return;
         }
+        LOG.trace("setting appuser entity " + object.getId());
         if (object.getId() == 0) {
             entity = object;
         } else {

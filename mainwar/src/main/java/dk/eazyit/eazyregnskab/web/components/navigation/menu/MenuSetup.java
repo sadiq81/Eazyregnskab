@@ -35,7 +35,7 @@ public class MenuSetup {
         return classes;
     }
 
-    public static List<Class<? extends LoggedInPage>> GetTopLevelList() {
+    public static List<Class<? extends LoggedInPage>> getTopLevelList() {
 
         Reflections reflections = new Reflections("dk.eazyit.eazyregnskab.web.app.secure");
 

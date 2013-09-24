@@ -89,7 +89,7 @@ public class SaveDailyLedgerForm extends Form {
 
         BookingResult bookingResult;
 
-        bookingService.BookDailyLedger(getCurrentDailyLedger(), bookingResult = new BookingResult(), bookAll);
+        bookingService.bookDailyLedger(getCurrentDailyLedger(), bookingResult = new BookingResult(), bookAll);
 
         if (bookingResult.getBookingStatus() == BookingStatus.ERROR) {
 

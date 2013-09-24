@@ -74,7 +74,7 @@ public abstract class AppBasePage extends WebPage implements IHeaderContributor 
                 new LoggedOutNavButton(LoginPage.class, new ResourceModel("login"))
 
         ));
-        for (final Class<? extends LoggedInPage> clazz : MenuSetup.GetTopLevelList()) {
+        for (final Class<? extends LoggedInPage> clazz : MenuSetup.getTopLevelList()) {
             MenuPosition menuPosition = (MenuPosition) clazz.getAnnotation(MenuPosition.class);
             topMenu.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT,
                     new TopMenuNavBarDropDownButton(

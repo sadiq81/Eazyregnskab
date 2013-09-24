@@ -42,10 +42,11 @@ public class DailyLedgerModel extends AbstractEntityModel<DailyLedger> {
 
     @Override
     public void setObject(DailyLedger object) {
-        LOG.trace("setting DailyLedger entity " + object.getId());
+
         if (object == null || object.getId() == null) {
             return;
         }
+        LOG.trace("setting DailyLedger entity " + object.getId());
         if (object.getId() == 0) {
             entity = object;
         } else {

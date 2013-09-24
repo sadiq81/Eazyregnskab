@@ -41,7 +41,7 @@ public class LoginService {
     @Transactional
     public void createUser(String username, String password, String email) {
         AppUser appUser = new AppUser(username, PasswordEncoder.getInstance().encode(password, username), false, email, UUID.randomUUID().toString());
-        mailService.SendConfirmationEmail(appUser.getEmail(), appUser.getVerificationUUID());
+        mailService.sendConfirmationEmail(appUser.getEmail(), appUser.getVerificationUUID());
         appUserDAO.create(appUser);
         appUserRoleDAO.create(new AppUserRole(appUser, Role.USER));
         log.info("Created account for " + username);

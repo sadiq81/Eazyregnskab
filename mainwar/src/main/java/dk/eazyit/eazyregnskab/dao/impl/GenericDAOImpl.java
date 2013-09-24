@@ -21,6 +21,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -280,7 +281,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
         logger.debug("Finding unique" + persistentClass.getName() + " from database by named query " + name + " params " + params);
         final List<T> results = findByNamedQuery(name, maxResults, params);
         if (results.size() > 1) {
-            throw new RuntimeException("Expected at most 1 entity to match params='" + params + "'. Found " + results.size() + " matches.");
+            throw new RuntimeException("Expected at most 1 entity to match params='" + Arrays.toString(params) + "'. Found " + results.size() + " matches.");
         }
         T result = null;
         if (results.size() == 1) {

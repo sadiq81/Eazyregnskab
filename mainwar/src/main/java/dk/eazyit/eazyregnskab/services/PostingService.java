@@ -40,7 +40,7 @@ public class PostingService {
     @Transactional(readOnly = true)
     public List<DraftFinancePosting> findDraftPostingsFromAccountSubList(FinanceAccount financeAccount, int first, int count) {
         LOG.debug("Finding all DraftFinancePosting from FinanceAccount " + financeAccount.toString());
-        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, new Integer(first), new Integer(count), financeAccount);
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_FINANCE_ACCOUNT, Integer.valueOf(first), Integer.valueOf(count), financeAccount);
     }
 
     @Transactional(readOnly = true)
@@ -52,14 +52,14 @@ public class PostingService {
     @Transactional
     public List<DraftFinancePosting> findDraftPostingByDailyLedgerSubList(DailyLedger dailyLedger, int first, int count) {
         LOG.debug("Finding all DraftFinancePosting from DailyLedger starting with " + first + " to  " + count + " from " + dailyLedger.toString());
-        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), dailyLedger);
+        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, Integer.valueOf(first), Integer.valueOf(count), dailyLedger);
         return list;
     }
 
     @Transactional
     public List<DraftFinancePosting> findDraftPostingByDailyLedgerSubListSortBy(DailyLedger dailyLedger, int first, int count, String sortProperty, boolean Ascending) {
         LOG.debug("Finding all DraftFinancePosting from DailyLedger starting with " + first + " to  " + count + " from " + dailyLedger.toString());
-        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuerySorted(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, new Integer(first), new Integer(count), sortProperty, Ascending, dailyLedger);
+        List<DraftFinancePosting> list = draftFinancePostingDAO.findByNamedQuerySorted(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_DAILY_LEDGER, Integer.valueOf(first), Integer.valueOf(count), sortProperty, Ascending, dailyLedger);
         return list;
     }
 
@@ -71,7 +71,7 @@ public class PostingService {
 
     public List<DraftFinancePosting> findDraftFinancePostingsByVatTypeSubList(VatType vatType, int first, int count) {
         LOG.debug("Finding all DraftFinancePosting with VatType" + vatType.toString());
-        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, new Integer(first), new Integer(count), vatType);
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, Integer.valueOf(first), Integer.valueOf(count), vatType);
     }
 
     @Transactional
@@ -83,7 +83,7 @@ public class PostingService {
     @Transactional
     public List<DraftFinancePosting> findDraftFinancePostingsByYearSubList(FiscalYear fiscalYear, int first, int count) {
         LOG.debug("Finding all DraftFinancePosting with VatType" + fiscalYear.toString());
-        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, new Integer(first), new Integer(count), fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
+        return draftFinancePostingDAO.findByNamedQuery(DraftFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, Integer.valueOf(first), Integer.valueOf(count), fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
     }
 
     @Transactional
@@ -95,7 +95,7 @@ public class PostingService {
     @Transactional
     public List<BookedFinancePosting> findBookedFinancePostingsByYearSubList(FiscalYear fiscalYear, int first, int count) {
         LOG.debug("Finding all DraftFinancePosting with VatType" + fiscalYear.toString());
-        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, new Integer(first), new Integer(count), fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
+        return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_IN_YEAR, Integer.valueOf(first), Integer.valueOf(count), fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
     }
 
     @Transactional

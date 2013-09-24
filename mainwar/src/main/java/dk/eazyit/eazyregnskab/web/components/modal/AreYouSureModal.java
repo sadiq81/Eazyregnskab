@@ -12,8 +12,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.ResourceModel;
 
-import java.io.Serializable;
-
 public abstract class AreYouSureModal extends SessionAwareModal {
 
     protected ConfirmationAnswer answer;
@@ -78,7 +76,7 @@ public abstract class AreYouSureModal extends SessionAwareModal {
         }
     }
 
-    public class ConfirmationAnswer implements Serializable {
+    public static class ConfirmationAnswer {
 
         private boolean answer;
 

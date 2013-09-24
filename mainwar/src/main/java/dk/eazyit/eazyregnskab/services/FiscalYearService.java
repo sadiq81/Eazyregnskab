@@ -36,7 +36,7 @@ public class FiscalYearService {
         if (fiscalYear.getId() != null && fiscalYear.getId() != 0) {
             fiscalYearDAO.save(fiscalYear);
         } else {
-            fiscalYearDAO.save(fiscalYear);
+            fiscalYearDAO.create(fiscalYear);
         }
         return true;
     }
@@ -98,7 +98,7 @@ public class FiscalYearService {
                 }
                 case ASSET:
                 case LIABILITY: {
-                    if (!financeAccount.getSum().equals(0)) {
+                    if (!financeAccount.getSum().equals(new Double(0))) {
                         BookedFinancePosting posting = setupBaseData(nextYearStart);
                         posting.setAmount(financeAccount.getSum());
                         posting.setFinanceAccount(financeAccount);
@@ -147,7 +147,7 @@ public class FiscalYearService {
     @Transactional
     public List<FiscalYear> findFiscalYearByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
         log.debug("Finding all FiscalYear from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
-        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity);
+        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_BY_LEGAL_ENTITY, Integer.valueOf(first), Integer.valueOf(count), legalEntity);
         return list;
     }
 
@@ -161,7 +161,7 @@ public class FiscalYearService {
     @Transactional
     public List<FiscalYear> findOpenFiscalYearByLegalEntitySubList(LegalEntity legalEntity, int first, int count) {
         log.debug("Finding open FiscalYear from legal entity from " + legalEntity.toString() + " first " + first + " count " + count);
-        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), legalEntity, FiscalYearStatus.OPEN);
+        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY, Integer.valueOf(first), Integer.valueOf(count), legalEntity, FiscalYearStatus.OPEN);
         return list;
     }
 
@@ -189,7 +189,7 @@ public class FiscalYearService {
     @Transactional
     public List<FiscalYear> findLockedFiscalYearByLegalEntityAfterDateSubList(LegalEntity legalEntity, Date date, int first, int count) {
         log.debug("Finding closed FiscalYear from legal entity from " + legalEntity.toString() + " after date" + date + " first " + first + " count " + count);
-        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_LOCKED_BY_LEGAL_ENTITY_AFTER_DATE, new Integer(first), new Integer(count), legalEntity, date, FiscalYearStatus.LOCKED);
+        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_LOCKED_BY_LEGAL_ENTITY_AFTER_DATE, Integer.valueOf(first), Integer.valueOf(count), legalEntity, date, FiscalYearStatus.LOCKED);
         return list;
     }
 
@@ -203,7 +203,7 @@ public class FiscalYearService {
     @Transactional
     public List<FiscalYear> findOpenFiscalYearByLegalEntityBeforeDateSubList(LegalEntity legalEntity, Date date, int first, int count) {
         log.debug("Finding open FiscalYear from legal entity from " + legalEntity.toString() + " before date" + date + " first " + first + " count " + count);
-        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE, new Integer(first), new Integer(count), legalEntity, date, FiscalYearStatus.OPEN);
+        List<FiscalYear> list = fiscalYearDAO.findByNamedQuery(FiscalYear.QUERY_FIND_OPEN_BY_LEGAL_ENTITY_BEFORE_DATE, Integer.valueOf(first), Integer.valueOf(count), legalEntity, date, FiscalYearStatus.OPEN);
         return list;
     }
 

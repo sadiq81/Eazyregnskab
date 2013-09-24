@@ -36,7 +36,7 @@ public class BookingService {
     DailyLedgerService dailyLedgerService;
 
     @Transactional
-    public void BookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
+    public void bookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
 
         logger.debug("Booking dailyledger " + dailyLedger + " with setting bookAll = " + bookAll);
         List<DraftFinancePosting> draftFinancePostingList = postingService.findDraftPostingsFromDailyLedger(dailyLedger);

@@ -42,10 +42,11 @@ public class DraftFinancePostingModel extends AbstractEntityModel<DraftFinancePo
 
     @Override
     public void setObject(DraftFinancePosting object) {
-        LOG.trace("setting DraftFinancePosting entity " + object.getId());
+
         if (object == null || object.getId() == null) {
             return;
         }
+        LOG.trace("setting DraftFinancePosting entity " + object.getId());
         if (object.getId() == 0) {
             entity = object;
         } else {

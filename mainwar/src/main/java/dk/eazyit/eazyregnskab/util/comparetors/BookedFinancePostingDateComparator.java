@@ -3,12 +3,13 @@ package dk.eazyit.eazyregnskab.util.comparetors;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePostingType;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * @author
  */
-public class BookedFinancePostingDateComparator implements Comparator<BookedFinancePosting> {
+public class BookedFinancePostingDateComparator implements Comparator<BookedFinancePosting>, Serializable {
     @Override
     public int compare(BookedFinancePosting bookedFinancePosting, BookedFinancePosting bookedFinancePosting2) {
         int compare = bookedFinancePosting.getDate().compareTo(bookedFinancePosting2.getDate());
