@@ -47,7 +47,7 @@ public class DailyLedgerService {
 
     @Transactional
     public List<DailyLedger> findDailyLedgerByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
-        LOG.debug("Finding all DailyLedger from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
+        LOG.debug("Finding all DailyLedger from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString() + " sorted by " + sortProperty);
         List<DailyLedger> list = dailyLedgerDAO.findByNamedQuerySorted(DailyLedger.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
         return list;
     }
@@ -81,12 +81,13 @@ public class DailyLedgerService {
 
     @Transactional
     public DailyLedger findDailyLedgerByLegalEntityAndName(LegalEntity currentLegalEntity, String name) {
+        LOG.debug("Find DailyLedger from legalEntity " + currentLegalEntity.toString() + " and by name " + name);
         return dailyLedgerDAO.findByNamedQueryUnique(DailyLedger.QUERY_FIND_BY_NAME_AND_LEGAL_ENTITY, name, currentLegalEntity);
     }
 
     @Transactional
     public Double checkBalanceOfDailyLedger(DailyLedger dailyLedger) {
-
+        LOG.debug("Checking balance ofDailyLedger " + dailyLedger);
         List<DraftFinancePosting> list = postingService.findDraftPostingsFromDailyLedger(dailyLedger);
 
         Double sum = new Double(0);

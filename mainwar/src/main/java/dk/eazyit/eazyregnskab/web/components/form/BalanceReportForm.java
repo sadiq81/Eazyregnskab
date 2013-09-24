@@ -11,6 +11,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,12 +25,16 @@ public class BalanceReportForm extends BaseReportForm {
     @SpringBean
     ReportService reportService;
 
+    private static final Logger LOG = LoggerFactory.getLogger(BalanceReportForm.class);
+
     public BalanceReportForm(String id, WebMarkupContainer refreshOnSubmit) {
         super(id, refreshOnSubmit);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public BalanceReportForm(String id, IModel model, WebMarkupContainer refreshOnSubmit) {
         super(id, model, refreshOnSubmit);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override

@@ -12,18 +12,24 @@ import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
  */
 public abstract class BaseForm<T extends BaseEntity> extends Form<T> implements SessionAware {
 
+    private static final Logger LOG = LoggerFactory.getLogger(BaseForm.class);
+
     protected BaseForm(String id) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     protected BaseForm(String id, IModel<T> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     public AppUser getCurrentUser() {

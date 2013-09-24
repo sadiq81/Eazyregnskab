@@ -1,13 +1,18 @@
 package dk.eazyit.eazyregnskab.web.components.carousel;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.carousel.ICarouselImage;
+import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
 /**
  * @author
  */
-public class LinkCarouselImage implements ICarouselImage, Serializable{
+public class LinkCarouselImage implements ICarouselImage, Serializable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(LoadingButton.class);
 
     private final String header;
     private final String description;
@@ -16,6 +21,7 @@ public class LinkCarouselImage implements ICarouselImage, Serializable{
 
     public LinkCarouselImage(String imageUrl, String linkUrl) {
         this(null, null, imageUrl, linkUrl);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with image " + imageUrl);
     }
 
     public LinkCarouselImage(String header, String description, String imageUrl, String linkUrl) {
@@ -23,6 +29,7 @@ public class LinkCarouselImage implements ICarouselImage, Serializable{
         this.description = description;
         this.imageUrl = imageUrl;
         this.linkUrl = linkUrl;
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with image " + imageUrl);
     }
 
     public String getLinkUrl() {

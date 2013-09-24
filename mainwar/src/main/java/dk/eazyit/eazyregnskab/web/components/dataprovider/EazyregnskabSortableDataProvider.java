@@ -9,16 +9,21 @@ import dk.eazyit.eazyregnskab.session.SessionAware;
 import org.apache.wicket.Session;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
  */
 public abstract class EazyregnskabSortableDataProvider<T> extends SortableDataProvider<T, String> implements SessionAware {
 
+    private static final Logger LOG = LoggerFactory.getLogger(EazyregnskabSortableDataProvider.class);
+
     @SpringBean
     DailyLedgerService dailyLedgerService;
 
     public EazyregnskabSortableDataProvider() {
+        LOG.trace("creating " + this.getClass().getSimpleName());
     }
 
     public AppUser getCurrentUser() {

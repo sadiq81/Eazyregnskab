@@ -10,6 +10,8 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
@@ -18,8 +20,11 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
 
     PlaceholderTextField name;
 
+    private static final Logger LOG = LoggerFactory.getLogger(VatTypeForm.class);
+
     public VatTypeForm(String id, IModel<VatType> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override
@@ -59,6 +64,7 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
 
     @Override
     public void saveForm(VatType vatType) {
+        LOG.debug("saving vat form " + vatType);
         vatTypeService.saveVatType(vatType, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("VatTypesPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel(vatType);

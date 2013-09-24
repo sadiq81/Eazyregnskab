@@ -45,7 +45,8 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends BaseForm<
     private FormSettings formSettings;
 
     protected BaseCreateEditForm(String id, IModel<T> model) {
-        super(id, new CompoundPropertyModel<T>(model));
+        super(id, new CompoundPropertyModel<>(model));
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override
@@ -62,36 +63,42 @@ public abstract class BaseCreateEditForm<T extends BaseEntity> extends BaseForm<
         add(saveModalConfirm = new AreYouSureModal("saveModalConfirm", new ResourceModel(getPage().getClass().getSimpleName() + ".confirm.save").getObject()) {
             @Override
             protected void onConfirm(AjaxRequestTarget target) {
+                LOG.debug("confirmed save modal");
                 saveForm(self.getModelObject());
                 updatePageComponents(target);
             }
 
             @Override
             protected void onCancel(AjaxRequestTarget target) {
+                LOG.debug("canceled  save modal");
                 updatePageComponents(target);
             }
         });
         add(newModalConfirm = new AreYouSureModal("newModalConfirm", new ResourceModel(getPage().getClass().getSimpleName() + ".confirm.new").getObject()) {
             @Override
             protected void onConfirm(AjaxRequestTarget target) {
+                LOG.debug("confirmed new modal");
                 insertNewEntityInModel(self.getModelObject());
                 updatePageComponents(target);
             }
 
             @Override
             protected void onCancel(AjaxRequestTarget target) {
+                LOG.debug("canceled new modal");
                 updatePageComponents(target);
             }
         });
         add(deleteModalConfirm = new AreYouSureModal("deleteModalConfirm", new ResourceModel(getPage().getClass().getSimpleName() + ".confirm.delete").getObject()) {
             @Override
             protected void onConfirm(AjaxRequestTarget target) {
+                LOG.debug("confirmed delete modal");
                 deleteEntity(self.getModelObject());
                 updatePageComponents(target);
             }
 
             @Override
             protected void onCancel(AjaxRequestTarget target) {
+                LOG.debug("canceled delete modal");
                 updatePageComponents(target);
             }
         });

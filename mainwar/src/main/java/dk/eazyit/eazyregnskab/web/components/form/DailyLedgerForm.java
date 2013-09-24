@@ -26,6 +26,7 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
 
     public DailyLedgerForm(String id, IModel<DailyLedger> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override
@@ -66,6 +67,7 @@ public class DailyLedgerForm extends BaseCreateEditForm<DailyLedger> {
 
     @Override
     public void saveForm(DailyLedger dailyLedger) {
+        LOG.debug("saving daily ledgerform " + dailyLedger);
         dailyLedgerService.saveDailyLedger(dailyLedger, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("DailyLedgerPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel(dailyLedger);

@@ -12,7 +12,9 @@ import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.injection.Injector;
+import org.apache.wicket.protocol.http.servlet.ServletWebRequest;
 import org.apache.wicket.request.Request;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +52,7 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
         } else if (!appUser.isActive()) {
             return false;
         } else if (PasswordEncoder.getInstance().encode(password, username).equals(appUser.getPassword())) {
-            log.info("appUser logged in: " + username);
+            log.info("appUser logged in: " + username + "from " + ((ServletWebRequest) RequestCycle.get().getRequest()).getContainerRequest().getRemoteHost());
             log.debug("Setting Current User");
             setCurrentUser(appUser);
 
@@ -104,6 +106,7 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
 
     @Override
     public void invalidate() {
+        log.info("appUser logged out: " + getCurrentUser().getUsername() + "from " + ((ServletWebRequest) RequestCycle.get().getRequest()).getContainerRequest().getRemoteHost());
         getApplication().getSecuritySettings().getAuthenticationStrategy().remove();
         Session.get().removeAttribute(AppUser.ATTRIBUTE_NAME);
         Session.get().removeAttribute(LegalEntity.ATTRIBUTE_NAME);

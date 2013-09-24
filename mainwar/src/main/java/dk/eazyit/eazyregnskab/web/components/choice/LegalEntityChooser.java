@@ -19,6 +19,7 @@ public class LegalEntityChooser extends SessionAwareDropDownChoice<LegalEntity> 
 
     public LegalEntityChooser(String id) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         setDefaultModel(new LegalEntityModel(getCurrentLegalEntity()));
         setChoices(new LegalEntityListModel());
         setChoiceRenderer(new ChoiceRenderer<LegalEntity>("name", "id"));

@@ -73,6 +73,7 @@ public class VatTypeService {
     }
 
     public VatType findVatTypeByNameAndLegalEntity(LegalEntity legalEntity, String name) {
+        LOG.debug("Finding all VatType from legalEntity  " + legalEntity.toString() + " by name " + name);
         return vatTypeDAO.findByNamedQueryUnique(VatType.QUERY_FIND_VATTYPE_BY_NAME_AND_LEGAL_ENTITY, name, legalEntity);
     }
 

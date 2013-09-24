@@ -4,6 +4,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessa
 import dk.eazyit.eazyregnskab.domain.Country;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.MoneyCurrency;
+import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
 import dk.eazyit.eazyregnskab.web.components.choice.EnumDropDownChoice;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
@@ -13,6 +14,8 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
@@ -21,12 +24,15 @@ import java.util.Arrays;
  */
 public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(LoadingButton.class);
+
     PlaceholderTextField name;
     EnumDropDownChoice<Country> country;
     EnumDropDownChoice<MoneyCurrency> moneyCurrency;
 
     public LegalEntityForm(String id, IModel<LegalEntity> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override
@@ -67,6 +73,7 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
 
     @Override
     public void saveForm(LegalEntity legalEntity) {
+        LOG.debug("saving legal entity form  " + legalEntity);
         legalEntityService.saveLegalEntity(getCurrentUser(), legalEntity);
         getSession().success(new NotificationMessage(new ResourceModel("BaseDataPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
     }

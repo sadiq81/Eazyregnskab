@@ -10,6 +10,8 @@ import org.apache.wicket.Session;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
@@ -18,6 +20,8 @@ import java.io.Serializable;
  */
 public abstract class EazyregnskabListDataProvider<T extends Serializable, R> extends ListDataProvider<T> implements SessionAware {
 
+
+    private static final Logger LOG = LoggerFactory.getLogger(EazyregnskabListDataProvider.class);
     @SpringBean
     DailyLedgerService dailyLedgerService;
 
@@ -25,6 +29,7 @@ public abstract class EazyregnskabListDataProvider<T extends Serializable, R> ex
 
     public EazyregnskabListDataProvider(CompoundPropertyModel<R> model) {
         this.model = model;
+        LOG.trace("creating " + this.getClass().getSimpleName());
     }
 
     public AppUser getCurrentUser() {

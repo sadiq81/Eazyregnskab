@@ -41,6 +41,7 @@ public class MailService {
 
     public void SendConfirmationEmail(String email, String UUID) {
 
+        LOG.info("Sending confirmation email to " + email + " with UUID " + UUID);
         ResourceBundle bundle = PropertyResourceBundle.getBundle("dk.eazyit.eazyregnskab.services.MailService", org.apache.wicket.Session.get().getLocale());
         String content = fileReader.readFromTxtFile(bundle.getString("message.file"));
         content = content.replace(ID_PHRASE, UUID);

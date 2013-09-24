@@ -25,7 +25,7 @@ public class FinanceAccountFormValidator extends BaseFormValidator {
         FinanceAccount account = (FinanceAccount) form.getModelObject();
         Integer accountNumber = formComponent1.getConvertedInput();
 
-        FinanceAccount number = financeAccountService.findFinanceAccountByLegalEntityAndName(getCurrentLegalEntity(), accountNumber);
+        FinanceAccount number = financeAccountService.findFinanceAccountByLegalEntityAndNumber(getCurrentLegalEntity(), accountNumber);
 
         if (number != null && !account.getId().equals(number.getId())) {
             error(formComponent1, "ChartOfAccountsPage.number.all.ready.exists");

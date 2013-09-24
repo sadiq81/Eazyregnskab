@@ -13,6 +13,8 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
@@ -28,10 +30,13 @@ public class SaveDailyLedgerForm extends Form {
     AjaxLoadingButton bookAll;
     AjaxLoadingButton clear;
 
+    private static final Logger LOG = LoggerFactory.getLogger(SaveDailyLedgerForm.class);
+
     protected final static int DURATION = 15;
 
     public SaveDailyLedgerForm(String id) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     @Override
@@ -50,6 +55,7 @@ public class SaveDailyLedgerForm extends Form {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
+                LOG.debug("booking all postings in dailylegder " + form.getModelObject());
                 bookPostings(true);
                 target.add(getPage());
             }
@@ -59,6 +65,7 @@ public class SaveDailyLedgerForm extends Form {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
+                LOG.debug("clearing all postings in dailylegder " + form.getModelObject());
                 areYouSureModal.show(target);
             }
         });
@@ -66,6 +73,7 @@ public class SaveDailyLedgerForm extends Form {
         add(areYouSureModal = new AreYouSureModal("are.you.sure", new StringResourceModel("BookkeepingPage.do.you.want.clear.daily.ledger", getPage(), null).getObject()) {
             @Override
             protected void onConfirm(AjaxRequestTarget target) {
+                LOG.debug("confirmed modal clear all " + getCurrentDailyLedger());
                 postingService.clearDailyLedger(getCurrentDailyLedger());
                 target.add(getPage());
             }
@@ -89,17 +97,20 @@ public class SaveDailyLedgerForm extends Form {
                 getSession().error(new NotificationMessage(
                         new StringResourceModel("BookkeepingPage.following.postings.did.not.balance", this, null, "", bookingResult.getListOfNotInBalance()))
                         .hideAfter(Duration.seconds(DURATION)));
+                LOG.debug("Postings did not balance in " + getCurrentDailyLedger());
             }
 
             if (bookingResult.getNotInOpenFiscalYear().size() > 0) {
                 getSession().error(new NotificationMessage(
                         new StringResourceModel("BookkeepingPage.following.postings.where.not.in.open.fiscal.year", this, null, "", bookingResult.getListOfNotInFiscalYear()))
                         .hideAfter(Duration.seconds(DURATION)));
+                LOG.debug("Postings where not in open fiscal year " + getCurrentDailyLedger());
             }
         } else {
             getSession().success(new NotificationMessage(
                     new StringResourceModel("BookkeepingPage.finance.postings.where.booked", this, null, ""))
                     .hideAfter(Duration.seconds(DURATION)));
+            LOG.debug("Postings where where booked " + getCurrentDailyLedger());
         }
     }
 

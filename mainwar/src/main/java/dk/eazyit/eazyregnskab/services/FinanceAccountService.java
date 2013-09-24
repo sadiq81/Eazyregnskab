@@ -36,7 +36,7 @@ public class FinanceAccountService {
 
     @Transactional
     public FinanceAccount findSystemFinanceAccountByLegalEntity(LegalEntity legalEntity, FinanceAccountType financeAccountType) {
-        LOG.debug("Finding system FinanceAccount from legal entity " + legalEntity.toString());
+        LOG.debug("Finding system FinanceAccount from legal entity " + legalEntity.toString() + " with type " + financeAccountType);
         FinanceAccount account = financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_SYSTEM_ACCOUNT_BY_LEGAL_ENTITY, legalEntity, financeAccountType);
         return account;
     }
@@ -56,14 +56,14 @@ public class FinanceAccountService {
     }
 
     public List<FinanceAccount> findFinanceAccountByLegalEntityFromAccountToAccount(LegalEntity legalEntity, FinanceAccount fromAccount, FinanceAccount toAccount) {
-        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
+        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString() + " from account " + fromAccount + " to account " + toAccount);
         List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT,
                 legalEntity, fromAccount.getAccountNumber(), toAccount.getAccountNumber());
         return list;
     }
 
     public List<FinanceAccount> findBookableFinanceAccountByLegalEntityFromAccountToAccount(LegalEntity legalEntity, FinanceAccount fromAccount, FinanceAccount toAccount) {
-        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
+        LOG.debug("Finding all bookable FinanceAccount from legal entity " + legalEntity.toString() + " from account " + fromAccount + " to account " + toAccount);
         List<FinanceAccount> list = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BOOKABLE_BY_LEGAL_ENTITY_AND_FROM_ACCOUNT_TO_ACCOUNT,
                 legalEntity, fromAccount.getAccountNumber(), toAccount.getAccountNumber());
         return list;
@@ -71,7 +71,7 @@ public class FinanceAccountService {
 
     @Transactional
     public List<FinanceAccount> findBookableFinanceAccountByLegalEntity(LegalEntity legalEntity) {
-        LOG.debug("Finding all FinanceAccount from legal entity " + legalEntity.toString());
+        LOG.debug("Finding all bookable FinanceAccount from legal entity " + legalEntity.toString());
         List<FinanceAccount> temp = financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity);
         List<FinanceAccount> list = new ArrayList<FinanceAccount>();
         for (FinanceAccount financeAccount : temp) {
@@ -91,14 +91,14 @@ public class FinanceAccountService {
 
     @Transactional
     public List<FinanceAccount> findFinanceAccountByLegalEntitySubListSortBy(LegalEntity legalEntity, int first, int count, String sortProperty, boolean Ascending) {
-        LOG.debug("Finding all FinanceAccount from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString());
+        LOG.debug("Finding all FinanceAccount from legal entity starting with " + first + " to  " + count + " from " + legalEntity.toString() + " sorted by " + sortProperty);
         List<FinanceAccount> list = financeAccountDAO.findByNamedQuerySorted(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, new Integer(first), new Integer(count), sortProperty, Ascending, legalEntity);
         return list;
     }
 
     @Transactional
     public int countFinanceAccountOfLegalEntity(LegalEntity legalEntity) {
-        LOG.debug("Couting all financeAccount from legalEntity " + legalEntity.toString());
+        LOG.debug("Counting all financeAccount from legalEntity " + legalEntity.toString());
         return financeAccountDAO.findByNamedQuery(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY, legalEntity).size();
     }
 
@@ -114,6 +114,7 @@ public class FinanceAccountService {
 
     @Transactional
     public void setFinanceAccountInUse(FinanceAccount financeAccountInUse) {
+        LOG.debug("Setting financeAccount in use " + financeAccountInUse.toString());
         financeAccountInUse.setInUse(true);
         financeAccountDAO.save(financeAccountInUse);
     }
@@ -130,11 +131,14 @@ public class FinanceAccountService {
 
     @Transactional
     public FinanceAccount findFinanceAccountById(long l) {
+        LOG.debug("Finding financeAccount by id " + l);
         return financeAccountDAO.findById(l);
     }
 
 
-    public FinanceAccount findFinanceAccountByLegalEntityAndName(LegalEntity currentLegalEntity, Integer number) {
+    @Transactional
+    public FinanceAccount findFinanceAccountByLegalEntityAndNumber(LegalEntity currentLegalEntity, Integer number) {
+        LOG.debug("Finding financeAccount by legal entity  " + currentLegalEntity + " and number " + number);
         return financeAccountDAO.findByNamedQueryUnique(FinanceAccount.QUERY_FIND_BY_LEGAL_ENTITY_AND_ACCOUNT_NUMBER, currentLegalEntity, number);
     }
 }

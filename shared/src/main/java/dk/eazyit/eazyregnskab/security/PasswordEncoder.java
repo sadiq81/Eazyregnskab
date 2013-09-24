@@ -32,20 +32,14 @@ public class PasswordEncoder {
      * @return * @author Ashish Shukla
      */
     public static synchronized PasswordEncoder getInstance() {
-        if (log.isDebugEnabled()) {
-            log.debug("getInstance() - start");
-        }
+        log.debug("getInstance() - start");
         if (instance == null) {
             PasswordEncoder returnPasswordEncoder = new PasswordEncoder();
-            log.info("New instance created");
-            if (log.isDebugEnabled()) {
-                log.debug("getInstance() - end");
-            }
+            log.debug("New instance created");
+            log.debug("getInstance() - end");
             return returnPasswordEncoder;
         } else {
-            if (log.isDebugEnabled()) {
-                log.debug("getInstance() - end");
-            }
+            log.debug("getInstance() - end");
             return instance;
         }
     }
@@ -57,9 +51,7 @@ public class PasswordEncoder {
 
         String encodedPassword = null;
         try {
-            if (log.isDebugEnabled()) {
-                log.debug("encode(String, String) - start");
-            }
+            log.debug("encode(String, String) - start");
             encodedPassword = null;
             byte[] salt = base64ToByte(saltKey);
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -71,9 +63,7 @@ public class PasswordEncoder {
                 btPass = digest.digest(btPass);
             }
             encodedPassword = byteToBase64(btPass);
-            if (log.isDebugEnabled()) {
-                log.debug("encode(String, String) - end");
-            }
+            log.debug("encode(String, String) - end");
         } catch (Exception e) {
             log.error("Password encoding failed due to " + e.getStackTrace().toString());
         } finally {
@@ -91,9 +81,7 @@ public class PasswordEncoder {
         }
         BASE64Decoder decoder = new BASE64Decoder();
         byte[] returnbyteArray = decoder.decodeBuffer(str);
-        if (log.isDebugEnabled()) {
-            log.debug("base64ToByte(String) - end");
-        }
+        log.debug("base64ToByte(String) - end");
         return returnbyteArray;
     }
 
@@ -101,14 +89,10 @@ public class PasswordEncoder {
      * @param bt * @return String * @throws IOException
      */
     private String byteToBase64(byte[] bt) {
-        if (log.isDebugEnabled()) {
-            log.debug("byteToBase64(byte[]) - start");
-        }
+        log.debug("byteToBase64(byte[]) - start");
         BASE64Encoder endecoder = new BASE64Encoder();
         String returnString = endecoder.encode(bt);
-        if (log.isDebugEnabled()) {
-            log.debug("byteToBase64(byte[]) - end");
-        }
+        log.debug("byteToBase64(byte[]) - end");
         return returnString;
     }
 }

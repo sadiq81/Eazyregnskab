@@ -4,6 +4,7 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.BootstrapResour
 import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
 import de.agilecoders.wicket.core.markup.html.bootstrap.carousel.ICarouselImage;
 import de.agilecoders.wicket.core.util.Attributes;
+import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.ComponentTag;
@@ -20,6 +21,8 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -31,6 +34,8 @@ public class LinkCarousel extends Panel {
     private Duration interval = Duration.seconds(5);
     private final IModel<List<LinkCarouselImage>> model;
 
+    private static final Logger LOG = LoggerFactory.getLogger(LoadingButton.class);
+
     /**
      * Construct.
      *
@@ -39,6 +44,7 @@ public class LinkCarousel extends Panel {
      */
     public LinkCarousel(final String markupId, final List<LinkCarouselImage> images) {
         this(markupId, new ListModel(images));
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     /**
@@ -50,6 +56,7 @@ public class LinkCarousel extends Panel {
     public LinkCarousel(final String markupId, final IModel<List<LinkCarouselImage>> model) {
         super(markupId, model);
         this.model = model;
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
 
         setOutputMarkupId(true);
 
@@ -59,7 +66,6 @@ public class LinkCarousel extends Panel {
                 newNavigationButton("prev"),
                 newNavigationButton("next"));
     }
-
 
 
     @Override

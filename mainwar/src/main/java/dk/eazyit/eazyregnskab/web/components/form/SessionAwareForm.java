@@ -10,12 +10,15 @@ import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
  */
 public abstract class SessionAwareForm<T> extends Form<T> implements SessionAware {
 
+    private static final Logger LOG = LoggerFactory.getLogger(SessionAwareForm.class);
 
     @SpringBean
     protected LegalEntityService legalEntityService;
@@ -33,10 +36,12 @@ public abstract class SessionAwareForm<T> extends Form<T> implements SessionAwar
 
     public SessionAwareForm(String id) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public SessionAwareForm(String id, IModel<T> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     public AppUser getCurrentUser() {

@@ -13,6 +13,8 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -24,8 +26,11 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
     PlaceholderDateField start;
     PlaceholderDateField end;
 
+    private static final Logger LOG = LoggerFactory.getLogger(FiscalYearForm.class);
+
     public FiscalYearForm(String id, IModel<FiscalYear> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override
@@ -92,6 +97,7 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
 
     @Override
     public void saveForm(FiscalYear fiscalYear) {
+        LOG.debug("saving fiscal year form " + fiscalYear);
         if (fiscalYearService.save(fiscalYear.setLegalEntity(getCurrentLegalEntity()))) {
             getSession().success(new NotificationMessage(new ResourceModel("FiscalYearPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
             insertNewEntityInModel(fiscalYear);

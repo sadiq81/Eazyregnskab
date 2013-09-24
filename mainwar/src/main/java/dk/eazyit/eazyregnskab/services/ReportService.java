@@ -5,6 +5,8 @@ import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.util.comparetors.BookedFinancePostingDateComparator;
 import dk.eazyit.eazyregnskab.util.comparetors.FinanceAccountNumberComparator;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,8 @@ import java.util.*;
 @Service
 public class ReportService {
 
+    private Logger log = LoggerFactory.getLogger(ReportService.class);
+
     @Autowired
     FinanceAccountService financeAccountService;
     @Autowired
@@ -27,6 +31,7 @@ public class ReportService {
     @Transactional(readOnly = true)
     public List<FinanceAccount> getFinanceAccountsWithSum(FiscalYear fiscalYear) {
 
+        log.debug("Getting financeaccountswith sum");
         List<FinanceAccount> financeAccountsList = financeAccountService.findFinanceAccountByLegalEntity(fiscalYear.getLegalEntity());
         List<BookedFinancePosting> financePostingList = postingService.findBookedPostingsFromLegalEntityFromDateToDate(fiscalYear.getLegalEntity(), fiscalYear.getStart(), fiscalYear.getEnd());
 
@@ -56,6 +61,7 @@ public class ReportService {
     @Transactional(readOnly = true)
     public List<FinanceAccount> getFinanceAccountsWithSum(LegalEntity legalEntity, CompoundPropertyModel<ReportObject> model) {
 
+        log.debug("Getting financeaccountswith sum");
         Date fromDate = model.getObject().getDateFrom();
         Date toDate = model.getObject().getDateTo();
 
@@ -172,6 +178,7 @@ public class ReportService {
     @Transactional(readOnly = true)
     public List<BookedFinancePosting> getBookedFinancePostingsWithSum(LegalEntity id, CompoundPropertyModel<ReportObject> cpm) {
 
+        log.debug("Getting BookedFinancepostings with sum");
         Date fromDate = cpm.getObject().getDateFrom();
         Date toDate = cpm.getObject().getDateTo();
 
@@ -234,6 +241,7 @@ public class ReportService {
     @Transactional(readOnly = true)
     public List<FinanceAccount> getFinanceAccountsWithBookedFinancePostings(LegalEntity id, CompoundPropertyModel<ReportObject> cpm) {
 
+        log.debug("Getting FinanceAccounts With BookedFinance Postings");
         Date fromDate = cpm.getObject().getDateFrom();
         Date toDate = cpm.getObject().getDateTo();
 

@@ -19,6 +19,7 @@ public class BaseCreateEditFormAjaxButton extends AjaxButton {
 
     public BaseCreateEditFormAjaxButton(String id, IModel<String> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         add(new LoadingBehavior(new StringResourceModel("button.loading", this, null)));
     }
 

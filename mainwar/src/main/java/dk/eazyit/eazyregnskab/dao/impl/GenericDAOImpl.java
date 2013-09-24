@@ -4,8 +4,6 @@ import dk.eazyit.eazyregnskab.dao.interfaces.GenericDAO;
 import dk.eazyit.eazyregnskab.domain.BaseEntity;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePosting;
 import dk.eazyit.eazyregnskab.domain.BookedFinancePostingType;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,6 +11,8 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Projections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.EntityManager;
@@ -41,10 +41,9 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
     // ~ Instance fields
     // --------------------------------------------------------
 
-    final Log logger = LogFactory.getLog(this.getClass());
+    final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Class<T> persistentClass;
     private EntityManager entityManager;
-    private static final String ORDER_BY_CLAUSE_START = " ORDER BY ";
 
     // ~ Constructors
     // -----------------------------------------------------------
@@ -161,12 +160,12 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
 
     @Override
     public T findById(final ID id, boolean writeLock) {
-        logger.debug("Finding " + persistentClass.getName() + " from database by id" + id);
+        logger.debug("Finding " + persistentClass.getName() + " from database by id" + id + " with write lock " + writeLock);
         return findById(id, LockModeType.PESSIMISTIC_WRITE);
     }
 
     private T findById(final ID id, LockModeType lockModeType) {
-        logger.debug("Finding " + persistentClass.getName() + " from database by id" + id);
+        logger.debug("Finding " + persistentClass.getName() + " from database by id" + id + " with lock mode " + lockModeType);
         return getEntityManager().find(persistentClass, id, lockModeType);
     }
 
@@ -205,7 +204,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findByNamedQuery(final String name, Integer firstResult, Integer maxResults, Object... params) {
-        logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name);
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name + " first result: " + firstResult + " max results " + maxResults + " params " + params);
         Query query = getEntityManager().createNamedQuery(name);
 
         if (maxResults != null) {
@@ -226,7 +225,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
     // http://stackoverflow.com/questions/4120388/hibernate-named-query-order-by-partameter
     @Override
     public List<T> findByNamedQuerySorted(String name, Integer firstResult, Integer maxResults, String SortProperty, boolean ascending, Object... params) {
-        logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name + " sorted by " + SortProperty);
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query" + name + " first result: " + firstResult + " max results " + maxResults + " params " + params + " sorted by " + SortProperty);
 
 
         Query query = getEntityManager().createNamedQuery(name);
@@ -261,7 +260,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
     @SuppressWarnings("unchecked")
     @Override
     public <X> List<X> findByNamedQuery(final String name, Class<X> returnValueClass, Object... params) {
-        logger.debug("Finding list" + persistentClass.getName() + " from database by named query " + name);
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query " + name + " params " + params);
         javax.persistence.Query query = getEntityManager().createNamedQuery(name);
 
         for (int i = 0; i < params.length; i++) {
@@ -278,6 +277,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
 
     @Override
     public T findByNamedQueryUnique(final String name, Integer maxResults, Object... params) {
+        logger.debug("Finding unique" + persistentClass.getName() + " from database by named query " + name + " params " + params);
         final List<T> results = findByNamedQuery(name, maxResults, params);
         if (results.size() > 1) {
             throw new RuntimeException("Expected at most 1 entity to match params='" + params + "'. Found " + results.size() + " matches.");
@@ -295,7 +295,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findByNamedQueryAndNamedParams(final String name, final Map<String, ? extends Object> params) {
-        logger.debug("Finding list" + persistentClass.getName() + " from database");
+        logger.debug("Finding list" + persistentClass.getName() + " from database by named query " + name + " params " + params);
         javax.persistence.Query query = getEntityManager().createNamedQuery(name);
 
         for (final Map.Entry<String, ? extends Object> param : params
@@ -342,6 +342,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findByCriteria(final int firstResult, final int maxResults, final Criterion... criterion) {
+        logger.debug("Finding list" + persistentClass.getName() + " from database by Criterion  " + criterion + " first result " + firstResult + " max results " + maxResults);
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = session.createCriteria(getEntityClass());
 
@@ -382,6 +383,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
      */
     @SuppressWarnings("unchecked")
     protected List<T> findByDetachedCriteria(int firstResult, int maxResults, DetachedCriteria detachedCriteria) {
+        logger.debug("Finding list" + persistentClass.getName() + " from database by DetachedCriteria  " + detachedCriteria + " first result " + firstResult + " max results " + maxResults);
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = detachedCriteria.getExecutableCriteria(session);
         if (firstResult > 0) {
@@ -395,6 +397,7 @@ public abstract class GenericDAOImpl<T extends BaseEntity, ID extends Serializab
 
 
     protected long countByCriteria(Criterion... criterion) {
+        logger.debug("Counting " + persistentClass.getName() + " from database by Criterion  " + criterion);
         Session session = (Session) getEntityManager().getDelegate();
         Criteria crit = session.createCriteria(getEntityClass());
         crit.setProjection(Projections.rowCount());

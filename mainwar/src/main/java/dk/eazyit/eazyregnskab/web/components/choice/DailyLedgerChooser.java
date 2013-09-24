@@ -22,6 +22,7 @@ public class DailyLedgerChooser extends SessionAwareDropDownChoice<DailyLedger> 
         setChoices(new DailyLedgerListModel());
         setChoiceRenderer(new ChoiceRenderer<DailyLedger>("name", "id"));
         setOutputMarkupPlaceholderTag(true);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         add((new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {

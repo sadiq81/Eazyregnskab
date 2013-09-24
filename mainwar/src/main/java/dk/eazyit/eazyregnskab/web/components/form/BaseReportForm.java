@@ -9,6 +9,7 @@ import dk.eazyit.eazyregnskab.session.EazyregnskabSesssion;
 import dk.eazyit.eazyregnskab.util.CalendarUtil;
 import dk.eazyit.eazyregnskab.util.ReportObject;
 import dk.eazyit.eazyregnskab.web.components.button.AjaxLoadingButton;
+import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
 import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2ChoiceAllAccounts;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderDateField;
 import dk.eazyit.eazyregnskab.web.components.resource.JasperPdfReportsResource;
@@ -24,6 +25,8 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 
@@ -31,6 +34,8 @@ import java.util.HashMap;
  * @author
  */
 public abstract class BaseReportForm extends Form<ReportObject> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(LoadingButton.class);
 
     public static final String legal_entity_name = "QUERY_LEGAL_ENTITY_NAME";
     public static final String legal_entity_id = "QUERY_LEGAL_ENTITY_ID";
@@ -52,10 +57,12 @@ public abstract class BaseReportForm extends Form<ReportObject> {
 
     public BaseReportForm(String id, WebMarkupContainer refreshOnSubmit) {
         this(id, null, refreshOnSubmit);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public BaseReportForm(String id, IModel model, WebMarkupContainer refreshOnSubmit) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
         this.refreshOnSubmit = refreshOnSubmit;
         self = this;
         addToForm();
@@ -81,6 +88,7 @@ public abstract class BaseReportForm extends Form<ReportObject> {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 super.onSubmit(target, form);
+                LOG.debug("refreshed reportform " + getModelObject());
                 getSession().setAttribute(ReportObject.ATTRIBUTE_NAME, self.getModelObject());
                 target.add(this);
                 self.getModelObject().setSubmitHasBeenPressed(true);

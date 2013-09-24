@@ -17,6 +17,7 @@ public class PlaceholderTextField<T> extends TextField<T> {
 
     public PlaceholderTextField(String id) {
         this(id, "");
+        LOG.trace("Creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public PlaceholderTextField(String id, String localizerPage) {

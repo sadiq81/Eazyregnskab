@@ -19,6 +19,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
@@ -27,6 +29,9 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
     @SpringBean
     PostingService postingService;
+
+    private static final Logger LOG = LoggerFactory.getLogger(DraftFinancePostingForm.class);
+
 
     PlaceholderDateField date;
     PlaceholderTextField text;
@@ -37,6 +42,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
     public DraftFinancePostingForm(String id, IModel<DraftFinancePosting> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override
@@ -82,6 +88,7 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
 
     @Override
     public void saveForm(DraftFinancePosting draftFinancePosting) {
+        LOG.debug("Saving draft financeposting form " + draftFinancePosting);
         postingService.saveDraftFinancePosting(draftFinancePosting.setDailyLedger(getCurrentDailyLedger()));
         insertNewEntityInModel(draftFinancePosting);
     }

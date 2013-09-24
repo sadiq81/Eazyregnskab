@@ -20,6 +20,8 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +31,7 @@ import java.util.Arrays;
  */
 public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(FinanceAccountForm.class);
     private static final ArrayList<FinanceAccountType> lockedTypes = new ArrayList<FinanceAccountType>(Arrays.asList(FinanceAccountType.HEADLINE, FinanceAccountType.SUM, FinanceAccountType.CATEGORY));
 
     PlaceholderTextField name;
@@ -45,6 +48,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     public FinanceAccountForm(String id, IModel<FinanceAccount> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     @Override
@@ -86,6 +90,7 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
     @Override
     public void saveForm(FinanceAccount financeAccount) {
+        LOG.debug("saving finance account form " + financeAccount);
         financeAccountService.saveFinanceAccount(financeAccount, getCurrentLegalEntity());
         getSession().success(new NotificationMessage(new ResourceModel("ChartOfAccountsPage.changes.has.been.saved")).hideAfter(Duration.seconds(DURATION)));
         insertNewEntityInModel(financeAccount);

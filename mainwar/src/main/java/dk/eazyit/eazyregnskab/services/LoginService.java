@@ -52,6 +52,7 @@ public class LoginService {
 
     @Transactional
     public boolean activeUser(String username, String password, String UUID) {
+        log.info("Activating user " + username);
         AppUser appUser = findAppUserByUsername(username);
         String pass2 = PasswordEncoder.getInstance().encode(password, username);
         if (appUser != null && appUser.getPassword().equals(pass2) && appUser.getVerificationUUID().equals(UUID)) {
@@ -67,7 +68,6 @@ public class LoginService {
 
     @Transactional
     public String getUserRolesAsString(AppUser appUser) {
-
         StringBuilder roles = new StringBuilder();
         for (AppUserRole role : appUserRoleDAO.findByNamedQuery(AppUserRole.QUERY_FIND_BY_USER, appUser)) {
             if (roles.length() > 0) {
@@ -86,12 +86,14 @@ public class LoginService {
 
     @Transactional(readOnly = true)
     public AppUser findAppUserByUsername(String username) {
+        log.debug("Find appuser by name " + username);
         AppUser appUser = appUserDAO.findByNamedQueryUnique(AppUser.QUERY_FIND_BY_USER_NAME, username);
         return appUser;
     }
 
     @Transactional(readOnly = true)
     public AppUser findAppUserByEmail(String email) {
+        log.debug("Find appuser by email " + email);
         AppUser appUser = appUserDAO.findByNamedQueryUnique(AppUser.QUERY_FIND_BY_EMAIL, email);
         return appUser;
     }

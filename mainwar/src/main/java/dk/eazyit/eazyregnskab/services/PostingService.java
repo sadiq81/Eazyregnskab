@@ -114,6 +114,7 @@ public class PostingService {
 
     @Transactional
     public List<BookedFinancePosting> findBookedFinancePostingsByVatType(VatType vatType) {
+        LOG.debug("Finding all BookedFinancePosting by vat type " + vatType);
         return bookedFinancePostingDAO.findByNamedQuery(BookedFinancePosting.QUERY_FIND_FINANCE_POSTING_BY_VAT_TYPE, vatType);
     }
 
@@ -150,7 +151,7 @@ public class PostingService {
 
     @Transactional(readOnly = true)
     public BookedFinancePosting findPrimoPostingsFromAccount(FinanceAccount financeAccount, Date start) {
-        LOG.debug("Finding primo BookedFinancePosting from account" + financeAccount.toString());
+        LOG.debug("Finding primo BookedFinancePosting from account" + financeAccount.toString() + " start date " + start);
         return bookedFinancePostingDAO.findByNamedQueryUnique(BookedFinancePosting.QUERY_FIND_PRIMO_FINANCE_POSTING_BY_ACCOUNT, financeAccount, start, BookedFinancePostingType.PRIMO);
     }
 

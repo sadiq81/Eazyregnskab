@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Eazy IT
@@ -44,6 +46,7 @@ public class LegalEntityService {
     @Transactional
     private void createStandardBaseData(LegalEntity legalEntity) {
 
+        log.info("Creating basedate for " + legalEntity);
         Map<Integer, FinanceAccount> accountMap = new HashMap<>();
 
         accountMap.put(25100, financeAccountDAO.create(createFinanceAccount("vat.dk.incoming", 25100, FinanceAccountType.LIABILITY, null, null, legalEntity)));
@@ -267,7 +270,6 @@ public class LegalEntityService {
 
     @Transactional
     public LegalEntity saveLegalEntity(AppUser appUser, LegalEntity legalEntity) {
-        log.debug("Saving Legal Entity " + legalEntity);
         legalEntityDAO.save(legalEntity);
         return legalEntity;
     }
@@ -335,20 +337,4 @@ public class LegalEntityService {
         return new ResourceModel(resourceText).getObject();
     }
 
-    /**
-     * Convert ResourceBundle into a Map object.
-     *
-     * @param resource a resource bundle to convert.
-     * @return Map a map version of the resource bundle.
-     *         Found http://www.kodejava.org/examples/340.html
-     */
-    private static Map<String, String> convertResourceBundleToMap(ResourceBundle resource) {
-        Map<String, String> map = new HashMap<String, String>();
-        Enumeration<String> keys = resource.getKeys();
-        while (keys.hasMoreElements()) {
-            String key = keys.nextElement();
-            map.put(key, resource.getString(key));
-        }
-        return map;
-    }
 }

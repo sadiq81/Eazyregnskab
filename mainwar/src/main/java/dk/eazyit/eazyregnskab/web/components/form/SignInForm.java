@@ -13,6 +13,8 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author
@@ -21,6 +23,8 @@ public class SignInForm extends StatelessForm<SimpleAppUserInfo> {
 
     private static final long serialVersionUID = 1L;
 
+    private static final Logger LOG = LoggerFactory.getLogger(SignInForm.class);
+
     /**
      * Constructor.
      *
@@ -28,6 +32,7 @@ public class SignInForm extends StatelessForm<SimpleAppUserInfo> {
      */
     public SignInForm(final String id) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
 
         setModel(new CompoundPropertyModel<SimpleAppUserInfo>(new SimpleAppUserInfo()));
 
@@ -44,16 +49,20 @@ public class SignInForm extends StatelessForm<SimpleAppUserInfo> {
     @Override
     public final void onSubmit() {
 
+        LOG.debug("Signin attempt " + getModelObject().getUsername());
         IAuthenticationStrategy strategy = getApplication().getSecuritySettings().getAuthenticationStrategy();
 
         if (signIn(getModelObject().getUsername(), getModelObject().getPassword())) {
             if (getModelObject().isRememberMe() == true) {
                 strategy.save(getModelObject().getUsername(), getModelObject().getPassword());
+                LOG.debug("Signin attempt success, saved cookie " + getModelObject().getUsername());
             } else {
                 strategy.remove();
+                LOG.debug("Signin attempt success, not saving cookie " + getModelObject().getUsername());
             }
             onSignInSucceeded();
         } else {
+            LOG.debug("Signin attempt failure, deleted cookie " + getModelObject().getUsername());
             onSignInFailed();
             strategy.remove();
         }
@@ -107,6 +116,7 @@ public class SignInForm extends StatelessForm<SimpleAppUserInfo> {
                 // try to sign in the user
                 if (signIn(data[0], data[1])) {
                     // logon successful. Continue to the original destination
+                    LOG.debug("User allready signed in " + data[0]);
                     continueToOriginalDestination();
                     // Ups, no original destination. Go to the home page
                     throw new RestartResponseException(BookkeepingPage.class);
@@ -115,7 +125,7 @@ public class SignInForm extends StatelessForm<SimpleAppUserInfo> {
                     authenticationStrategy.remove();
                 }
             }
-        } else{
+        } else {
             throw new RestartResponseException(BookkeepingPage.class);
         }
 

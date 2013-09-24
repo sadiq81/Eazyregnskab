@@ -4,6 +4,8 @@ import dk.eazyit.eazyregnskab.dao.interfaces.BookedFinancePostingDAO;
 import dk.eazyit.eazyregnskab.dao.interfaces.DraftFinancePostingDAO;
 import dk.eazyit.eazyregnskab.domain.*;
 import dk.eazyit.eazyregnskab.util.CalendarUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import java.util.*;
 @Service
 public class BookingService {
 
+    final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     BookedFinancePostingDAO bookedFinancePostingDAO;
@@ -35,16 +38,23 @@ public class BookingService {
     @Transactional
     public void BookDailyLedger(DailyLedger dailyLedger, BookingResult result, boolean bookAll) {
 
+        logger.debug("Booking dailyledger " + dailyLedger + " with setting bookAll = " + bookAll);
         List<DraftFinancePosting> draftFinancePostingList = postingService.findDraftPostingsFromDailyLedger(dailyLedger);
+        logger.debug("Found " + draftFinancePostingList.size() + " postings in dailyledger " + dailyLedger);
 
         List<DraftFinancePosting> markedForSave = bookAll ? draftFinancePostingList : removeNotMarkedForSave(draftFinancePostingList);
+        logger.debug(markedForSave.size() + " postings in dailyledger " + dailyLedger + " where marked for save");
 
         List<DraftFinancePosting> withinOpenFiscalYears = checkWithinOpenFiscalYear(markedForSave, dailyLedger, result);
+        logger.debug(markedForSave.size() + " postings in dailyledger " + dailyLedger + " where within open fiscal year");
 
+        logger.debug("Creating booked postings");
         Map<Integer, BookedFinancePostingBatch> notCheckBookedFinancePostings = createBookedFinancePostings(withinOpenFiscalYears);
 
+        logger.debug("Checking postings for balance");
         Map<Integer, BookedFinancePostingBatch> inBalance = checkBookedFinancePostingsForBalance(notCheckBookedFinancePostings, result);
 
+        logger.debug("Saving postings");
         saveCheckedBookedFinancePostings(inBalance);
 
     }
@@ -92,7 +102,9 @@ public class BookingService {
 
         for (DraftFinancePosting draftFinancePosting : draftFinancePostings) {
 
+            logger.debug("Creating booked postings from " + draftFinancePosting);
             List<BookedFinancePosting> list = createBookedFinancePostings(draftFinancePosting);
+            logger.debug(list + " booked postings where created from " + draftFinancePosting);
             BookedFinancePostingBatch batch = map.get(draftFinancePosting.getBookingNumber());
 
             if (batch == null) {
@@ -119,6 +131,7 @@ public class BookingService {
             posting.setAmount(draftFinancePosting.getAmount());
             posting.setFinanceAccount(account);
             list.add(posting);
+            logger.debug("Created posting " + posting);
 
             VatType vatType = draftFinancePosting.getVatType();
             if (vatType != null) {
@@ -131,6 +144,7 @@ public class BookingService {
                     vatPosting.setAmount(vat);
                     vatPosting.setFinanceAccount(vatType.getFinanceAccount());
                     vatPosting.setVatType(vatType);
+                    logger.debug("Created vatposting " + posting);
                     list.add(vatPosting);
 
                     posting.setVatPosting(vatPosting);
@@ -139,6 +153,7 @@ public class BookingService {
                     reverseVatPosting.setAmount(0 - vat);
                     reverseVatPosting.setFinanceAccount(vatType.getFinanceAccountReverse());
                     reverseVatPosting.setVatType(vatType);
+                    logger.debug("Created reverseVatPosting " + posting);
                     list.add(reverseVatPosting);
 
                     posting.setReverseVatPosting(reverseVatPosting);
@@ -150,6 +165,7 @@ public class BookingService {
                     posting.removeVat(vat);
                     vatPosting.setFinanceAccount(vatType.getFinanceAccount());
                     vatPosting.setVatType(vatType);
+                    logger.debug("Created vat posting " + posting);
                     list.add(vatPosting);
 
                     posting.setVatPosting(vatPosting);
@@ -165,6 +181,7 @@ public class BookingService {
             reversePosting.setAmount(0 - draftFinancePosting.getAmount());
             reversePosting.setFinanceAccount(reverse);
 
+            logger.debug("Created reverse Posting " + posting);
             list.add(reversePosting);
 
             VatType vatType = draftFinancePosting.getReverseVatType();
@@ -178,6 +195,7 @@ public class BookingService {
                     vatPosting.setAmount(vat);
                     vatPosting.setFinanceAccount(vatType.getFinanceAccount());
                     vatPosting.setVatType(vatType);
+                    logger.debug("Created reverse vat posting " + posting);
                     list.add(vatPosting);
 
                     reversePosting.setVatPosting(vatPosting);
@@ -186,6 +204,7 @@ public class BookingService {
                     reverseVatPosting.setAmount(0 - vat);
                     reverseVatPosting.setFinanceAccount(vatType.getFinanceAccountReverse());
                     reverseVatPosting.setVatType(vatType);
+                    logger.debug("Created reverse vat reverse posting " + posting);
                     list.add(reverseVatPosting);
 
                     reversePosting.setReverseVatPosting(reverseVatPosting);
@@ -197,6 +216,7 @@ public class BookingService {
                     reversePosting.removeVat(vat);
                     vatPosting.setFinanceAccount(vatType.getFinanceAccount());
                     vatPosting.setVatType(vatType);
+                    logger.debug("Created reverse vat posting " + posting);
                     list.add(vatPosting);
 
                     reversePosting.setVatPosting(vatPosting);
@@ -221,7 +241,9 @@ public class BookingService {
     }
 
     private double getVat(double amount, double percentageInHundreds) {
-        return amount - (amount / (1 + (percentageInHundreds / 100)));
+        double vat = amount - (amount / (1 + (percentageInHundreds / 100)));
+        logger.debug("Calculating vat from " + amount + " with vat percentage" + percentageInHundreds + " vat is " + vat);
+        return vat;
     }
 
     private Map<Integer, BookedFinancePostingBatch> checkBookedFinancePostingsForBalance(Map<Integer, BookedFinancePostingBatch> map, BookingResult result) {
@@ -242,6 +264,7 @@ public class BookingService {
 
             //Check balance of posting
             if (amount != 0) {
+                logger.debug("Amount of posting " + entry.getValue().getBookingNumber() + " is not in balance");
                 bookingStatus = BookingStatus.ERROR;
             }
             //Check same date
@@ -252,6 +275,7 @@ public class BookingService {
 
                 if (date.compareTo(prev) != 0) {
                     bookingStatus = BookingStatus.ERROR;
+                    logger.debug("Date of posting " + entry.getValue().getBookingNumber() + " is not in balance");
                     break;
                 }
                 prev = date;
@@ -302,6 +326,7 @@ public class BookingService {
 
     @Transactional
     public void regretPostings(List<BookedFinancePosting> list, DailyLedger dailyLedger) {
+        logger.debug("Posting number " + list.get(0).getBookingNumber() + " is being regret");
         for (DraftFinancePosting draftFinancePosting : createNewFromListOfBookedFinancePostings(list, dailyLedger)) {
             draftFinancePostingDAO.create(draftFinancePosting.reverseAmount());
         }
@@ -309,6 +334,7 @@ public class BookingService {
 
     @Transactional
     public void copyPostings(List<BookedFinancePosting> list, DailyLedger dailyLedger) {
+        logger.debug("Posting number " + list.get(0).getBookingNumber() + " is being copyed");
         for (DraftFinancePosting draftFinancePosting : createNewFromListOfBookedFinancePostings(list, dailyLedger)) {
             draftFinancePostingDAO.create(draftFinancePosting);
         }
@@ -316,6 +342,7 @@ public class BookingService {
 
     @Transactional
     public void flipPostings(List<BookedFinancePosting> list, DailyLedger dailyLedger) {
+        logger.debug("Posting number " + list.get(0).getBookingNumber() + " is being flipped");
         for (DraftFinancePosting draftFinancePosting : createNewFromListOfBookedFinancePostings(list, dailyLedger)) {
             draftFinancePostingDAO.create(draftFinancePosting.reverseAmount());
         }

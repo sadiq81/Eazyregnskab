@@ -13,6 +13,8 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -20,6 +22,8 @@ import java.util.List;
  * @author
  */
 public class SessionAwareDropDownChoice<T> extends DropDownChoice<T> implements SessionAware {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SessionAwareDropDownChoice.class);
 
     @SpringBean
     protected LegalEntityService legalEntityService;
@@ -32,59 +36,69 @@ public class SessionAwareDropDownChoice<T> extends DropDownChoice<T> implements 
 
     public SessionAwareDropDownChoice(String id) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public SessionAwareDropDownChoice(String id, List<? extends T> choices) {
         super(id, choices);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public SessionAwareDropDownChoice(String id, List<? extends T> choices, IChoiceRenderer<? super T> renderer) {
         super(id, choices, renderer);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public SessionAwareDropDownChoice(String id, IModel<T> model, List<? extends T> choices) {
         super(id, model, choices);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     public SessionAwareDropDownChoice(String id, IModel<T> model, List<? extends T> choices, IChoiceRenderer<? super T> renderer) {
         super(id, model, choices, renderer);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     public SessionAwareDropDownChoice(String id, IModel<? extends List<? extends T>> choices) {
         super(id, choices);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
+
     }
 
     public SessionAwareDropDownChoice(String id, IModel<T> model, IModel<? extends List<? extends T>> choices) {
         super(id, model, choices);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     public SessionAwareDropDownChoice(String id, IModel<? extends List<? extends T>> choices, IChoiceRenderer<? super T> renderer) {
         super(id, choices, renderer);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
     }
 
     public SessionAwareDropDownChoice(String id, IModel<T> model, IModel<? extends List<? extends T>> choices, IChoiceRenderer<? super T> renderer) {
         super(id, model, choices, renderer);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
     }
 
     public AppUser getCurrentUser() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
-        }
+        return ((EazyregnskabSesssion) Session.get()).getCurrentUser();
+    }
 
-        public LegalEntity getCurrentLegalEntity() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
-        }
+    public LegalEntity getCurrentLegalEntity() {
+        return ((EazyregnskabSesssion) Session.get()).getCurrentLegalEntity();
+    }
 
-        public void setCurrentLegalEntity(LegalEntity legalEntity) {
-            ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
-        }
+    public void setCurrentLegalEntity(LegalEntity legalEntity) {
+        ((EazyregnskabSesssion) Session.get()).setCurrentLegalEntity(legalEntity);
+    }
 
-        public DailyLedger getCurrentDailyLedger() {
-            return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
-        }
+    public DailyLedger getCurrentDailyLedger() {
+        return ((EazyregnskabSesssion) Session.get()).getCurrentDailyLedger();
+    }
 
-        public void setCurrentDailyLedger(DailyLedger dailyLedger) {
-            ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
-        }
+    public void setCurrentDailyLedger(DailyLedger dailyLedger) {
+        ((EazyregnskabSesssion) Session.get()).setCurrentDailyLedger(dailyLedger);
+    }
 
 
 }

@@ -6,6 +6,8 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
@@ -15,24 +17,29 @@ import java.io.Serializable;
 public class TruncatedLabel extends Label {
 
     int truncate;
+    private static final Logger LOG = LoggerFactory.getLogger(TruncatedLabel.class);
 
     public TruncatedLabel(String id, int truncate) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         this.truncate = truncate;
     }
 
     public TruncatedLabel(String id, String label, int truncate) {
         super(id, label);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         this.truncate = truncate;
     }
 
     public TruncatedLabel(String id, Serializable label, int truncate) {
         super(id, label);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         this.truncate = truncate;
     }
 
     public TruncatedLabel(String id, IModel<?> model, int truncate) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
         this.truncate = truncate;
     }
 
