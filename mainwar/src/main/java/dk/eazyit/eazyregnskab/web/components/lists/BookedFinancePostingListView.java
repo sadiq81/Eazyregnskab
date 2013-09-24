@@ -11,6 +11,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -20,19 +22,23 @@ import java.util.List;
 public class BookedFinancePostingListView extends ListView<FinanceAccount> {
 
     BookedFinancePosting last = null;
+    private static final Logger LOG = LoggerFactory.getLogger(BookedFinancePostingListView.class);
 
     public BookedFinancePostingListView(String id) {
         super(id);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         init();
     }
 
     public BookedFinancePostingListView(String id, IModel<? extends List<? extends FinanceAccount>> model) {
         super(id, model);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId() + " and model " + model);
         init();
     }
 
     public BookedFinancePostingListView(String id, List<? extends FinanceAccount> list) {
         super(id, list);
+        LOG.trace("creating " + this.getClass().getSimpleName() + " with id " + this.getId());
         init();
     }
 
