@@ -53,4 +53,5 @@ public class BookkeepingPage extends LoggedInPage {
     @Override
     protected void configureComponents() {
     }
+
 }

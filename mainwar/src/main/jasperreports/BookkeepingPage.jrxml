@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BookkeepingPage" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" resourceBundle="BookkeepingPage" uuid="72344e5b-1812-47a2-bbb9-54a5f5baf2bc">
+	<property name="ireport.zoom" value="2.853116706110004"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.5" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="ireport.x" value="923"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["EazyStyles.jrtx"]]></template>
+	<parameter name="QUERY_LEGAL_ENTITY_ID" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QUERY_LEGAL_ENTITY_NAME" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Juridisk Enhed"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QUERY_DAILY_LEDGER_ID" class="java.lang.Long"/>
+	<parameter name="QUERY_DAILY_LEDGER_NAME" class="java.lang.String"/>
+	<parameter name="QUERY_APPUSER" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+df.date as date,
+df.bookingNumber as bookingNumber,
+df.text as text,
+df.amount as amount,
+fa.accountNumber as financeAccount,
+vt.name as vatType,
+fa2.accountNumber as financeAccountReverse,
+vt2.name as vatTypeReverse
+FROM
+    draftfinanceposting df
+LEFT JOIN financeaccount fa
+ON
+    df.financeaccount_id = fa.id
+LEFT JOIN financeaccount fa2
+ON
+    df.reverseFinanceaccount_id = fa2.id
+LEFT JOIN vattype vt
+ON df.vatType_id = vt.id
+LEFT JOIN vattype vt2
+ON df.reverseVatType_id = vt2.id
+
+WHERE
+    df.dailyledger_id = $P{QUERY_DAILY_LEDGER_ID}
+ORDER BY
+    df.bookingNumber;]]>
+	</queryString>
+	<field name="date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bookingNumber" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="text" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="financeAccount" class="java.lang.Integer"/>
+	<field name="vatType" class="java.lang.String"/>
+	<field name="financeAccountReverse" class="java.lang.Integer"/>
+	<field name="vatTypeReverse" class="java.lang.String"/>
+	<title>
+		<band height="59" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="5c7c4cab-cbd4-4c0b-8393-c3b5ba3bc856" style="title" positionType="Float" x="0" y="0" width="802" height="59"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg($R{report.title}, $P{QUERY_DAILY_LEDGER_NAME}, $P{QUERY_LEGAL_ENTITY_NAME})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22">
+			<textField>
+				<reportElement uuid="52dad328-de53-4966-b01a-753674656d79" style="column_header" x="0" y="0" width="100" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="546dd474-6e79-42f5-9d09-e626cd384300" style="column_header" x="100" y="0" width="100" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$R{bookingNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="354c3b68-8c4a-42db-9934-8a97f6e121e0" style="column_header" x="200" y="0" width="100" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$R{text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1f51d240-e589-4b53-8872-da587c566ffc" style="column_header" x="300" y="0" width="100" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$R{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="04c6f495-8592-4559-8c73-24f9c9409f5f" style="column_header" x="400" y="0" width="98" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$R{financeAccount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c3509791-24bd-4684-bdb5-f4a76f1f3720" style="column_header" x="498" y="0" width="100" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$R{vatType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d9efaee9-0e28-48f6-9af0-0e688633a844" style="column_header" x="598" y="0" width="100" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$R{financeAccountReverse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="618b7f34-3dfa-46a8-9ba6-b32f3ca98d47" style="column_header" x="698" y="0" width="104" height="22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<paragraph rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{vatTypeReverse}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="dd-MM-yyyy">
+				<reportElement uuid="70565c56-53bd-4147-80f3-9f5420031679" x="0" y="0" width="100" height="15"/>
+				<textElement>
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cd287b63-a835-4814-b126-117928d07077" x="100" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{bookingNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6c66ad83-d103-4bc7-8e50-ad7006e61cc2" x="200" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{text}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="247b7023-325a-4112-928c-e9a398901384" x="300" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="561eaa07-2c0d-41ed-a947-89aacd5bf5d3" x="400" y="0" width="98" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{financeAccount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3144797a-9463-4691-844c-3eafc7b0a7fa" x="498" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{vatType}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c284ccf3-d6fa-4324-9c91-4f738afd6242" x="598" y="0" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{financeAccountReverse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="aa1455fc-d7e7-4318-8152-f967c141e6ad" x="698" y="0" width="104" height="15"/>
+				<textElement>
+					<paragraph rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vatTypeReverse}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5c5e1280-5277-4cff-a123-ed37710482f5" style="page_footer" x="355" y="0" width="82" height="30"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{page}+ " "+$V{PAGE_NUMBER}+ " " + $R{of}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="22d8cc55-641e-4a94-8cb0-637bb2f9d398" style="page_footer" x="437" y="0" width="61" height="30"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48c1cec8-f625-407a-a332-5ed3c534c378" style="page_footer" x="498" y="0" width="304" height="30"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Times New Roman"/>
+					<paragraph rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{QUERY_APPUSER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement uuid="591b3167-7080-494f-9ee2-5f8397394ac1" style="page_footer" x="0" y="0" width="355" height="30"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman"/>
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

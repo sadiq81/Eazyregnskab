@@ -3,7 +3,6 @@ package dk.eazyit.eazyregnskab.web.components.form;
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
 import dk.eazyit.eazyregnskab.domain.DraftFinancePosting;
-import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.services.PostingService;
@@ -23,6 +22,8 @@ import org.apache.wicket.util.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+
 /**
  * @author
  */
@@ -31,6 +32,9 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     @SpringBean
     PostingService postingService;
 
+
+    private static final String dailyLedgerName = "QUERY_DAILY_LEDGER_NAME";
+    private static final String dailyLedgerId = "QUERY_DAILY_LEDGER_ID";
     private static final Logger LOG = LoggerFactory.getLogger(DraftFinancePostingForm.class);
 
 
@@ -163,17 +167,16 @@ public class DraftFinancePostingForm extends BaseCreateEditForm<DraftFinancePost
     }
 
     @Override
+    protected HashMap<String, Object> getFormParametersForReport() {
+        HashMap<String, Object> params = super.getFormParametersForReport();
+        params.put(dailyLedgerId, getCurrentDailyLedger().getId());
+        params.put(dailyLedgerName, getCurrentDailyLedger().getName());
+        return params;
+    }
+
+    @Override
     protected void addReports() {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    protected boolean exportWithBeans() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    protected EntityWithLongId[] getCollectionForReport() {
-        return new EntityWithLongId[0];  //To change body of implemented methods use File | Settings | File Templates.
+        add(getJasperPdfResourceLink("exportPdf", getJasperReportName(), getString(getJasperReportName() + ".pdf")));
+        add(getJasperXlsResourceLink("exportXls", getJasperReportName(), getString(getJasperReportName() + ".xls")));
     }
 }
