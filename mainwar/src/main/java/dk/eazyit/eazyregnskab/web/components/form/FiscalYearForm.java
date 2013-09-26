@@ -2,7 +2,6 @@ package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import de.agilecoders.wicket.extensions.markup.html.bootstrap.form.DateTextFieldConfig;
-import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.FiscalYear;
 import dk.eazyit.eazyregnskab.domain.FiscalYearStatus;
 import dk.eazyit.eazyregnskab.util.CalendarUtil;
@@ -114,16 +113,8 @@ public class FiscalYearForm extends BaseCreateEditForm<FiscalYear> {
 
     @Override
     protected void addReports() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        add(getJasperPdfResourceLink("exportPdf", getJasperReportName(), getString(getJasperReportName() + ".pdf")));
+        add(getJasperXlsResourceLink("exportXls", getJasperReportName(), getString(getJasperReportName() + ".xls")));
     }
 
-    @Override
-    protected boolean exportWithBeans() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    protected EntityWithLongId[] getCollectionForReport() {
-        return new EntityWithLongId[0];  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }
