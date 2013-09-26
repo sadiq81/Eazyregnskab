@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VatTypesPage" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" resourceBundle="VatTypesPage" uuid="8603b264-b5ff-4e25-a048-406400d26dee">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="lastPageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
+	<property name="ireport.layers" value="##Wed Sep 25 21:37:55 CEST 2013\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
+	<template><![CDATA["EazyStyles.jrtx"]]></template>
+	<style name="detail_line" isBlankWhenNull="true" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman"/>
+	<parameter name="QUERY_LEGAL_ENTITY_ID" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QUERY_LEGAL_ENTITY_NAME" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Juridisk Enhed"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QUERY_APPUSER" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+vt.name as name,
+fa.accountNumber as financeAccount,
+fa2.accountNumber as financeAccountReverse,
+vt.percentage as percentage
+FROM
+vattype vt
+LEFT JOIN financeaccount fa
+ON
+    vt.financeAccount_id = fa.id
+LEFT JOIN financeaccount fa2
+ON
+    vt.financeAccount_reverse_id = fa2.id
+WHERE
+    vt.legalentity_id = $P{QUERY_LEGAL_ENTITY_ID}
+order by
+vt.id]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="financeAccount" class="java.lang.Integer"/>
+	<field name="financeAccountReverse" class="java.lang.Integer"/>
+	<field name="percentage" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3f6c1a4e-40c5-49bb-a253-fc02f615c2c4" style="title" positionType="Float" x="0" y="0" width="355" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg($R{report.title}, $P{QUERY_LEGAL_ENTITY_NAME})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d1f8f0f5-977b-4f17-9c09-d036c89ea98f" style="column_header" x="0" y="0" width="112" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5c64e575-54a2-4698-9c80-0d20c09304d1" style="column_header" x="112" y="0" width="182" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{financeAccount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="79830234-4849-4bea-8928-aa7375d8d44d" style="column_header" x="294" y="0" width="139" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{financeAccountReverse}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="5d0dffc2-03fa-4831-aadd-1d56c6f0b667" style="column_header" x="433" y="0" width="122" height="30"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<paragraph rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{percentage}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d4dfc591-2a47-4c3b-a86d-241c4e64f516" style="detail_line" stretchType="RelativeToBandHeight" x="0" y="0" width="112" height="20"/>
+				<textElement>
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="1be2a6b6-7a72-4a4d-913f-326381d8d291" style="detail_line" stretchType="RelativeToBandHeight" x="112" y="0" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{financeAccount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="3e263819-3462-4419-80a8-3916060a2f41" style="detail_line" stretchType="RelativeToBandHeight" x="294" y="0" width="139" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{financeAccountReverse} != null ? $F{financeAccountReverse} : ""]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="89b13acc-9643-485d-ba45-e3b88e030ee5" x="433" y="0" width="122" height="20"/>
+				<textElement textAlignment="Right">
+					<paragraph rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{percentage}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField pattern="dd-MM-yyyy">
+				<reportElement uuid="0e76ad79-0162-496a-b623-d01c6dd2044c" style="page_footer" x="0" y="0" width="214" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1665fd59-0edb-449e-8e54-be20ed5d5647" style="page_footer" x="214" y="0" width="80" height="40"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$R{page}+ " "+$V{PAGE_NUMBER}+ " " + $R{of}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="5e29ed49-4850-4495-bd59-236ee41af2b2" style="page_footer" x="294" y="0" width="61" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b6ab6cc3-d7f9-4b71-a447-d05d19dcbe29" style="page_footer" x="355" y="0" width="200" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<paragraph rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{QUERY_APPUSER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

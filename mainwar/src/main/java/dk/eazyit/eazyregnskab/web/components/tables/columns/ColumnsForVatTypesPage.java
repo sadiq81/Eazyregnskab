@@ -21,9 +21,9 @@ public class ColumnsForVatTypesPage extends ArrayList<IColumn<VatType, String>> 
 
     public ColumnsForVatTypesPage(final BaseCreateEditForm<VatType> form) {
         add(new PropertyColumn<VatType, String>(new ResourceModel("VatTypesPage.name"), "name", "name"));
+        add(new NumberPropertyColumn<VatType>(new ResourceModel("VatTypesPage.percentage"), "percentage", "percentage", 2, 2));
         add(new PropertyColumn<VatType, String>(new ResourceModel("VatTypesPage.finance.account"), "financeAccount.name"));
         add(new PropertyColumn<VatType, String>(new ResourceModel("VatTypesPage.finance.account.reverse"), "financeAccountReverse.name"));
-        add(new NumberPropertyColumn<VatType>(new ResourceModel("VatTypesPage.percentage"), "percentage", "percentage", 2, 2));
         add(new AbstractColumn<VatType, String>(new ResourceModel("VatTypesPage.action")) {
             @Override
             public void populateItem(Item<ICellPopulator<VatType>> cellItem, String componentId, IModel<VatType> rowModel) {
