@@ -7,7 +7,7 @@
 	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<template><![CDATA["/Users/tommysadiqhinrichsen/IdeaProjects/eazyregnskab/mainwar/src/main/jasperreports/EazyStyles.jrtx"]]></template>
+	<template><![CDATA["EazyStyles.jrtx"]]></template>
 	<parameter name="QUERY_LEGAL_ENTITY_ID" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
 	</parameter>

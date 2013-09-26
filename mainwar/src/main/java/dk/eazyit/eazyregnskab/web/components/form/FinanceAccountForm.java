@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
+import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.domain.FinanceAccountType;
 import dk.eazyit.eazyregnskab.domain.VatType;
@@ -135,6 +136,22 @@ public class FinanceAccountForm extends BaseCreateEditForm<FinanceAccount> {
 
             }
         });
+    }
+
+    @Override
+    protected void addReports() {
+        add(getJasperPdfResourceLink("exportPdf", getJasperReportName(), getString(getJasperReportName() + ".pdf")));
+        add(getJasperXlsResourceLink("exportXls", getJasperReportName(), getString(getJasperReportName() + ".xls")));
+    }
+
+    @Override
+    protected boolean exportWithBeans() {
+        return false;
+    }
+
+    @Override
+    protected EntityWithLongId[] getCollectionForReport() {
+        return new EntityWithLongId[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

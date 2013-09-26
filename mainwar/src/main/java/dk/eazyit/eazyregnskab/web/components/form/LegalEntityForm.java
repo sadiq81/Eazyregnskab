@@ -2,6 +2,7 @@ package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
 import dk.eazyit.eazyregnskab.domain.Country;
+import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.LegalEntity;
 import dk.eazyit.eazyregnskab.domain.MoneyCurrency;
 import dk.eazyit.eazyregnskab.web.components.button.LoadingButton;
@@ -93,5 +94,20 @@ public class LegalEntityForm extends BaseCreateEditForm<LegalEntity> {
             }
         });
 
+    }
+
+    @Override
+    protected void addReports() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    protected boolean exportWithBeans() {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    protected EntityWithLongId[] getCollectionForReport() {
+        return new EntityWithLongId[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.common.NotificationMessage;
+import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.domain.VatType;
 import dk.eazyit.eazyregnskab.web.components.choice.FinanceAccountSelect2ChoiceBookableAccounts;
 import dk.eazyit.eazyregnskab.web.components.input.PlaceholderNumberTextField;
@@ -74,5 +75,20 @@ public class VatTypeForm extends BaseCreateEditForm<VatType> {
     @Override
     public FormComponent focusAfterSave() {
         return name;
+    }
+
+    @Override
+    protected void addReports() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    protected boolean exportWithBeans() {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    protected EntityWithLongId[] getCollectionForReport() {
+        return new EntityWithLongId[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

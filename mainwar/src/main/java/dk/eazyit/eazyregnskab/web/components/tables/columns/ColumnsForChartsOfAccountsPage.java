@@ -21,8 +21,8 @@ public class ColumnsForChartsOfAccountsPage extends ArrayList<IColumn<FinanceAcc
 
     public ColumnsForChartsOfAccountsPage(final BaseCreateEditForm<FinanceAccount> form) {
 
-        add(new FinanceAccountPropertyColumn<>(new ResourceModel("ChartOfAccountsPage.name"), "name", "name"));
         add(new FinanceAccountPropertyColumn<>(new ResourceModel("ChartOfAccountsPage.accountNumber"), "accountNumber", "accountNumber"));
+        add(new FinanceAccountPropertyColumn<>(new ResourceModel("ChartOfAccountsPage.name"), "name", "name"));
         add(new FinanceAccountPropertyColumn<>(new ResourceModel("ChartOfAccountsPage.vatType"), "vatType.percentage", "vatType.name"));
         add(new FinanceAccountPropertyColumn<String>(new ResourceModel("ChartOfAccountsPage.sum.from.to"), "sumFromTo"));
         add(new EnumPropertyColumn<FinanceAccount>(new ResourceModel("ChartOfAccountsPage.financeAccountType"), "financeAccountType", "financeAccountType"));

@@ -7,7 +7,7 @@
 	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
 	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="lastPageFooter"/>
 	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
-	<template><![CDATA["/Users/tommysadiqhinrichsen/IdeaProjects/eazyregnskab/mainwar/src/main/jasperreports/EazyStyles.jrtx"]]></template>
+	<template><![CDATA["EazyStyles.jrtx"]]></template>
 	<style name="FinanceAccountLine" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("CATEGORY")]]></conditionExpression>
@@ -97,14 +97,14 @@
 	<title>
 		<band height="40" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="3f6c1a4e-40c5-49bb-a253-fc02f615c2c4" style="Title" positionType="Float" x="0" y="0" width="357" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="3f6c1a4e-40c5-49bb-a253-fc02f615c2c4" style="title" positionType="Float" x="0" y="0" width="357" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<paragraph leftIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[msg($R{report.title}, $P{QUERY_LEGAL_ENTITY_NAME})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="253e594c-e58f-4296-8b80-52f40a866e4f" style="PageFooter" x="357" y="0" width="198" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="253e594c-e58f-4296-8b80-52f40a866e4f" style="page_footer" x="357" y="0" width="198" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right">
 					<paragraph rightIndent="7"/>
 				</textElement>
@@ -118,35 +118,35 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 	<columnHeader>
 		<band height="70" splitType="Stretch">
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="0b6f0027-5abb-4fa6-8e7c-25f759887af4" style="Column Header" stretchType="RelativeToBandHeight" x="0" y="20" width="80" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="0b6f0027-5abb-4fa6-8e7c-25f759887af4" style="column_header" stretchType="RelativeToBandHeight" x="0" y="20" width="80" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Bottom">
 					<paragraph leftIndent="7" rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{account.number}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="a0a2f91a-a44f-4936-bf56-0b57f4dcd0ae" style="Column Header" stretchType="RelativeToBandHeight" x="80" y="20" width="214" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="a0a2f91a-a44f-4936-bf56-0b57f4dcd0ae" style="column_header" stretchType="RelativeToBandHeight" x="80" y="20" width="214" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Bottom">
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{account.name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="0e95a46c-d124-4f71-8855-63c9e2d16c97" style="Column Header" stretchType="RelativeToBandHeight" x="294" y="20" width="125" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="0e95a46c-d124-4f71-8855-63c9e2d16c97" style="column_header" stretchType="RelativeToBandHeight" x="294" y="20" width="125" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{sum}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="c6e2c40a-0e60-48f1-a713-97220e1d2a58" style="Column Header" stretchType="RelativeToBandHeight" x="419" y="20" width="136" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="c6e2c40a-0e60-48f1-a713-97220e1d2a58" style="column_header" stretchType="RelativeToBandHeight" x="419" y="20" width="136" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
 					<paragraph rightIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{COMPARE_TYPE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="43994893-dc91-406d-a12a-c84409a91db9" style="PageFooter" stretchType="RelativeToBandHeight" x="419" y="0" width="136" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="43994893-dc91-406d-a12a-c84409a91db9" style="page_footer" stretchType="RelativeToBandHeight" x="419" y="0" width="136" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<paragraph rightIndent="7"/>
 				</textElement>
@@ -156,7 +156,7 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 )]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto">
-				<reportElement uuid="a57f3b07-abfc-4056-8012-d2ce98b09db6" style="PageFooter" stretchType="RelativeToBandHeight" x="294" y="0" width="125" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="a57f3b07-abfc-4056-8012-d2ce98b09db6" style="page_footer" stretchType="RelativeToBandHeight" x="294" y="0" width="125" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<paragraph rightIndent="7"/>
 				</textElement>
@@ -203,24 +203,24 @@ $P{QUERY_END_ACCOUNT_NUMBER}}
 	<pageFooter>
 		<band height="40" splitType="Stretch">
 			<textField pattern="dd-MM-yyyy">
-				<reportElement uuid="0e76ad79-0162-496a-b623-d01c6dd2044c" style="PageFooter" x="0" y="0" width="214" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="0e76ad79-0162-496a-b623-d01c6dd2044c" style="page_footer" x="0" y="0" width="214" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Bottom">
 					<paragraph leftIndent="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="1665fd59-0edb-449e-8e54-be20ed5d5647" style="PageFooter" x="214" y="0" width="80" height="40"/>
+				<reportElement uuid="1665fd59-0edb-449e-8e54-be20ed5d5647" style="page_footer" x="214" y="0" width="80" height="40"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
 				<textFieldExpression><![CDATA[$R{page}+ " "+$V{PAGE_NUMBER}+ " " + $R{of}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement uuid="5e29ed49-4850-4495-bd59-236ee41af2b2" style="PageFooter" x="294" y="0" width="61" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="5e29ed49-4850-4495-bd59-236ee41af2b2" style="page_footer" x="294" y="0" width="61" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b6ab6cc3-d7f9-4b71-a447-d05d19dcbe29" style="PageFooter" x="355" y="0" width="200" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="b6ab6cc3-d7f9-4b71-a447-d05d19dcbe29" style="page_footer" x="355" y="0" width="200" height="40" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Right" verticalAlignment="Bottom">
 					<paragraph rightIndent="7"/>
 				</textElement>

@@ -1,6 +1,7 @@
 package dk.eazyit.eazyregnskab.domain;
 
 import com.google.common.base.Objects;
+import org.hibernate.annotations.Index;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -61,9 +62,11 @@ public class FinanceAccount extends BaseEntity implements IEazyTableRow<FinanceA
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Index(name = "financeAccount_name")
     @Column(unique = false, nullable = false, length = 100)
     private String name;
 
+    @Index(name = "financeAccount_accountNumber")
     @Column(unique = false, nullable = false, length = 50)
     private Integer accountNumber;
 
@@ -79,12 +82,15 @@ public class FinanceAccount extends BaseEntity implements IEazyTableRow<FinanceA
     @OneToOne(optional = true)
     private FinanceAccount standardReverseFinanceAccount;
 
+    @Index(name = "financeAccount_sumFromIndex")
     @OneToOne(optional = true)
     private FinanceAccount sumFrom;
 
+    @Index(name = "financeAccount_sumToIndex")
     @OneToOne(optional = true)
     private FinanceAccount sumTo;
 
+    @Index(name = "financeAccount_legalEntityIndex")
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "legalentity_id")
