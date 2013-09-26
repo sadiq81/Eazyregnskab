@@ -1,6 +1,5 @@
 package dk.eazyit.eazyregnskab.web.components.form;
 
-import dk.eazyit.eazyregnskab.domain.EntityWithLongId;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.BalanceReportFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -35,13 +34,4 @@ public class FinanceAccountsReportForm extends BaseReportForm {
     protected void submit(AjaxRequestTarget target) {
     }
 
-    @Override
-    protected boolean exportWithBeans() {
-        return false;
-    }
-
-    @Override
-    protected EntityWithLongId[] getCollectionForReport() {
-        return new EntityWithLongId[0];
-    }
 }

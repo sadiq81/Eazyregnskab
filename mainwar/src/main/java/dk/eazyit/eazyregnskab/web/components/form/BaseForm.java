@@ -113,9 +113,14 @@ public abstract class BaseForm<T extends Serializable> extends Form<T> implement
 
     protected abstract void addReports();
 
-    protected abstract boolean exportWithBeans();
+    protected boolean exportWithBeans() {
+        return false;
+    }
 
-    protected abstract EntityWithLongId[] getCollectionForReport();
+    protected EntityWithLongId[] getCollectionForReport() {
+        if (exportWithBeans()) throw new NullPointerException("Method should be overriden");
+        return new EntityWithLongId[0];
+    }
 
     protected HashMap<String, Object> getFormParametersForReport() {
         HashMap<String, Object> parameters = new HashMap<>();
