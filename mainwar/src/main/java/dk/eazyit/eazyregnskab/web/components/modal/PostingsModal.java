@@ -50,6 +50,7 @@ public class PostingsModal extends SessionAwareModal<BookedFinancePosting> {
             }
         });
         setInitialWidth(800);
+        setCssClassName(CSS_CLASS_GRAY);
     }
 
     public PostingsModal setItem(BookedFinancePosting item) {

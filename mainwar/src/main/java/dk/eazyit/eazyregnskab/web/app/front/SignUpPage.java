@@ -9,7 +9,7 @@ import dk.eazyit.eazyregnskab.web.components.input.PlaceholderTextField;
 import dk.eazyit.eazyregnskab.web.components.page.AppBasePage;
 import dk.eazyit.eazyregnskab.web.components.validators.forms.CreateAccountFormValidator;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxButton;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.form.EmailTextField;
@@ -84,7 +84,7 @@ public class SignUpPage extends AppBasePage {
             add(repeatPassword = (PasswordTextField) new PlaceholderPasswordField("repeat_password").setRequired(true).setOutputMarkupId(true));
             add(emailTextField = (EmailTextField) new EmailTextField("email").setRequired(true).setOutputMarkupId(true));
             add(new CreateAccountFormValidator(username, password, repeatPassword, emailTextField));
-            add(new AjaxButton("save") {
+            add(new IndicatingAjaxButton("save") {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     super.onSubmit(target, form);

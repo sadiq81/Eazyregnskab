@@ -106,7 +106,9 @@ public class EazyregnskabSesssion extends AuthenticatedWebSession {
 
     @Override
     public void invalidate() {
-        log.info("appUser logged out: " + getCurrentUser().getUsername() + "from " + ((ServletWebRequest) RequestCycle.get().getRequest()).getContainerRequest().getRemoteHost());
+        if (getCurrentUser() != null) {
+            log.info("appUser logged out: " + getCurrentUser().getUsername() + " from " + ((ServletWebRequest) RequestCycle.get().getRequest()).getContainerRequest().getRemoteHost());
+        }
         getApplication().getSecuritySettings().getAuthenticationStrategy().remove();
         Session.get().removeAttribute(AppUser.ATTRIBUTE_NAME);
         Session.get().removeAttribute(LegalEntity.ATTRIBUTE_NAME);

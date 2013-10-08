@@ -88,6 +88,12 @@
             <version>${com.vaynberg.wicket.select2.version}</version>
         </dependency>
 
+        <!--<dependency>-->
+        <!--<groupId>com.googlecode.wicket-jquery-ui</groupId>-->
+        <!--<artifactId>wicket-jquery-ui</artifactId>-->
+        <!--<version>${wicket.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
@@ -307,6 +313,34 @@
             <version>3.9</version>
         </dependency>
 
+        <!--Spring security-->
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -318,6 +352,7 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>**/*.txt</include>
+                    <include>**/*.xls</include>
                 </includes>
             </resource>
 

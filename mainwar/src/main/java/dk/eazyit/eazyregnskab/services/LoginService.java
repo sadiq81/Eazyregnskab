@@ -46,8 +46,10 @@ public class LoginService {
         appUserRoleDAO.create(new AppUserRole(appUser, Role.USER));
         log.info("Created account for " + username);
 
-        //TODO remove from live environment
-        activeUser(username, password, appUser.getVerificationUUID());
+        if (System.getProperty("local") != null) {
+            activeUser(username, password, appUser.getVerificationUUID());
+        }
+
     }
 
     @Transactional

@@ -18,13 +18,6 @@ import java.util.*;
 @Service(value = "MailService")
 public class MailService {
 
-    public MailService() {
-    }
-
-    public MailService(boolean testMode) {
-        this.testMode = testMode;
-    }
-
     @Autowired
     FileReader fileReader;
 
@@ -36,9 +29,6 @@ public class MailService {
     private static final String ID_PHRASE = "*|ID|*";
     private static final String YEAR_PHRASE = "*|CURRENT_YEAR|*";
 
-
-    private boolean testMode = false;
-
     public void sendConfirmationEmail(String email, String UUID) {
 
         LOG.info("Sending confirmation email to " + email + " with UUID " + UUID);
@@ -47,7 +37,7 @@ public class MailService {
         content = content.replace(ID_PHRASE, UUID);
         content = content.replace(YEAR_PHRASE, (Calendar.getInstance().get(Calendar.YEAR)) + "");
 
-        if (!testMode) {
+        if (System.getProperty("local") == null) {
             try {
                 Properties props = new Properties();
                 props.put("mail.transport.protocol", "smtp");
@@ -78,6 +68,7 @@ public class MailService {
                 //TODO should be thrown all the way to signup page.
             }
         }
+        LOG.info("Sending confirmation email to " + email + " with UUID " + UUID);
     }
 
     private static class SMTPAuthenticator extends javax.mail.Authenticator {

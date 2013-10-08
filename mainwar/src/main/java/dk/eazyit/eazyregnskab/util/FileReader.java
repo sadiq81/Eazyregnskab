@@ -2,10 +2,7 @@ package dk.eazyit.eazyregnskab.util;
 
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 
 /**
  * @author
@@ -29,5 +26,11 @@ public class FileReader {
 
         }
         return sb.toString();
+    }
+
+    public String getExtensionFromFile(File file) {
+        int divider = file.getName().lastIndexOf(".");
+        String extension = file.getName().substring(divider + 1);
+        return extension;
     }
 }

@@ -36,7 +36,6 @@
     </bean>
 
     <bean id="MailService" class="dk.eazyit.eazyregnskab.services.MailService">
-        <constructor-arg type="boolean" value="false"></constructor-arg>
     </bean>
 
     <!--<bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->

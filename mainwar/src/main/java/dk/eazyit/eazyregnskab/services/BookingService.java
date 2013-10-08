@@ -18,7 +18,7 @@ import java.util.*;
 @Service
 public class BookingService {
 
-    final Logger logger = LoggerFactory.getLogger(this.getClass());
+    final static Logger logger = LoggerFactory.getLogger(BookingService.class);
 
     @Autowired
     BookedFinancePostingDAO bookedFinancePostingDAO;

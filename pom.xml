@@ -44,6 +44,7 @@
         <wicket-spring-annot.version>1.3.7</wicket-spring-annot.version>
         <hibernate.version>4.2.4.Final</hibernate.version>
         <spring.version>3.2.4.RELEASE</spring.version>
+        <spring.security.version>3.1.4.RELEASE</spring.security.version>
 
         <pdfbox.version>1.8.2</pdfbox.version>
         <jasperreports.version>5.2.0</jasperreports.version>

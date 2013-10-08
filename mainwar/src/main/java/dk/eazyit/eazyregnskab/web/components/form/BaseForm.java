@@ -111,7 +111,8 @@ public abstract class BaseForm<T extends Serializable> extends Form<T> implement
         return new ResourceLink(id, jr);
     }
 
-    protected abstract void addReports();
+    protected void addReports() {
+    }
 
     protected boolean exportWithBeans() {
         return false;

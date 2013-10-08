@@ -3,6 +3,8 @@ package dk.eazyit.eazyregnskab.web.app.secure.settings;
 import dk.eazyit.eazyregnskab.domain.FinanceAccount;
 import dk.eazyit.eazyregnskab.web.components.dataprovider.FinanceAccountDataProvider;
 import dk.eazyit.eazyregnskab.web.components.form.FinanceAccountForm;
+import dk.eazyit.eazyregnskab.web.components.link.OpenWizardLink;
+import dk.eazyit.eazyregnskab.web.components.modal.chartOfAccountsPage.ImportFinanceAccountsWizard;
 import dk.eazyit.eazyregnskab.web.components.models.entities.FinanceAccountModel;
 import dk.eazyit.eazyregnskab.web.components.navigation.menu.MenuPosition;
 import dk.eazyit.eazyregnskab.web.components.page.LoggedInPage;
@@ -20,6 +22,7 @@ import org.slf4j.LoggerFactory;
 public class ChartOfAccountsPage extends LoggedInPage {
 
     FinanceAccountForm form;
+    ImportFinanceAccountsWizard importFinanceAccountsWizard;
 
     private static final Logger LOG = LoggerFactory.getLogger(ChartOfAccountsPage.class);
 
@@ -44,6 +47,9 @@ public class ChartOfAccountsPage extends LoggedInPage {
 
         add(form = new FinanceAccountForm("financeAccountEdit", new FinanceAccountModel(new FinanceAccount())));
         add(new EazyDataTable("chartOfAccounts", new ColumnsForChartsOfAccountsPage(form), new FinanceAccountDataProvider()));
+        add(importFinanceAccountsWizard = new ImportFinanceAccountsWizard("importWizard"));
+        add(new OpenWizardLink("importWizardLink", importFinanceAccountsWizard));
+
 
     }
 
@@ -51,6 +57,5 @@ public class ChartOfAccountsPage extends LoggedInPage {
     protected void configureComponents() {
 
     }
-
 
 }

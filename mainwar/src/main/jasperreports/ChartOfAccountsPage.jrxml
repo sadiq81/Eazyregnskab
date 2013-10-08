@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ChartOfAccountsPage" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" resourceBundle="ChartOfAccountsPage" uuid="8603b264-b5ff-4e25-a048-406400d26dee">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.1" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.2" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.band.3" value="lastPageFooter"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
+	<property name="ireport.layers" value="##Wed Sep 25 21:37:55 CEST 2013\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
+	<template><![CDATA["EazyStyles.jrtx"]]></template>
+	<style name="FinanceAccountLine" isBlankWhenNull="true" fontName="Times New Roman" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("CATEGORY")]]></conditionExpression>
+			<style isBlankWhenNull="true" fontSize="14" isBold="true">
+				<box>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("CATEGORY_SUM")]]></conditionExpression>
+			<style isBlankWhenNull="true" fontSize="14" isBold="true">
+				<box>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("HEADLINE")]]></conditionExpression>
+			<style isBlankWhenNull="true" fontSize="12" isBold="true">
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("SUM")]]></conditionExpression>
+			<style isBlankWhenNull="true" fontSize="12" isBold="true">
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{financeAccountType}.toString().equals("EMPTY_ROW")]]></conditionExpression>
+			<style isBlankWhenNull="true" fontSize="0"/>
+		</conditionalStyle>
+	</style>
+	<style name="FinanceAccountLine_Number" style="FinanceAccountLine" pattern="#,##0.00" isBlankWhenNull="true"/>
+	<parameter name="QUERY_LEGAL_ENTITY_ID" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QUERY_LEGAL_ENTITY_NAME" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Juridisk Enhed"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QUERY_APPUSER" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+    fa.accountNumber as accountNumber,
+fa.name as accountName,
+fa.financeAccountType as financeAccountType,
+fa2.accountNumber as fromAccountNumber,
+fa3.accountNumber as toAccountNumber,
+vt.name as vatType,
+fa.locked as locked
+FROM
+    financeaccount fa
+LEFT JOIN financeaccount fa2
+ON
+    fa.sumFrom_id = fa2.id
+LEFT JOIN financeaccount fa3
+ON
+    fa.sumTo_id = fa3.id
+LEFT JOIN vattype vt
+ON
+    fa.vatType_id = vt.id
+WHERE
+    fa.legalentity_id = $P{QUERY_LEGAL_ENTITY_ID}
+order by
+fa.accountNumber]]>
+	</queryString>
+	<field name="accountNumber" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accountName" class="java.lang.String"/>
+	<field name="financeAccountType" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fromAccountNumber" class="java.lang.Integer"/>
+	<field name="toAccountNumber" class="java.lang.Integer"/>
+	<field name="vatType" class="java.lang.String"/>
+	<field name="locked" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3f6c1a4e-40c5-49bb-a253-fc02f615c2c4" style="title" positionType="Float" x="0" y="0" width="555" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[msg($R{report.title}, $P{QUERY_LEGAL_ENTITY_NAME})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d1f8f0f5-977b-4f17-9c09-d036c89ea98f" style="column_header" x="0" y="0" width="73" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{accountNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5c64e575-54a2-4698-9c80-0d20c09304d1" style="column_header" x="73" y="0" width="151" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{accountName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="79830234-4849-4bea-8928-aa7375d8d44d" style="column_header" x="224" y="0" width="82" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{vatType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0157564b-ecbb-4aeb-86b6-c515386c7bc5" style="column_header" x="306" y="0" width="70" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{fromAccountNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="22821833-c2e7-49c8-b67e-67063600d648" style="column_header" x="376" y="0" width="70" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{toAccountNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="08e4a147-0372-4837-a06f-d30d3cee0702" style="column_header" x="446" y="0" width="109" height="30"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$R{accountType}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d59c322c-cb70-4267-9ccf-84408bbdb5e1" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="306" y="0" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fromAccountNumber} != null ? $F{fromAccountNumber} : ""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="523a85c8-3d36-4c60-bdcd-3fa96b803e75" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="376" y="0" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{toAccountNumber} != null ? $F{toAccountNumber} : ""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="60116cac-3168-4769-88a9-22e727877eb9" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="446" y="0" width="109" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{financeAccountType}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d4dfc591-2a47-4c3b-a86d-241c4e64f516" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="0" y="0" width="73" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{accountNumber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="1be2a6b6-7a72-4a4d-913f-326381d8d291" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="73" y="0" width="151" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{accountName}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="3e263819-3462-4419-80a8-3916060a2f41" style="FinanceAccountLine" stretchType="RelativeToBandHeight" x="224" y="0" width="82" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{vatType} != null ? $F{vatType} : ""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<textField pattern="dd-MM-yyyy">
+				<reportElement uuid="0e76ad79-0162-496a-b623-d01c6dd2044c" style="page_footer" x="0" y="0" width="214" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Bottom">
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1665fd59-0edb-449e-8e54-be20ed5d5647" style="page_footer" x="214" y="0" width="80" height="40"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$R{page}+ " "+$V{PAGE_NUMBER}+ " " + $R{of}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="5e29ed49-4850-4495-bd59-236ee41af2b2" style="page_footer" x="294" y="0" width="61" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b6ab6cc3-d7f9-4b71-a447-d05d19dcbe29" style="page_footer" x="355" y="0" width="200" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<paragraph rightIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{QUERY_APPUSER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

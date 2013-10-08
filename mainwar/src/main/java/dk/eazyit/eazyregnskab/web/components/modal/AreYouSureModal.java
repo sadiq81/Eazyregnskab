@@ -34,6 +34,7 @@ public abstract class AreYouSureModal extends SessionAwareModal {
             }
         });
         setInitialWidth(260).setMinimalWidth(260).setInitialHeight(170).setMinimalHeight(170).setResizable(false);
+        setCssClassName(CSS_CLASS_GRAY);
     }
 
 
